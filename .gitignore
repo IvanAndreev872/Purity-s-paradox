@@ -78,6 +78,7 @@ crashlytics-build.properties
 /Build/
 /Builds/
 /Assets/AssetStoreTools*
+/Logs/
 *.csproj
 *.unityproj
 *.sln
@@ -85,3 +86,7 @@ crashlytics-build.properties
 *.tmp
 *.user
 *.userprefs
+/kursach/Library
+/kursach/Logs
+/kursach/obj
+/kursach/Temp

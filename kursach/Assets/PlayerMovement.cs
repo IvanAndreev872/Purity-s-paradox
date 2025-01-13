@@ -1,0 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public float move_speed;
+    public float dash_speed;
+    public float dash_duration;
+
+    private Rigidbody2D rb;
+    private bool is_dashing;
+    private float dash_start;
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();   
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (is_dashing)
+        {
+            Dash();
+        }
+        else
+        {
+            CheckDash();
+            Move();
+        }
+    }
+
+    private void Dash()
+    {
+        if (Time.time > dash_start + dash_duration) 
+        { 
+            is_dashing = false;
+        }
+        else
+        {
+            float move_x = Input.GetAxis("Horizontal");
+            float move_y = Input.GetAxis("Vertical");
+
+            rb.velocity = new Vector2(move_x * dash_speed, move_y * dash_speed);
+        }
+    }
+
+    private void CheckDash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            is_dashing = true;
+            dash_start = Time.time;
+        }
+    }
+
+    private void Move()
+    {
+        float move_x = Input.GetAxis("Horizontal");
+        float move_y = Input.GetAxis("Vertical");
+
+        rb.velocity = new Vector2(move_x * move_speed, move_y * move_speed);
+    }
+}
