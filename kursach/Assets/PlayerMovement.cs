@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float move_speed;
     public float dash_speed;
     public float dash_duration;
+    public float rotation_speed;
 
     private Rigidbody2D rb;
     private bool is_dashing;
@@ -42,7 +43,9 @@ public class PlayerMovement : MonoBehaviour
             float move_x = Input.GetAxis("Horizontal");
             float move_y = Input.GetAxis("Vertical");
 
-            rb.velocity = new Vector2(move_x * dash_speed, move_y * dash_speed);
+            rb.velocity = new Vector3(move_x * dash_speed, move_y * dash_speed);
+
+            RotateCharacter(move_x, move_y);    
         }
     }
 
@@ -60,6 +63,18 @@ public class PlayerMovement : MonoBehaviour
         float move_x = Input.GetAxis("Horizontal");
         float move_y = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2(move_x * move_speed, move_y * move_speed);
+        rb.velocity = new Vector3(move_x * move_speed, move_y * move_speed);
+
+        RotateCharacter(move_x, move_y);
+    }
+
+    private void RotateCharacter(float move_x, float move_y)
+    {
+        if (move_x != 0 || move_y != 0)
+        {
+            float angle_degrees = Mathf.Atan2(move_y, move_x) * Mathf.Rad2Deg;
+            Quaternion target_rotation = Quaternion.Euler(new Vector3(0, 0, angle_degrees));
+            transform.rotation = Quaternion.Lerp(transform.rotation, target_rotation, rotation_speed * Time.deltaTime);
+        }
     }
 }
