@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (is_dashing)
         {
@@ -27,8 +27,15 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            CheckDash();
             Move();
+        }
+    }
+
+    void Update()
+    {
+        if (!is_dashing)
+        {
+            CheckDash();
         }
     }
 
@@ -45,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector3(move_x * dash_speed, move_y * dash_speed);
 
-            RotateCharacter(move_x, move_y);    
+            RotateCharacter(move_x, move_y);
         }
     }
 
@@ -66,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(move_x * move_speed, move_y * move_speed);
 
         RotateCharacter(move_x, move_y);
+        RotateCharacter(move_x, move_y);
     }
 
     private void RotateCharacter(float move_x, float move_y)
@@ -74,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float angle_degrees = Mathf.Atan2(move_y, move_x) * Mathf.Rad2Deg;
             Quaternion target_rotation = Quaternion.Euler(new Vector3(0, 0, angle_degrees));
-            transform.rotation = Quaternion.Lerp(transform.rotation, target_rotation, rotation_speed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, target_rotation, rotation_speed * Time.fixedDeltaTime);
         }
     }
 }
