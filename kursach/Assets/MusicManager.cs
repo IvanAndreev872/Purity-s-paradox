@@ -1,25 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MusicManager : MonoBehaviour
 {
-    [SerializeField] AudioSource BackgroundMusic;
-
-    private bool isEnable = true;
+    public AudioSource BackgroundMusic;
+    public Slider slider;
+    public Sprite musicOn;
+    public Sprite musicOff;
+    public GameObject musicButton;
     public void Update()
     {
-        if (isEnable)
+        AudioListener.volume = slider.value;
+        if (AudioListener.volume == 0) 
         {
-            BackgroundMusic.enabled = true;
+            musicButton.GetComponent<Image>().sprite = musicOff;
         }
         else
         {
-            BackgroundMusic.enabled = false;
+            musicButton.GetComponent<Image>().sprite = musicOn;
         }
     }
     public void EnableMusic()
     {
-        isEnable = !isEnable;
+        if (AudioListener.volume == 0) {
+            AudioListener.volume = 1;
+            slider.value = 1;
+        }
+        else
+        {
+            AudioListener.volume = 0;
+            slider.value = 0;
+        }
+    }
+    public void PlayMusic() {
+        BackgroundMusic.enabled = true;
     }
 }
