@@ -23,7 +23,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        Vector3 create_position = transform.position + transform.right;
+        Vector3 create_position = transform.position + transform.right * 1.2f;
         GameObject bullet = Instantiate(bullet_prefab, create_position, transform.rotation);
         Rigidbody2D bullet_rb = bullet.GetComponent<Rigidbody2D>();
         bullet_rb.velocity = transform.right * bullet_speed;
