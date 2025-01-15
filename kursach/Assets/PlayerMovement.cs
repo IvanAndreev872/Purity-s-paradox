@@ -8,13 +8,16 @@ public class PlayerMovement : MonoBehaviour
     public float dash_speed;
     public float dash_duration;
     public float rotation_speed;
+    public GameObject shooter;
 
     private Rigidbody2D rb;
     private bool is_dashing;
     private float dash_start;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();   
     }
 
@@ -50,7 +53,9 @@ public class PlayerMovement : MonoBehaviour
             float move_x = Input.GetAxis("Horizontal");
             float move_y = Input.GetAxis("Vertical");
 
-            rb.velocity = new Vector3(move_x * dash_speed, move_y * dash_speed);
+            Vector3 direction = new(move_x * dash_speed, move_y * dash_speed);
+
+            rb.MovePosition(transform.position + direction);
 
             RotateCharacter(move_x, move_y);
         }
@@ -70,9 +75,10 @@ public class PlayerMovement : MonoBehaviour
         float move_x = Input.GetAxis("Horizontal");
         float move_y = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector3(move_x * move_speed, move_y * move_speed);
+        Vector3 direction = new(move_x * move_speed, move_y * move_speed);
 
-        RotateCharacter(move_x, move_y);
+        rb.MovePosition(transform.position + direction);
+
         RotateCharacter(move_x, move_y);
     }
 
@@ -82,7 +88,10 @@ public class PlayerMovement : MonoBehaviour
         {
             float angle_degrees = Mathf.Atan2(move_y, move_x) * Mathf.Rad2Deg;
             Quaternion target_rotation = Quaternion.Euler(new Vector3(0, 0, angle_degrees));
-            transform.rotation = Quaternion.Lerp(transform.rotation, target_rotation, rotation_speed * Time.fixedDeltaTime);
+            shooter.transform.rotation = Quaternion.Lerp(shooter.transform.rotation, target_rotation, rotation_speed * Time.fixedDeltaTime);
         }
+
+        animator.SetFloat("MoveX", move_x);
+        animator.SetFloat("MoveY", move_y);
     }
 }
