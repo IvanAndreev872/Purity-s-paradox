@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
             Vector3 direction = new(move_x * dash_speed, move_y * dash_speed);
 
-            rb.MovePosition(transform.position + direction);
+            rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction, move_speed * Time.fixedDeltaTime));
 
             RotateCharacter(move_x, move_y);
         }
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = new(move_x * move_speed, move_y * move_speed);
 
-        rb.MovePosition(transform.position + direction);
+        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction, move_speed * Time.fixedDeltaTime));
 
         RotateCharacter(move_x, move_y);
     }
