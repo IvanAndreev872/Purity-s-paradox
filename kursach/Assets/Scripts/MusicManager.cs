@@ -12,6 +12,10 @@ public class MusicManager : MonoBehaviour
     public Sprite musicOff;
     public GameObject musicButton;
     private float previousVolume = 1;
+    void Start()
+    {
+        slider.value = PlayerPrefs.GetFloat("Volume", 1);
+    }
     public void Update()
     {
         AudioListener.volume = slider.value;
@@ -39,8 +43,5 @@ public class MusicManager : MonoBehaviour
             AudioListener.volume = 0;
             slider.value = 0;
         }
-    }
-    public void PlayMusic() {
-        BackgroundMusic.enabled = true;
     }
 }

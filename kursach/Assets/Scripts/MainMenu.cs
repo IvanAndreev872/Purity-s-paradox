@@ -8,11 +8,16 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Hub");
     }
     
-    public void QuitGame() {
+    public void QuitGame()
+    {
         Debug.Log("QUIT!!");
         Application.Quit();
+    }
+    public void SetVolume()
+    {
+        PlayerPrefs.SetFloat("Volume", AudioListener.volume);
     }
 }
