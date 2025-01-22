@@ -17,9 +17,13 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField]
     public bool startRandomlyEachIteration = true;
     
+    [SerializeField]
+    private TilemapVisualizer tilemapVisualizer;
+    
     public void  RunProceduralGeneration() 
     {
         HashSet<Vector2Int> floorPositions = RunRandomWalk();
+        tilemapVisualizer.PaintFloorTiles(floorPositions);
     }
 
     private HashSet<Vector2Int> RunRandomWalk() 
