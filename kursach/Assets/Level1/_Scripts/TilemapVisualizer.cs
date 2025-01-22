@@ -29,4 +29,8 @@ public class TilemapVisualizer : MonoBehaviour
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
         tilemap.SetTile(tilePosition, tile);
     }
+
+    public void Clear() {
+        floorTilemap.ClearAllTiles();
+    }
 }
