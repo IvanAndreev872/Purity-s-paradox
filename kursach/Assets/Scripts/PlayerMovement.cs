@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float move_speed;
+    public float walk_speed;
     public float dash_speed;
     public float dash_duration;
     public float rotation_speed;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Move();
+            Walk();
         }
     }
 
@@ -42,6 +42,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Walk()
+    {
+        Move(walk_speed);
+    }
+
     private void Dash()
     {
         if (Time.time > dash_start + dash_duration) 
@@ -50,14 +55,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            float move_x = Input.GetAxis("Horizontal");
-            float move_y = Input.GetAxis("Vertical");
-
-            Vector3 direction = new(move_x * dash_speed, move_y * dash_speed);
-
-            rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction, move_speed * Time.fixedDeltaTime));
-
-            RotateCharacter(move_x, move_y);
+            Move(dash_speed);
         }
     }
 
@@ -70,14 +68,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Move()
+    private void Move(float speed)
     {
         float move_x = Input.GetAxis("Horizontal");
         float move_y = Input.GetAxis("Vertical");
 
-        Vector3 direction = new(move_x * move_speed, move_y * move_speed);
+        Vector3 direction = new(move_x * speed, move_y * speed);
 
-        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction, move_speed * Time.fixedDeltaTime));
+        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, speed * Time.fixedDeltaTime));
 
         RotateCharacter(move_x, move_y);
     }
