@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Food Item", menuName = "Inventory/Items/New Ability Item")]
+[CreateAssetMenu(fileName = "Ability Item", menuName = "Inventory/Items/New Ability Item")]
 
-public class FoodItem : ItemScriptableObject
+public class AbilityItem : ItemScriptableObject
 {
     public float movementAccelerateCoefficient;
 

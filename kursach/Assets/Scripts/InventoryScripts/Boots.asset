@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a7797ca32c814428899257fba5c1a4, type: 3}
   m_Name: Boots
   m_EditorClassIdentifier: 
-  itemType: 0
-  itemName: Boots
-  itemPrefab: {fileID: 0}
+  itemType: 1
+  itemName: boots
+  itemPrefab: {fileID: 3933255798461058113, guid: 36662b689dec4c24f94c82782bd8900b, type: 3}
+  icon: {fileID: 21300000, guid: 64302eb67381e254b9df0384a5c94f0c, type: 3}
   maxCount: 1
-  itemDescription: Increase movement speed
+  itemDescription: increase movement speed
   movementAccelerateCoefficient: 2

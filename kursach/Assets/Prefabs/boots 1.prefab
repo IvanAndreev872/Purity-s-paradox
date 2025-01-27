@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1141581960264026951}
   - component: {fileID: 890750903058871988}
   - component: {fileID: 3260205887092648847}
+  - component: {fileID: 4230461696024535797}
   m_Layer: 0
   m_Name: boots 1
   m_TagString: Item
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -130,3 +131,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3, y: 1.29}
   m_EdgeRadius: 0
+--- !u!114 &4230461696024535797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3933255798461058113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b59e6982eb0fa54cb795b7809d502da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemScriptableObject: {fileID: 11400000, guid: df7f00a288a55974b96a2fa9474e0fe7, type: 2}
+  count: 1

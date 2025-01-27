@@ -38,8 +38,10 @@ public class InventoryManager : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
+            Debug.Log("LOL\n");
             AddItem(other.GetComponent<Item>().itemScriptableObject, other.GetComponent<Item>().count);
-            Destroy(other);
+            Destroy(other.gameObject);
+            Debug.Log("KEK\n");
         }
     }
     private void AddItem(ItemScriptableObject _item, int _count)
@@ -49,6 +51,7 @@ public class InventoryManager : MonoBehaviour
             if (slot.item == _item)
             {
                 slot.count += _count;
+                slot.itemCountText.text = slot.count.ToString();
                 return;
             }
         }
@@ -59,6 +62,8 @@ public class InventoryManager : MonoBehaviour
                 slot.item = _item;
                 slot.count = _count;
                 slot.isEmpty = false;
+                slot.SetIcon(_item.icon);
+                slot.itemCountText.text = _count.ToString();
                 return;
             }
         }
