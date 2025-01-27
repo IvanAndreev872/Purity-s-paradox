@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class InventorySlot : MonoBehaviour
 {
-    
+    public ItemScriptableObject item;
+    public int count;
+    public bool isEmpty = true;
 }

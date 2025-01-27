@@ -34,4 +34,33 @@ public class InventoryManager : MonoBehaviour
             isOpened = !isOpened;
         }
     }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            AddItem(other.GetComponent<Item>().itemScriptableObject, other.GetComponent<Item>().count);
+            Destroy(other);
+        }
+    }
+    private void AddItem(ItemScriptableObject _item, int _count)
+    {
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.item == _item)
+            {
+                slot.count += _count;
+                return;
+            }
+        }
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.isEmpty == true)
+            {
+                slot.item = _item;
+                slot.count = _count;
+                slot.isEmpty = false;
+                return;
+            }
+        }
+    }
 }
