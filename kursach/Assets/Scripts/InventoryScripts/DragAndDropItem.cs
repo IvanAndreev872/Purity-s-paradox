@@ -27,7 +27,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         {
             GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.75f);
             GetComponentInChildren<Image>().raycastTarget = false;
-            transform.SetParent(transform.parent.parent);
+            transform.SetParent(transform.parent.parent.parent);
         }
     }
     public void OnPointerUp(PointerEventData eventData)
@@ -38,19 +38,22 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             GetComponentInChildren<Image>().raycastTarget = true;
             transform.SetParent(oldSlot.transform);
             transform.position = oldSlot.transform.position;
-            if (eventData.pointerCurrentRaycast.gameObject.name == "UIPanel")
+            if (eventData.pointerCurrentRaycast.gameObject.name == "BG")
             {
                 GameObject itemObject = Instantiate(oldSlot.item.itemPrefab, player.position + 2 * Vector3.up, Quaternion.identity);
                 itemObject.GetComponent<Item>().count = oldSlot.count;
                 NullifySlotData();
             }
-            else if(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>() != null)
+            else if (eventData.pointerCurrentRaycast.gameObject != null &&
+                    eventData.pointerCurrentRaycast.gameObject.transform.parent != null &&
+                    eventData.pointerCurrentRaycast.gameObject.transform.parent.parent != null &&
+                    eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>() != null)
             {
                 ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
             }
         }
     }
-    void NullifySlotData()
+    private void NullifySlotData()
     {
         oldSlot.item = null;
         oldSlot.count = 0;
@@ -59,7 +62,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         oldSlot.iconGameObject.GetComponent<Image>().sprite = null;
         oldSlot.itemCountText.text = "";
     }
-    void ExchangeSlotData(InventorySlot newSlot)
+    private void ExchangeSlotData(InventorySlot newSlot)
     {
         ItemScriptableObject item = newSlot.item;
         int count = newSlot.count;

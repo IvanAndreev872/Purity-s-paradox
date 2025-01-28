@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public GameObject UIPanel;
+    public GameObject BG;
     public Transform inventoryPanel;
     public List<InventorySlot> slots = new List<InventorySlot>();
     public bool isOpened = false;
@@ -17,7 +17,8 @@ public class InventoryManager : MonoBehaviour
                 slots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
             }
         }
-        UIPanel.SetActive(false);
+        BG.SetActive(false);
+        inventoryPanel.gameObject.SetActive(false);
     }
     void Update()
     {
@@ -36,13 +37,15 @@ public class InventoryManager : MonoBehaviour
     public void PauseGame()
     {
         isOpened = true;
-        UIPanel.SetActive(true);
+        BG.SetActive(true);
+        inventoryPanel.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
     public void ResumeGame()
     {
         isOpened = false;
-        UIPanel.SetActive(false);
+        BG.SetActive(false);
+        inventoryPanel.gameObject.SetActive(false);
         Time.timeScale = 1f;
     }
     public void OnTriggerEnter2D(Collider2D other)
