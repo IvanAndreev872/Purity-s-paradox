@@ -25,30 +25,39 @@ public class InventoryManager : MonoBehaviour
         {
             if (isOpened)
             {
-                UIPanel.SetActive(false);
+                ResumeGame();
             }
             else
             {
-                UIPanel.SetActive(true);
+                PauseGame();
             }
-            isOpened = !isOpened;
         }
+    }
+    public void PauseGame()
+    {
+        isOpened = true;
+        UIPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void ResumeGame()
+    {
+        isOpened = false;
+        UIPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Item"))
         {
-            Debug.Log("LOL\n");
             AddItem(other.GetComponent<Item>().itemScriptableObject, other.GetComponent<Item>().count);
             Destroy(other.gameObject);
-            Debug.Log("KEK\n");
         }
     }
     private void AddItem(ItemScriptableObject _item, int _count)
     {
         foreach (InventorySlot slot in slots)
         {
-            if (slot.item == _item)
+            if (slot.item == _item && slot.count + _count <= slot.item.maxCount)
             {
                 slot.count += _count;
                 slot.itemCountText.text = slot.count.ToString();

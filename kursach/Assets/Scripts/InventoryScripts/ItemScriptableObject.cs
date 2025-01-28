@@ -10,7 +10,7 @@ public class ItemScriptableObject : ScriptableObject
     public string itemName;
     public GameObject itemPrefab;
     public Sprite icon;
-    public int maxCount;
+    public int maxCount = 1;
     public string itemDescription;
 
 }
