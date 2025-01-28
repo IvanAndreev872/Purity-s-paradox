@@ -12,8 +12,10 @@ public class Melee_basic_behaviorscript : MonoBehaviour
     [SerializeField] public GameObject target;
 
     private Rigidbody2D rb;
+    private Animator animator;
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -30,15 +32,22 @@ public class Melee_basic_behaviorscript : MonoBehaviour
             {
                 Vector2 directionnorm = direction.normalized;
                 rb.MovePosition(curPosition + directionnorm * move_speed * Time.fixedDeltaTime);
+
+                animator.SetFloat("MoveX", directionnorm.x);
+                animator.SetFloat("MoveY", directionnorm.y);
             }
             else
             {
                 rb.velocity = Vector2.zero;
+
+                animator.SetFloat("MoveX", 0);
+                animator.SetFloat("MoveY", 0);
             }
+
         }
         else
         {
-            rb.velocity += Vector2.zero;
+            rb.velocity = Vector2.zero;
         }
     }
 }
