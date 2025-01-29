@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5372766822521004264}
   - component: {fileID: 1167880121214165224}
   - component: {fileID: 2376210395119403686}
+  - component: {fileID: 8520969801215445317}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -204,8 +205,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BG: {fileID: 0}
   inventoryPanel: {fileID: 0}
+  equipSlotsPanel: {fileID: 0}
   slots: []
+  equipSlots: []
   isOpened: 0
+--- !u!114 &8520969801215445317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992945228360066990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5efe686655820eb4a82e862e948370a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraHealth: 0
+  movementAccelerateCoefficient: 1
+  additionalWalkSpeed: 0
+  dashAccelerateCoefficient: 1
+  additionalDashSpeed: 0
+  dashDurationAccelerateCoefficient: 1
+  additionalDashDurationTime: 0
 --- !u!1 &6933323466790631738
 GameObject:
   m_ObjectHideFlags: 0

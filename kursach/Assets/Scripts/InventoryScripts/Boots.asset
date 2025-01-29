@@ -18,4 +18,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 384c4c1e7c3be664c8e1069176aa3b5a, type: 3}
   maxCount: 1
   itemDescription: increase movement speed
-  movementAccelerateCoefficient: 2
+  walkAccelerateCoefficient: 2
+  additionalWalkSpeed: 0
+  dashAccelerateCoefficient: 1
+  additionalDashSpeed: 0
+  dashDurationAccelerateCoefficient: 1
+  additionalDashDurationTime: 0

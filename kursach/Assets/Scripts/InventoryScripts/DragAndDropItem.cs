@@ -89,6 +89,28 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
         if (isAllowed)
         {
+            if (oldSlot.panel == 0 && newSlot.panel == 1)
+            {
+                if (newSlot.item is AbilityItem abilityItem)
+                {
+                    abilityItem.DiscardEffects(player.GetComponent<PlayerStats>());
+                }
+                if (oldSlot.item is AbilityItem abilityItem2)
+                {
+                    abilityItem2.ApplyEffects(player.GetComponent<PlayerStats>());
+                }
+            }
+            if (oldSlot.panel == 1 && newSlot.panel == 0)
+            {
+                if (oldSlot.item is AbilityItem abilityItem3)
+                {
+                    abilityItem3.DiscardEffects(player.GetComponent<PlayerStats>());
+                }
+                if (newSlot.item is AbilityItem abilityItem4)
+                {
+                    abilityItem4.ApplyEffects(player.GetComponent<PlayerStats>());
+                }
+            }
             newSlot.item = oldSlot.item;
             newSlot.count = oldSlot.count;
             newSlot.SetIcon(oldSlot.iconGameObject.GetComponent<Image>().sprite);
