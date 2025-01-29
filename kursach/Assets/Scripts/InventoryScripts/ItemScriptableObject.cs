@@ -12,5 +12,4 @@ public class ItemScriptableObject : ScriptableObject
     public Sprite icon;
     public int maxCount = 1;
     public string itemDescription;
-
 }

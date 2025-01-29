@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 1
   itemName: boots
   itemPrefab: {fileID: 3933255798461058113, guid: 36662b689dec4c24f94c82782bd8900b, type: 3}
-  icon: {fileID: 21300000, guid: 64302eb67381e254b9df0384a5c94f0c, type: 3}
+  icon: {fileID: 21300000, guid: 384c4c1e7c3be664c8e1069176aa3b5a, type: 3}
   maxCount: 1
   itemDescription: increase movement speed
   movementAccelerateCoefficient: 2

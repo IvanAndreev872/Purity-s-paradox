@@ -8,6 +8,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 {
     public InventorySlot oldSlot;
     public Transform player;
+    public AbilityItem abilityItem;
 
     private void Start()
     {
@@ -69,35 +70,58 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         bool isEmpty = newSlot.isEmpty;
         GameObject iconGameObject = newSlot.iconGameObject;
         TMP_Text itemCountText = newSlot.itemCountText;
+        int panel = newSlot.panel;
 
-        newSlot.item = oldSlot.item;
-        newSlot.count = oldSlot.count;
-        if (oldSlot.isEmpty == false)
+        bool isAllowed = true;
+        if (oldSlot.panel == 0 && newSlot.panel == 1)
         {
+            for (int i = 0; i < newSlot.transform.parent.childCount; i++)
+            {
+                if (newSlot.transform.parent.GetChild(i).GetComponent<InventorySlot>() != null)
+                {
+                    InventorySlot slot = newSlot.transform.parent.GetChild(i).GetComponent<InventorySlot>();
+                    if (slot.item == oldSlot.item)
+                    {
+                        isAllowed = false;
+                    }
+                }
+            }
+        }
+        if (isAllowed)
+        {
+            newSlot.item = oldSlot.item;
+            newSlot.count = oldSlot.count;
             newSlot.SetIcon(oldSlot.iconGameObject.GetComponent<Image>().sprite);
-            newSlot.itemCountText.text = oldSlot.count.ToString();
+            if (oldSlot.item.maxCount > 1)
+            {
+                newSlot.itemCountText.text = oldSlot.count.ToString();
+            }
+            else
+            {
+                newSlot.itemCountText.text = "";
+            }
+            newSlot.isEmpty = oldSlot.isEmpty;
+            newSlot.panel = oldSlot.panel;
+            if (isEmpty == false)
+            {
+                oldSlot.item = item;
+                oldSlot.count = count;
+                oldSlot.SetIcon(item.icon);
+                oldSlot.isEmpty = isEmpty;
+                oldSlot.panel = panel;
+                if (item.maxCount > 1)
+                {
+                    oldSlot.itemCountText.text = count.ToString();
+                }
+                else
+                {
+                    oldSlot.itemCountText.text = "";
+                }
+            }
+            else
+            {
+                NullifySlotData();
+            }
         }
-        else
-        {
-            newSlot.iconGameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-            newSlot.iconGameObject.GetComponent<Image>().sprite = null;
-            newSlot.itemCountText.text = "";
-        } 
-        newSlot.isEmpty = oldSlot.isEmpty;
-
-        oldSlot.item = item;
-        oldSlot.count = count;
-        if (isEmpty == false)
-        {
-            oldSlot.SetIcon(iconGameObject.GetComponent<Image>().sprite);
-            oldSlot.itemCountText.text = count.ToString();
-        }
-        else
-        {
-            oldSlot.iconGameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-            oldSlot.iconGameObject.GetComponent<Image>().sprite = null;
-            oldSlot.itemCountText.text = "";
-        }
-        oldSlot.isEmpty = isEmpty;
     }
 }
