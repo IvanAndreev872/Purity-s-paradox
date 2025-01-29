@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour
     public List<InventorySlot> slots = new List<InventorySlot>();
     public List<InventorySlot> equipSlots = new List<InventorySlot>();
     public bool isOpened = false;
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < inventoryPanel.childCount; i++)
         {

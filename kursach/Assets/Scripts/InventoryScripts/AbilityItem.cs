@@ -13,7 +13,7 @@ public class AbilityItem : ItemScriptableObject
     public float dashDurationAccelerateCoefficient;
     public float additionalDashDurationTime;
 
-    void Start()
+    void Awake()
     {
         itemType = ItemType.Ability;
     }

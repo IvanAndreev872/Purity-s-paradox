@@ -10,7 +10,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public Transform player;
     public AbilityItem abilityItem;
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         oldSlot = transform.GetComponentInParent<InventorySlot>();

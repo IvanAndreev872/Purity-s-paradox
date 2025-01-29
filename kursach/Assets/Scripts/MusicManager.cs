@@ -12,7 +12,7 @@ public class MusicManager : MonoBehaviour
     public Sprite musicOff;
     public GameObject musicButton;
     private float previousVolume = 1;
-    void Start()
+    void Awake()
     {
         slider.value = PlayerPrefs.GetFloat("Volume", 1);
     }

@@ -12,7 +12,7 @@ public class InventorySlot : MonoBehaviour
     public GameObject iconGameObject;
     public TMP_Text itemCountText;
     public int panel; // 0 - inventory, 1 - equip
-    private void Start()
+    public void Awake()
     {
         iconGameObject = transform.GetChild(0).GetChild(0).gameObject;
         itemCountText = transform.GetChild(0).GetChild(1).GetComponent<TMP_Text>();
