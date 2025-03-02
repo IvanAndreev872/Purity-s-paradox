@@ -86,7 +86,10 @@ public class PlayerMovement : MonoBehaviour
         {
             float angle_degrees = Mathf.Atan2(move_y, move_x) * Mathf.Rad2Deg;
             Quaternion target_rotation = Quaternion.Euler(new Vector3(0, 0, angle_degrees));
-            shooter.transform.rotation = Quaternion.Lerp(shooter.transform.rotation, target_rotation, rotation_speed * Time.fixedDeltaTime);
+            if (shooter)
+            {
+                shooter.transform.rotation = Quaternion.Lerp(shooter.transform.rotation, target_rotation, rotation_speed * Time.fixedDeltaTime);
+            }
         }
 
         animator.SetFloat("MoveX", move_x);
