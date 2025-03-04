@@ -32,7 +32,6 @@ public class ShooterGreed : MonoBehaviour
             {
                 shoot_time = Time.time;
                 Vector3 create_position = transform.position + transform.right * 2;
-                Debug.Log(transform.up);
                 GameObject bullet = Instantiate(bullet_prefab, create_position, transform.rotation);
                 Rigidbody2D bullet_rb = bullet.GetComponent<Rigidbody2D>();
                 bullet_rb.velocity = transform.right * bullet_speed;

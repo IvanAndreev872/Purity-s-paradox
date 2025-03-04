@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire_distance: 10
-  spawn_point: {x: 0, y: 0, z: 0}
+  damage: 25
