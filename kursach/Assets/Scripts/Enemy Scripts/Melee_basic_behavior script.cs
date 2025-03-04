@@ -31,7 +31,7 @@ public class Melee_basic_behaviorscript : MonoBehaviour
             if (distance > attack_range)
             {
                 Vector2 directionnorm = direction.normalized;
-                rb.MovePosition(curPosition + directionnorm * move_speed * Time.fixedDeltaTime);
+                rb.MovePosition(Vector3.Lerp(transform.position, curPosition + directionnorm, move_speed * Time.fixedDeltaTime));
 
                 animator.SetFloat("MoveX", directionnorm.x);
                 animator.SetFloat("MoveY", directionnorm.y);
