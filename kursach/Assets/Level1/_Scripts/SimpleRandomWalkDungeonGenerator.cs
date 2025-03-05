@@ -34,4 +34,36 @@ public class NewBehaviourScript : AbstractDungeonGenerator
         }
         return floorPositions;
     }
+
+    protected int GetRoomLength(HashSet<Vector2Int> floorPositions)
+    {
+        floorPositions.OrderBy(x => x.x);
+        Vector2Int LeftFloor = floorPositions.First();
+        Vector2Int RightFloor = floorPositions.Last();
+
+        return RightFloor.x - LeftFloor.x + 1;
+    }
+
+    protected int GetRoomHeight(HashSet<Vector2Int> floorPositions)
+    {
+        floorPositions.OrderBy(x => x.y);
+        Vector2Int LowFloor = floorPositions.First();
+        Vector2Int HighFloor = floorPositions.Last();
+
+        return HighFloor.y - LowFloor.y + 1;
+    }
+
+    protected int GetLeft(HashSet<Vector2Int> floorPositions)
+    {
+        Vector2Int Left = floorPositions.OrderBy(x => x.x).First();
+
+        return Left.x;
+    }
+
+    protected int GetLowest(HashSet<Vector2Int> floorPositions)
+    {
+        Vector2Int Bottom = floorPositions.OrderBy(x => x.y).First();
+
+        return Bottom.y;
+    }
 }

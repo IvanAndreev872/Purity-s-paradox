@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using System.IO.IsolatedStorage;
 
 public class CorridorFirstDungeonGenerator : NewBehaviourScript
 {
@@ -11,6 +12,10 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
     [SerializeField]
     [Range(0.1f, 1)]
     private float roomPercent = 0.8f;
+
+    [SerializeField] public Node nodePrefab;
+    [SerializeField] public List<List<Node>> RoomsNodeList = new List<List<Node>>();
+
     protected override void RunProceduralGeneration()
     {
         CorridorFirstGeneration();
@@ -78,7 +83,11 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
         List<Vector2Int> roomsToCreate = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(roomToCreateCount).ToList();
         foreach (var roomPosition in roomsToCreate) 
         {
+            List<Node> NodeList = new List<Node>();
+            RoomsNodeList.Add(NodeList);
             var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition);
+            CreateNodes(roomFloor);
+            CreateConnections();
             roomPositions.UnionWith(roomFloor);
         }
 
@@ -160,5 +169,38 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
         if (direction == Vector2Int.left)
             return Vector2Int.up;
         return Vector2Int.zero;        
+    }
+
+    void CreateNodes(HashSet<Vector2Int> floorPositions)
+    {
+        foreach (var floor in floorPositions)
+        {
+            Node node = Instantiate(nodePrefab, new Vector2(floor.x + 0.5f, floor.y + 0.5f), Quaternion.identity);
+            RoomsNodeList.Last().Add(node);
+        }
+    }
+
+    void CreateConnections()
+    {
+        for (int i = 0; i < RoomsNodeList.Last().Count(); ++i)
+        {
+            for (int j = i + 1; j < RoomsNodeList.Last().Count; ++j)
+            {
+                if (Vector2.Distance(RoomsNodeList.Last()[i].transform.position, RoomsNodeList.Last()[j].transform.position) <= 1.5f)
+                {
+                    ConnectNodes(RoomsNodeList.Last()[i], RoomsNodeList.Last()[j]);
+                    ConnectNodes(RoomsNodeList.Last()[j], RoomsNodeList.Last()[i]);
+                }
+            }
+        }
+    }
+
+    void ConnectNodes(Node From, Node To)
+    {
+        if (From == To)
+        {
+            return;
+        }
+        From.connections.Add(To);
     }
 }
