@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MovementGreedToTarget : MonoBehaviour
+public class MovementGreedToTarget : MonoBehaviour, MovementInterface
 {
-    public bool able_to_move = true;
+    public bool able_to_move { get; set; } = true;
     public Transform player;
     public float speed;
 
