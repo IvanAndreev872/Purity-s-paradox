@@ -168,6 +168,7 @@ MonoBehaviour:
   minimum_distance: 11
   room_center: {fileID: 0}
   clone_prefab: {fileID: 7013591406065540024, guid: ad7877eed3f7f8649bdb9e799dbe4ff5, type: 3}
+  max_clones: 12
 --- !u!1 &1902423769377025151
 GameObject:
   m_ObjectHideFlags: 0
