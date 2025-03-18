@@ -11,4 +11,5 @@ public class PlayerStats : MonoBehaviour
     public float additionalDashSpeed;
     public float dashDurationAccelerateCoefficient;
     public float additionalDashDurationTime;
+    public int money;
 }

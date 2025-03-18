@@ -11,5 +11,6 @@ public class ItemScriptableObject : ScriptableObject
     public GameObject itemPrefab;
     public Sprite icon;
     public int maxCount = 1;
+    public int cost;
     public string itemDescription;
 }

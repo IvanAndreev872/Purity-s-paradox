@@ -65,7 +65,7 @@ public class InventoryManager : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-    private void AddItem(ItemScriptableObject _item, int _count)
+    public void AddItem(ItemScriptableObject _item, int _count)
     {
         foreach (InventorySlot slot in slots)
         {
