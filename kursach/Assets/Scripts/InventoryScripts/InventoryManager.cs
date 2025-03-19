@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
     public List<InventorySlot> slots = new List<InventorySlot>();
     public List<InventorySlot> equipSlots = new List<InventorySlot>();
     public bool isOpened = false;
+    public bool isShopOpened = false;
     void Awake()
     {
         for (int i = 0; i < inventoryPanel.childCount; i++)
@@ -31,7 +32,7 @@ public class InventoryManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && !isShopOpened)
         {
             if (isOpened)
             {

@@ -35,6 +35,7 @@ public class EscapeMenu : MonoBehaviour
     }
     public void BackToMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 }

@@ -13,7 +13,7 @@ public class Shop : MonoBehaviour
     public TMP_Text itemDescriptionText, costText;
     public Button buyButton, nextButton, prevButton;
     public int slotIdClicked = -1;
-    public PlayerStats playerStats;
+    public Transform player;
     public InventoryManager inventoryManager;
     public void Awake()
     {
@@ -37,18 +37,48 @@ public class Shop : MonoBehaviour
         costText = shop.GetChild(9).GetComponent<TMP_Text>();
         costText.text = "";
         costText.gameObject.SetActive(false);
-        playerStats = GetComponent<PlayerStats>();
-        inventoryManager = GetComponent<InventoryManager>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        inventoryManager = player.GetComponent<InventoryManager>();
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            shop.gameObject.SetActive(true);
-            nextButton.gameObject.SetActive(true);
-            prevButton.gameObject.SetActive(true);
-            BG.SetActive(true);
-            pages[indexOfCurrentPage].gameObject.SetActive(true);
+            OpenShop();
+        }
+    }
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            CloseShop();
+        }
+    }
+    public void OpenShop()
+    {
+        shop.gameObject.SetActive(true);
+        nextButton.gameObject.SetActive(true);
+        prevButton.gameObject.SetActive(true);
+        BG.SetActive(true);
+        pages[indexOfCurrentPage].gameObject.SetActive(true);
+        inventoryManager.isShopOpened = true;
+    }
+    public void CloseShop()
+    {
+        shop.gameObject.SetActive(false);
+        nextButton.gameObject.SetActive(false);
+        prevButton.gameObject.SetActive(false);
+        BG.SetActive(false);
+        pages[indexOfCurrentPage].gameObject.SetActive(false);
+        inventoryManager.isShopOpened = false;
+        itemDescriptionText.text = "";
+        costText.text = "";
+        costText.gameObject.SetActive(false);
+        indexOfCurrentPage = 0;
+        slotIdClicked = -1;
+        foreach (ShopSlot slot in pages[indexOfCurrentPage].slots)
+        {
+            slot.isClicked = false;
         }
     }
     public void ShowNextPage()
@@ -69,11 +99,11 @@ public class Shop : MonoBehaviour
         {
             if (slot.id == slotIdClicked)
             {
-                if (slot.item.cost <= playerStats.money)
+                if (slot.item.cost <= player.gameObject.GetComponent<PlayerStats>().money)
                 {
-                    playerStats.money -= slot.item.cost;
+                    player.gameObject.GetComponent<PlayerStats>().money -= slot.item.cost;
                     bool inStorage = true;
-                    foreach (InventorySlot inventorySlot in inventoryManager.slots)
+                    foreach (InventorySlot inventorySlot in player.gameObject.GetComponent<InventoryManager>().slots)
                     {
                         if (inventorySlot.isEmpty)
                         {
@@ -82,7 +112,7 @@ public class Shop : MonoBehaviour
                     }
                     if (!inStorage)
                     {
-                        inventoryManager.AddItem(slot.item, 1);
+                        player.gameObject.GetComponent<InventoryManager>().AddItem(slot.item, 1);
                     }
                     else
                     {

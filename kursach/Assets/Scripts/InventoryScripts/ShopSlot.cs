@@ -12,13 +12,13 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler
     public GameObject iconGameObject;
     public TMP_Text itemCostText;
     public bool isClicked = false;
-    public Shop shop;
+    public Transform shop;
     public int id;
     public void Awake()
     {
         iconGameObject = transform.GetChild(0).gameObject;
         itemCostText = transform.GetChild(1).GetComponent<TMP_Text>();
-        shop = FindObjectOfType<Shop>();
+        shop = GameObject.FindObjectOfType<Shop>().transform;
     }
     public void SetIcon(Sprite icon)
     {
@@ -27,16 +27,20 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        shop.slotIdClicked = id;
+        shop.gameObject.GetComponent<Shop>().slotIdClicked = id;
         if (isClicked)
         {
-            shop.itemDescriptionText.text = "";
-            shop.buyButton.gameObject.SetActive(false);
+            shop.gameObject.GetComponent<Shop>().itemDescriptionText.text = "";
+            shop.gameObject.GetComponent<Shop>().buyButton.gameObject.SetActive(false);
+            shop.gameObject.GetComponent<Shop>().costText.text = "";
+            shop.gameObject.GetComponent<Shop>().costText.gameObject.SetActive(false);
         }
         else if (!isEmpty)
         {
-            shop.itemDescriptionText.text = item.itemDescription;
-            shop.buyButton.gameObject.SetActive(true);
+            shop.gameObject.GetComponent<Shop>().itemDescriptionText.text = item.itemDescription;
+            shop.gameObject.GetComponent<Shop>().buyButton.gameObject.SetActive(true);
+            shop.gameObject.GetComponent<Shop>().costText.gameObject.SetActive(true);
+            shop.gameObject.GetComponent<Shop>().costText.text = item.cost.ToString();
         }
         isClicked = !isClicked;
     }
