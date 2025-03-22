@@ -12,5 +12,6 @@ public class ItemScriptableObject : ScriptableObject
     public Sprite icon;
     public int maxCount = 1;
     public int cost;
+    public int sellCoefficient = 10;
     public string itemDescription;
 }

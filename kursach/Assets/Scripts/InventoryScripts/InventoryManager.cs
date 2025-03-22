@@ -1,23 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
     public GameObject BG;
-    public Transform inventoryPanel;
-    public Transform equipSlotsPanel;
+    public Transform inventory, inventoryPanel, equipSlotsPanel, player;
     public List<InventorySlot> slots = new List<InventorySlot>();
     public List<InventorySlot> equipSlots = new List<InventorySlot>();
-    public bool isOpened = false;
-    public bool isShopOpened = false;
+    public bool isOpened = false, isShopOpened = false, isStorageOpened = false;
+    public TMP_Text itemDescriptionText, costText;
+    public Button sellButton;
+    public PlayerStats playerStats;
+    public int slotIdClicked = -1;
     void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerStats = player.GetComponent<PlayerStats>();
+        inventoryPanel = inventory.GetChild(0).transform;
+        equipSlotsPanel = inventory.GetChild(1).transform;
         for (int i = 0; i < inventoryPanel.childCount; i++)
         {
             if (inventoryPanel.GetChild(i).GetComponent<InventorySlot>() != null)
             {
+                inventoryPanel.GetChild(i).GetComponent<InventorySlot>().Awake();
                 slots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
+                slots[slots.Count - 1].id = i;
             }
         }
         for (int i = 0; i < equipSlotsPanel.childCount; i++)
@@ -25,8 +35,16 @@ public class InventoryManager : MonoBehaviour
             if (equipSlotsPanel.GetChild(i).GetComponent<InventorySlot>() != null)
             {
                 equipSlots.Add(equipSlotsPanel.GetChild(i).GetComponent<InventorySlot>());
+                equipSlots[equipSlots.Count - 1].id = i + slots.Count;
             }
         }
+        itemDescriptionText = inventory.GetChild(2).GetComponent<TMP_Text>();
+        itemDescriptionText.text = "";
+        costText = inventory.GetChild(3).GetComponent<TMP_Text>();
+        costText.text = "";
+        costText.gameObject.SetActive(false);
+        sellButton = inventory.GetChild(4).GetComponent<Button>();
+        sellButton.gameObject.SetActive(false);
         BG.SetActive(false);
         inventoryPanel.gameObject.SetActive(false);
     }
@@ -36,27 +54,49 @@ public class InventoryManager : MonoBehaviour
         {
             if (isOpened)
             {
-                ResumeGame();
+                Time.timeScale = 1f;
+                CloseInventory();
             }
             else
             {
-                PauseGame();
+                Time.timeScale = 0f;
+                OpenInventory();
             }
         }
     }
-    public void PauseGame()
+    public void OpenInventory()
     {
         isOpened = true;
         BG.SetActive(true);
         inventoryPanel.gameObject.SetActive(true);
-        Time.timeScale = 0f;
     }
-    public void ResumeGame()
+    public void CloseInventory()
     {
         isOpened = false;
         BG.SetActive(false);
         inventoryPanel.gameObject.SetActive(false);
-        Time.timeScale = 1f;
+        itemDescriptionText.text = "";
+        costText.text = "";
+        costText.gameObject.SetActive(false);
+        slotIdClicked = -1;
+        sellButton.gameObject.SetActive(false);
+    }
+    public void SellItem()
+    {
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.id == slotIdClicked)
+            {
+                int gain = slot.item.cost * slot.item.sellCoefficient / 100;
+                playerStats.money += gain;
+                slot.NullifyData();
+                itemDescriptionText.text = "";
+                costText.text = "";
+                costText.gameObject.SetActive(false);
+                sellButton.gameObject.SetActive(false);
+                return;
+            }
+        }
     }
     public void OnTriggerEnter2D(Collider2D other)
     {

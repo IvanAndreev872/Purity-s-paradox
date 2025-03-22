@@ -11,10 +11,11 @@ public class Shop : MonoBehaviour
     public int indexOfCurrentPage = 0;
     public List<ShopPage> pages = new List<ShopPage>();
     public TMP_Text itemDescriptionText, costText;
-    public Button buyButton, nextButton, prevButton;
+    public Button buyButton, nextButton, prevButton, shopButton, inventoryButton;
     public int slotIdClicked = -1;
     public Transform player;
     public InventoryManager inventoryManager;
+    public PlayerStats playerStats;
     public void Awake()
     {
         for (int i = 0; i < shop.childCount; i++)
@@ -37,8 +38,13 @@ public class Shop : MonoBehaviour
         costText = shop.GetChild(9).GetComponent<TMP_Text>();
         costText.text = "";
         costText.gameObject.SetActive(false);
+        shopButton = shop.GetChild(10).GetComponent<Button>();
+        shopButton.gameObject.SetActive(false);
+        inventoryButton = shop.GetChild(11).GetComponent<Button>();
+        inventoryButton.gameObject.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
+        playerStats = player.GetComponent<PlayerStats>();
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -59,6 +65,8 @@ public class Shop : MonoBehaviour
         shop.gameObject.SetActive(true);
         nextButton.gameObject.SetActive(true);
         prevButton.gameObject.SetActive(true);
+        shopButton.gameObject.SetActive(true);
+        inventoryButton.gameObject.SetActive(true);
         BG.SetActive(true);
         pages[indexOfCurrentPage].gameObject.SetActive(true);
         inventoryManager.isShopOpened = true;
@@ -68,18 +76,30 @@ public class Shop : MonoBehaviour
         shop.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
         prevButton.gameObject.SetActive(false);
+        shopButton.gameObject.SetActive(false);
+        inventoryButton.gameObject.SetActive(false);
         BG.SetActive(false);
         pages[indexOfCurrentPage].gameObject.SetActive(false);
-        inventoryManager.isShopOpened = false;
         itemDescriptionText.text = "";
         costText.text = "";
         costText.gameObject.SetActive(false);
         indexOfCurrentPage = 0;
         slotIdClicked = -1;
-        foreach (ShopSlot slot in pages[indexOfCurrentPage].slots)
-        {
-            slot.isClicked = false;
-        }
+        inventoryManager.CloseInventory();
+    }
+    public void ShowInventory()
+    {
+        CloseShop();
+        shop.gameObject.SetActive(true);
+        shopButton.gameObject.SetActive(true);
+        inventoryButton.gameObject.SetActive(true);
+        inventoryManager.isShopOpened = true;
+        inventoryManager.OpenInventory();
+    }
+    public void ShowShop()
+    {
+        inventoryManager.CloseInventory();
+        OpenShop();
     }
     public void ShowNextPage()
     {
@@ -99,11 +119,11 @@ public class Shop : MonoBehaviour
         {
             if (slot.id == slotIdClicked)
             {
-                if (slot.item.cost <= player.gameObject.GetComponent<PlayerStats>().money)
+                if (slot.item.cost <= playerStats.money)
                 {
-                    player.gameObject.GetComponent<PlayerStats>().money -= slot.item.cost;
+                    playerStats.money -= slot.item.cost;
                     bool inStorage = true;
-                    foreach (InventorySlot inventorySlot in player.gameObject.GetComponent<InventoryManager>().slots)
+                    foreach (InventorySlot inventorySlot in inventoryManager.slots)
                     {
                         if (inventorySlot.isEmpty)
                         {
@@ -112,14 +132,19 @@ public class Shop : MonoBehaviour
                     }
                     if (!inStorage)
                     {
-                        player.gameObject.GetComponent<InventoryManager>().AddItem(slot.item, 1);
+                        inventoryManager.AddItem(slot.item, 1);
                     }
                     else
                     {
                         Debug.Log("UNLUCK");
                     }
+                    itemDescriptionText.text = "";
+                    costText.text = "";
+                    costText.gameObject.SetActive(false);
+                    buyButton.gameObject.SetActive(false);
                     slot.NullifyData();
                 }
+                return;
             }
         }
     }

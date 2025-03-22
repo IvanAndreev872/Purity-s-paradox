@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ShopPage : MonoBehaviour
@@ -13,7 +12,7 @@ public class ShopPage : MonoBehaviour
             if (transform.GetChild(i).GetComponent<ShopSlot>() != null)
             {
                 slots.Add(transform.GetChild(i).GetComponent<ShopSlot>());
-                slots[slots.Count() - 1].id = i;
+                slots[slots.Count - 1].id = i;
             }
         }
         transform.gameObject.SetActive(false);

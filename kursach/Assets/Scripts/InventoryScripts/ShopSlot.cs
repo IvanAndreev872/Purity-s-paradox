@@ -8,17 +8,16 @@ using UnityEngine.EventSystems;
 public class ShopSlot : MonoBehaviour, IPointerClickHandler
 {
     public ItemScriptableObject item;
-    public bool isEmpty = true;
+    public bool isEmpty = true, isClicked = false;
     public GameObject iconGameObject;
     public TMP_Text itemCostText;
-    public bool isClicked = false;
-    public Transform shop;
+    public Shop shop;
     public int id;
     public void Awake()
     {
         iconGameObject = transform.GetChild(0).gameObject;
         itemCostText = transform.GetChild(1).GetComponent<TMP_Text>();
-        shop = GameObject.FindObjectOfType<Shop>().transform;
+        shop = FindObjectOfType<Shop>();
     }
     public void SetIcon(Sprite icon)
     {
@@ -27,22 +26,26 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        shop.gameObject.GetComponent<Shop>().slotIdClicked = id;
-        if (isClicked)
+        if (!isEmpty)
         {
-            shop.gameObject.GetComponent<Shop>().itemDescriptionText.text = "";
-            shop.gameObject.GetComponent<Shop>().buyButton.gameObject.SetActive(false);
-            shop.gameObject.GetComponent<Shop>().costText.text = "";
-            shop.gameObject.GetComponent<Shop>().costText.gameObject.SetActive(false);
+            if (shop.slotIdClicked == id && isClicked)
+            {
+                shop.itemDescriptionText.text = "";
+                shop.buyButton.gameObject.SetActive(false);
+                shop.costText.text = "";
+                shop.costText.gameObject.SetActive(false);
+                isClicked = false;
+            }
+            else
+            {
+                shop.itemDescriptionText.text = item.itemDescription;
+                shop.buyButton.gameObject.SetActive(true);
+                shop.costText.gameObject.SetActive(true);
+                shop.costText.text = item.cost.ToString();
+                isClicked = true;
+            }
+            shop.slotIdClicked = id;
         }
-        else if (!isEmpty)
-        {
-            shop.gameObject.GetComponent<Shop>().itemDescriptionText.text = item.itemDescription;
-            shop.gameObject.GetComponent<Shop>().buyButton.gameObject.SetActive(true);
-            shop.gameObject.GetComponent<Shop>().costText.gameObject.SetActive(true);
-            shop.gameObject.GetComponent<Shop>().costText.text = item.cost.ToString();
-        }
-        isClicked = !isClicked;
     }
     public void NullifyData()
     {

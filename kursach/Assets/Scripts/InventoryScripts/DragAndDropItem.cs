@@ -4,15 +4,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public InventorySlot oldSlot;
     public Transform player;
     public AbilityItem abilityItem;
+    public InventoryManager inventoryManager;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        inventoryManager = player.GetComponent<InventoryManager>();
         oldSlot = transform.GetComponentInParent<InventorySlot>();
     }
     public void OnDrag(PointerEventData eventData)
@@ -29,6 +32,32 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.75f);
             GetComponentInChildren<Image>().raycastTarget = false;
             transform.SetParent(transform.parent.parent.parent);
+        }
+        if (!oldSlot.isEmpty)
+        {
+            if (inventoryManager.slotIdClicked == oldSlot.id && oldSlot.isClicked)
+            {
+                inventoryManager.itemDescriptionText.text = "";
+                inventoryManager.costText.text = "";
+                inventoryManager.costText.gameObject.SetActive(false);
+                oldSlot.isClicked = false;
+                if (inventoryManager.isShopOpened)
+                {
+                    inventoryManager.sellButton.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                inventoryManager.itemDescriptionText.text = oldSlot.item.itemDescription;
+                inventoryManager.costText.text = oldSlot.item.cost.ToString();
+                inventoryManager.costText.gameObject.SetActive(true);
+                oldSlot.isClicked = true;
+                if (inventoryManager.isShopOpened)
+                {
+                    inventoryManager.sellButton.gameObject.SetActive(true);
+                }
+            }
+            inventoryManager.slotIdClicked = oldSlot.id;
         }
     }
     public void OnPointerUp(PointerEventData eventData)
@@ -56,21 +85,22 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     private void NullifySlotData()
     {
-        oldSlot.item = null;
-        oldSlot.count = 0;
-        oldSlot.isEmpty = true;
-        oldSlot.iconGameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-        oldSlot.iconGameObject.GetComponent<Image>().sprite = null;
-        oldSlot.itemCountText.text = "";
+        oldSlot.NullifyData();
     }
     private void ExchangeSlotData(InventorySlot newSlot)
     {
+        if (oldSlot.gameObject.name == newSlot.gameObject.name) 
+        {
+            return;
+        }
         ItemScriptableObject item = newSlot.item;
         int count = newSlot.count;
         bool isEmpty = newSlot.isEmpty;
+        bool isClicked = newSlot.isClicked;
         GameObject iconGameObject = newSlot.iconGameObject;
         TMP_Text itemCountText = newSlot.itemCountText;
         int panel = newSlot.panel;
+        int id = newSlot.id;
 
         bool isAllowed = true;
         if (oldSlot.panel == 0 && newSlot.panel == 1)
@@ -123,14 +153,18 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 newSlot.itemCountText.text = "";
             }
             newSlot.isEmpty = oldSlot.isEmpty;
+            newSlot.isClicked = oldSlot.isClicked;
             newSlot.panel = oldSlot.panel;
+            newSlot.id = oldSlot.id;
             if (isEmpty == false)
             {
                 oldSlot.item = item;
                 oldSlot.count = count;
                 oldSlot.SetIcon(item.icon);
                 oldSlot.isEmpty = isEmpty;
+                oldSlot.isClicked = isClicked;
                 oldSlot.panel = panel;
+                oldSlot.id = id;
                 if (item.maxCount > 1)
                 {
                     oldSlot.itemCountText.text = count.ToString();

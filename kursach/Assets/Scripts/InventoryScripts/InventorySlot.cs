@@ -8,10 +8,11 @@ public class InventorySlot : MonoBehaviour
 {
     public ItemScriptableObject item;
     public int count;
-    public bool isEmpty = true;
+    public bool isEmpty = true, isClicked = false;
     public GameObject iconGameObject;
     public TMP_Text itemCountText;
     public int panel; // 0 - inventory, 1 - equip
+    public int id;
     public void Awake()
     {
         iconGameObject = transform.GetChild(0).GetChild(0).gameObject;
@@ -29,5 +30,15 @@ public class InventorySlot : MonoBehaviour
     {
         iconGameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         iconGameObject.GetComponent<Image>().sprite = icon;
+    }
+    public void NullifyData()
+    {
+        item = null;
+        count = 0;
+        isEmpty = true;
+        iconGameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        iconGameObject.GetComponent<Image>().sprite = null;
+        itemCountText.text = "";
+        isClicked = false;
     }
 }
