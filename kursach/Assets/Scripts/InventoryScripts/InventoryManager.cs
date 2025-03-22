@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     public List<InventorySlot> equipSlots = new List<InventorySlot>();
     public bool isOpened = false, isShopOpened = false, isStorageOpened = false;
     public TMP_Text itemDescriptionText, costText;
-    public Button sellButton;
+    public Button sellButton, storeButton;
     public PlayerStats playerStats;
     public int slotIdClicked = -1;
     void Awake()
@@ -45,6 +45,8 @@ public class InventoryManager : MonoBehaviour
         costText.gameObject.SetActive(false);
         sellButton = inventory.GetChild(4).GetComponent<Button>();
         sellButton.gameObject.SetActive(false);
+        storeButton = inventory.GetChild(5).GetComponent<Button>();
+        storeButton.gameObject.SetActive(false);
         BG.SetActive(false);
         inventoryPanel.gameObject.SetActive(false);
     }
@@ -94,6 +96,38 @@ public class InventoryManager : MonoBehaviour
                 costText.text = "";
                 costText.gameObject.SetActive(false);
                 sellButton.gameObject.SetActive(false);
+                slotIdClicked = -1;
+                return;
+            }
+        }
+    }
+    public void StoreItem()
+    {
+        StorageManager storage = FindObjectOfType<StorageManager>();
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.id == slotIdClicked)
+            {
+                bool ok = true;
+                int pageId = 0;
+                while (pageId < storage.pages.Count && !storage.AddItem(slot.item, 1, pageId))
+                {
+                    pageId++;
+                }
+                if (pageId == storage.pages.Count)
+                {
+                    ok = false;
+                }
+                if (!ok)
+                {
+                    return;
+                }
+                slot.NullifyData();
+                itemDescriptionText.text = "";
+                costText.text = "";
+                costText.gameObject.SetActive(false);
+                storeButton.gameObject.SetActive(false);
+                slotIdClicked = -1;
                 return;
             }
         }
@@ -106,13 +140,13 @@ public class InventoryManager : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-    public void AddItem(ItemScriptableObject _item, int _count)
+    public void AddItem(ItemScriptableObject item, int count)
     {
         foreach (InventorySlot slot in slots)
         {
-            if (slot.item == _item && slot.count + _count <= slot.item.maxCount)
+            if (slot.item == item && slot.count + count <= slot.item.maxCount)
             {
-                slot.count += _count;
+                slot.count += count;
                 slot.itemCountText.text = slot.count.ToString();
                 return;
             }
@@ -121,13 +155,13 @@ public class InventoryManager : MonoBehaviour
         {
             if (slot.isEmpty == true)
             {
-                slot.item = _item;
-                slot.count = _count;
+                slot.item = item;
+                slot.count = count;
                 slot.isEmpty = false;
-                slot.SetIcon(_item.icon);
-                if (_item.maxCount > 1)
+                slot.SetIcon(item.icon);
+                if (item.maxCount > 1)
                 {
-                    slot.itemCountText.text = _count.ToString();
+                    slot.itemCountText.text = count.ToString();
                 }
                 else 
                 {

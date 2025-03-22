@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopPage : MonoBehaviour
+public class StoragePage : MonoBehaviour
 {
-    public List<ShopSlot> slots = new List<ShopSlot>();
+    public List<StorageSlot> slots = new List<StorageSlot>();
     public void Awake()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).GetComponent<ShopSlot>() != null)
+            if (transform.GetChild(i).GetComponent<StorageSlot>() != null)
             {
-                slots.Add(transform.GetChild(i).GetComponent<ShopSlot>());
+                slots.Add(transform.GetChild(i).GetComponent<StorageSlot>());
                 slots[slots.Count - 1].id = i;
             }
         }
@@ -24,7 +24,7 @@ public class ShopPage : MonoBehaviour
     public void ClosePage()
     {
         transform.gameObject.SetActive(false);
-        foreach (ShopSlot slot in slots)
+        foreach (StorageSlot slot in slots)
         {
             slot.isClicked = false;
         }

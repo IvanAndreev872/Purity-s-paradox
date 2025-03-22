@@ -45,16 +45,25 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 {
                     inventoryManager.sellButton.gameObject.SetActive(false);
                 }
+                if (inventoryManager.isStorageOpened)
+                {
+                    inventoryManager.storeButton.gameObject.SetActive(false);
+                }
             }
             else
             {
                 inventoryManager.itemDescriptionText.text = oldSlot.item.itemDescription;
-                inventoryManager.costText.text = oldSlot.item.cost.ToString();
+                int gain = oldSlot.item.cost * oldSlot.item.sellCoefficient / 100;
+                inventoryManager.costText.text = gain.ToString();
                 inventoryManager.costText.gameObject.SetActive(true);
                 oldSlot.isClicked = true;
                 if (inventoryManager.isShopOpened)
                 {
                     inventoryManager.sellButton.gameObject.SetActive(true);
+                }
+                if (inventoryManager.isStorageOpened)
+                {
+                    inventoryManager.storeButton.gameObject.SetActive(true);
                 }
             }
             inventoryManager.slotIdClicked = oldSlot.id;
