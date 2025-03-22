@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour, MovementInterface
+public class LieController : MonoBehaviour, MovementInterface
 {
     public bool able_to_move { get; set; } = true;
     public Transform player;
@@ -85,7 +85,7 @@ public class Controller : MonoBehaviour, MovementInterface
             if (i != real_position_index && clone_number < max_clones)
             {
                 GameObject clone = Instantiate(clone_prefab, position, transform.rotation);
-                Controller clone_controller = clone.GetComponent<Controller>();
+                LieController clone_controller = clone.GetComponent<LieController>();
                 if (clone_controller != null)
                 {
                     clone_controller.player = player;
