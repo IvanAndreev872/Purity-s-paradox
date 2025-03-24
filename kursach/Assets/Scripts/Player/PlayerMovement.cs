@@ -96,3 +96,4 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("MoveY", move_y);
     }
 }
+    

@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, DamageInterface
 {
-    public float max_healtpoint;
+    public float max_healthpoint;
 
     private float current_health;
     // Start is called before the first frame update
     void Start()
     {
-        current_health = max_healtpoint;
+        current_health = max_healthpoint;
     }
 
     public void Hit(float damage)

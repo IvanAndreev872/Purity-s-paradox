@@ -37,7 +37,7 @@ public class dodge : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        if (movement_interface.able_to_move && other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
         {
             if (movement_interface != null) 
             {

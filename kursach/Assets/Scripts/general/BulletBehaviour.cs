@@ -25,10 +25,10 @@ public class BulletBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Health health = collision.gameObject.GetComponent<Health>();
-        if (health != null) 
+        DamageInterface enemy = collision.gameObject.GetComponent<DamageInterface>();
+        if (enemy != null) 
         {
-            health.Hit(damage);
+            enemy.Hit(damage);
         }
         Destroy(gameObject);
     }

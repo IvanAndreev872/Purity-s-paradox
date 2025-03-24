@@ -13536,7 +13536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4557276328111019319}
-  - component: {fileID: 5123231888862070762}
+  - component: {fileID: 4557276328111019320}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -13607,6 +13607,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 377270031715228550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4557276328111019320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119309371348780585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0112cf8e62d3d614caedced1b3a60a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1588816242}
+  bullet_prefab: {fileID: 7932271090808488228, guid: 4e1ef70fbe352014385f68b34f599a7e, type: 3}
+  bullet_speed: 5
+  shooter_distance_max: 10
+  shooter_distance_min: 1
+  fire_delay: 100
 --- !u!1 &4920890494265036197
 GameObject:
   m_ObjectHideFlags: 0
@@ -13620,6 +13638,9 @@ GameObject:
   - component: {fileID: 7899875712820240110}
   - component: {fileID: 6321802508161503130}
   - component: {fileID: 7899875712820240111}
+  - component: {fileID: 7899875712820240112}
+  - component: {fileID: 7899875712820240113}
+  - component: {fileID: 7899875712820240114}
   m_Layer: 8
   m_Name: Lie (1)
   m_TagString: Untagged
@@ -13683,28 +13704,15 @@ PrefabInstance:
       propertyPath: max_healtpoint
       value: 10000
       objectReference: {fileID: 0}
+    - target: {fileID: 9002886814934924796, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: max_healthpoint
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
---- !u!114 &5123231888862070762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119309371348780585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9b93ed3d5172694ca3385594ad3e6a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1588816242}
-  bullet_prefab: {fileID: 7932271090808488228, guid: b643fc27833d2c942a9263da4502cc1f, type: 3}
-  bullet_speed: 15
-  fire_delay: 1
-  back_attack_chance: 0.01
 --- !u!1 &5430603054581740905
 GameObject:
   m_ObjectHideFlags: 0
@@ -13814,6 +13822,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1588816242}
   speed: 4
+--- !u!114 &7899875712820240112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4920890494265036197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efa74dd962f7454c9339850b5e4bbc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_healthpoint: 100
+  raged_after_healthpoint: 75
+  enraged_after_healthpoint: 50
+--- !u!114 &7899875712820240113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4920890494265036197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86348d590bd7a314c9e0377ecd0e9318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1588816242}
+  dash_speed: 30
+  critical_distance: 10
+  dash_delay: 1
+  braking_distance: 1
+  damage: 50
+--- !u!114 &7899875712820240114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4920890494265036197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b1a729fabb29242bfae96a74544c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1588816242}
+  dash_speed: 20
+  make_distance: 20
+  dash_delay: 2
+  braking_distance: 1
+  damage: 25
+  explosion_prefab: {fileID: 6090887868542334393, guid: 631fc0fd43ef9ed488768e72c978167d, type: 3}
+  path_duration: 2
+  path_prefab: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
