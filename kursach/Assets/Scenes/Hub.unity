@@ -10405,9 +10405,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 961812433}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuyItem
+      - m_Target: {fileID: 1225642676}
+        m_TargetAssemblyTypeName: StorageManager, Assembly-CSharp
+        m_MethodName: TakeItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22099,9 +22099,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 961812433}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: ShowShop
+      - m_Target: {fileID: 1225642676}
+        m_TargetAssemblyTypeName: StorageManager, Assembly-CSharp
+        m_MethodName: ShowStorage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41950,7 +41950,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1936337421}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: SellItem
+        m_MethodName: StoreItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
