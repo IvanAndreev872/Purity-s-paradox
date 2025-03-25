@@ -13641,6 +13641,7 @@ GameObject:
   - component: {fileID: 7899875712820240112}
   - component: {fileID: 7899875712820240113}
   - component: {fileID: 7899875712820240114}
+  - component: {fileID: 7899875712820240115}
   m_Layer: 8
   m_Name: Lie (1)
   m_TagString: Untagged
@@ -13868,14 +13869,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1588816242}
-  dash_speed: 20
+  dash_speed: 30
   make_distance: 20
-  dash_delay: 2
-  braking_distance: 1
+  dash_delay: 1000
+  braking_distance: 10
   damage: 25
   explosion_prefab: {fileID: 6090887868542334393, guid: 631fc0fd43ef9ed488768e72c978167d, type: 3}
   path_duration: 2
   path_prefab: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
+--- !u!114 &7899875712820240115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4920890494265036197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9925f49c53e1a6546ac385570685497f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounce_speed: 15
+  bounce_delay: 30
+  bounce_duration: 15
+  damage: 25
+  explosion_prefab: {fileID: 6090887868542334393, guid: 631fc0fd43ef9ed488768e72c978167d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

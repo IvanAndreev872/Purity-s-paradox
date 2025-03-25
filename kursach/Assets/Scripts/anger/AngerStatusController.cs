@@ -49,7 +49,6 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
 
             if (current_enragement != new_enragement_level)
             {
-                Debug.Log(2);
                 current_enragement = new_enragement_level;
                 EnragementChanged?.Invoke(new_enragement_level);
             }

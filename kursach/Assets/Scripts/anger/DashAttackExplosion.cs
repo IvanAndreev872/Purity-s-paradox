@@ -76,7 +76,7 @@ public class DashAttackExplosion : MonoBehaviour
             dash_target = player.position + direction * braking_distance;
         }
 
-        rb.MovePosition(Vector3.Lerp(transform.position, retreat_target, dash_speed * Time.fixedDeltaTime));
+        MoveTowards(retreat_target);
     }
 
     void Dash()
@@ -90,7 +90,12 @@ public class DashAttackExplosion : MonoBehaviour
 
         MakePath();
 
-        rb.MovePosition(Vector3.Lerp(transform.position, dash_target, dash_speed * Time.fixedDeltaTime));
+        MoveTowards(dash_target);
+    }
+
+    void MoveTowards(Vector3 target) {
+        Vector3 direction = (target - transform.position).normalized;
+        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction, dash_speed * Time.fixedDeltaTime));
     }
 
     void MakePath()
@@ -111,8 +116,11 @@ public class DashAttackExplosion : MonoBehaviour
         {
             is_preparing = false;
             is_dashing = true;
+
+            Vector3 direction = (player.position - transform.position).normalized;
+            dash_target = player.position + direction * braking_distance;
         }
-        if (is_dashing)
+        else if (is_dashing)
         {
             is_dashing = false;
             movement_interface.able_to_move = true;
@@ -120,8 +128,8 @@ public class DashAttackExplosion : MonoBehaviour
             if (enemy != null)
             {
                 enemy.Hit(damage);
-                Explosion();
             }
+            Explosion();
         }
     }
 }
