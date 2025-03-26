@@ -32,7 +32,6 @@ public class BounceAttack : MonoBehaviour
         {
             CheckBounce();
         }
-
     }
 
     private void FixedUpdate()
