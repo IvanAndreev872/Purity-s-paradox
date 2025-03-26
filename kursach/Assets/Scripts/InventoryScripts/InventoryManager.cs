@@ -52,7 +52,7 @@ public class InventoryManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !isShopOpened)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isShopOpened && !isStorageOpened)
         {
             if (isOpened)
             {
@@ -82,6 +82,7 @@ public class InventoryManager : MonoBehaviour
         costText.gameObject.SetActive(false);
         slotIdClicked = -1;
         sellButton.gameObject.SetActive(false);
+        storeButton.gameObject.SetActive(false);
     }
     public void SellItem()
     {
@@ -144,11 +145,14 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (InventorySlot slot in slots)
         {
-            if (slot.item == item && slot.count + count <= slot.item.maxCount)
+            if (slot.item != null)
             {
-                slot.count += count;
-                slot.itemCountText.text = slot.count.ToString();
-                return;
+                if (slot.item == item && slot.count + count <= slot.item.maxCount)
+                {
+                    slot.count += count;
+                    slot.itemCountText.text = slot.count.ToString();
+                    return;
+                }
             }
         }
         foreach (InventorySlot slot in slots)

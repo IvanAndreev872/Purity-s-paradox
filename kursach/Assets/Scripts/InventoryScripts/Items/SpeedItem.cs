@@ -7,11 +7,10 @@ using UnityEngine;
 public class SpeedItem : AbilityItem
 {
     public float walkAccelerateCoefficient;
-    public float additionalWalkSpeed;
     public float dashAccelerateCoefficient;
-    public float additionalDashSpeed;
-    public float dashDurationAccelerateCoefficient;
     public float additionalDashDurationTime;
+    public bool isDashInvulnerable;
+    public bool isDashPoisoned;
 
     void Awake()
     {
@@ -20,19 +19,17 @@ public class SpeedItem : AbilityItem
     public override void ApplyEffects(PlayerStats player)
     {
         player.walkAccelerateCoefficient *= walkAccelerateCoefficient;
-        player.additionalWalkSpeed += additionalWalkSpeed;
         player.dashAccelerateCoefficient *= dashAccelerateCoefficient;
-        player.additionalDashSpeed += additionalDashSpeed;
-        player.dashDurationAccelerateCoefficient *= dashDurationAccelerateCoefficient;
         player.additionalDashDurationTime += additionalDashDurationTime;
+        player.isDashInvulnerable = isDashInvulnerable;
+        player.isDashPoisoned = isDashPoisoned;
     }
     public override void DiscardEffects(PlayerStats player)
     {
         player.walkAccelerateCoefficient = 1;
-        player.additionalWalkSpeed = 0;
         player.dashAccelerateCoefficient = 1;
-        player.additionalDashSpeed = 0;
-        player.dashDurationAccelerateCoefficient = 1;
-        player.additionalDashDurationTime = 0;
+        player.additionalDashDurationTime -= additionalDashDurationTime;
+        player.isDashInvulnerable = false;
+        player.isDashPoisoned = false;
     }
 }

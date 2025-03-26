@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06a7797ca32c814428899257fba5c1a4, type: 3}
-  m_Name: Boots
+  m_Name: boots1
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: boots
-  itemPrefab: {fileID: 3933255798461058113, guid: 36662b689dec4c24f94c82782bd8900b, type: 3}
-  icon: {fileID: 21300000, guid: 384c4c1e7c3be664c8e1069176aa3b5a, type: 3}
+  itemName: Old boots
+  itemClass: boots
+  itemPrefab: {fileID: 732458886924294938, guid: 0ca9b01b34b682e41930d03d68d53355, type: 3}
+  icon: {fileID: 21300000, guid: 46a4fe8ea213b754f9d4191b8b8d86a8, type: 3}
   maxCount: 1
-  itemDescription: increase movement speed
-  walkAccelerateCoefficient: 2
-  additionalWalkSpeed: 0
+  cost: 0
+  sellCoefficient: 10
+  itemDescription: Increase movement speed by 5%
+  walkAccelerateCoefficient: 1.05
   dashAccelerateCoefficient: 1
-  additionalDashSpeed: 0
-  dashDurationAccelerateCoefficient: 1
   additionalDashDurationTime: 0
+  isDashInvulnerable: 0
+  isDashPoisoned: 0

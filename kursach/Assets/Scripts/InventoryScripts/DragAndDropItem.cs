@@ -9,7 +9,6 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 {
     public InventorySlot oldSlot;
     public Transform player;
-    public AbilityItem abilityItem;
     public InventoryManager inventoryManager;
 
     private void Awake()
@@ -20,20 +19,20 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     public void OnDrag(PointerEventData eventData)
     {
-        if (!oldSlot.isEmpty)
+        if (!oldSlot.isEmpty && inventoryManager.isOpened)
         {
             GetComponent<RectTransform>().position += new Vector3(eventData.delta.x, eventData.delta.y, 0);
         }
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!oldSlot.isEmpty)
+        if (!oldSlot.isEmpty && inventoryManager.isOpened)
         {
             GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.75f);
             GetComponentInChildren<Image>().raycastTarget = false;
             transform.SetParent(transform.parent.parent.parent);
         }
-        if (!oldSlot.isEmpty)
+        if (!oldSlot.isEmpty && inventoryManager.isOpened)
         {
             if (inventoryManager.slotIdClicked == oldSlot.id && oldSlot.isClicked)
             {
@@ -71,7 +70,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!oldSlot.isEmpty)
+        if (!oldSlot.isEmpty && inventoryManager.isOpened)
         {
             GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1f);
             GetComponentInChildren<Image>().raycastTarget = true;
@@ -81,20 +80,13 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             {
                 GameObject itemObject = Instantiate(oldSlot.item.itemPrefab, player.position + 2 * Vector3.up, Quaternion.identity);
                 itemObject.GetComponent<Item>().count = oldSlot.count;
-                NullifySlotData();
+                oldSlot.NullifyData();
             }
-            else if (eventData.pointerCurrentRaycast.gameObject != null &&
-                    eventData.pointerCurrentRaycast.gameObject.transform.parent != null &&
-                    eventData.pointerCurrentRaycast.gameObject.transform.parent.parent != null &&
-                    eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>() != null)
+            else if (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>() != null)
             {
                 ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
             }
         }
-    }
-    private void NullifySlotData()
-    {
-        oldSlot.NullifyData();
     }
     private void ExchangeSlotData(InventorySlot newSlot)
     {
@@ -105,21 +97,28 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         ItemScriptableObject item = newSlot.item;
         int count = newSlot.count;
         bool isEmpty = newSlot.isEmpty;
-        bool isClicked = newSlot.isClicked;
-        GameObject iconGameObject = newSlot.iconGameObject;
-        TMP_Text itemCountText = newSlot.itemCountText;
-        int panel = newSlot.panel;
-        int id = newSlot.id;
 
         bool isAllowed = true;
         if (oldSlot.panel == 0 && newSlot.panel == 1)
         {
-            for (int i = 0; i < newSlot.transform.parent.childCount; i++)
+            foreach (InventorySlot slot in inventoryManager.equipSlots)
             {
-                if (newSlot.transform.parent.GetChild(i).GetComponent<InventorySlot>() != null)
+                if (slot.item != null)
                 {
-                    InventorySlot slot = newSlot.transform.parent.GetChild(i).GetComponent<InventorySlot>();
-                    if (slot.item == oldSlot.item)
+                    if (slot.item.itemClass == oldSlot.item.itemClass)
+                    {
+                        isAllowed = false;
+                    }
+                }
+            }
+        }
+        if (oldSlot.panel == 1 && newSlot.panel == 0)
+        {
+            foreach (InventorySlot slot in inventoryManager.equipSlots)
+            {
+                if (slot.item != null)
+                {
+                    if (slot.item.itemClass == newSlot.item.itemClass)
                     {
                         isAllowed = false;
                     }
@@ -163,17 +162,14 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             }
             newSlot.isEmpty = oldSlot.isEmpty;
             newSlot.isClicked = oldSlot.isClicked;
-            newSlot.panel = oldSlot.panel;
-            newSlot.id = oldSlot.id;
+            inventoryManager.slotIdClicked = newSlot.id;
             if (isEmpty == false)
             {
                 oldSlot.item = item;
                 oldSlot.count = count;
                 oldSlot.SetIcon(item.icon);
                 oldSlot.isEmpty = isEmpty;
-                oldSlot.isClicked = isClicked;
-                oldSlot.panel = panel;
-                oldSlot.id = id;
+                oldSlot.isClicked = false;
                 if (item.maxCount > 1)
                 {
                     oldSlot.itemCountText.text = count.ToString();
@@ -185,7 +181,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             }
             else
             {
-                NullifySlotData();
+                oldSlot.NullifyData();
             }
         }
     }

@@ -75,6 +75,7 @@ public class StorageManager : MonoBehaviour
         nextButton.gameObject.SetActive(false);
         prevButton.gameObject.SetActive(false);
         storageButton.gameObject.SetActive(false);
+        takeButton.gameObject.SetActive(false);
         inventoryButton.gameObject.SetActive(false);
         BG.SetActive(false);
         pages[indexOfCurrentPage].gameObject.SetActive(false);
@@ -83,6 +84,7 @@ public class StorageManager : MonoBehaviour
         costText.gameObject.SetActive(false);
         indexOfCurrentPage = 0;
         slotIdClicked = -1;
+        inventoryManager.isStorageOpened = false;
         inventoryManager.CloseInventory();
     }
     public void ShowInventory()
@@ -154,13 +156,17 @@ public class StorageManager : MonoBehaviour
     }
     public bool AddItem(ItemScriptableObject item, int count, int pageId)
     {
+        Debug.Log(pageId);
         foreach (StorageSlot slot in pages[pageId].slots)
         {
-            if (slot.item == item && slot.count + count <= slot.item.maxCount)
+            if (slot.item != null)
             {
-                slot.count += count;
-                slot.itemCountText.text = slot.count.ToString();
-                return true;
+                if (slot.item == item && slot.count + count <= slot.item.maxCount)
+                {
+                    slot.count += count;
+                    slot.itemCountText.text = slot.count.ToString();
+                    return true;
+                }
             }
         }
         foreach (StorageSlot slot in pages[pageId].slots)

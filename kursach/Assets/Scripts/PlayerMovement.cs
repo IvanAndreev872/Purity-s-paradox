@@ -46,18 +46,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Walk()
     {
-        Move(walk_speed * playerStats.walkAccelerateCoefficient + playerStats.additionalWalkSpeed);
+        Move(walk_speed * playerStats.walkAccelerateCoefficient);
     }
 
     private void Dash()
     {
-        if (Time.time > dash_start + dash_duration * playerStats.dashDurationAccelerateCoefficient + playerStats.additionalDashDurationTime) 
+        if (Time.time > dash_start + dash_duration + playerStats.additionalDashDurationTime) 
         { 
             is_dashing = false;
         }
         else
         {
-            Move(dash_speed * playerStats.dashAccelerateCoefficient + playerStats.additionalDashSpeed);
+            Move(dash_speed * playerStats.dashAccelerateCoefficient);
         }
     }
 

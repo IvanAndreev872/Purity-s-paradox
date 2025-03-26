@@ -79,6 +79,7 @@ public class Shop : MonoBehaviour
         nextButton.gameObject.SetActive(false);
         prevButton.gameObject.SetActive(false);
         shopButton.gameObject.SetActive(false);
+        buyButton.gameObject.SetActive(false);
         inventoryButton.gameObject.SetActive(false);
         BG.SetActive(false);
         pages[indexOfCurrentPage].ClosePage();
@@ -87,6 +88,7 @@ public class Shop : MonoBehaviour
         costText.gameObject.SetActive(false);
         indexOfCurrentPage = 0;
         slotIdClicked = -1;
+        inventoryManager.isShopOpened = false;
         inventoryManager.CloseInventory();
     }
     public void ShowInventory()
