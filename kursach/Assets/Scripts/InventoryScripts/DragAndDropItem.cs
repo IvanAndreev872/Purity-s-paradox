@@ -58,11 +58,25 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 oldSlot.isClicked = true;
                 if (inventoryManager.isShopOpened)
                 {
-                    inventoryManager.sellButton.gameObject.SetActive(true);
+                    if (oldSlot.id < 24)
+                    {
+                        inventoryManager.sellButton.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        inventoryManager.sellButton.gameObject.SetActive(false);
+                    }
                 }
                 if (inventoryManager.isStorageOpened)
                 {
-                    inventoryManager.storeButton.gameObject.SetActive(true);
+                    if (oldSlot.id < 24)
+                    {
+                        inventoryManager.storeButton.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        inventoryManager.storeButton.gameObject.SetActive(false);
+                    }
                 }
             }
             inventoryManager.slotIdClicked = oldSlot.id;
@@ -103,7 +117,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         {
             foreach (InventorySlot slot in inventoryManager.equipSlots)
             {
-                if (slot.item != null)
+                if (slot.item != null && slot.id != newSlot.id)
                 {
                     if (slot.item.itemClass == oldSlot.item.itemClass)
                     {
@@ -116,7 +130,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         {
             foreach (InventorySlot slot in inventoryManager.equipSlots)
             {
-                if (slot.item != null)
+                if (slot.item != null && newSlot.item != null && oldSlot.id != slot.id)
                 {
                     if (slot.item.itemClass == newSlot.item.itemClass)
                     {
@@ -127,6 +141,17 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         }
         if (isAllowed)
         {
+            if (newSlot.panel == 1)
+            {
+                if (inventoryManager.isShopOpened)
+                {
+                    inventoryManager.sellButton.gameObject.SetActive(false);
+                }
+                if (inventoryManager.isStorageOpened)
+                {
+                    inventoryManager.storeButton.gameObject.SetActive(false);
+                }
+            }
             if (oldSlot.panel == 0 && newSlot.panel == 1)
             {
                 if (newSlot.item is AbilityItem abilityItem)

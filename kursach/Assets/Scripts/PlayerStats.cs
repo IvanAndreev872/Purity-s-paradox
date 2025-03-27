@@ -11,31 +11,30 @@ public class PlayerStats : MonoBehaviour
     public float health = 100;
     public int money = 0;
     // hp
-    public float extraHealth = 0;
+    public float maxHealth = 100;
     // speed
     public float walkAccelerateCoefficient = 1;
     public float dashAccelerateCoefficient = 1;
-    public float additionalDashDurationTime = 0;
-    public bool isDashPoisoned = false;
-    public bool isDashInvulnerable = false;
+    public int isDashPoisoned = 0;
+    public int isDashInvulnerable = 0;
     // combat
+    // sword
     public float swordDamage = 0;
-    public float staffDamage = 0;
     public float swordRadius = 0;
-    public float staffRadius = 0;
     public float swordSpeed = 0;
+    public float swordSpeedCoefficient = 1;
+    public float bleedingSwordDamagePerSec = 0;
+    public float poisonSwordDamagePerSec = 0;
+    public float fireSwordDamagePerSec = 0;
+    public float freezeSwordCoefficient = 1;
+    // staff
+    public float staffDamage = 0;
+    public float staffRadius = 0;
     public float staffSpeed = 0;
     public float bulletSpeed = 0;
-    public float swordAdditionalDamage = 0;
-    public float staffAdditionalDamage = 0;
-    public float poisonDamagePerSec = 0;
-    public float fireDamagePerSec = 0;
-    public float bleedingDamagePerSec = 0;
-    public float freezeCoefficient = 1;
-    public float swordAdditionalRadius = 0;
-    public float staffAdditionalRadius = 0;
-    public float swordSpeedCoefficient = 1;
     public float staffSpeedCoefficient = 1;
     public float staffBulletSpeedCoefficient = 1;
-
+    public float poisonStaffDamagePerSec = 0;
+    public float fireStaffDamagePerSec = 0;
+    public float freezeStaffCoefficient = 1;
 }

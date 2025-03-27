@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e39f5d3a4cfc9ef4e92a2993efcf02e0
+  m_SerializeEntries:
+  - m_GUID: 681b4d276de55114db65642fd8d45515
+    m_Address: Assets/Prefabs/items/level2/boots2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 611871959e3e7714cbd9418ac573f62e
+    m_Address: Assets/Prefabs/items/level2/armor2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2dbd4951017791c43a5f43c0c3cfc976
+    m_Address: Assets/Prefabs/items/level2/ring2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 179ef60e855a5f341b5c4789c114f32c
+    m_Address: Assets/Prefabs/items/level2/book2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b8ff1c31d17614438ada77bfc2e3245
+    m_Address: Assets/Prefabs/items/level2/rune2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea8c651744ec9c64ba0e3df3f9d0564a
+    m_Address: Assets/Prefabs/items/level1/armor1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6caa3f0fa05cb84fa8e3cda0bf97563
+    m_Address: Assets/Prefabs/items/level1/book1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ca9b01b34b682e41930d03d68d53355
+    m_Address: Assets/Prefabs/items/level1/boots1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69752f6d20b6655428997ce75e24cf44
+    m_Address: Assets/Prefabs/items/level1/ring1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9bf79b923dd4dbd4da1a18e7e5671c1e
+    m_Address: Assets/Prefabs/items/level1/rune1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c48ddd53d4e66346864d79719729e5b
+    m_Address: Assets/Prefabs/items/level3/armor3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b693f42d2bb547748aa81f31f9d1d2f7
+    m_Address: Assets/Prefabs/items/level3/boots3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a0e80da798730147aa49f7f56195c7d
+    m_Address: Assets/Prefabs/items/level4/boots4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3730755c3764e2459fe51b714f4773d
+    m_Address: Assets/Prefabs/items/level4/armor4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7ae2654bb3f5484d8d3652cca42fa16
+    m_Address: Assets/Prefabs/items/level5/armor5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10f83045b4b75bd4e9ded0a06d8e86af
+    m_Address: Assets/Prefabs/items/level5/boots5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79a00e82c3d85bd48b7fb91edf42a4c6
+    m_Address: Assets/Prefabs/items/level3/book3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c0ab068f226cc948b4e86a3360b3f4d
+    m_Address: Assets/Prefabs/items/level4/book4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 961368a0337026045aea7a6007eb0d81
+    m_Address: Assets/Prefabs/items/level5/book5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc816adf0d7f36c4190b4d5a42c9f869
+    m_Address: Assets/Prefabs/items/level3/ring3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a79f200e0e657e45abde636b3f7c703
+    m_Address: Assets/Prefabs/items/level4/ring4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c81ff42738917e14b8a55d191107bd1b
+    m_Address: Assets/Prefabs/items/level5/ring5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 706799217dba5a74788699878c2df888
+    m_Address: Assets/Prefabs/items/level3/rune3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4df24e01c470f74ab091d4d391075ed
+    m_Address: Assets/Prefabs/items/level4/rune4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9b0c22a97106fc4287aa911d97bb5a0
+    m_Address: Assets/Prefabs/items/level5/rune5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b0c1abd1c44881141856c8ba50057fad, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7a5c0abe3d35943449767b1a62ebc221, type: 2}
+    - {fileID: 11400000, guid: 2e6b75ba643f99847b20d5cd3ecb03f7, type: 2}

@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if (Time.time > dash_start + dash_duration + playerStats.additionalDashDurationTime) 
+        if (Time.time > dash_start + dash_duration) 
         { 
             is_dashing = false;
         }

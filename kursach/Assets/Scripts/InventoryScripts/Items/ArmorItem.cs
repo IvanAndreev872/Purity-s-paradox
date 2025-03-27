@@ -15,10 +15,10 @@ public class ArmorItem : AbilityItem
     }
     public override void ApplyEffects(PlayerStats player)
     {
-        player.extraHealth += extraHealth;
+        player.maxHealth += extraHealth;
     }
     public override void DiscardEffects(PlayerStats player)
     {
-        player.extraHealth = 0;
+        player.maxHealth -= extraHealth;
     }
 }

@@ -19,23 +19,23 @@ public class SwordBoostItem : AbilityItem
     }
     public override void ApplyEffects(PlayerStats player)
     {
-        player.swordAdditionalDamage = swordAdditionalDamage;
-        player.poisonDamagePerSec += poisonDamagePerSec;
-        player.fireDamagePerSec += fireDamagePerSec;
-        player.bleedingDamagePerSec += bleedingDamagePerSec;
-        player.freezeCoefficient += freezeCoefficient - 1;
-        player.swordAdditionalRadius += swordAdditionalRadius;
-        player.swordSpeed *= swordSpeedCoefficient;
+        player.swordDamage += swordAdditionalDamage;
+        player.poisonSwordDamagePerSec += poisonDamagePerSec;
+        player.fireSwordDamagePerSec += fireDamagePerSec;
+        player.bleedingSwordDamagePerSec += bleedingDamagePerSec;
+        player.freezeSwordCoefficient += (freezeCoefficient - 1);
+        player.swordRadius += swordAdditionalRadius;
+        player.swordSpeed += (swordSpeedCoefficient - 1);
 
     }
     public override void DiscardEffects(PlayerStats player)
     {
-        player.swordAdditionalDamage = 0;
-        player.poisonDamagePerSec -= poisonDamagePerSec;
-        player.fireDamagePerSec -= fireDamagePerSec;
-        player.bleedingDamagePerSec -= bleedingDamagePerSec;
-        player.freezeCoefficient -= (freezeCoefficient - 1);
-        player.swordAdditionalRadius = 0;
-        player.swordSpeed = 1;
+        player.swordDamage -= swordAdditionalDamage;
+        player.poisonSwordDamagePerSec -= poisonDamagePerSec;
+        player.fireSwordDamagePerSec -= fireDamagePerSec;
+        player.bleedingSwordDamagePerSec -= bleedingDamagePerSec;
+        player.freezeSwordCoefficient -= (freezeCoefficient - 1);
+        player.swordRadius -= swordAdditionalRadius;
+        player.swordSpeed -= (swordSpeedCoefficient - 1);
     }
 }

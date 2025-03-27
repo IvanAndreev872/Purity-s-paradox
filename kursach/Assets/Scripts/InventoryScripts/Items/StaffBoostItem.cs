@@ -9,7 +9,6 @@ public class StaffBoostItem : AbilityItem
     public float staffAdditionalDamage = 0;
     public float poisonDamagePerSec = 0;
     public float fireDamagePerSec = 0;
-    public float bleedingDamagePerSec = 0;
     public float freezeCoefficient = 1;
     public float staffAdditionalRadius = 0;
     public float staffSpeedCoefficient = 1;
@@ -20,24 +19,22 @@ public class StaffBoostItem : AbilityItem
     }
     public override void ApplyEffects(PlayerStats player)
     {
-        player.staffAdditionalDamage = staffAdditionalDamage;
-        player.poisonDamagePerSec += poisonDamagePerSec;
-        player.fireDamagePerSec += fireDamagePerSec;
-        player.bleedingDamagePerSec += bleedingDamagePerSec;
-        player.freezeCoefficient += freezeCoefficient - 1;
-        player.swordAdditionalRadius += staffAdditionalRadius;
-        player.staffSpeed *= staffSpeedCoefficient;
-        player.staffBulletSpeedCoefficient *= staffBulletSpeedCoefficient;
+        player.staffDamage += staffAdditionalDamage;
+        player.poisonStaffDamagePerSec += poisonDamagePerSec;
+        player.fireStaffDamagePerSec += fireDamagePerSec;
+        player.freezeStaffCoefficient += freezeCoefficient - 1;
+        player.staffRadius += staffAdditionalRadius;
+        player.staffSpeedCoefficient += staffSpeedCoefficient - 1;
+        player.staffBulletSpeedCoefficient += staffBulletSpeedCoefficient - 1;
     }
     public override void DiscardEffects(PlayerStats player)
     {
-        player.staffAdditionalDamage = 0;
-        player.poisonDamagePerSec -= poisonDamagePerSec;
-        player.fireDamagePerSec -= fireDamagePerSec;
-        player.bleedingDamagePerSec -= bleedingDamagePerSec;
-        player.freezeCoefficient -= (freezeCoefficient - 1);
-        player.swordAdditionalRadius -= staffAdditionalRadius;
-        player.staffSpeed = 1;
-        player.staffBulletSpeedCoefficient = 1;
+        player.staffDamage -= staffAdditionalDamage;
+        player.poisonStaffDamagePerSec -= poisonDamagePerSec;
+        player.fireStaffDamagePerSec -= fireDamagePerSec;
+        player.freezeStaffCoefficient -= (freezeCoefficient - 1);
+        player.staffRadius -= staffAdditionalRadius;
+        player.staffSpeedCoefficient -= (staffSpeedCoefficient - 1);
+        player.staffBulletSpeedCoefficient -= (staffBulletSpeedCoefficient - 1);
     }
 }

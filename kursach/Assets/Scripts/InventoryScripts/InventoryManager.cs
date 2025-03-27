@@ -11,7 +11,7 @@ public class InventoryManager : MonoBehaviour
     public List<InventorySlot> slots = new List<InventorySlot>();
     public List<InventorySlot> equipSlots = new List<InventorySlot>();
     public bool isOpened = false, isShopOpened = false, isStorageOpened = false;
-    public TMP_Text itemDescriptionText, costText;
+    public TMP_Text itemDescriptionText, costText, statsText;
     public Button sellButton, storeButton;
     public PlayerStats playerStats;
     public int slotIdClicked = -1;
@@ -137,11 +137,14 @@ public class InventoryManager : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            AddItem(other.GetComponent<Item>().itemScriptableObject, other.GetComponent<Item>().count);
-            Destroy(other.gameObject);
+            Item item = other.GetComponent<Item>();
+            if (AddItem(item.itemScriptableObject, item.count))
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
-    public void AddItem(ItemScriptableObject item, int count)
+    public bool AddItem(ItemScriptableObject item, int count)
     {
         foreach (InventorySlot slot in slots)
         {
@@ -151,7 +154,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     slot.count += count;
                     slot.itemCountText.text = slot.count.ToString();
-                    return;
+                    return true;
                 }
             }
         }
@@ -171,8 +174,9 @@ public class InventoryManager : MonoBehaviour
                 {
                     slot.itemCountText.text = "";
                 }
-                return;
+                return true;
             }
         }
+        return false;
     }
 }
