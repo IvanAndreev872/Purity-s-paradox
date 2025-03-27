@@ -11,11 +11,6 @@ public class SpeedItem : AbilityItem
     public float additionalDashDurationTime;
     public int isDashInvulnerable;
     public int isDashPoisoned;
-
-    void Awake()
-    {
-        itemType = ItemType.Ability;
-    }
     public override void ApplyEffects(PlayerStats player)
     {
         player.walkAccelerateCoefficient += (walkAccelerateCoefficient - 1);

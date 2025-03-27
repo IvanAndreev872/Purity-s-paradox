@@ -8,11 +8,6 @@ using UnityEngine;
 public class ArmorItem : AbilityItem
 {
     public int extraHealth;
-
-    void Awake()
-    {
-        itemType = ItemType.Ability;
-    }
     public override void ApplyEffects(PlayerStats player)
     {
         player.maxHealth += extraHealth;

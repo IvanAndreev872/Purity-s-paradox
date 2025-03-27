@@ -167,6 +167,186 @@ MonoBehaviour:
     m_SerializedLabels:
     - level5
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 919be79ef586c084a838bf57126419a6
+    m_Address: Assets/Prefabs/items/level1/sword1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8b8f89e1196561459cbe7cf33ad0227
+    m_Address: Assets/Prefabs/items/level2/sword2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdae6e7f23f8e1b42b6d37465b7f452b
+    m_Address: Assets/Prefabs/items/level3/sword3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb783df9e2335cb41a285f3c9942e65c
+    m_Address: Assets/Prefabs/items/level4/sword4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2abae76df89c3624a8176a5898c1a205
+    m_Address: Assets/Prefabs/items/level5/sword5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91f6f3633a5af1547a9a6712209ae009
+    m_Address: Assets/Prefabs/items/level1/bigsword1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 692211280e8e86d45b6920e6c69c3e08
+    m_Address: Assets/Prefabs/items/level2/bigsword2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d82de32f0cf16845ac447bff559822e
+    m_Address: Assets/Prefabs/items/level3/bigsword3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c17dc6fd0e96adb47bb69fc8c9431473
+    m_Address: Assets/Prefabs/items/level4/bigsword4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04a6fe6cd741c4849ac3556433f21815
+    m_Address: Assets/Prefabs/items/level5/bigsword5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d65fcc0c01fc2348a447de555fc88c0
+    m_Address: Assets/Prefabs/items/level1/poisonstaff1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 245fc593393686e4d8d4ce75fe5fb8ec
+    m_Address: Assets/Prefabs/items/level1/firestaff1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d85c9fb362131864ba93fe681d016166
+    m_Address: Assets/Prefabs/items/level1/freezestaff1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59b44590353d8ef48830ddda9d94e0c2
+    m_Address: Assets/Prefabs/items/level1/waterstaff1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0399a14f8df547943ba87a27fc33d891
+    m_Address: Assets/Prefabs/items/level3/poisonstaff3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd2a25fa1fb10424095494eac44c41b5
+    m_Address: Assets/Prefabs/items/level3/firestaff3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccbff31567a98a540b895dfd229271b7
+    m_Address: Assets/Prefabs/items/level3/freezestaff3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8325f8f497337d54b986158a4950dc8f
+    m_Address: Assets/Prefabs/items/level3/waterstaff3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2a358229871a164ca7a8a7062f87199
+    m_Address: Assets/Prefabs/items/level2/shadowboots2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edbf08e7eabaeb44a8ca99696942ba67
+    m_Address: Assets/Prefabs/items/level2/poisonboots2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f005dcadb7913ac44be5cd103c3488b2
+    m_Address: Assets/Prefabs/items/level1/quickdagger1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a7e52fda794b8f4eaaff36584a3a312
+    m_Address: Assets/Prefabs/items/level2/quickdagger2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level2
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 371f2a7a962c9cc44a2385a6b99d58af
+    m_Address: Assets/Prefabs/items/level3/quickdagger3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86fb01f3e0bb8304184cf3a07234763d
+    m_Address: Assets/Prefabs/items/level4/quickdagger4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8b26834da967a14b86bcfc9d1bb786d
+    m_Address: Assets/Prefabs/items/level5/quickdagger5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fdcf1a2869c573499517ff4447a4db6
+    m_Address: Assets/Prefabs/items/level3/poisonbigsword3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c501f59f785c1f438a3b738dd3d2487
+    m_Address: Assets/Prefabs/items/level4/blooddagger4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba88d619ac381c74f97f1d23a53b80c5
+    m_Address: Assets/Prefabs/items/level4/freezedagger4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d62bdf42d0a4f2b43827e4a4e122e3d2
+    m_Address: Assets/Prefabs/items/level5/firesword5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4c29f8524a2e9a4fb02a745a0d71cb3
+    m_Address: Assets/Prefabs/items/level5/freezesword5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level5
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b0c1abd1c44881141856c8ba50057fad, type: 2}
   m_SchemaSet:

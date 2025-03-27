@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType {Default, Ability, Weapon}
+public enum ItemType {Ability, Weapon}
 
 public class ItemScriptableObject : ScriptableObject
 {
