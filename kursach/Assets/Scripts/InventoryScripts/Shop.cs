@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 public class Shop : MonoBehaviour
 {
@@ -13,17 +16,49 @@ public class Shop : MonoBehaviour
     public TMP_Text itemDescriptionText, costText;
     public Button buyButton, nextButton, prevButton, shopButton, inventoryButton;
     public int slotIdClicked = -1;
-    public Transform player;
     public InventoryManager inventoryManager;
     public PlayerStats playerStats;
+    public UiManager uiManager;
     public StorageManager storage;
+    private List<Item> LoadAllItemsFromLevel(int level)
+    {
+        List<Item> res = new();
+        string label = "level" + level.ToString();
+        Addressables.LoadAssetsAsync<GameObject>(label, null).Completed += handle =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                IList<GameObject> items = handle.Result;
+                foreach (var itemPrefab in items)
+                {
+                    Item item = itemPrefab.GetComponent<Item>();
+                    res.Add(item);
+                }
+                Debug.Log("LOL " + res.Count);
+            }
+            else
+            {
+                Debug.LogError("Failed to load items from level " + level);
+            }
+        };
+        return res;
+    }
     public void Awake()
     {
         for (int i = 0; i < shop.childCount; i++)
         {
             if (shop.GetChild(i).GetComponent<ShopPage>() != null)
             {
+                shop.GetChild(i).GetComponent<ShopPage>().Awake();
                 pages.Add(shop.GetChild(i).GetComponent<ShopPage>());
+            }
+        }
+        for (int level = 1; level <= 5; level++)
+        {
+            List<Item> items = LoadAllItemsFromLevel(level);
+            foreach (Item item in items)
+            {
+                AddItem(item.itemScriptableObject, level - 1);
             }
         }
         BG.SetActive(false);
@@ -43,9 +78,10 @@ public class Shop : MonoBehaviour
         shopButton.gameObject.SetActive(false);
         inventoryButton = shop.GetChild(11).GetComponent<Button>();
         inventoryButton.gameObject.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
         playerStats = player.GetComponent<PlayerStats>();
+        uiManager = player.GetComponent<UiManager>();
         storage = FindObjectOfType<StorageManager>();
     }
     public void OnTriggerEnter2D(Collider2D other)
@@ -64,14 +100,19 @@ public class Shop : MonoBehaviour
     }
     public void OpenShop()
     {
+        Debug.Log("WTF " + indexOfCurrentPage);
         shop.gameObject.SetActive(true);
         nextButton.gameObject.SetActive(true);
         prevButton.gameObject.SetActive(true);
         shopButton.gameObject.SetActive(true);
         inventoryButton.gameObject.SetActive(true);
         BG.SetActive(true);
+        Debug.Log("CHECK 1");
         pages[indexOfCurrentPage].gameObject.SetActive(true);
+        Debug.Log("CHECK 2");
         inventoryManager.isShopOpened = true;
+        inventoryManager.statsText.gameObject.SetActive(true);
+        inventoryManager.UpdateStatsText();
     }
     public void CloseShop()
     {
@@ -164,6 +205,7 @@ public class Shop : MonoBehaviour
                         return;
                     }
                     playerStats.money -= slot.item.cost;
+                    uiManager.UpdateUI();
                     itemDescriptionText.text = "";
                     costText.text = "";
                     costText.gameObject.SetActive(false);
@@ -175,12 +217,14 @@ public class Shop : MonoBehaviour
             }
         }
     }
-    public void AddItem(ItemScriptableObject item, int pageId)
+    private void AddItem(ItemScriptableObject item, int pageId)
     {
         foreach (ShopSlot slot in pages[pageId].slots)
         {
+            Debug.Log("OK " + slot.isEmpty);
             if (slot.isEmpty)
             {
+                Debug.Log("OK");
                 slot.item = item;
                 slot.SetIcon(item.icon);
                 slot.itemCostText.text = item.cost.ToString();

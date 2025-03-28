@@ -8,6 +8,7 @@ public class SwordItem : WeaponItem
 {
     
     public float swordDamage = 0;
+    public int isSwordEquipped = 1;
     public float swordSpeedCoefficient = 1;
     public float swordAdditionalRadius = 0;
     public float bleedingSwordDamagePerSec = 0;
@@ -17,6 +18,7 @@ public class SwordItem : WeaponItem
     public override void ApplyEffects(PlayerStats player)
     {
         player.swordDamage += swordDamage;
+        player.isSwordEquipped += isSwordEquipped;
         player.swordSpeedCoefficient += (swordSpeedCoefficient - 1);
         player.swordRadius += swordAdditionalRadius;
         player.bleedingSwordDamagePerSec += bleedingSwordDamagePerSec;
@@ -27,6 +29,7 @@ public class SwordItem : WeaponItem
     public override void DiscardEffects(PlayerStats player)
     {
         player.swordDamage -= swordDamage;
+        player.isSwordEquipped -= isSwordEquipped;
         player.swordSpeedCoefficient -= (swordSpeedCoefficient - 1);
         player.swordRadius -= swordAdditionalRadius;
         player.bleedingSwordDamagePerSec -= bleedingSwordDamagePerSec;

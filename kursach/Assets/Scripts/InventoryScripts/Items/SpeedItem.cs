@@ -25,6 +25,6 @@ public class SpeedItem : AbilityItem
         player.dashAccelerateCoefficient -= (dashAccelerateCoefficient - 1);
         player.dashDuration -= additionalDashDurationTime;
         player.isDashInvulnerable -= isDashInvulnerable;
-        player.isDashPoisoned -= isDashInvulnerable;
+        player.isDashPoisoned -= isDashPoisoned;
     }
 }

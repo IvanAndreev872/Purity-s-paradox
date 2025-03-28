@@ -8,6 +8,7 @@ public class StaffItem : WeaponItem
 {
     
     public float staffDamage = 0;
+    public int isStaffEquipped = 1;
     public float staffAdditionalRadius = 0;
     public float staffSpeedCoefficient = 1;
     public float staffBulletSpeedCoefficient = 1;
@@ -17,6 +18,7 @@ public class StaffItem : WeaponItem
     public override void ApplyEffects(PlayerStats player)
     {
         player.staffDamage += staffDamage;
+        player.isStaffEquipped += isStaffEquipped;
         player.staffRadius += staffAdditionalRadius;
         player.staffSpeedCoefficient += (staffSpeedCoefficient - 1);
         player.staffBulletSpeedCoefficient += (staffBulletSpeedCoefficient - 1);
@@ -27,6 +29,7 @@ public class StaffItem : WeaponItem
     public override void DiscardEffects(PlayerStats player)
     {
         player.staffDamage -= staffDamage;
+        player.isStaffEquipped -= isStaffEquipped;
         player.staffRadius -= staffAdditionalRadius;
         player.staffSpeedCoefficient -= (staffSpeedCoefficient - 1);
         player.staffBulletSpeedCoefficient -= (staffBulletSpeedCoefficient - 1);

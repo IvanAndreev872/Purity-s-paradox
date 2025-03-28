@@ -68,6 +68,8 @@ public class StorageManager : MonoBehaviour
         BG.SetActive(true);
         pages[indexOfCurrentPage].gameObject.SetActive(true);
         inventoryManager.isStorageOpened = true;
+        inventoryManager.statsText.gameObject.SetActive(true);
+        inventoryManager.UpdateStatsText();
     }
     public void CloseStorage()
     {

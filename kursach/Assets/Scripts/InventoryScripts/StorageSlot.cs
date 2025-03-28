@@ -39,7 +39,7 @@ public class StorageSlot : MonoBehaviour, IPointerClickHandler
             }
             else
             {
-                storage.itemDescriptionText.text = item.itemDescription;
+                storage.itemDescriptionText.text = item.itemName + "\n\n" + item.itemDescription;
                 storage.takeButton.gameObject.SetActive(true);
                 storage.costText.gameObject.SetActive(true);
                 int gain = item.cost * item.sellCoefficient / 100;

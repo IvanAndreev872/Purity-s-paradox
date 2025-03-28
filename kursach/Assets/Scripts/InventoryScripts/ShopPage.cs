@@ -7,6 +7,7 @@ public class ShopPage : MonoBehaviour
     public List<ShopSlot> slots = new List<ShopSlot>();
     public void Awake()
     {
+        Debug.Log("AWAKE ");
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).GetComponent<ShopSlot>() != null)

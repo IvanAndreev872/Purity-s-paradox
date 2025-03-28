@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using TMPro;
-using Unity.VisualScripting;
 public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public InventorySlot oldSlot;
     public Transform player;
+    public PlayerStats playerStats;
     public InventoryManager inventoryManager;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerStats = player.GetComponent<PlayerStats>();
         inventoryManager = player.GetComponent<InventoryManager>();
         oldSlot = transform.GetComponentInParent<InventorySlot>();
     }
@@ -51,7 +51,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             }
             else
             {
-                inventoryManager.itemDescriptionText.text = oldSlot.item.itemDescription;
+                inventoryManager.itemDescriptionText.text = oldSlot.item.itemName + "\n\n" + oldSlot.item.itemDescription;
                 int gain = oldSlot.item.cost * oldSlot.item.sellCoefficient / 100;
                 inventoryManager.costText.text = gain.ToString();
                 inventoryManager.costText.gameObject.SetActive(true);
@@ -104,10 +104,6 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     private void ExchangeSlotData(InventorySlot newSlot)
     {
-        if (oldSlot.gameObject.name == newSlot.gameObject.name) 
-        {
-            return;
-        }
         ItemScriptableObject item = newSlot.item;
         int count = newSlot.count;
         bool isEmpty = newSlot.isEmpty;
@@ -156,24 +152,41 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             {
                 if (newSlot.item is AbilityItem abilityItem)
                 {
-                    abilityItem.DiscardEffects(player.GetComponent<PlayerStats>());
+                    abilityItem.DiscardEffects(playerStats);
+                }
+                if (newSlot.item is WeaponItem weaponItem)
+                {
+                    weaponItem.DiscardEffects(playerStats);
                 }
                 if (oldSlot.item is AbilityItem abilityItem2)
                 {
-                    abilityItem2.ApplyEffects(player.GetComponent<PlayerStats>());
+                    abilityItem2.ApplyEffects(playerStats);
+                }
+                if (oldSlot.item is WeaponItem weaponItem2)
+                {
+                    weaponItem2.ApplyEffects(playerStats);
                 }
             }
             if (oldSlot.panel == 1 && newSlot.panel == 0)
             {
-                if (oldSlot.item is AbilityItem abilityItem3)
+                if (oldSlot.item is AbilityItem abilityItem)
                 {
-                    abilityItem3.DiscardEffects(player.GetComponent<PlayerStats>());
+                    abilityItem.DiscardEffects(playerStats);
                 }
-                if (newSlot.item is AbilityItem abilityItem4)
+                if (oldSlot.item is WeaponItem weaponItem)
                 {
-                    abilityItem4.ApplyEffects(player.GetComponent<PlayerStats>());
+                    weaponItem.DiscardEffects(playerStats);
+                }
+                if (newSlot.item is AbilityItem abilityItem2)
+                {
+                    abilityItem2.ApplyEffects(playerStats);
+                }
+                if (newSlot.item is WeaponItem weaponItem2)
+                {
+                    weaponItem2.ApplyEffects(playerStats);
                 }
             }
+            inventoryManager.UpdateStatsText();
             newSlot.item = oldSlot.item;
             newSlot.count = oldSlot.count;
             newSlot.SetIcon(oldSlot.iconGameObject.GetComponent<Image>().sprite);

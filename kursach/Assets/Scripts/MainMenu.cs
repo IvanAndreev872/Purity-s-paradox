@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame()
+    public GameObject continueButton;
+    public void ContinueGame()
     {
         SceneManager.LoadScene("Hub");
     }
-    
+    public void NewGame()
+    {
+        SceneManager.LoadScene("Hub");
+    }
     public void QuitGame()
     {
         Debug.Log("QUIT!!");

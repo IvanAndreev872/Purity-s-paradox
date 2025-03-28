@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour
     public float poisonSwordDamagePerSec = 0;
     public float fireSwordDamagePerSec = 0;
     public float freezeSwordCoefficient = 1;
+    public int isSwordEquipped = 0;
     // staff
     public float staffDamage = 0;
     public float staffRadius = 0;
@@ -37,4 +38,5 @@ public class PlayerStats : MonoBehaviour
     public float poisonStaffDamagePerSec = 0;
     public float fireStaffDamagePerSec = 0;
     public float freezeStaffCoefficient = 1;
+    public int isStaffEquipped = 0;
 }

@@ -38,7 +38,7 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler
             }
             else
             {
-                shop.itemDescriptionText.text = item.itemDescription;
+                shop.itemDescriptionText.text = item.itemName + "\n\n" + item.itemDescription;
                 shop.buyButton.gameObject.SetActive(true);
                 shop.costText.gameObject.SetActive(true);
                 shop.costText.text = item.cost.ToString();
