@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AngerStatusController;
 
 public class JumpAttack : MonoBehaviour
 {
+    private AngerStatusController anger_status_controller;
+
     public Transform player;
     public MovementInterface movement_interface;
 
@@ -22,6 +25,14 @@ public class JumpAttack : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer boss_renderer;
     private Collider2D boss_collider;
+
+    private bool can_be_enabled = false;
+
+    private void Awake()
+    {
+        anger_status_controller = GetComponentInParent<AngerStatusController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +45,7 @@ public class JumpAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (movement_interface.able_to_move && !is_jumping)
+        if (movement_interface.able_to_move && !is_jumping && can_be_enabled)
         {
             CheckJump();
         }
@@ -111,6 +122,30 @@ public class JumpAttack : MonoBehaviour
         {
             Vector3 direction = (target - transform.position).normalized;
             rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction, fly_speed * Time.fixedDeltaTime));
+        }
+    }
+
+    private void OnAngerChanged(AngerStatusController.AngerLevel new_level)
+    {
+        if (new_level == AngerLevel.Enraged)
+        {
+            can_be_enabled = true;
+        }
+    }
+
+    void OnEnable()
+    {
+        if (anger_status_controller)
+        {
+            anger_status_controller.EnragementChanged += OnAngerChanged;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (anger_status_controller)
+        {
+            anger_status_controller.EnragementChanged -= OnAngerChanged;
         }
     }
 }

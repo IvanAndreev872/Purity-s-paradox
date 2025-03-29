@@ -13708,7 +13708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9002886814934924796, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: max_healthpoint
-      value: 50
+      value: 5000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13854,7 +13854,7 @@ MonoBehaviour:
   player: {fileID: 1588816242}
   dash_speed: 30
   critical_distance: 10
-  dash_delay: 1
+  dash_delay: 5
   braking_distance: 1
   damage: 50
 --- !u!114 &7899875712820240114
@@ -13872,7 +13872,7 @@ MonoBehaviour:
   player: {fileID: 1588816242}
   dash_speed: 30
   make_distance: 20
-  dash_delay: 1000
+  dash_delay: 45
   braking_distance: 10
   damage: 25
   explosion_prefab: {fileID: 6090887868542334393, guid: 631fc0fd43ef9ed488768e72c978167d, type: 3}
@@ -13891,7 +13891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounce_speed: 15
-  bounce_delay: 301
+  bounce_delay: 45
   bounce_duration: 15
   damage: 25
   explosion_prefab: {fileID: 6090887868542334393, guid: 631fc0fd43ef9ed488768e72c978167d, type: 3}
@@ -13912,7 +13912,7 @@ MonoBehaviour:
   attack_distance: 3
   ability_duration: 3
   damage: 50
-  jump_delay: 10
+  jump_delay: 45
   fly_speed: 8
   stop_time: 2
 --- !u!1660057539 &9223372036854775807

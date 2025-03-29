@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AngerStatusController;
 
 public class DashAttackExplosion : MonoBehaviour
 {
+    private AngerStatusController anger_status_controller;
+
     public Transform player;
     public MovementInterface movement_interface;
 
@@ -25,6 +28,14 @@ public class DashAttackExplosion : MonoBehaviour
     private Vector2 retreat_target;
 
     private Rigidbody2D rb;
+
+    private bool can_be_enabled = false;
+
+    private void Awake()
+    {
+        anger_status_controller = GetComponentInParent<AngerStatusController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +46,7 @@ public class DashAttackExplosion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (movement_interface.able_to_move && !is_dashing && !is_preparing)
+        if (movement_interface.able_to_move && !is_dashing && !is_preparing && can_be_enabled)
         {
             CheckDash();
         }
@@ -130,6 +141,31 @@ public class DashAttackExplosion : MonoBehaviour
                 enemy.Hit(damage);
             }
             Explosion();
+        }
+    }
+
+    private void OnAngerChanged(AngerStatusController.AngerLevel new_level)
+    {
+        if (new_level == AngerLevel.Raged)
+        {
+            Debug.Log(11);
+            can_be_enabled = true;
+        }
+    }
+
+    void OnEnable()
+    {
+        if (anger_status_controller)
+        {
+            anger_status_controller.EnragementChanged += OnAngerChanged;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (anger_status_controller)
+        {
+            anger_status_controller.EnragementChanged -= OnAngerChanged;
         }
     }
 }

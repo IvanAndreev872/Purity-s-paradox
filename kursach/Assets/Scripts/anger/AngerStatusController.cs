@@ -40,15 +40,18 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
             AngerLevel new_enragement_level = current_enragement;
             if (current_health <= enraged_after_healthpoint)
             {
+                Debug.Log(1);
                 new_enragement_level = AngerLevel.Enraged;
             }
             else if (current_health <= raged_after_healthpoint)
             {
+                Debug.Log(0);
                 new_enragement_level = AngerLevel.Raged;
             }
 
             if (current_enragement != new_enragement_level)
             {
+                Debug.Log(2);
                 current_enragement = new_enragement_level;
                 EnragementChanged?.Invoke(new_enragement_level);
             }
