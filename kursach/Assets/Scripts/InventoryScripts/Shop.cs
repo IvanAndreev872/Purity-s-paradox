@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using System.Linq;
 
 public class Shop : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class Shop : MonoBehaviour
     public PlayerStats playerStats;
     public UiManager uiManager;
     public StorageManager storage;
-    private List<Item> LoadAllItemsFromLevel(int level)
+    private void LoadAllItemsFromLevel(int level, System.Action<List<Item>> onLoaded)
     {
         List<Item> res = new();
         string label = "level" + level.ToString();
@@ -34,14 +34,27 @@ public class Shop : MonoBehaviour
                     Item item = itemPrefab.GetComponent<Item>();
                     res.Add(item);
                 }
-                Debug.Log("LOL " + res.Count);
+                Debug.Log("LOADED " + res.Count);
             }
             else
             {
                 Debug.LogError("Failed to load items from level " + level);
             }
+            onLoaded?.Invoke(res);
         };
-        return res;
+    }
+    public void Start()
+    {
+        for (int level = 1; level <= 5; level++)
+        {
+            LoadAllItemsFromLevel(level, items =>
+            {
+                for (int i = 0; i < items.Count; i++)
+                {
+                    AddItem(items[i].itemScriptableObject,  items[i].name.Last() - '1');
+                }
+            });
+        }
     }
     public void Awake()
     {
@@ -49,20 +62,11 @@ public class Shop : MonoBehaviour
         {
             if (shop.GetChild(i).GetComponent<ShopPage>() != null)
             {
-                shop.GetChild(i).GetComponent<ShopPage>().Awake();
                 pages.Add(shop.GetChild(i).GetComponent<ShopPage>());
             }
         }
-        for (int level = 1; level <= 5; level++)
-        {
-            List<Item> items = LoadAllItemsFromLevel(level);
-            foreach (Item item in items)
-            {
-                AddItem(item.itemScriptableObject, level - 1);
-            }
-        }
         BG.SetActive(false);
-        shop.gameObject.SetActive(false);
+        shop.gameObject.SetActive(true);
         itemDescriptionText = shop.GetChild(5).GetComponent<TMP_Text>();
         itemDescriptionText.text = "";
         buyButton = shop.GetChild(6).GetComponent<Button>();
@@ -100,16 +104,13 @@ public class Shop : MonoBehaviour
     }
     public void OpenShop()
     {
-        Debug.Log("WTF " + indexOfCurrentPage);
         shop.gameObject.SetActive(true);
         nextButton.gameObject.SetActive(true);
         prevButton.gameObject.SetActive(true);
         shopButton.gameObject.SetActive(true);
         inventoryButton.gameObject.SetActive(true);
         BG.SetActive(true);
-        Debug.Log("CHECK 1");
         pages[indexOfCurrentPage].gameObject.SetActive(true);
-        Debug.Log("CHECK 2");
         inventoryManager.isShopOpened = true;
         inventoryManager.statsText.gameObject.SetActive(true);
         inventoryManager.UpdateStatsText();
@@ -221,10 +222,8 @@ public class Shop : MonoBehaviour
     {
         foreach (ShopSlot slot in pages[pageId].slots)
         {
-            Debug.Log("OK " + slot.isEmpty);
             if (slot.isEmpty)
             {
-                Debug.Log("OK");
                 slot.item = item;
                 slot.SetIcon(item.icon);
                 slot.itemCostText.text = item.cost.ToString();

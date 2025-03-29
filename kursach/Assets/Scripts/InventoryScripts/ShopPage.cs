@@ -12,6 +12,7 @@ public class ShopPage : MonoBehaviour
         {
             if (transform.GetChild(i).GetComponent<ShopSlot>() != null)
             {
+                transform.GetChild(i).GetComponent<ShopSlot>().Awake();
                 slots.Add(transform.GetChild(i).GetComponent<ShopSlot>());
                 slots[slots.Count - 1].id = i;
             }
