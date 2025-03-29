@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     public float dashDuration = 0;
     public float health = 100;
     public int money = 0;
+    public int levelCompleted = 0;
     // hp
     public float maxHealth = 100;
     // speed

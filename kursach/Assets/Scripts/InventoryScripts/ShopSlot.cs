@@ -15,7 +15,6 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler
     public int id;
     public void Awake()
     {
-        Debug.Log("AWAKE SHOP SLOT ");
         iconGameObject = transform.GetChild(0).gameObject;
         itemCostText = transform.GetChild(1).GetComponent<TMP_Text>();
         shop = FindObjectOfType<Shop>();

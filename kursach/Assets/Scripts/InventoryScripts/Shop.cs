@@ -20,7 +20,14 @@ public class Shop : MonoBehaviour
     public PlayerStats playerStats;
     public UiManager uiManager;
     public StorageManager storage;
-    private void LoadAllItemsFromLevel(int level, System.Action<List<Item>> onLoaded)
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseShop();
+        }
+    }
+    public void LoadAllItemsFromLevel(int level, System.Action<List<Item>> onLoaded)
     {
         List<Item> res = new();
         string label = "level" + level.ToString();

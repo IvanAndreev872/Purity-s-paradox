@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,13 +17,13 @@ public class InventoryManager : MonoBehaviour
     public PlayerStats playerStats;
     public UiManager uiManager;
     public int slotIdClicked = -1;
-    void Awake()
+    public void Awake()
     {
         Transform player = GameObject.FindGameObjectWithTag("Player").transform;
         playerStats = player.GetComponent<PlayerStats>();
         uiManager = player.GetComponent<UiManager>();
-        inventoryPanel = inventory.GetChild(0).transform;
-        equipSlotsPanel = inventory.GetChild(1).transform;
+        inventoryPanel = inventory.GetChild(1).transform;
+        equipSlotsPanel = inventory.GetChild(2).transform;
         for (int i = 0; i < inventoryPanel.childCount; i++)
         {
             if (inventoryPanel.GetChild(i).GetComponent<InventorySlot>() != null)
@@ -40,16 +41,16 @@ public class InventoryManager : MonoBehaviour
                 equipSlots[equipSlots.Count - 1].id = i + slots.Count;
             }
         }
-        itemDescriptionText = inventory.GetChild(2).GetComponent<TMP_Text>();
+        itemDescriptionText = inventory.GetChild(3).GetComponent<TMP_Text>();
         itemDescriptionText.text = "";
-        costText = inventory.GetChild(3).GetComponent<TMP_Text>();
+        costText = inventory.GetChild(4).GetComponent<TMP_Text>();
         costText.text = "";
         costText.gameObject.SetActive(false);
-        sellButton = inventory.GetChild(4).GetComponent<Button>();
+        sellButton = inventory.GetChild(5).GetComponent<Button>();
         sellButton.gameObject.SetActive(false);
-        storeButton = inventory.GetChild(5).GetComponent<Button>();
+        storeButton = inventory.GetChild(6).GetComponent<Button>();
         storeButton.gameObject.SetActive(false);
-        statsText = inventory.GetChild(6).GetComponent<TMP_Text>();
+        statsText = inventory.GetChild(7).GetComponent<TMP_Text>();
         statsText.text = "";
         statsText.gameObject.SetActive(false);
         BG.SetActive(false);
