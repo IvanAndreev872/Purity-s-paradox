@@ -60,7 +60,8 @@ GameObject:
   - component: {fileID: 6515818094611683775}
   - component: {fileID: 1643123536021940377}
   - component: {fileID: 4777102949461962117}
-  - component: {fileID: 9002886814934924796}
+  - component: {fileID: 8411632874738887445}
+  - component: {fileID: 7778740227523018525}
   m_Layer: 10
   m_Name: Character
   m_TagString: Character
@@ -236,7 +237,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9002886814934924796
+--- !u!114 &8411632874738887445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,7 +246,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8553912165174720350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c448e1470543804e82731f367816156, type: 3}
+  m_Script: {fileID: 11500000, guid: b0edf37003e8abb4e957ecab992f76c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_healtpoint: 100
+  max_healthpoint: 100
+--- !u!114 &7778740227523018525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8553912165174720350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa21d9a050f42f4683de9b09a982662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  damage: 15

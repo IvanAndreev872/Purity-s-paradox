@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour, DamageInterface
+public class PlayerHealth : MonoBehaviour, DamageInterface
 {
     public float max_healthpoint;
 
     private float current_health;
+    private bool damagable = true;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,11 +17,21 @@ public class Health : MonoBehaviour, DamageInterface
 
     public void Hit(float damage)
     {
-        if (current_health <= damage)
+        Debug.Log(1);
+        if (damagable)
         {
-            Die();
+            Debug.Log(2);
+            if (current_health <= damage)
+            {
+                Die();
+            }
+            current_health -= damage;
         }
-        current_health -= damage;
+    }
+
+    public void CanBeDamaged(bool is_damagable)
+    {
+        damagable = is_damagable;
     }
 
     private void Die()

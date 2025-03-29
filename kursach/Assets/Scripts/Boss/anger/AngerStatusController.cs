@@ -16,6 +16,8 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
     public float enraged_after_healthpoint;
 
     private float current_health;
+
+    private bool damagable = true;
     // Start is called before the first frame updateú
     void Awake()
     {
@@ -25,8 +27,12 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
 
     public void Hit(float damage)
     {
-        current_health -= damage;
-        CheckHealth();
+        if (damagable)
+        {
+            Debug.Log(damage);
+            current_health -= damage;
+            CheckHealth();
+        }
     }
 
     private void CheckHealth()
@@ -56,6 +62,11 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
                 EnragementChanged?.Invoke(new_enragement_level);
             }
         }
+    }
+
+    public void CanBeDamaged(bool is_damagable)
+    {
+        damagable = is_damagable;
     }
 
     private void Die()

@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public DamageInterface damage_interface;
+
     public float walk_speed;
     public float dash_speed;
+
     public float dash_duration;
+
     public float rotation_speed;
     public GameObject shooter;
+
+    public bool is_dash_invulnerable = false;
 
     private Rigidbody2D rb;
     private bool is_dashing;
@@ -17,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damage_interface = GetComponent<DamageInterface>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();   
     }
@@ -52,6 +59,11 @@ public class PlayerMovement : MonoBehaviour
         if (Time.time > dash_start + dash_duration) 
         { 
             is_dashing = false;
+
+            if (is_dash_invulnerable)
+            {
+                damage_interface.CanBeDamaged(true);
+            }
         }
         else
         {
@@ -65,6 +77,11 @@ public class PlayerMovement : MonoBehaviour
         {
             is_dashing = true;
             dash_start = Time.time;
+
+            if (is_dash_invulnerable)
+            {
+                damage_interface.CanBeDamaged(false);
+            }
         }
     }
 

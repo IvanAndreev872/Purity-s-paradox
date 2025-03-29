@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4036147509950431007}
   - component: {fileID: 2025975127309365346}
   - component: {fileID: 2778369681465429744}
-  - component: {fileID: 8191933900589096502}
+  - component: {fileID: 1259051790515735966}
   m_Layer: 0
   m_Name: Greed
   m_TagString: Untagged
@@ -162,7 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6319b692635e9b6438040d6450d6b061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  able_to_move: 1
   player: {fileID: 0}
   speed: 3
 --- !u!70 &2025975127309365346
@@ -221,7 +220,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8191933900589096502
+--- !u!114 &1259051790515735966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,10 +229,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4521121658425986479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c448e1470543804e82731f367816156, type: 3}
+  m_Script: {fileID: 11500000, guid: 932831492c5ea7341bc50c18becde553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_healtpoint: 100
+  max_healthpoint: 100
 --- !u!1 &5267644430175757384
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510f2e6b73e40f04ca6b6c5629fee343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementScript: {fileID: 4036147509950431007}
   dodge_speed: 15
 --- !u!1 &6050253344667593809
 GameObject:

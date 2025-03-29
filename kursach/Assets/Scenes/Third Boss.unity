@@ -1903,6 +1903,11 @@ Transform:
   - {fileID: 1617932435}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &922438107 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8553912165174720350, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+  m_PrefabInstance: {fileID: 4983185078096347157}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1016839591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,6 +2020,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6223563653789519261, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
   m_PrefabInstance: {fileID: 4983185078096347157}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1588816249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922438107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa21d9a050f42f4683de9b09a982662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  damage: 30
 --- !u!1 &1617932434
 GameObject:
   m_ObjectHideFlags: 0
@@ -13556,7 +13575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510f2e6b73e40f04ca6b6c5629fee343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodge_speed: 15
+  dodge_speed: 0
 --- !u!58 &2317786344755314715
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13645,7 +13664,7 @@ GameObject:
   - component: {fileID: 7899875712820240116}
   m_Layer: 8
   m_Name: Lie (1)
-  m_TagString: Untagged
+  m_TagString: Fire enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13658,6 +13677,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5185097487225686450, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: bullet_prefab
+      value: 
+      objectReference: {fileID: 7932271090808488228, guid: ea9bc5beacb1366468ead947422f68b5, type: 3}
     - target: {fileID: 6223563653789519261, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13713,7 +13736,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8553912165174720350, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1588816249}
   m_SourcePrefab: {fileID: 100100000, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
 --- !u!1 &5430603054581740905
 GameObject:
@@ -13823,7 +13849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1588816242}
-  speed: 4
+  speed: 0
 --- !u!114 &7899875712820240112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13872,7 +13898,7 @@ MonoBehaviour:
   player: {fileID: 1588816242}
   dash_speed: 30
   make_distance: 20
-  dash_delay: 45
+  dash_delay: 15
   braking_distance: 10
   damage: 25
   explosion_prefab: {fileID: 6090887868542334393, guid: 631fc0fd43ef9ed488768e72c978167d, type: 3}
