@@ -2020,7 +2020,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6223563653789519261, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
   m_PrefabInstance: {fileID: 4983185078096347157}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1588816249
+--- !u!114 &1588816257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2029,11 +2029,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 922438107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa21d9a050f42f4683de9b09a982662, type: 3}
+  m_Script: {fileID: 11500000, guid: 92c7ef264382be24d99a014cecd88a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
-  damage: 30
+  radius: 2
+  damage: 25
+  effect_attacks_count: 3
+  effect_attacks_delay: 0.2
+  poison_effect_damage: 15
 --- !u!1 &1617932434
 GameObject:
   m_ObjectHideFlags: 0
@@ -13643,7 +13646,7 @@ MonoBehaviour:
   bullet_speed: 5
   shooter_distance_max: 10
   shooter_distance_min: 1
-  fire_delay: 100
+  fire_delay: 0.5
 --- !u!1 &4920890494265036197
 GameObject:
   m_ObjectHideFlags: 0
@@ -13664,7 +13667,7 @@ GameObject:
   - component: {fileID: 7899875712820240116}
   m_Layer: 8
   m_Name: Lie (1)
-  m_TagString: Fire enemy
+  m_TagString: Regular enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13680,7 +13683,7 @@ PrefabInstance:
     - target: {fileID: 5185097487225686450, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: bullet_prefab
       value: 
-      objectReference: {fileID: 7932271090808488228, guid: ea9bc5beacb1366468ead947422f68b5, type: 3}
+      objectReference: {fileID: 7932271090808488228, guid: 29a40987054decc4583fa90ab831011d, type: 3}
     - target: {fileID: 6223563653789519261, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13721,6 +13724,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6515818094611683775, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: is_dash_poisoned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515818094611683775, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: poison_path_prefab
+      value: 
+      objectReference: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
+    - target: {fileID: 6515818094611683775, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: is_dash_invulnerable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515818094611683775, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: poison_path_duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411632874738887445, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: max_healthpoint
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 8553912165174720350, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: m_Name
       value: Character
@@ -13733,13 +13756,14 @@ PrefabInstance:
       propertyPath: max_healthpoint
       value: 5000
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7778740227523018525, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8553912165174720350, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1588816249}
+      addedObject: {fileID: 1588816257}
   m_SourcePrefab: {fileID: 100100000, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
 --- !u!1 &5430603054581740905
 GameObject:
@@ -13849,7 +13873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1588816242}
-  speed: 0
+  walk_speed: 0
 --- !u!114 &7899875712820240112
 MonoBehaviour:
   m_ObjectHideFlags: 0

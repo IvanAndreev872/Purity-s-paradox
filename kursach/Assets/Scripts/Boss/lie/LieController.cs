@@ -6,7 +6,7 @@ public class LieController : MonoBehaviour, MovementInterface
 {
     public bool able_to_move { get; set; } = true;
     public Transform player;
-    public float speed;
+    public float walk_speed;
     public float minimum_distance;
     public Transform room_center;
     public GameObject clone_prefab;
@@ -16,14 +16,26 @@ public class LieController : MonoBehaviour, MovementInterface
     private bool too_close = false;
     private bool is_teleporting = false;
 
+    private float walk_speed_now;
+
+    private bool speed_changed = false;
+    private float speed_change_duration;
+    private float speed_change_time;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        walk_speed_now = walk_speed;
     }
 
     private void Update()
     {
+        if (speed_changed && Time.time > speed_change_duration + speed_change_time)
+        {
+            speed_changed = false;
+            walk_speed_now = walk_speed;
+        }
+
         CheckDistanceToPlayer();
     }
 
@@ -89,7 +101,7 @@ public class LieController : MonoBehaviour, MovementInterface
                 if (clone_controller != null)
                 {
                     clone_controller.player = player;
-                    clone_controller.speed = speed;
+                    clone_controller.walk_speed = walk_speed;
                     clone_controller.minimum_distance = minimum_distance;
                     clone_controller.room_center = room_center;
                     clone_controller.max_clones = max_clones;
@@ -104,10 +116,18 @@ public class LieController : MonoBehaviour, MovementInterface
         }
     }
 
+    public void ChangeSpeed(float coef, float time)
+    {
+        walk_speed_now = walk_speed * coef;
+        speed_changed = true;
+        speed_change_time = Time.time;
+        speed_change_duration = time;
+    }
+
     void MoveAway()
     {
         Vector3 direction = (transform.position - player.position).normalized;
 
-        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, speed * Time.fixedDeltaTime));
+        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, walk_speed_now * Time.fixedDeltaTime));
     }
 }

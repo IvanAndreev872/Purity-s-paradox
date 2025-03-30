@@ -148,7 +148,6 @@ public class DashAttackExplosion : MonoBehaviour
     {
         if (new_level == AngerLevel.Raged)
         {
-            Debug.Log(11);
             can_be_enabled = true;
         }
     }

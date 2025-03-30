@@ -17,10 +17,8 @@ public class PlayerHealth : MonoBehaviour, DamageInterface
 
     public void Hit(float damage)
     {
-        Debug.Log(1);
         if (damagable)
         {
-            Debug.Log(2);
             if (current_health <= damage)
             {
                 Die();

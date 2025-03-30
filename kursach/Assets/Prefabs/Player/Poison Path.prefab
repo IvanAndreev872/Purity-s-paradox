@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 479222527214097942}
   - component: {fileID: 8668180162189719233}
+  - component: {fileID: 7868356611724360590}
   m_Layer: 0
-  m_Name: Circle 1
+  m_Name: Poison Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,3 +85,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7868356611724360590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3717638489433156332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d7214c15d942949ba2f51f580ad739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack_delay: 0.5
+  damage: 10
+  existance_time: 2
+  radius: 3

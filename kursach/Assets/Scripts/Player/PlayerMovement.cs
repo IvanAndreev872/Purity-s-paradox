@@ -2,22 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, MovementInterface
 {
     public DamageInterface damage_interface;
+    public bool able_to_move { get; set; } = true;
 
     public float walk_speed;
     public float dash_speed;
+    private float dash_speed_now;
+    private float walk_speed_now;
+
+    private bool speed_changed = false;
+    private float speed_change_duration;
+    private float speed_change_time;
 
     public float dash_duration;
 
     public float rotation_speed;
     public GameObject shooter;
 
-    public bool is_dash_invulnerable = false;
+    public bool is_dash_invulnerable;
+
+    public bool is_dash_poisoned;
+    public GameObject poison_path_prefab;
+    public float poison_path_duration;
 
     private Rigidbody2D rb;
-    private bool is_dashing;
+    private bool is_dashing = false;
     private float dash_start;
     private Animator animator;
     // Start is called before the first frame update
@@ -25,7 +36,9 @@ public class PlayerMovement : MonoBehaviour
     {
         damage_interface = GetComponent<DamageInterface>();
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
+        walk_speed_now = walk_speed;
+        dash_speed_now = dash_speed;
     }
 
     // Update is called once per frame
@@ -43,6 +56,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (speed_changed && Time.time > speed_change_duration + speed_change_time)
+        {
+            speed_changed = false;
+            walk_speed_now = walk_speed;
+            dash_speed_now = dash_speed;
+        }
+
         if (!is_dashing)
         {
             CheckDash();
@@ -51,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Walk()
     {
-        Move(walk_speed);
+        Move(walk_speed_now);
     }
 
     private void Dash()
@@ -60,14 +80,18 @@ public class PlayerMovement : MonoBehaviour
         { 
             is_dashing = false;
 
-            if (is_dash_invulnerable)
+            if (is_dash_invulnerable && damage_interface != null)
             {
                 damage_interface.CanBeDamaged(true);
             }
         }
         else
         {
-            Move(dash_speed);
+            Move(dash_speed_now);
+            if (is_dash_poisoned)
+            {
+                MakePath();
+            }
         }
     }
 
@@ -85,6 +109,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void ChangeSpeed(float coef, float time)
+    {
+        dash_speed_now = dash_speed * coef;
+        walk_speed_now = walk_speed * coef;
+        speed_changed = true;
+        speed_change_time = Time.time;
+        speed_change_duration = time;
+    }
+
     private void Move(float speed)
     {
         float move_x = Input.GetAxis("Horizontal");
@@ -95,6 +128,13 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, speed * Time.fixedDeltaTime));
 
         RotateCharacter(move_x, move_y);
+    }
+
+    void MakePath()
+    {
+        GameObject path_part = Instantiate(poison_path_prefab, transform.position, transform.rotation);
+
+        Destroy(path_part, poison_path_duration);
     }
 
     private void RotateCharacter(float move_x, float move_y)

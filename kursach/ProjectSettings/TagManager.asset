@@ -7,6 +7,7 @@ TagManager:
   - Character
   - Clone
   - Fire enemy
+  - Regular enemy
   layers:
   - Default
   - TransparentFX
