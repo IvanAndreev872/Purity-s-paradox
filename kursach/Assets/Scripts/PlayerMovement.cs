@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float rotation_speed;
     public GameObject shooter;
 
+    public PlayerStats playerStats;
     private Rigidbody2D rb;
     private bool is_dashing;
     private float dash_start;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();   
+        playerStats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Walk()
     {
-        Move(walk_speed);
+        Move(walk_speed * playerStats.walkAccelerateCoefficient);
     }
 
     private void Dash()
@@ -55,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Move(dash_speed);
+            Move(dash_speed * playerStats.dashAccelerateCoefficient);
         }
     }
 

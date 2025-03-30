@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4343bb4b4febbc24d914e6646dfd18e8, type: 3}
+  m_Name: freezedagger4
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Freeze Dagger
+  itemClass: sword
+  itemPrefab: {fileID: 7508638942202864252, guid: ba88d619ac381c74f97f1d23a53b80c5, type: 3}
+  icon: {fileID: 21300000, guid: cc70c69d60dd3b747bd1e5035ead0ffa, type: 3}
+  maxCount: 1
+  cost: 0
+  sellCoefficient: 10
+  itemDescription: Freeze Dagger has a slightly reduced attack range, acceptable
+    damage, but the attack speed is super fast. Also slightly slows down enemies
+  swordDamage: 40
+  swordSpeedCoefficient: 2.5
+  swordAdditionalRadius: -1
+  bleedingSwordDamagePerSec: 0
+  poisonSwordDamagePerSec: 0
+  fireSwordDamagePerSec: 0
+  freezeSwordCoefficient: 1.2

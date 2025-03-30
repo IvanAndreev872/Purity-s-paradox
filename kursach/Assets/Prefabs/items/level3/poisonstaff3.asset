@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f972be0271a0b4fadfea9bbae0327e, type: 3}
+  m_Name: poisonstaff3
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: Purple Serpent Staff
+  itemClass: staff
+  itemPrefab: {fileID: 8378786786245179157, guid: 0399a14f8df547943ba87a27fc33d891, type: 3}
+  icon: {fileID: 21300000, guid: 419fe2ab7dea5634fa1c3d35e5c951ee, type: 3}
+  maxCount: 1
+  cost: 0
+  sellCoefficient: 10
+  itemDescription: Purple Serpent Staff charges a projectile that can poison enemies.
+    This is an upgraded version of Poison Wand
+  staffDamage: 50
+  staffAdditionalRadius: 0
+  staffSpeedCoefficient: 1.2
+  staffBulletSpeedCoefficient: 1
+  poisonStaffDamagePerSec: 5
+  fireStaffDamagePerSec: 0
+  freezeStaffCoefficient: 1

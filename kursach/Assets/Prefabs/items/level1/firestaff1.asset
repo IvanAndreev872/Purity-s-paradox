@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f972be0271a0b4fadfea9bbae0327e, type: 3}
+  m_Name: firestaff1
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Flame Staff
+  itemClass: staff
+  itemPrefab: {fileID: 8285934841257012069, guid: 245fc593393686e4d8d4ce75fe5fb8ec, type: 3}
+  icon: {fileID: 21300000, guid: 3105eba9889840d45a2906aefc10417d, type: 3}
+  maxCount: 1
+  cost: 0
+  sellCoefficient: 10
+  itemDescription: Flame Staff charges a fireball that can set enemies on fire
+  staffDamage: 15
+  staffAdditionalRadius: 0
+  staffSpeedCoefficient: 1
+  staffBulletSpeedCoefficient: 1
+  poisonStaffDamagePerSec: 0
+  fireStaffDamagePerSec: 2
+  freezeStaffCoefficient: 1

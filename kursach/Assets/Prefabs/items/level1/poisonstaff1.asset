@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f972be0271a0b4fadfea9bbae0327e, type: 3}
+  m_Name: poisonstaff1
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Poison Wand
+  itemClass: staff
+  itemPrefab: {fileID: 6620084853052781802, guid: 9d65fcc0c01fc2348a447de555fc88c0, type: 3}
+  icon: {fileID: 21300000, guid: d2f093972510b8d40bedcb2a08cb1a48, type: 3}
+  maxCount: 1
+  cost: 0
+  sellCoefficient: 10
+  itemDescription: Poison Wand casts a projectile that can poison enemies
+  staffDamage: 15
+  staffAdditionalRadius: 0
+  staffSpeedCoefficient: 1
+  staffBulletSpeedCoefficient: 1
+  poisonStaffDamagePerSec: 2
+  fireStaffDamagePerSec: 0
+  freezeStaffCoefficient: 1

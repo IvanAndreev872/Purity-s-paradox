@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5372766822521004264}
   - component: {fileID: 1167880121214165224}
   - component: {fileID: 2376210395119403686}
+  - component: {fileID: 8520969801215445317}
+  - component: {fileID: 949162824825950820}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -117,6 +119,7 @@ MonoBehaviour:
   dash_duration: 0.5
   rotation_speed: 25
   shooter: {fileID: 6933323466790631738}
+  playerStats: {fileID: 0}
 --- !u!95 &5372766822521004264
 Animator:
   serializedVersion: 5
@@ -203,9 +206,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BG: {fileID: 0}
+  inventory: {fileID: 0}
   inventoryPanel: {fileID: 0}
+  equipSlotsPanel: {fileID: 0}
+  player: {fileID: 0}
   slots: []
+  equipSlots: []
   isOpened: 0
+  isShopOpened: 0
+  isStorageOpened: 0
+  itemDescriptionText: {fileID: 0}
+  costText: {fileID: 0}
+  statsText: {fileID: 0}
+  sellButton: {fileID: 0}
+  storeButton: {fileID: 0}
+  playerStats: {fileID: 0}
+  slotIdClicked: -1
+--- !u!114 &8520969801215445317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992945228360066990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5efe686655820eb4a82e862e948370a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 0
+  dashSpeed: 0
+  dashDuration: 0
+  health: 100
+  money: 0
+  maxHealth: 100
+  walkAccelerateCoefficient: 1
+  dashAccelerateCoefficient: 1
+  isDashPoisoned: 0
+  isDashInvulnerable: 0
+  swordDamage: 0
+  swordRadius: 0
+  swordSpeed: 0
+  swordSpeedCoefficient: 1
+  bleedingSwordDamagePerSec: 0
+  poisonSwordDamagePerSec: 0
+  fireSwordDamagePerSec: 0
+  freezeSwordCoefficient: 1
+  staffDamage: 0
+  staffRadius: 0
+  staffSpeed: 0
+  bulletSpeed: 0
+  staffSpeedCoefficient: 1
+  staffBulletSpeedCoefficient: 1
+  poisonStaffDamagePerSec: 0
+  fireStaffDamagePerSec: 0
+  freezeStaffCoefficient: 1
+--- !u!114 &949162824825950820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992945228360066990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba79bfe1634b6947b54095c3973959d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIPanel: {fileID: 0}
+  playerStats: {fileID: 0}
 --- !u!1 &6933323466790631738
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f972be0271a0b4fadfea9bbae0327e, type: 3}
+  m_Name: waterstaff3
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Flowing Staff
+  itemClass: staff
+  itemPrefab: {fileID: 3154147817224582756, guid: 8325f8f497337d54b986158a4950dc8f, type: 3}
+  icon: {fileID: 21300000, guid: 852c05c5987247d41b1b6b20ea18f9f9, type: 3}
+  maxCount: 1
+  cost: 0
+  sellCoefficient: 10
+  itemDescription: Flowing Staff has increased damage against fire enemies. This
+    is an upgraded version of Water Staff
+  staffDamage: 60
+  staffAdditionalRadius: 0
+  staffSpeedCoefficient: 1.2
+  staffBulletSpeedCoefficient: 1
+  poisonStaffDamagePerSec: 0
+  fireStaffDamagePerSec: 0
+  freezeStaffCoefficient: 1
