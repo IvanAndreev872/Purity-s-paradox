@@ -2037,6 +2037,110 @@ MonoBehaviour:
   effect_attacks_count: 3
   effect_attacks_delay: 0.2
   poison_effect_damage: 15
+--- !u!120 &1588816258
+LineRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922438107}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0, g: 0, b: 0, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MaskInteraction: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
 --- !u!1 &1617932434
 GameObject:
   m_ObjectHideFlags: 0
@@ -13520,7 +13624,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13725,6 +13829,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6515818094611683775, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: line_renderer
+      value: 
+      objectReference: {fileID: 1588816258}
+    - target: {fileID: 6515818094611683775, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: is_dash_poisoned
       value: 1
       objectReference: {fileID: 0}
@@ -13738,7 +13846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6515818094611683775, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: poison_path_duration
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8411632874738887445, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: max_healthpoint
@@ -13764,6 +13872,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8553912165174720350, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1588816257}
+    - targetCorrespondingSourceObject: {fileID: 8553912165174720350, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1588816258}
   m_SourcePrefab: {fileID: 100100000, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
 --- !u!1 &5430603054581740905
 GameObject:
@@ -13925,7 +14036,7 @@ MonoBehaviour:
   dash_delay: 15
   braking_distance: 10
   damage: 25
-  explosion_prefab: {fileID: 6090887868542334393, guid: 631fc0fd43ef9ed488768e72c978167d, type: 3}
+  explosion_prefab: {fileID: 4058112931313886503, guid: 11ec817cb140eab4fae59e12f0a0eb52, type: 3}
   path_duration: 2
   path_prefab: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
 --- !u!114 &7899875712820240115
