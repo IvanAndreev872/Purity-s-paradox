@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5372766822521004264}
   - component: {fileID: 1167880121214165224}
   - component: {fileID: 2376210395119403686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -117,6 +117,7 @@ MonoBehaviour:
   dash_duration: 0.5
   rotation_speed: 25
   shooter: {fileID: 6933323466790631738}
+  currentNode: {fileID: 0}
 --- !u!95 &5372766822521004264
 Animator:
   serializedVersion: 5
@@ -204,7 +205,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BG: {fileID: 0}
   inventoryPanel: {fileID: 0}
+  equipSlotsPanel: {fileID: 0}
   slots: []
+  equipSlots: []
   isOpened: 0
 --- !u!1 &6933323466790631738
 GameObject:

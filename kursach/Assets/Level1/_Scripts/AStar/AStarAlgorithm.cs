@@ -5,7 +5,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-public class AStarAlgoritm : CorridorFirstDungeonGenerator
+public class AStarAlgoritm : MonoBehaviour
 {
     public static AStarAlgoritm instance;
     private void Awake()
@@ -76,47 +76,5 @@ public class AStarAlgoritm : CorridorFirstDungeonGenerator
         }
 
         return null;
-    }
-
-
-    public int FindRoomNumber (Vector2 position)
-    {
-        float mindistance = float.MaxValue;
-        int roomNumber = 0;
-        int roomIndex = 0;
-
-        foreach (List<Node> Floors in RoomsNodeList)
-        {
-            foreach (Node node in Floors)
-            {
-                float currentDistance = Vector2.Distance(position, node.transform.position);
-                if (currentDistance < mindistance)
-                {
-                    mindistance = currentDistance;
-                    roomNumber = roomIndex;
-                }
-            }
-            roomIndex++; 
-        }
-
-        return roomNumber;
-    }
-
-    public Node FindNearestNodeInRoom (Vector2 position, int roomNumber)
-    {
-        Node foundNode = null;
-        float mindistance = float.MaxValue;
-
-        foreach (Node node in RoomsNodeList[roomNumber])
-        {
-            float currentDistance = Vector2.Distance(position, node.transform.position);
-            if (currentDistance < mindistance)
-            {
-                mindistance = currentDistance;
-                foundNode = node;
-            }
-        }
-
-        return foundNode;
     }
 }

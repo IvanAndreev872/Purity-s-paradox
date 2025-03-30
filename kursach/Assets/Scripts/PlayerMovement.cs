@@ -14,14 +14,21 @@ public class PlayerMovement : MonoBehaviour
     private bool is_dashing;
     private float dash_start;
     private Animator animator;
-    // Start is called before the first frame update
+
+    public Node currentNode;
+
+    private void Awake()
+    {
+        currentNode = GetStartNode(transform.position);
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         if (is_dashing)
@@ -36,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        currentNode = GetStartNode(transform.position);
         if (!is_dashing)
         {
             CheckDash();
@@ -92,4 +100,44 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("MoveX", move_x);
         animator.SetFloat("MoveY", move_y);
     }
+
+    private Node GetStartNode(Vector2 position)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, 0.71f);
+        float minDist = 1.0f;
+        Node NearestNode = null;
+        foreach (Collider2D collider in colliders) {
+            Node node = collider.GetComponent<Node>();
+            if (node != null)
+            {
+                float curDist = Vector2.Distance(position, node.transform.position);
+                if (minDist > curDist)
+                {
+                    minDist = curDist;
+                    NearestNode = node;
+                }
+            }
+        }
+        return NearestNode;
+    }
+
+    /*private Node GetCurrentNode(Vector2 position)
+    {
+        if (currentNode != null)
+        {
+            float minDist = Vector2.Distance(transform.position, currentNode.transform.position);
+            Node curNode = null;
+            foreach (Node node in currentNode.connections)
+            {
+                float distBetweenNeig = Vector2.Distance(position, node.transform.position);
+                if (distBetweenNeig < minDist)
+                {
+                    minDist = distBetweenNeig;
+                    curNode = node;
+                }
+            }
+            return curNode;
+        }
+        return null;
+    }*/
 }

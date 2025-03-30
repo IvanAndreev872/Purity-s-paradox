@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using System.IO.IsolatedStorage;
+using System.Xml.Linq;
 
 public class CorridorFirstDungeonGenerator : NewBehaviourScript
 {
@@ -14,8 +15,12 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
     private float roomPercent = 0.8f;
 
     [SerializeField] public Node nodePrefab;
-    [SerializeField] public List<List<Node>> RoomsNodeList = new List<List<Node>>();
 
+    [SerializeField] public float EnemyFrequency = 8;
+    [SerializeField] public int FreeSpace = 25;
+    [SerializeField] public int EnemyQuantity = 15;
+
+    [SerializeField] public GameObject EnemyPrefab;
     protected override void RunProceduralGeneration()
     {
         CorridorFirstGeneration();
@@ -25,6 +30,10 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
     {
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
         HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
+        HashSet<Node> NodeList = new HashSet<Node>();
+        GameObject NodeParent = new GameObject("NodeParent");
+        GameObject EnemyParent = new GameObject("EnemyParent");
+
         
         List<List<Vector2Int>> corridors = CreateCorridors(floorPositions, potentialRoomPositions);
 
@@ -41,6 +50,11 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
             corridors[i] = IncreaseCorridorBrush3by3(corridors[i]);
             floorPositions.UnionWith(corridors[i]);
         }
+
+        CreateNodes(floorPositions, NodeList, NodeParent);
+        CreateConnections(NodeList);
+
+        SpawnEnemies(NodeList, EnemyParent);
 
         tilemapVisualizer.PaintFloorTiles(floorPositions);
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
@@ -83,11 +97,7 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
         List<Vector2Int> roomsToCreate = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(roomToCreateCount).ToList();
         foreach (var roomPosition in roomsToCreate) 
         {
-            List<Node> NodeList = new List<Node>();
-            RoomsNodeList.Add(NodeList);
             var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition);
-            CreateNodes(roomFloor);
-            CreateConnections();
             roomPositions.UnionWith(roomFloor);
         }
 
@@ -171,25 +181,36 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
         return Vector2Int.zero;        
     }
 
-    void CreateNodes(HashSet<Vector2Int> floorPositions)
+    void CreateNodes(HashSet<Vector2Int> floorPositions, HashSet<Node> NodeList, GameObject NodeParent)
     {
         foreach (var floor in floorPositions)
         {
             Node node = Instantiate(nodePrefab, new Vector2(floor.x + 0.5f, floor.y + 0.5f), Quaternion.identity);
-            RoomsNodeList.Last().Add(node);
+            node.transform.SetParent(NodeParent.transform);
+            NodeList.Add(node);
         }
     }
 
-    void CreateConnections()
+    void CreateConnections(HashSet<Node> NodeList)
     {
-        for (int i = 0; i < RoomsNodeList.Last().Count(); ++i)
+        foreach (var node in NodeList)
         {
-            for (int j = i + 1; j < RoomsNodeList.Last().Count; ++j)
+            Vector2 position = node.transform.position;
+            for (int i = -1; i < 2; ++i)
             {
-                if (Vector2.Distance(RoomsNodeList.Last()[i].transform.position, RoomsNodeList.Last()[j].transform.position) <= 1.5f)
+                for (int j = -1; j < 2; ++j)
                 {
-                    ConnectNodes(RoomsNodeList.Last()[i], RoomsNodeList.Last()[j]);
-                    ConnectNodes(RoomsNodeList.Last()[j], RoomsNodeList.Last()[i]);
+                    position.x += i;
+                    position.y += j;
+                    Collider2D collider = Physics2D.OverlapCircle(position, 0.1f);
+                    if (collider != null)
+                    {
+                        GameObject nodeInPos = collider.gameObject;
+                        Node connectedNode = nodeInPos.GetComponent<Node>();
+                        ConnectNodes(node, connectedNode);
+                    }
+                    position.x -= i;
+                    position.y -= j;
                 }
             }
         }
@@ -202,5 +223,25 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
             return;
         }
         From.connections.Add(To);
+    }
+
+    void SpawnEnemies(HashSet<Node> NodeList, GameObject EnemyParent)
+    {
+        List<Node> EnemySpawns = NodeList.OrderBy(x => Guid.NewGuid()).ToList();
+        int combinedLayerMask = LayerMask.GetMask("Character", "Enemy");
+        int index = 0;
+        for (int i = 0; i < EnemyQuantity; ++i)
+        {
+            Node potentialSpawn = EnemySpawns[index + i];
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(potentialSpawn.transform.position, EnemyFrequency, combinedLayerMask);
+            if (colliders.Length != 0)
+            {
+                index++;
+                i--;
+                continue;
+            }
+            GameObject Enemy = Instantiate(EnemyPrefab, potentialSpawn.transform.position, Quaternion.identity);
+            Enemy.transform.SetParent(EnemyParent.transform);
+        }
     }
 }

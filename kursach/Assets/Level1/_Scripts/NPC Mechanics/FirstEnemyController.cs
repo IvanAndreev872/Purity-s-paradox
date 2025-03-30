@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UIElements;
 
-public class FirstEnemyController : CorridorFirstDungeonGenerator
+public class FirstEnemyController : AStarAlgoritm
 {
     public Node currentNode;
     public List<Node> Path;
@@ -12,7 +13,6 @@ public class FirstEnemyController : CorridorFirstDungeonGenerator
     public float speed = 3.0f;
 
     public bool playerSeen = false;
-    public int roomNumber = 0;
 
     public enum States
     {
@@ -22,10 +22,10 @@ public class FirstEnemyController : CorridorFirstDungeonGenerator
 
     public States currentState;
 
-    private void Start()
+    private void Awake()
     {
+        GetStartNode();
         currentState = States.Patrol;
-        roomNumber = AStarAlgoritm.instance.FindRoomNumber(currentNode.transform.position);
     }
 
 
@@ -59,17 +59,14 @@ public class FirstEnemyController : CorridorFirstDungeonGenerator
 
     void Patrol()
     {
-        if (Path.Count == 0)
-        {
-            Path = AStarAlgoritm.instance.GeneratePath(currentNode, RoomsNodeList[roomNumber][Random.Range(0, RoomsNodeList[roomNumber].Count)]);
-        }
+        return;
     }
 
     void Engage()
     {
-        if (Path.Count == 0)
+        if (Path.Count <= 3)
         {
-            Path = AStarAlgoritm.instance.GeneratePath(currentNode, AStarAlgoritm.instance.FindNearestNodeInRoom(character.transform.position, roomNumber));
+            Path = GeneratePath(currentNode, character.currentNode);
         }
     }
 
@@ -85,6 +82,40 @@ public class FirstEnemyController : CorridorFirstDungeonGenerator
             {
                 currentNode = Path[x];
                 Path.RemoveAt(x);
+            }
+        }
+        return;
+    }
+
+    private void GetStartNode()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.71f);
+        float minDist = 1.0f;
+        Node NearestNode = null;
+        foreach (Collider2D collider in colliders)
+        {
+            Node node = collider.GetComponent<Node>();
+            if (node != null)
+            {
+                float curDist = Vector2.Distance(transform.position, node.transform.position);
+                if (minDist > curDist)
+                {
+                    minDist = curDist;
+                    NearestNode = node;
+                }
+            }
+        }
+        currentNode = NearestNode;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (Path.Count > 0)
+        {
+            Gizmos.color = Color.red;
+            for (int i = 1; i < Path.Count; i++)
+            {
+                Gizmos.DrawLine(Path[i].transform.position, Path[i - 1].transform.position);  
             }
         }
     }
