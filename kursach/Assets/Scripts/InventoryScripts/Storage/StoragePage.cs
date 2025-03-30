@@ -11,6 +11,7 @@ public class StoragePage : MonoBehaviour
         {
             if (transform.GetChild(i).GetComponent<StorageSlot>() != null)
             {
+                transform.GetChild(i).GetComponent<StorageSlot>().Awake();
                 slots.Add(transform.GetChild(i).GetComponent<StorageSlot>());
                 slots[slots.Count - 1].id = i;
             }

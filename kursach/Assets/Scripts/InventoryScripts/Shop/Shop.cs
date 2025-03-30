@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Linq;
+using System.Threading.Tasks;
 
 public class Shop : MonoBehaviour
 {
@@ -27,40 +28,15 @@ public class Shop : MonoBehaviour
             CloseShop();
         }
     }
-    public void LoadAllItemsFromLevel(int level, System.Action<List<Item>> onLoaded)
-    {
-        List<Item> res = new();
-        string label = "level" + level.ToString();
-        Addressables.LoadAssetsAsync<GameObject>(label, null).Completed += handle =>
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                IList<GameObject> items = handle.Result;
-                foreach (var itemPrefab in items)
-                {
-                    Item item = itemPrefab.GetComponent<Item>();
-                    res.Add(item);
-                }
-                Debug.Log("LOADED " + res.Count);
-            }
-            else
-            {
-                Debug.LogError("Failed to load items from level " + level);
-            }
-            onLoaded?.Invoke(res);
-        };
-    }
-    public void Start()
+    public async void Start()
     {
         for (int level = 1; level <= 5; level++)
         {
-            LoadAllItemsFromLevel(level, items =>
+            List<Item> items = await ItemsLoader.Instance.LoadAllItemsFromLevel(level);
+            for (int i = 0; i < items.Count; i++)
             {
-                for (int i = 0; i < items.Count; i++)
-                {
-                    AddItem(items[i].itemScriptableObject,  items[i].name.Last() - '1');
-                }
-            });
+                AddItem(items[i].itemScriptableObject,  items[i].name.Last() - '1');
+            }
         }
     }
     public void Awake()
@@ -219,7 +195,6 @@ public class Shop : MonoBehaviour
                     costText.gameObject.SetActive(false);
                     buyButton.gameObject.SetActive(false);
                     slotIdClicked = -1;
-                    slot.NullifyData();
                 }
                 return;
             }

@@ -90,15 +90,30 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             GetComponentInChildren<Image>().raycastTarget = true;
             transform.SetParent(oldSlot.transform);
             transform.position = oldSlot.transform.position;
-            if (eventData.pointerCurrentRaycast.gameObject.name == "BG")
+            if (eventData.pointerCurrentRaycast.gameObject != null)
             {
-                GameObject itemObject = Instantiate(oldSlot.item.itemPrefab, player.position + 2 * Vector3.up, Quaternion.identity);
-                itemObject.GetComponent<Item>().count = oldSlot.count;
-                oldSlot.NullifyData();
-            }
-            else if (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>() != null)
-            {
-                ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
+                if (eventData.pointerCurrentRaycast.gameObject.name == "BG")
+                {
+                    GameObject itemObject = Instantiate(oldSlot.item.itemPrefab, player.position + 2 * Vector3.up, Quaternion.identity);
+                    itemObject.GetComponent<Item>().count = oldSlot.count;
+                    if (oldSlot.panel == 1)
+                    {
+                        if (oldSlot.item is AbilityItem abilityItem)
+                        {
+                            abilityItem.DiscardEffects(playerStats);
+                        }
+                        if (oldSlot.item is WeaponItem weaponItem)
+                        {
+                            weaponItem.DiscardEffects(playerStats);
+                        }
+                    }
+                    inventoryManager.UpdateStatsText();
+                    oldSlot.NullifyData();
+                }
+                else if (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>() != null)
+                {
+                    ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
+                }
             }
         }
     }
@@ -192,7 +207,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             newSlot.SetIcon(oldSlot.iconGameObject.GetComponent<Image>().sprite);
             if (oldSlot.item.maxCount > 1)
             {
-                newSlot.itemCountText.text = oldSlot.count.ToString();
+                // newSlot.itemCountText.text = oldSlot.count.ToString();
             }
             else
             {
@@ -210,7 +225,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 oldSlot.isClicked = false;
                 if (item.maxCount > 1)
                 {
-                    oldSlot.itemCountText.text = count.ToString();
+                    // oldSlot.itemCountText.text = count.ToString();
                 }
                 else
                 {

@@ -12,13 +12,11 @@ public class StorageSlot : MonoBehaviour, IPointerClickHandler
     public bool isEmpty = true, isClicked = false;
     public GameObject iconGameObject;
     public TMP_Text itemCountText;
-    public StorageManager storage;
     public int id;
     public void Awake()
     {
         iconGameObject = transform.GetChild(0).gameObject;
         itemCountText = transform.GetChild(1).GetComponent<TMP_Text>();
-        storage = FindObjectOfType<StorageManager>();
     }
     public void SetIcon(Sprite icon)
     {
@@ -29,6 +27,7 @@ public class StorageSlot : MonoBehaviour, IPointerClickHandler
     {
         if (!isEmpty)
         {
+            StorageManager storage = FindObjectOfType<StorageManager>();
             if (storage.slotIdClicked == id && isClicked)
             {
                 storage.itemDescriptionText.text = "";

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.IO;
+using System.Linq;
 
 public class StorageManager : MonoBehaviour
 {
@@ -15,6 +17,13 @@ public class StorageManager : MonoBehaviour
     public int slotIdClicked = -1;
     public Transform player;
     public InventoryManager inventoryManager;
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseStorage();
+        }
+    }
     public void Awake()
     {
         for (int i = 0; i < storage.childCount; i++)
@@ -25,7 +34,7 @@ public class StorageManager : MonoBehaviour
             }
         }
         BG.SetActive(false);
-        storage.gameObject.SetActive(false);
+        storage.gameObject.SetActive(true);
         itemDescriptionText = storage.GetChild(5).GetComponent<TMP_Text>();
         itemDescriptionText.text = "";
         takeButton = storage.GetChild(6).GetComponent<Button>();
@@ -43,6 +52,11 @@ public class StorageManager : MonoBehaviour
         inventoryButton.gameObject.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
+    }
+    private void Start()
+    {
+        string filePath = Application.persistentDataPath + "/storage.json";
+        LoadStorage(filePath);
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -158,19 +172,18 @@ public class StorageManager : MonoBehaviour
     }
     public bool AddItem(ItemScriptableObject item, int count, int pageId)
     {
-        Debug.Log(pageId);
-        foreach (StorageSlot slot in pages[pageId].slots)
-        {
-            if (slot.item != null)
-            {
-                if (slot.item == item && slot.count + count <= slot.item.maxCount)
-                {
-                    slot.count += count;
-                    slot.itemCountText.text = slot.count.ToString();
-                    return true;
-                }
-            }
-        }
+        // foreach (StorageSlot slot in pages[pageId].slots)
+        // {
+        //     if (slot.item != null)
+        //     {
+        //         if (slot.item == item && slot.count + count <= slot.item.maxCount)
+        //         {
+        //             slot.count += count;
+        //             slot.itemCountText.text = slot.count.ToString();
+        //             return true;
+        //         }
+        //     }
+        // }
         foreach (StorageSlot slot in pages[pageId].slots)
         {
             if (slot.isEmpty == true)
@@ -181,7 +194,7 @@ public class StorageManager : MonoBehaviour
                 slot.SetIcon(item.icon);
                 if (item.maxCount > 1)
                 {
-                    slot.itemCountText.text = count.ToString();
+                    // slot.itemCountText.text = count.ToString();
                 }
                 else 
                 {
@@ -191,5 +204,79 @@ public class StorageManager : MonoBehaviour
             }
         }
         return false;
+    }
+    public void SaveStorage(string filePath)
+    {
+        StorageData storageData = new StorageData();
+        for (int i = 0; i < pages.Count; i++)
+        {
+            StoragePageData storagePageData = new StoragePageData();
+            foreach (StorageSlot slot in pages[i].slots)
+            {
+                SlotData slotData = new()
+                {
+                    itemName = slot.item != null ? slot.item.name : null,
+                    isEmpty = slot.isEmpty,
+                    id = slot.id
+                };
+                storagePageData.slots.Add(slotData);
+            }
+            storageData.pages.Add(storagePageData);
+        }
+        string json = JsonUtility.ToJson(storageData);
+        File.WriteAllText(filePath, json);
+        Debug.Log("Storage saved to: " + filePath);
+    }
+    public async void LoadStorage(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            StorageData storageData = JsonUtility.FromJson<StorageData>(json);
+            for (int i = 0; i < storageData.pages.Count; i++)
+            {
+                StoragePageData storagePageData = storageData.pages[i];
+                for (int j = 0; j < storagePageData.slots.Count; j++)
+                {
+                    StorageSlot slot = pages[i].slots[j];
+                    SlotData slotData = storagePageData.slots[j];
+                    if (!slotData.isEmpty)
+                    {
+                        slot.isEmpty = slotData.isEmpty;
+                        slot.isClicked = false;
+                        slot.id = slotData.id;
+                        slot.count = 1;
+                        int level = slotData.itemName.Last() - '0';
+                        List<Item> items = await ItemsLoader.Instance.LoadAllItemsFromLevel(level);
+                        foreach (Item item in items)
+                        {
+                            if (item.name == slotData.itemName)
+                            {
+                                slot.item = item.itemScriptableObject;
+                                slot.SetIcon(item.itemScriptableObject.icon);
+                                if (item.itemScriptableObject.maxCount > 1)
+                                {
+                                    // slot.itemCountText.text = slot.count.ToString();
+                                }
+                                else
+                                {
+                                    slot.itemCountText.text = "";
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        slot.NullifyData();
+                    }
+                }
+            }
+            Debug.Log("Storage loaded from: " + filePath);
+        }
+        else
+        {
+            Debug.Log("Save file not found at: " + filePath);
+        }
     }
 }

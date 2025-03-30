@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +13,7 @@ public class MusicManager : MonoBehaviour
     {
         slider.value = PlayerPrefs.GetFloat("Volume", 1);
     }
-    public void Update()
+    public void UpdateValue()
     {
         AudioListener.volume = slider.value;
         if (slider.value > 0)
@@ -43,5 +40,9 @@ public class MusicManager : MonoBehaviour
             AudioListener.volume = 0;
             slider.value = 0;
         }
+    }
+    public void SaveVolume()
+    {
+        PlayerPrefs.SetFloat("Volume", AudioListener.volume);
     }
 }

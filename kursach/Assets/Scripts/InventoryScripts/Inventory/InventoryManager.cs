@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
+using System.IO;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +55,11 @@ public class InventoryManager : MonoBehaviour
         statsText.gameObject.SetActive(false);
         BG.SetActive(false);
         inventoryPanel.gameObject.SetActive(false);
+    }
+    private void Start()
+    {
+        string filePath = Application.persistentDataPath + "/inventory.json";
+        LoadInventory(filePath);
     }
     void Update()
     {
@@ -192,18 +197,18 @@ public class InventoryManager : MonoBehaviour
     }
     public bool AddItem(ItemScriptableObject item, int count)
     {
-        foreach (InventorySlot slot in slots)
-        {
-            if (slot.item != null)
-            {
-                if (slot.item == item && slot.count + count <= slot.item.maxCount)
-                {
-                    slot.count += count;
-                    slot.itemCountText.text = slot.count.ToString();
-                    return true;
-                }
-            }
-        }
+        // foreach (InventorySlot slot in slots)
+        // {
+        //     if (slot.item != null)
+        //     {
+        //         if (slot.item == item && slot.count + count <= slot.item.maxCount)
+        //         {
+        //             slot.count += count;
+        //             slot.itemCountText.text = slot.count.ToString();
+        //             return true;
+        //         }
+        //     }
+        // }
         foreach (InventorySlot slot in slots)
         {
             if (slot.isEmpty == true)
@@ -214,7 +219,7 @@ public class InventoryManager : MonoBehaviour
                 slot.SetIcon(item.icon);
                 if (item.maxCount > 1)
                 {
-                    slot.itemCountText.text = count.ToString();
+                    // slot.itemCountText.text = count.ToString();
                 }
                 else 
                 {
@@ -224,5 +229,89 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return false;
+    }
+    public void SaveInventory(string filePath)
+    {
+        InventoryData inventoryData = new InventoryData();
+        foreach (InventorySlot slot in slots)
+        {
+            SlotData slotData = new()
+            {
+                itemName = slot.item != null ? slot.item.name : null,
+                isEmpty = slot.isEmpty,
+                id = slot.id
+            };
+            inventoryData.slots.Add(slotData);
+        }
+        foreach (InventorySlot slot in equipSlots)
+        {
+            SlotData slotData = new()
+            {
+                itemName = slot.item != null ? slot.item.name : null,
+                isEmpty = slot.isEmpty,
+                id = slot.id
+            };
+            inventoryData.slots.Add(slotData);
+        }
+        string json = JsonUtility.ToJson(inventoryData);
+        File.WriteAllText(filePath, json);
+        Debug.Log("Inventory saved to: " + filePath);
+    }
+    public async void LoadInventory(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            InventoryData inventoryData = JsonUtility.FromJson<InventoryData>(json);
+            for (int i = 0; i < inventoryData.slots.Count; i++)
+            {
+                InventorySlot slot;
+                if (i >= 24)
+                {
+                    slot = equipSlots[i - 24];
+                }
+                else
+                {
+                    slot = slots[i];
+                }
+                SlotData slotData = inventoryData.slots[i];
+                if (!slotData.isEmpty)
+                {
+                    slot.isEmpty = slotData.isEmpty;
+                    slot.isClicked = false;
+                    slot.id = slotData.id;
+                    slot.panel = slot.id >= 24 ? 1 : 0;
+                    slot.count = 1;
+                    int level = slotData.itemName.Last() - '0';
+                    List<Item> items = await ItemsLoader.Instance.LoadAllItemsFromLevel(level);
+                    foreach (Item item in items)
+                    {
+                        if (item.name == slotData.itemName)
+                        {
+                            slot.item = item.itemScriptableObject;
+                            slot.SetIcon(item.itemScriptableObject.icon);
+                            if (item.itemScriptableObject.maxCount > 1)
+                            {
+                                // slot.itemCountText.text = slot.count.ToString();
+                            }
+                            else
+                            {
+                                slot.itemCountText.text = "";
+                            }
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    slot.NullifyData();
+                }
+            }
+            Debug.Log("Inventory loaded from: " + filePath);
+        }
+        else
+        {
+            Debug.Log("Save file not found at: " + filePath);
+        }
     }
 }

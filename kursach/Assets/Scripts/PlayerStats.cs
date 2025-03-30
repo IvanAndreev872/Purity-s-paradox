@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -40,4 +41,30 @@ public class PlayerStats : MonoBehaviour
     public float fireStaffDamagePerSec = 0;
     public float freezeStaffCoefficient = 1;
     public int isStaffEquipped = 0;
+
+
+    private void Awake()
+    {
+        string filePath = Application.persistentDataPath + "/playerStats.json";
+        LoadFromJson(filePath);
+    }
+    public void SaveToJson(string filePath)
+    {
+        string json = JsonUtility.ToJson(this);
+        File.WriteAllText(filePath, json);
+        Debug.Log("Player stats saved to: " + filePath);
+    }
+    public void LoadFromJson(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            JsonUtility.FromJsonOverwrite(json, this);
+            Debug.Log("Player stats loaded from: " + filePath);
+        }
+        else
+        {
+            Debug.Log("Save file not found at: " + filePath);
+        }
+    }
 }

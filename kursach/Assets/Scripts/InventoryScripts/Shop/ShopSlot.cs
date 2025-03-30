@@ -11,13 +11,11 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler
     public bool isEmpty = true, isClicked = false;
     public GameObject iconGameObject;
     public TMP_Text itemCostText;
-    public Shop shop;
     public int id;
     public void Awake()
     {
         iconGameObject = transform.GetChild(0).gameObject;
         itemCostText = transform.GetChild(1).GetComponent<TMP_Text>();
-        shop = FindObjectOfType<Shop>();
     }
     public void SetIcon(Sprite icon)
     {
@@ -28,6 +26,7 @@ public class ShopSlot : MonoBehaviour, IPointerClickHandler
     {
         if (!isEmpty)
         {
+            Shop shop = FindObjectOfType<Shop>();
             if (shop.slotIdClicked == id && isClicked)
             {
                 shop.itemDescriptionText.text = "";
