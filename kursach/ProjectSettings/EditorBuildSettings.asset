@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level5.unity
     guid: 72dd86497028a1241915022256e72141
   - enabled: 0
-    path: Assets/Scenes/Base.unity
+    path: Assets/Scenes/First Boss.unity
     guid: 257dad1458779ba4eb56ebe80ce7e1fa
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity

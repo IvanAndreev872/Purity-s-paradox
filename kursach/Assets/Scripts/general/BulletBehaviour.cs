@@ -5,7 +5,9 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour
 {
     public float fire_distance;
-    public Vector3 spawn_point;
+    public float damage;
+
+    private Vector3 spawn_point;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,11 @@ public class BulletBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        DamageInterface enemy = collision.gameObject.GetComponent<DamageInterface>();
+        if (enemy != null) 
+        {
+            enemy.Hit(damage);
+        }
         Destroy(gameObject);
     }
 }
