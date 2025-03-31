@@ -41,5 +41,25 @@ public class ItemsLoader : MonoBehaviour
             Debug.LogError("Failed to load items from level " + level);
         }
         return res;
+    }
+    public void SaveProgress(bool isDead)
+    {
+        Transform player = GameObject.FindGameObjectWithTag("Character").transform;
+        PlayerStats playerStats = player.GetComponent<PlayerStats>();
+        if (isDead)
+        {
+            playerStats.health = playerStats.maxHealth;
+        }
+        string filePath = Application.persistentDataPath + "/playerStats.json";
+        playerStats.SaveToJson(filePath);
+        InventoryManager inventoryManager = player.GetComponent<InventoryManager>();
+        filePath = Application.persistentDataPath + "/inventory.json";
+        inventoryManager.SaveInventory(filePath);
+        StorageManager storage = FindObjectOfType<StorageManager>();
+        if (storage != null)
+        {
+            filePath = Application.persistentDataPath + "/storage.json";
+            storage.SaveStorage(filePath);
+        }
     }   
 }

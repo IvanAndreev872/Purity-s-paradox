@@ -16,13 +16,11 @@ public class InventoryManager : MonoBehaviour
     public TMP_Text itemDescriptionText, costText, statsText;
     public Button sellButton, storeButton;
     public PlayerStats playerStats;
-    public UiManager uiManager;
     public int slotIdClicked = -1;
     public void Awake()
     {
         Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         playerStats = player.GetComponent<PlayerStats>();
-        uiManager = player.GetComponent<UiManager>();
         inventoryPanel = inventory.GetChild(1).transform;
         equipSlotsPanel = inventory.GetChild(2).transform;
         for (int i = 0; i < inventoryPanel.childCount; i++)
@@ -143,7 +141,7 @@ public class InventoryManager : MonoBehaviour
             {
                 int gain = slot.item.cost * slot.item.sellCoefficient / 100;
                 playerStats.money += gain;
-                uiManager.UpdateUI();
+                playerStats.UpdateUI();
                 slot.NullifyData();
                 itemDescriptionText.text = "";
                 costText.text = "";

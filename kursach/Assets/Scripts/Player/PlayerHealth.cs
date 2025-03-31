@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour, DamageInterface
 {
@@ -12,13 +14,27 @@ public class PlayerHealth : MonoBehaviour, DamageInterface
     // Start is called before the first frame update
     void Start()
     {
+        UpdateMaxHealth(GetComponent<PlayerStats>());
         current_health = max_healthpoint;
+    }
+
+    public void UpdateMaxHealth(PlayerStats playerStats)
+    {
+        max_healthpoint = playerStats.maxHealth;
+    }
+
+    void UpdateHealth(float damage)
+    {
+        PlayerStats playerStats = GetComponent<PlayerStats>();
+        playerStats.health = Math.Max(0, playerStats.health - damage);
+        playerStats.UpdateUI();
     }
 
     public void Hit(float damage)
     {
         if (damagable)
         {
+            UpdateHealth(damage);
             if (current_health <= damage)
             {
                 Die();
@@ -34,6 +50,7 @@ public class PlayerHealth : MonoBehaviour, DamageInterface
 
     private void Die()
     {
-        Destroy(gameObject);
+        ItemsLoader.Instance.SaveProgress(true);
+        SceneManager.LoadScene("Hub");
     }
 }

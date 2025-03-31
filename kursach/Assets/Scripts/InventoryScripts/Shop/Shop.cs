@@ -189,7 +189,7 @@ public class Shop : MonoBehaviour
                         return;
                     }
                     playerStats.money -= slot.item.cost;
-                    uiManager.UpdateUI();
+                    playerStats.UpdateUI();
                     itemDescriptionText.text = "";
                     costText.text = "";
                     costText.gameObject.SetActive(false);
