@@ -89,8 +89,8 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
 
     private void Dash()
     {
-        if (Time.time > dash_start + dash_duration) 
-        { 
+        if (Time.time > dash_start + dash_duration)
+        {
             is_dashing = false;
             path_part_created = false;
 
@@ -218,4 +218,3 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
         animator.SetFloat("MoveY", move_y);
     }
 }
-    

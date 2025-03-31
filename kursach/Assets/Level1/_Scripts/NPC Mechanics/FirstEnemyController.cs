@@ -9,7 +9,7 @@ public class FirstEnemyController : AStarAlgoritm
     public Node currentNode;
     public List<Node> Path;
 
-    public PlayerMovement character;
+    public Transform character;
     public float speed = 3.0f;
 
     public bool playerSeen = false;
@@ -26,6 +26,7 @@ public class FirstEnemyController : AStarAlgoritm
     {
         GetStartNode();
         currentState = States.Patrol;
+        character = GameObject.FindGameObjectWithTag("Character").transform;
     }
 
 
@@ -64,9 +65,9 @@ public class FirstEnemyController : AStarAlgoritm
 
     void Engage()
     {
-        if (Path.Count <= 3)
+        if (Path.Count == 0)
         {
-            Path = GeneratePath(currentNode, character.currentNode);
+            Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
         }
     }
 
