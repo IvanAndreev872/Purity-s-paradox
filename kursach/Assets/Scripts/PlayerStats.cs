@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     // basics stats
+    public float walkSpeedBasic = 5;
     public float walkSpeed = 5;
+    public float dashSpeedBasic = 15;
     public float dashSpeed = 15;
     public float dashDuration = 0.5f;
     public float health = 100;

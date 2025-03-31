@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Masterwork Speed Boots increase movement speed by 15%
   walkAccelerateCoefficient: 1.15
-  dashAccelerateCoefficient: 0
+  dashAccelerateCoefficient: 1
   additionalDashDurationTime: 0
   isDashInvulnerable: 0
   isDashPoisoned: 0

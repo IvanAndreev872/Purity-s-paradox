@@ -22,8 +22,8 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Shadow Boots allow you to dodge enemy attacks while dashing, and
     also slightly increase the dash time
-  walkAccelerateCoefficient: 0
-  dashAccelerateCoefficient: 0
+  walkAccelerateCoefficient: 1
+  dashAccelerateCoefficient: 1
   additionalDashDurationTime: 0.2
   isDashInvulnerable: 1
   isDashPoisoned: 0

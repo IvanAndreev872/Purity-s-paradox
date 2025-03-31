@@ -9,10 +9,12 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public Transform player;
     public PlayerStats playerStats;
     public InventoryManager inventoryManager;
+    public PlayerMovement playerMovement;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Character").transform;
+        playerMovement = player.GetComponent<PlayerMovement>();
         playerStats = player.GetComponent<PlayerStats>();
         inventoryManager = player.GetComponent<InventoryManager>();
         oldSlot = transform.GetComponentInParent<InventorySlot>();
@@ -201,6 +203,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                     weaponItem2.ApplyEffects(playerStats);
                 }
             }
+            playerMovement.UpdateStats(playerStats);
             inventoryManager.UpdateStatsText();
             newSlot.item = oldSlot.item;
             newSlot.count = oldSlot.count;

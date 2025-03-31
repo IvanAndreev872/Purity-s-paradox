@@ -14,17 +14,29 @@ public class SpeedItem : AbilityItem
     public override void ApplyEffects(PlayerStats player)
     {
         player.walkAccelerateCoefficient += (walkAccelerateCoefficient - 1);
+        player.walkSpeed = player.walkSpeedBasic * player.walkAccelerateCoefficient;
+
         player.dashAccelerateCoefficient += (dashAccelerateCoefficient - 1);
+        player.dashSpeed = player.dashSpeedBasic * player.dashAccelerateCoefficient;
+
         player.dashDuration += additionalDashDurationTime;
+
         player.isDashInvulnerable += isDashInvulnerable;
+        
         player.isDashPoisoned += isDashPoisoned;
     }
     public override void DiscardEffects(PlayerStats player)
     {
         player.walkAccelerateCoefficient -= (walkAccelerateCoefficient - 1);
+        player.walkSpeed = player.walkSpeedBasic * player.walkAccelerateCoefficient;
+
         player.dashAccelerateCoefficient -= (dashAccelerateCoefficient - 1);
+        player.dashSpeed = player.dashSpeedBasic * player.dashAccelerateCoefficient;
+
         player.dashDuration -= additionalDashDurationTime;
+
         player.isDashInvulnerable -= isDashInvulnerable;
+
         player.isDashPoisoned -= isDashPoisoned;
     }
 }
