@@ -17,7 +17,7 @@ public class BaseShooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Character").transform;
     }
 
     // Update is called once per frame

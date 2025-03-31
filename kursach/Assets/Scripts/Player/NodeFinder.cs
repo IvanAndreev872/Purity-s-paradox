@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro.Examples;
 using UnityEngine;
 
 public class NodeFinder : MonoBehaviour
@@ -17,6 +19,10 @@ public class NodeFinder : MonoBehaviour
     private void GetStartNode()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.71f);
+        if (colliders.Length == 0)
+        {
+            return;
+        }
         float minDist = 1.0f;
         Node NearestNode = null;
         foreach (Collider2D collider in colliders)
@@ -43,14 +49,18 @@ public class NodeFinder : MonoBehaviour
             Node curNode = null;
             foreach (Node node in currentNode.connections)
             {
-                float distBetweenNeig = Vector2.Distance(transform.position, node.transform.position);
-                if (distBetweenNeig < minDist)
+                if (node != null)
                 {
-                    minDist = distBetweenNeig;
-                    curNode = node;
+                    float distBetweenNeig = Vector2.Distance(transform.position, node.transform.position);
+                    if (distBetweenNeig < minDist)
+                    {
+                        minDist = distBetweenNeig;
+                        curNode = node;
+                    }
                 }
             }
             currentNode = curNode;
+            return;
         }
         GetStartNode();
     }

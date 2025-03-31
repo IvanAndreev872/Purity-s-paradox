@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     // basics stats
-    public float walkSpeed = 0;
-    public float dashSpeed = 0;
-    public float dashDuration = 0;
+    public float walkSpeed = 5;
+    public float dashSpeed = 15;
+    public float dashDuration = 0.5f;
     public float health = 100;
     public int money = 0;
     public int levelCompleted = 0;
@@ -22,7 +22,7 @@ public class PlayerStats : MonoBehaviour
     // combat
     // sword
     public float swordDamage = 0;
-    public float swordRadius = 0;
+    public float swordRadius = 1;
     public float swordSpeed = 0;
     public float swordSpeedCoefficient = 1;
     public float bleedingSwordDamagePerSec = 0;

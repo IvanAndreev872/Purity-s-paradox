@@ -17,6 +17,7 @@ public class Health : MonoBehaviour, DamageInterface
 
     public void Hit(float damage)
     {
+        Debug.Log(damagable + " " + damage);
         if (damagable)
         {
             if (current_health <= damage)

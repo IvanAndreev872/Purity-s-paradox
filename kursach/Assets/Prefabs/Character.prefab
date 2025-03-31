@@ -19,9 +19,10 @@ GameObject:
   - component: {fileID: 7276073729893343092}
   - component: {fileID: 2146914996651129274}
   - component: {fileID: 5254175824670434948}
-  m_Layer: 10
+  - component: {fileID: 530877616537930480}
+  m_Layer: 7
   m_Name: Character
-  m_TagString: Player
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 992945228360066990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.39592, y: 6.072776, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -311,6 +312,19 @@ MonoBehaviour:
   poison_path_prefab: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
   poison_path_duration: 1
   line_renderer: {fileID: 0}
+--- !u!114 &530877616537930480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992945228360066990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1048931d012334fa38e3df2ec5996b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentNode: {fileID: 0}
 --- !u!1 &6933323466790631738
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6324464875272510459}
   - component: {fileID: 7532072494693093970}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
