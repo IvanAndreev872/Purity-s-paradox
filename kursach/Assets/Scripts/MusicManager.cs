@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +9,11 @@ public class MusicManager : MonoBehaviour
     public Sprite musicOff;
     public GameObject musicButton;
     private float previousVolume = 1;
-    void Start()
+    void Awake()
     {
         slider.value = PlayerPrefs.GetFloat("Volume", 1);
     }
-    public void Update()
+    public void UpdateValue()
     {
         AudioListener.volume = slider.value;
         if (slider.value > 0)
@@ -43,5 +40,9 @@ public class MusicManager : MonoBehaviour
             AudioListener.volume = 0;
             slider.value = 0;
         }
+    }
+    public void SaveVolume()
+    {
+        PlayerPrefs.SetFloat("Volume", AudioListener.volume);
     }
 }

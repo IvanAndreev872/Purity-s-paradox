@@ -27,9 +27,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Level5.unity
     guid: 72dd86497028a1241915022256e72141
   - enabled: 0
-    path: Assets/Scenes/Base.unity
+    path: Assets/Scenes/First Boss.unity
     guid: 257dad1458779ba4eb56ebe80ce7e1fa
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: a0e1dbef48cb7c643b7292e2b13e2882, type: 2}

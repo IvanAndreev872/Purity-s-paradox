@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Item
   - Enemy
+  - Character
+  - Clone
+  - Fire enemy
+  - Regular enemy
   layers:
   - Default
   - TransparentFX
@@ -18,6 +22,11 @@ TagManager:
   - Enemy
   - 
   - 
+  - Bullet
+  - Wall
+  - Enemy
+  - Enemy Bullet
+  - Character
   - 
   - 
   - 
