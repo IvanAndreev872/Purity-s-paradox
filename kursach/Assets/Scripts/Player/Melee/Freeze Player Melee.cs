@@ -8,7 +8,7 @@ public class FreezePlayerMelee : MonoBehaviour
     public float damage;
 
     public float slowdown_coeffitient;
-    public float slowdow_time;
+    public float slowdown_time;
 
     private LayerMask enemy_layer;
     // Start is called before the first frame update
@@ -36,7 +36,7 @@ public class FreezePlayerMelee : MonoBehaviour
             if (enemy != null)
             {
                 enemy.Hit(damage);
-                enemy_movement.ChangeSpeed(slowdown_coeffitient, slowdow_time);
+                enemy_movement.ChangeSpeed(slowdown_coeffitient, slowdown_time);
             }
         }
     }
