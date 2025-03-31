@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item
+  - Enemy
   - Character
   - Clone
   - Fire enemy
@@ -16,6 +17,11 @@ TagManager:
   - 
   - Water
   - UI
+  - Node Layer
+  - Character
+  - Enemy
+  - 
+  - 
   - Bullet
   - Wall
   - Enemy
