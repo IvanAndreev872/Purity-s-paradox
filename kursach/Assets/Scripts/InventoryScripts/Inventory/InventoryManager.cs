@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -101,34 +102,34 @@ public class InventoryManager : MonoBehaviour
     }
     public void UpdateStatsText()
     {
-        string stats = "Health: " + playerStats.health.ToString() + "\n" +
-                       "Max Health: " + playerStats.maxHealth.ToString() + "\n" +
+        string stats = "Health: " + Math.Round(playerStats.health, 1) + "\n" +
+                       "Max Health: " + Math.Round(playerStats.maxHealth, 1) + "\n" +
                        "\n" +
-                       "Recklessness: " + playerStats.money.ToString() + "\n" +
+                       "Recklessness: " + playerStats.money + "\n" +
                        "\n" +
                        "Sword Damage: " +
-                       (playerStats.isSwordEquipped > 0 ? playerStats.swordDamage.ToString() : "0") + "\n" +
+                       (playerStats.isSwordEquipped > 0 ? playerStats.swordDamage : "0") + "\n" +
                        ((playerStats.isSwordEquipped > 0 && playerStats.poisonSwordDamagePerSec > 0) ? 
-                       ("Sword Poison Damage Per Sec: " + playerStats.poisonSwordDamagePerSec.ToString() + "\n") : "") +
+                       ("Sword Poison Damage Per Sec: " + Math.Round(playerStats.poisonSwordDamagePerSec, 1) + "\n") : "") +
                        ((playerStats.isSwordEquipped > 0 && playerStats.fireSwordDamagePerSec > 0) ? 
-                       ("Sword Fire Damage Per Sec: " + playerStats.fireSwordDamagePerSec.ToString() + "\n") : "") +
+                       ("Sword Fire Damage Per Sec: " + Math.Round(playerStats.fireSwordDamagePerSec, 1) + "\n") : "") +
                        ((playerStats.isSwordEquipped > 0 && playerStats.bleedingSwordDamagePerSec > 0) ? 
-                       ("Sword Bleeding Damage Per Sec: " + playerStats.bleedingSwordDamagePerSec.ToString() + "\n") : "") +
+                       ("Sword Bleeding Damage Per Sec: " + Math.Round(playerStats.bleedingSwordDamagePerSec, 1) + "\n") : "") +
                        ((playerStats.isSwordEquipped > 0 && playerStats.freezeSwordCoefficient > 1) ? 
-                       ("Sword Freeze Power: " + ((playerStats.freezeSwordCoefficient - 1) * 100).ToString() + "%" + "\n") : "") +
+                       ("Sword Freeze Power: " + (Math.Round(playerStats.freezeSwordCoefficient - 1, 1) * 100) + "%" + "\n") : "") +
                        "\n" +
                        "Staff Damage: " +
-                       (playerStats.isStaffEquipped > 0 ? playerStats.staffDamage.ToString() : "0") + "\n" +
+                       (playerStats.isStaffEquipped > 0 ? playerStats.staffDamage : "0") + "\n" +
                        ((playerStats.isStaffEquipped > 0 && playerStats.poisonStaffDamagePerSec > 0) ? 
-                       ("Staff Poison Damage Per Sec: " + playerStats.poisonStaffDamagePerSec.ToString() + "\n") : "") +
+                       ("Staff Poison Damage Per Sec: " + Math.Round(playerStats.poisonStaffDamagePerSec, 1) + "\n") : "") +
                        ((playerStats.isStaffEquipped > 0 && playerStats.fireStaffDamagePerSec > 0) ? 
-                       ("Staff Fire Damage Per Sec: " + playerStats.fireStaffDamagePerSec.ToString() + "\n") : "") +
+                       ("Staff Fire Damage Per Sec: " + Math.Round(playerStats.fireStaffDamagePerSec, 1) + "\n") : "") +
                        ((playerStats.isStaffEquipped > 0 && playerStats.freezeStaffCoefficient > 1) ? 
-                       ("Staff Freeze Power: " + ((playerStats.freezeStaffCoefficient - 1) * 100).ToString() + "%" + "\n") : "") +
+                       ("Staff Freeze Power: " + (Math.Round(playerStats.freezeStaffCoefficient - 1, 2) * 100) + "%" + "\n") : "") +
                        "\n" +
-                       "Walk Speed: " + (playerStats.walkSpeed * playerStats.walkAccelerateCoefficient).ToString() + "\n" +
-                       "Dash Speed: " + (playerStats.dashSpeed * playerStats.dashAccelerateCoefficient).ToString() + "\n" +
-                       "Dash Duration: " + playerStats.dashDuration.ToString() + "\n" +
+                       "Walk Speed: " + Math.Round(playerStats.walkSpeed, 1) + "\n" +
+                       "Dash Speed: " + Math.Round(playerStats.dashSpeed, 1) + "\n" +
+                       "Dash Duration: " + Math.Round(playerStats.dashDuration, 1) + "\n" +
                        ((playerStats.isDashPoisoned > 0) ? "Poisoned Dash: ON" + "\n" : "") +
                        ((playerStats.isDashInvulnerable > 0) ? "Invulnerable Dash: ON" + "\n" : "")
                        ;

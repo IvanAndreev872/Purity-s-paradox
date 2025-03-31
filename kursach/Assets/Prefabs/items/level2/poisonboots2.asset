@@ -22,8 +22,8 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Poisoned Boots after a dash leave a trail of poison that damages
     enemies
-  walkAccelerateCoefficient: 0
-  dashAccelerateCoefficient: 0
+  walkAccelerateCoefficient: 1
+  dashAccelerateCoefficient: 1
   additionalDashDurationTime: 0
   isDashInvulnerable: 0
   isDashPoisoned: 1
