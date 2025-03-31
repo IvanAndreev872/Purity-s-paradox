@@ -6,27 +6,43 @@ using TMPro;
 using Random = UnityEngine.Random;
 using UnityEngine;
 
+// Класс генератора подземелий, использующий алгоритм случайного блуждания
 public class NewBehaviourScript : AbstractDungeonGenerator
 {
     [SerializeField]
-    protected SimpleRandomWalkSO randomWalkParameters; 
+    protected SimpleRandomWalkSO randomWalkParameters; // ScriptableObject с параметрами генерации
     
+    // Основной метод генерации, переопределяющий абстрактный метод из родительского класса
     protected override void RunProceduralGeneration() 
     {
+        // 1. Генерируем позиции пола с помощью алгоритма случайного блуждания
         HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, startPosition);
+        
+        // 2. Очищаем предыдущую карту
         tilemapVisualizer.Clear();
+        
+        // 3. Отрисовываем тайлы пола
         tilemapVisualizer.PaintFloorTiles(floorPositions);
+        
+        // 4. Генерируем стены вокруг пола
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer); 
     }
 
+    // Метод, реализующий алгоритм случайного блуждания с заданными параметрами
     protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO parameters, Vector2Int position) 
     {
-        var currentPosition = position;
-        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
+        var currentPosition = position; // Текущая стартовая позиция
+        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>(); // Коллекция для хранения всех позиций пола
         
+        // Выполняем заданное количество итераций
         for (int i = 0; i < parameters.iterations; i++) {
+            // Генерируем путь случайного блуждания
             var path = ProceduralGenerationAlgorithms.SimpleRandomWalk(currentPosition, parameters.walkLength);
+            
+            // Добавляем все позиции из пути в общую коллекцию
             floorPositions.UnionWith(path);
+            
+            // Если нужно начинать каждую итерацию со случайной позиции
             if (parameters.startRandomlyEachIteration) 
             {
                 currentPosition = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
