@@ -11,13 +11,15 @@ GameObject:
   - component: {fileID: 8286456126634756584}
   - component: {fileID: 2497431944295814579}
   - component: {fileID: 1999097836199432629}
-  - component: {fileID: 751253715492322101}
   - component: {fileID: 5372766822521004264}
   - component: {fileID: 1167880121214165224}
   - component: {fileID: 2376210395119403686}
   - component: {fileID: 8520969801215445317}
   - component: {fileID: 949162824825950820}
-  m_Layer: 0
+  - component: {fileID: 7276073729893343092}
+  - component: {fileID: 2146914996651129274}
+  - component: {fileID: 5254175824670434948}
+  m_Layer: 10
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -102,24 +104,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &751253715492322101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992945228360066990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa06d8c69af75f4a8ab240a7576fb47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walk_speed: 10
-  dash_speed: 10
-  dash_duration: 0.5
-  rotation_speed: 25
-  shooter: {fileID: 6933323466790631738}
-  playerStats: {fileID: 0}
 --- !u!95 &5372766822521004264
 Animator:
   serializedVersion: 5
@@ -209,7 +193,6 @@ MonoBehaviour:
   inventory: {fileID: 0}
   inventoryPanel: {fileID: 0}
   equipSlotsPanel: {fileID: 0}
-  player: {fileID: 0}
   slots: []
   equipSlots: []
   isOpened: 0
@@ -221,6 +204,7 @@ MonoBehaviour:
   sellButton: {fileID: 0}
   storeButton: {fileID: 0}
   playerStats: {fileID: 0}
+  uiManager: {fileID: 0}
   slotIdClicked: -1
 --- !u!114 &8520969801215445317
 MonoBehaviour:
@@ -239,6 +223,7 @@ MonoBehaviour:
   dashDuration: 0
   health: 100
   money: 0
+  levelCompleted: 0
   maxHealth: 100
   walkAccelerateCoefficient: 1
   dashAccelerateCoefficient: 1
@@ -252,6 +237,7 @@ MonoBehaviour:
   poisonSwordDamagePerSec: 0
   fireSwordDamagePerSec: 0
   freezeSwordCoefficient: 1
+  isSwordEquipped: 0
   staffDamage: 0
   staffRadius: 0
   staffSpeed: 0
@@ -261,6 +247,7 @@ MonoBehaviour:
   poisonStaffDamagePerSec: 0
   fireStaffDamagePerSec: 0
   freezeStaffCoefficient: 1
+  isStaffEquipped: 0
 --- !u!114 &949162824825950820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +262,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIPanel: {fileID: 0}
   playerStats: {fileID: 0}
+--- !u!114 &7276073729893343092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992945228360066990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa21d9a050f42f4683de9b09a982662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  damage: 10
+--- !u!114 &2146914996651129274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992945228360066990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0edf37003e8abb4e957ecab992f76c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_healthpoint: 100
+--- !u!114 &5254175824670434948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992945228360066990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14132df89e6f5a54f8337740301befd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walk_speed: 5
+  dash_speed: 15
+  dash_duration: 0.5
+  rotation_speed: 25
+  shooter: {fileID: 6933323466790631738}
+  is_dash_invulnerable: 0
+  is_dash_poisoned: 0
+  poison_path_prefab: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
+  poison_path_duration: 1
+  line_renderer: {fileID: 0}
 --- !u!1 &6933323466790631738
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,8 +320,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6324464875272510459}
-  - component: {fileID: 1005117573546736438}
-  m_Layer: 0
+  - component: {fileID: 7532072494693093970}
+  m_Layer: 10
   m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +343,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8286456126634756584}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1005117573546736438
+--- !u!114 &7532072494693093970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,5 +355,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d68665c4e29db438d3cb28a24d0b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet_prefab: {fileID: 7932271090808488228, guid: 074197987aef7604aad35cdd242f1355, type: 3}
-  bullet_speed: 25
+  bullet_prefab: {fileID: 7932271090808488228, guid: ea9bc5beacb1366468ead947422f68b5, type: 3}
+  bullet_speed: 15

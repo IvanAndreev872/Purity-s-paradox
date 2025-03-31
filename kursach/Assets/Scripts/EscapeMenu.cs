@@ -41,7 +41,7 @@ public class EscapeMenu : MonoBehaviour
     }
     public void SaveProgress()
     {
-        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
         string filePath = Application.persistentDataPath + "/playerStats.json";
         playerStats.SaveToJson(filePath);

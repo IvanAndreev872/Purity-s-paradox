@@ -10,7 +10,7 @@ public class UiManager : MonoBehaviour
     public PlayerStats playerStats;
     public void Awake()
     {
-        playerStats = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<PlayerStats>();
+        playerStats = GameObject.FindGameObjectWithTag("Character").transform.GetComponent<PlayerStats>();
         hpText = UIPanel.GetChild(0).GetChild(1).GetComponent<TMP_Text>();
         moneyText = UIPanel.GetChild(1).GetChild(1).GetComponent<TMP_Text>();
         SetUI(playerStats.health, playerStats.money);

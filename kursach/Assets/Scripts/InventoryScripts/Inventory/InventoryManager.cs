@@ -19,7 +19,7 @@ public class InventoryManager : MonoBehaviour
     public int slotIdClicked = -1;
     public void Awake()
     {
-        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         playerStats = player.GetComponent<PlayerStats>();
         uiManager = player.GetComponent<UiManager>();
         inventoryPanel = inventory.GetChild(1).transform;

@@ -50,7 +50,7 @@ public class StorageManager : MonoBehaviour
         storageButton.gameObject.SetActive(false);
         inventoryButton = storage.GetChild(11).GetComponent<Button>();
         inventoryButton.gameObject.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Character").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
     }
     private void Start()
@@ -60,14 +60,14 @@ public class StorageManager : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Character"))
         {
             OpenStorage();
         }
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Character"))
         {
             CloseStorage();
         }

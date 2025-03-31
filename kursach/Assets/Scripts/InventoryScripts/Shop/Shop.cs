@@ -65,7 +65,7 @@ public class Shop : MonoBehaviour
         shopButton.gameObject.SetActive(false);
         inventoryButton = shop.GetChild(11).GetComponent<Button>();
         inventoryButton.gameObject.SetActive(false);
-        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
         playerStats = player.GetComponent<PlayerStats>();
         uiManager = player.GetComponent<UiManager>();
@@ -73,14 +73,14 @@ public class Shop : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Character"))
         {
             OpenShop();
         }
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Character"))
         {
             CloseShop();
         }
