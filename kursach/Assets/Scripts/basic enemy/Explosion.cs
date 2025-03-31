@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Explosion : MonoBehaviour
+{
+    public float radius;
+    public float damage;
+
+    private LayerMask player_layer;
+    private void Start()
+    {
+        player_layer = LayerMask.GetMask("Character");
+    }
+
+    public void Explode()
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, player_layer);
+        foreach (Collider2D hitCollider in hitColliders)
+        {
+            DamageInterface player = hitCollider.gameObject.GetComponent<DamageInterface>();
+            if (player != null)
+            {
+                player.Hit(damage);
+            }
+        }
+    }
+}

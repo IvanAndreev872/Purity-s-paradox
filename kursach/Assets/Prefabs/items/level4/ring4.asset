@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012754489d0cf634dac1206ad3368017, type: 3}
+  m_Name: ring4
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Ring of Mighty Strikes
+  itemClass: ring
+  itemPrefab: {fileID: 5806193306847386258, guid: 3a79f200e0e657e45abde636b3f7c703, type: 3}
+  icon: {fileID: 21300000, guid: ac203620d246c1d45be67443bba1965e, type: 3}
+  maxCount: 1
+  cost: 0
+  sellCoefficient: 10
+  itemDescription: Ring of Mighty Strikes gives 20 extra damage points for swords
+  swordAdditionalDamage: 20
+  poisonDamagePerSec: 0
+  fireDamagePerSec: 0
+  bleedingDamagePerSec: 0
+  freezeCoefficient: 1
+  swordAdditionalRadius: 0
+  swordSpeedCoefficient: 1
