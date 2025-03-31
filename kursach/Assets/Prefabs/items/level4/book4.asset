@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d530356ad730846a0c28016406f0d2, type: 3}
+  m_Name: book4
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Codex of Accelerated Magic
+  itemClass: book
+  itemPrefab: {fileID: 1592265785764097292, guid: 1c0ab068f226cc948b4e86a3360b3f4d, type: 3}
+  icon: {fileID: 21300000, guid: 2577f246df07fb142816150fe18e31fe, type: 3}
+  maxCount: 1
+  cost: 0
+  sellCoefficient: 10
+  itemDescription: The book increases the attack speed of the staff by 20%
+  staffAdditionalDamage: 0
+  poisonDamagePerSec: 0
+  fireDamagePerSec: 0
+  bleedingDamagePerSec: 0
+  freezeCoefficient: 1
+  staffAdditionalRadius: 0
+  staffSpeedCoefficient: 1.2
+  staffBulletSpeedCoefficient: 1

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4343bb4b4febbc24d914e6646dfd18e8, type: 3}
+  m_Name: sword5
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Dark Knight's Sword
+  itemClass: sword
+  itemPrefab: {fileID: 4720132601328528301, guid: 2abae76df89c3624a8176a5898c1a205, type: 3}
+  icon: {fileID: 21300000, guid: 89ca726d43d88c045b02fcf8b1f222d5, type: 3}
+  maxCount: 1
+  cost: 0
+  sellCoefficient: 10
+  itemDescription: The Dark Knight's Sword has a greatly increased attack range and
+    damage, attack speed is increased by 20%
+  swordDamage: 100
+  swordSpeedCoefficient: 1.2
+  swordAdditionalRadius: 8
+  bleedingSwordDamagePerSec: 0
+  poisonSwordDamagePerSec: 0
+  fireSwordDamagePerSec: 0
+  freezeSwordCoefficient: 1

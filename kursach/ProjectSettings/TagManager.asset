@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Item
+  - Enemy
+  - Character
+  - Clone
+  - Fire enemy
+  - Regular enemy
   layers:
   - Default
   - TransparentFX
@@ -11,15 +17,15 @@ TagManager:
   - 
   - Water
   - UI
+  - Node Layer
+  - Character
+  - Enemy
   - 
   - 
+  - Bullet
+  - Wall
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy Bullet
   - 
   - 
   - 
@@ -40,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items layer
+    uniqueID: 923601547
     locked: 0
