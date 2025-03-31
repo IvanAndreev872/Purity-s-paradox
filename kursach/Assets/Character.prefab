@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d68665c4e29db438d3cb28a24d0b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet_prefab: {fileID: 7932271090808488228, guid: 074197987aef7604aad35cdd242f1355, type: 3}
+  bullet_prefab: {fileID: 7932271090808488228, guid: 29a40987054decc4583fa90ab831011d, type: 3}
   bullet_speed: 25
 --- !u!1 &8553912165174720350
 GameObject:
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 1643123536021940377}
   - component: {fileID: 4777102949461962117}
   - component: {fileID: 8411632874738887445}
-  - component: {fileID: 7778740227523018525}
+  - component: {fileID: 3303166723878030255}
   m_Layer: 10
   m_Name: Character
   m_TagString: Character
@@ -164,6 +164,11 @@ MonoBehaviour:
   dash_duration: 0.5
   rotation_speed: 25
   shooter: {fileID: 4757066419881748980}
+  is_dash_invulnerable: 1
+  is_dash_poisoned: 1
+  poison_path_prefab: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
+  poison_path_duration: 1
+  line_renderer: {fileID: 0}
 --- !u!95 &1643123536021940377
 Animator:
   serializedVersion: 5
@@ -249,8 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0edf37003e8abb4e957ecab992f76c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_healthpoint: 100
---- !u!114 &7778740227523018525
+  max_healthpoint: 1000
+--- !u!114 &3303166723878030255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,8 +264,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8553912165174720350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa21d9a050f42f4683de9b09a982662, type: 3}
+  m_Script: {fileID: 11500000, guid: 92c7ef264382be24d99a014cecd88a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
-  damage: 15
+  radius: 2
+  damage: 25
+  effect_attacks_count: 3
+  effect_attacks_delay: 0.2
+  poison_effect_damage: 15

@@ -128,7 +128,10 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
                 damage_interface.CanBeDamaged(false);
             }
 
-            CreateNewLine();
+            if (is_dash_poisoned)
+            {
+                CreateNewLine();
+            }
         }
     }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8668180162189719233}
   - component: {fileID: 7868356611724360590}
   m_Layer: 0
-  m_Name: Poison Path
+  m_Name: Player Poison Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
