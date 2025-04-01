@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7132028764002960361}
   - component: {fileID: 6179318437450246358}
   - component: {fileID: 1154067436793288538}
+  - component: {fileID: 6888508372133303351}
   m_Layer: 8
   m_Name: Lie clone
   m_TagString: Clone
@@ -79,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.2905661, g: 0.2905661, b: 0.2905661, a: 1}
+  m_Sprite: {fileID: 2133310040, guid: 764e4cbada8e05d4ebf7cf46cbfa0173, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -165,10 +166,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6223563653789519261, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-  speed: 3
+  walk_speed: 0
   minimum_distance: 11
   room_center: {fileID: 0}
   clone_prefab: {fileID: 7013591406065540024}
+  max_clones: 0
+--- !u!95 &6888508372133303351
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013591406065540024}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5214648c5cfdba49a467c28ec6e1a2c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7117850851830080900
 GameObject:
   m_ObjectHideFlags: 0
