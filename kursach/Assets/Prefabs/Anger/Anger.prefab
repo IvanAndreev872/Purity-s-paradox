@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5903971159656553069}
   - component: {fileID: 1455427677480907720}
   - component: {fileID: 8202283524573964674}
+  - component: {fileID: 4373221440156519294}
   m_Layer: 8
   m_Name: Anger
   m_TagString: Fire enemy
@@ -83,8 +84,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_SortingOrder: 23
+  m_Sprite: {fileID: -779913436, guid: e16433f61a8956c4d83ca51b1b116ab1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -278,6 +279,27 @@ MonoBehaviour:
   damage: 30
   attack_delay: 1
   player: {fileID: 0}
+--- !u!95 &4373221440156519294
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3086527992935385241}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b759abe0c7991b842bb95a28bd0f467c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6297158860155102027
 GameObject:
   m_ObjectHideFlags: 0
