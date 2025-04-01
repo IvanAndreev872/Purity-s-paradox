@@ -57,7 +57,7 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        string filePath = Application.persistentDataPath + "/inventory.json";
+        string filePath = Application.streamingAssetsPath + "/inventory.json";
         LoadInventory(filePath);
     }
     void Update()

@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Linq;
-using System.Threading.Tasks;
 
 public class Shop : MonoBehaviour
 {
@@ -18,9 +15,6 @@ public class Shop : MonoBehaviour
     public Button buyButton, nextButton, prevButton, shopButton, inventoryButton;
     public int slotIdClicked = -1;
     public InventoryManager inventoryManager;
-    public PlayerStats playerStats;
-    public UiManager uiManager;
-    public StorageManager storage;
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -67,9 +61,6 @@ public class Shop : MonoBehaviour
         inventoryButton.gameObject.SetActive(false);
         Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
-        playerStats = player.GetComponent<PlayerStats>();
-        uiManager = player.GetComponent<UiManager>();
-        storage = FindObjectOfType<StorageManager>();
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -158,6 +149,7 @@ public class Shop : MonoBehaviour
         {
             if (slot.id == slotIdClicked)
             {
+                PlayerStats playerStats = GameObject.FindGameObjectWithTag("Character").transform.GetComponent<PlayerStats>();
                 if (slot.item.cost <= playerStats.money)
                 {
                     bool inStorage = true, ok = true;
@@ -174,6 +166,7 @@ public class Shop : MonoBehaviour
                     }
                     else
                     {
+                        StorageManager storage = FindObjectOfType<StorageManager>();
                         int pageId = 0;
                         while (pageId < storage.pages.Count && !storage.AddItem(slot.item, 1, pageId))
                         {

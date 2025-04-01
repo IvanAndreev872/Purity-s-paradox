@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         continueButton = transform.GetChild(0).gameObject;
-        string filePath = Application.persistentDataPath + "/playerStats.json";
+        string filePath = Application.streamingAssetsPath + "/playerStats.json";
         if (File.Exists(filePath))
         {
             continueButton.SetActive(true);
@@ -24,14 +24,14 @@ public class MainMenu : MonoBehaviour
     }
     public void NewGame()
     {
-        string filePath = Application.persistentDataPath + "/playerStats.json";
-        string filePathNewGame = Application.persistentDataPath + "/playerStatsNewGame.json";
+        string filePath = Application.streamingAssetsPath + "/playerStats.json";
+        string filePathNewGame = Application.streamingAssetsPath + "/playerStatsNewGame.json";
         CopyJson(filePathNewGame, filePath);
-        filePath = Application.persistentDataPath + "/inventory.json";
-        filePathNewGame = Application.persistentDataPath + "/inventoryNewGame.json";
+        filePath = Application.streamingAssetsPath + "/inventory.json";
+        filePathNewGame = Application.streamingAssetsPath + "/inventoryNewGame.json";
         CopyJson(filePathNewGame, filePath);
-        filePath = Application.persistentDataPath + "/storage.json";
-        filePathNewGame = Application.persistentDataPath + "/storageNewGame.json";
+        filePath = Application.streamingAssetsPath + "/storage.json";
+        filePathNewGame = Application.streamingAssetsPath + "/storageNewGame.json";
         CopyJson(filePathNewGame, filePath);
         SceneManager.LoadScene("Hub");
     }

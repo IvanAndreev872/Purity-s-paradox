@@ -50,16 +50,16 @@ public class ItemsLoader : MonoBehaviour
         {
             playerStats.health = playerStats.maxHealth;
         }
-        string filePath = Application.persistentDataPath + "/playerStats.json";
+        string filePath = Application.streamingAssetsPath + "/playerStats.json";
         playerStats.SaveToJson(filePath);
         InventoryManager inventoryManager = player.GetComponent<InventoryManager>();
-        filePath = Application.persistentDataPath + "/inventory.json";
+        filePath = Application.streamingAssetsPath + "/inventory.json";
         inventoryManager.SaveInventory(filePath);
         StorageManager storage = FindObjectOfType<StorageManager>();
         if (storage != null)
         {
-            filePath = Application.persistentDataPath + "/storage.json";
+            filePath = Application.streamingAssetsPath + "/storage.json";
             storage.SaveStorage(filePath);
         }
-    }   
+    }
 }

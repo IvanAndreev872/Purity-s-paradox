@@ -46,7 +46,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        string filePath = Application.persistentDataPath + "/playerStats.json";
+        string filePath = Application.streamingAssetsPath + "/playerStats.json";
         LoadFromJson(filePath);
     }
     private void Start()
