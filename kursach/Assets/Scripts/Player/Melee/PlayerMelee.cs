@@ -1,43 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
-public class PlayerMelee : MonoBehaviour
+public abstract class PlayerMelee : MonoBehaviour
 {
     public float radius;
     public float damage;
+    public float slashDuration;
+    public GameObject swingPrefab;
 
-    private LayerMask enemy_layer;
+    private LayerMask enemyLayer;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        enemy_layer = LayerMask.GetMask("Enemy");
+        enemyLayer = LayerMask.GetMask("Enemy");
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (CheckAttack())
         {
             Attack();
+            StartCoroutine(MakeSlash());
         }
     }
 
-    void Attack()
+    protected virtual void Attack()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, enemy_layer);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayer);
         foreach (Collider2D hitCollider in hitColliders)
         {
-            DamageInterface enemy = hitCollider.gameObject.GetComponent<DamageInterface>();
-            if (enemy != null)
-            {
-                enemy.Hit(damage);
-            }
+            MakeEffect(hitCollider);
         }
     }
 
-    bool CheckAttack()
+    protected abstract void MakeEffect(Collider2D hitCollider);
+
+    protected virtual bool CheckAttack()
     {
         return Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(1);
+    }
+
+    protected virtual IEnumerator MakeSlash()
+    {
+        GameObject swing = Instantiate(swingPrefab, transform.position, Quaternion.identity);
+        swing.transform.parent = transform;
+        swing.transform.localScale = Vector2.one * radius / Mathf.Sqrt(2);
+
+        yield return new WaitForSeconds(slashDuration);
+        Destroy(swing);
     }
 }
