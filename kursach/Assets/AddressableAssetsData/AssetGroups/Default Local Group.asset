@@ -347,6 +347,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - level5
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d337d94583ff5574f870371ac017b553
+    m_Address: Assets/Prefabs/Player/Swing.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - swing
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b0c1abd1c44881141856c8ba50057fad, type: 2}
   m_SchemaSet:

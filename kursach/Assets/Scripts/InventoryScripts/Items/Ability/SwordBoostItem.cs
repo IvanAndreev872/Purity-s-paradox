@@ -7,19 +7,15 @@ using UnityEngine;
 public class SwordBoostItem : AbilityItem
 {
     public float swordAdditionalDamage = 0;
-    public float swordAdditionalRadius = 0;
-    public float swordSpeedCoefficient = 1;
+    public float swordAttackDelay = 0;
     public override void ApplyEffects(PlayerStats player)
     {
         player.swordDamage += swordAdditionalDamage;
-        player.swordRadius += swordAdditionalRadius;
-        player.swordSpeed += (swordSpeedCoefficient - 1);
-
+        player.swordAttackDelay += swordAttackDelay;
     }
     public override void DiscardEffects(PlayerStats player)
     {
         player.swordDamage -= swordAdditionalDamage;
-        player.swordRadius -= swordAdditionalRadius;
-        player.swordSpeed -= (swordSpeedCoefficient - 1);
+        player.swordAttackDelay -= swordAttackDelay;
     }
 }

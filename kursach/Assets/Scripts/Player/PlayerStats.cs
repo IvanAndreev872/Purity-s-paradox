@@ -23,14 +23,21 @@ public class PlayerStats : MonoBehaviour
     // combat
     // sword
     public float swordDamage = 0;
-    public float swordRadius = 1;
-    public float swordSpeed = 0;
-    public float swordSpeedCoefficient = 1;
-    public float bleedingSwordDamagePerSec = 0;
-    public float poisonSwordDamagePerSec = 0;
-    public float fireSwordDamagePerSec = 0;
-    public float freezeSwordCoefficient = 1;
+    public float swordRadius = 0;
+    public float swordAttackDelay = 0;
+    public float swordSlashDuration = 0;
     public int isSwordEquipped = 0;
+    // sword with effect
+    public int swordEffectAttacksCount = 0;
+    public float swordEffectAttacksDelay = 0;
+    public float swordEffectDamage = 0;
+    public int isSwordPoisoned = 0;
+    public int isSwordBleeding = 0;
+    public int isSwordFired = 0;
+    // freeze sword
+    public float swordSlowdownTime = 0;
+    public float swordSlowdownCoeffitient = 1;
+    public int isSwordFreezed = 0;
     // staff
     public float staffDamage = 0;
     public float staffRadius = 0;

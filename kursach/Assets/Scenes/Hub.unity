@@ -33564,14 +33564,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    - target: {fileID: 992945228360066990, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 992945228360066990, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: m_TagString
-      value: Character
-      objectReference: {fileID: 0}
     - target: {fileID: 2376210395119403686, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: BG
       value: 
@@ -33580,10 +33572,6 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1597587858}
-    - target: {fileID: 6933323466790631738, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8286456126634756584, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -36768,9 +36756,6 @@ MonoBehaviour:
   inventoryButton: {fileID: 0}
   slotIdClicked: -1
   inventoryManager: {fileID: 0}
-  playerStats: {fileID: 0}
-  uiManager: {fileID: 0}
-  storage: {fileID: 0}
 --- !u!61 &1728114513
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -23,9 +23,16 @@ MonoBehaviour:
   itemDescription: Lightning Dagger has a small attack radius, low damage, but the
     attack speed is very fast
   swordDamage: 25
-  swordSpeedCoefficient: 2
-  swordAdditionalRadius: -3
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1
+  swordRadius: 1
+  isSwordEquipped: 1
+  swordAttackDelay: 0.35
+  swordSlashDuration: 0.2
+  swordEffectAttacksCount: 0
+  swordEffectAttacksDelay: 0
+  swordEffectDamage: 0
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0

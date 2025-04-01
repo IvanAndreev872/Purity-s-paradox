@@ -22,10 +22,17 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Dagger of the Queen of Wasps has a slightly reduced attack range,
     acceptable damage, but the attack speed is super fast
-  swordDamage: 42
-  swordSpeedCoefficient: 2.5
-  swordAdditionalRadius: -1
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1
+  swordDamage: 50
+  swordRadius: 1.2
+  isSwordEquipped: 1
+  swordAttackDelay: 0.25
+  swordSlashDuration: 0.1
+  swordEffectAttacksCount: 10
+  swordEffectAttacksDelay: 0.3
+  swordEffectDamage: 2
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0

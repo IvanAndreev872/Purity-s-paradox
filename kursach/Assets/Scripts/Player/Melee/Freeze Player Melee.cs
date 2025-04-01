@@ -7,6 +7,16 @@ public class FreezePlayerMelee : PlayerMelee
     public float slowdownCoeffitient;
     public float slowdownTime;
 
+    public void UpdateFreezeSword(PlayerStats playerStats)
+    {
+        radius = playerStats.swordRadius;
+        damage = playerStats.swordDamage;
+        slashDuration = playerStats.swordSlashDuration;
+        attackDelay = playerStats.swordAttackDelay;
+        slowdownCoeffitient = playerStats.swordSlowdownCoeffitient;
+        slowdownTime = playerStats.swordSlowdownTime;
+    }
+
     protected override void MakeEffect(Collider2D hitCollider)
     {
         DamageInterface enemy = hitCollider.gameObject.GetComponent<DamageInterface>();

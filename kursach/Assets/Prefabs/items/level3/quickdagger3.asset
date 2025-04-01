@@ -22,10 +22,17 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Fang Dagger has reduced attack range, average damage, but attack
     speed is super fast
-  swordDamage: 30
-  swordSpeedCoefficient: 2.5
-  swordAdditionalRadius: -2
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1
+  swordDamage: 40
+  swordRadius: 1.1
+  isSwordEquipped: 1
+  swordAttackDelay: 0.3
+  swordSlashDuration: 0.15
+  swordEffectAttacksCount: 0
+  swordEffectAttacksDelay: 0
+  swordEffectDamage: 0
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0

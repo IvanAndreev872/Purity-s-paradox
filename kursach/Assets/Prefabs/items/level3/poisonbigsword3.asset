@@ -22,10 +22,17 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Big Toxic Blade has a large attack radius and damage, but the
     attack speed is very low. Also deals poison damage
-  swordDamage: 60
-  swordSpeedCoefficient: 0.6
-  swordAdditionalRadius: 7
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 7
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1
+  swordDamage: 65
+  swordRadius: 2.5
+  isSwordEquipped: 1
+  swordAttackDelay: 0.85
+  swordSlashDuration: 0.4
+  swordEffectAttacksCount: 3
+  swordEffectAttacksDelay: 1
+  swordEffectDamage: 10
+  isSwordPoisoned: 1
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0

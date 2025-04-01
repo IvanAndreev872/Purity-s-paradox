@@ -1312,14 +1312,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    - target: {fileID: 992945228360066990, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 992945228360066990, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: m_TagString
-      value: Character
-      objectReference: {fileID: 0}
     - target: {fileID: 2376210395119403686, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: BG
       value: 
@@ -1328,10 +1320,6 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1160175979}
-    - target: {fileID: 6933323466790631738, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8286456126634756584, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

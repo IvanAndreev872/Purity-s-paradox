@@ -10,6 +10,7 @@ TagManager:
   - Clone
   - Fire enemy
   - Regular enemy
+  - Slime enemy
   layers:
   - Default
   - TransparentFX

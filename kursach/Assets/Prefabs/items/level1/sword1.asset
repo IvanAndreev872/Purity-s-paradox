@@ -22,9 +22,16 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Silver Sword has medium range, low attack speed and damage
   swordDamage: 20
-  swordSpeedCoefficient: 1
-  swordAdditionalRadius: 0
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1
+  swordRadius: 1.5
+  isSwordEquipped: 1
+  swordAttackDelay: 0.7
+  swordSlashDuration: 0.35
+  swordEffectAttacksCount: 0
+  swordEffectAttacksDelay: 0
+  swordEffectDamage: 0
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0

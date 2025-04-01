@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5969246083462567291}
   m_Layer: 8
   m_Name: Range greedy
-  m_TagString: Enemy
+  m_TagString: Regular enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

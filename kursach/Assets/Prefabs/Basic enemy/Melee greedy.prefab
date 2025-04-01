@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2160245803868402940}
   m_Layer: 8
   m_Name: Melee greedy
-  m_TagString: Enemy
+  m_TagString: Regular enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

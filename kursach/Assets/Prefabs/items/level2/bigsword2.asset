@@ -23,9 +23,16 @@ MonoBehaviour:
   itemDescription: Large Blue Sword has above average attack range and damage, but
     attack speed is very slow
   swordDamage: 50
-  swordSpeedCoefficient: 0.65
-  swordAdditionalRadius: 5
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1
+  swordRadius: 2.5
+  isSwordEquipped: 1
+  swordAttackDelay: 0.9
+  swordSlashDuration: 0.45
+  swordEffectAttacksCount: 0
+  swordEffectAttacksDelay: 0
+  swordEffectDamage: 0
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0

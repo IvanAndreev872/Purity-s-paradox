@@ -1827,10 +1827,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1347545079798763321}
-        m_TargetAssemblyTypeName: EscapeMenu, Assembly-CSharp
+      - m_Target: {fileID: 2805725392324593808, guid: 817f1d793e3eabf409e0d03986d04c9d, type: 3}
+        m_TargetAssemblyTypeName: ItemsLoader, Assembly-CSharp
         m_MethodName: SaveProgress
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

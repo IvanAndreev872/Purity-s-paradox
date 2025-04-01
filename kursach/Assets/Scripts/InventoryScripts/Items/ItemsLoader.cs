@@ -42,19 +42,35 @@ public class ItemsLoader : MonoBehaviour
         }
         return res;
     }
+    public async Task<GameObject> LoadSwing()
+    {
+        GameObject res = null;
+        AsyncOperationHandle<IList<GameObject>> handle = Addressables.LoadAssetsAsync<GameObject>("swing", null);
+        await handle.Task;
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            res = handle.Result[0];
+            Debug.Log("LOADED " + res.name);
+        }
+        else
+        {
+            Debug.LogError("Failed to load swing from prefabs");
+        }
+        return res;
+    }
     public void SaveProgress(bool isDead)
     {
         Transform player = GameObject.FindGameObjectWithTag("Character").transform;
+        InventoryManager inventoryManager = player.GetComponent<InventoryManager>();
+        string filePath = Application.streamingAssetsPath + "/inventory.json";
+        inventoryManager.SaveInventory(filePath);
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
         if (isDead)
         {
             playerStats.health = playerStats.maxHealth;
         }
-        string filePath = Application.streamingAssetsPath + "/playerStats.json";
+        filePath = Application.streamingAssetsPath + "/playerStats.json";
         playerStats.SaveToJson(filePath);
-        InventoryManager inventoryManager = player.GetComponent<InventoryManager>();
-        filePath = Application.streamingAssetsPath + "/inventory.json";
-        inventoryManager.SaveInventory(filePath);
         StorageManager storage = FindObjectOfType<StorageManager>();
         if (storage != null)
         {

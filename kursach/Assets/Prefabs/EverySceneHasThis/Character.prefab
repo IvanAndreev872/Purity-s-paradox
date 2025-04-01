@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5372766822521004264}
   - component: {fileID: 1167880121214165224}
   - component: {fileID: 2376210395119403686}
-  - component: {fileID: 3773319267635346151}
   - component: {fileID: 8520969801215445317}
   - component: {fileID: 949162824825950820}
   - component: {fileID: 2146914996651129274}
@@ -206,22 +205,6 @@ MonoBehaviour:
   storeButton: {fileID: 0}
   playerStats: {fileID: 0}
   slotIdClicked: -1
---- !u!114 &3773319267635346151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992945228360066990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6d4df66e3721543b867daab2b35eef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 1
-  damage: 20
-  slashDuration: 0.3
-  swingPrefab: {fileID: 6532608643486906422, guid: d337d94583ff5574f870371ac017b553, type: 3}
 --- !u!114 &8520969801215445317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,13 +232,18 @@ MonoBehaviour:
   levelCompleted: 0
   swordDamage: 0
   swordRadius: 0
-  swordSpeed: 0
-  swordSpeedCoefficient: 1
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1
+  swordAttackDelay: 0
+  swordSlashDuration: 0
   isSwordEquipped: 0
+  swordEffectAttacksCount: 0
+  swordEffectAttacksDelay: 0
+  swordEffectDamage: 0
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0
   staffDamage: 0
   staffRadius: 0
   staffSpeed: 0

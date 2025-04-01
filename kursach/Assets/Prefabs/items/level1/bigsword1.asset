@@ -23,9 +23,16 @@ MonoBehaviour:
   itemDescription: Heavy Sword has above average attack range and damage, but attack
     speed is super slow
   swordDamage: 30
-  swordSpeedCoefficient: 0.5
-  swordAdditionalRadius: 5
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1
+  swordRadius: 2.5
+  isSwordEquipped: 1
+  swordAttackDelay: 1
+  swordSlashDuration: 0.5
+  swordEffectAttacksCount: 0
+  swordEffectAttacksDelay: 0
+  swordEffectDamage: 0
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0

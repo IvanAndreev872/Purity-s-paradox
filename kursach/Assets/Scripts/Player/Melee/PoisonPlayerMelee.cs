@@ -7,6 +7,18 @@ public class PoisonPlayerMelee : PlayerMelee
     public int effectAttacksCount;
     public float effectAttacksDelay;
     public float poisonEffectDamage;
+
+    public void UpdatePoisonedSword(PlayerStats playerStats)
+    {
+        radius = playerStats.swordRadius;
+        damage = playerStats.swordDamage;
+        slashDuration = playerStats.swordSlashDuration;
+        attackDelay = playerStats.swordAttackDelay;
+        effectAttacksCount = playerStats.swordEffectAttacksCount;
+        effectAttacksDelay = playerStats.swordEffectAttacksDelay;
+        poisonEffectDamage = playerStats.swordEffectDamage;
+    }
+
     protected override void MakeEffect(Collider2D hitCollider)
     {
         DamageInterface enemy = hitCollider.gameObject.GetComponent<DamageInterface>();
