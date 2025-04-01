@@ -161,9 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9295c9be9e18e44b9c95b6697aae702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire_distance: 15
+  fireDistance: 15
   damage: 20
-  effect_attacks_count: 3
-  effect_attacks_delay: 0.5
-  poison_effect_damage: 10
-  poison_effect_prefab: {fileID: 2235477991518615897, guid: 5687891a5fa11a64daead9069d54a627, type: 3}
+  effectAttacksCount: 3
+  effectAttacksDelay: 1
+  poisonEffectDamage: 10
+  poisonEffectPrefab: {fileID: 2235477991518615897, guid: 5687891a5fa11a64daead9069d54a627, type: 3}
