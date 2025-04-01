@@ -12,7 +12,6 @@ public class LieController : MonoBehaviour, MovementInterface
     public GameObject clone_prefab;
     public int max_clones;
 
-    private Rigidbody2D rb;
     private bool too_close = false;
     private bool is_teleporting = false;
 
@@ -21,11 +20,15 @@ public class LieController : MonoBehaviour, MovementInterface
     private bool speed_changed = false;
     private float speed_change_duration;
     private float speed_change_time;
+
+    private Rigidbody2D rb;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         walk_speed_now = walk_speed;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -129,5 +132,8 @@ public class LieController : MonoBehaviour, MovementInterface
         Vector3 direction = (transform.position - player.position).normalized;
 
         rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, walk_speed_now * Time.fixedDeltaTime));
+
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
     }
 }
