@@ -16,13 +16,12 @@ public class InventoryManager : MonoBehaviour
     public TMP_Text itemDescriptionText, costText, statsText;
     public Button sellButton, storeButton;
     public PlayerStats playerStats;
-    public UiManager uiManager;
     public int slotIdClicked = -1;
     public void Awake()
     {
         Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         playerStats = player.GetComponent<PlayerStats>();
-        uiManager = player.GetComponent<UiManager>();
+        BG = inventory.GetChild(0).gameObject;
         inventoryPanel = inventory.GetChild(1).transform;
         equipSlotsPanel = inventory.GetChild(2).transform;
         for (int i = 0; i < inventoryPanel.childCount; i++)
@@ -59,7 +58,7 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        string filePath = Application.persistentDataPath + "/inventory.json";
+        string filePath = Application.streamingAssetsPath + "/inventory.json";
         LoadInventory(filePath);
     }
     void Update()
@@ -109,15 +108,13 @@ public class InventoryManager : MonoBehaviour
                        "\n" +
                        "Sword Damage: " +
                        (playerStats.isSwordEquipped > 0 ? playerStats.swordDamage : "0") + "\n" +
-                       ((playerStats.isSwordEquipped > 0 && playerStats.poisonSwordDamagePerSec > 0) ? 
-                       ("Sword Poison Damage Per Sec: " + Math.Round(playerStats.poisonSwordDamagePerSec, 1) + "\n") : "") +
-                       ((playerStats.isSwordEquipped > 0 && playerStats.fireSwordDamagePerSec > 0) ? 
-                       ("Sword Fire Damage Per Sec: " + Math.Round(playerStats.fireSwordDamagePerSec, 1) + "\n") : "") +
-                       ((playerStats.isSwordEquipped > 0 && playerStats.bleedingSwordDamagePerSec > 0) ? 
-                       ("Sword Bleeding Damage Per Sec: " + Math.Round(playerStats.bleedingSwordDamagePerSec, 1) + "\n") : "") +
-                       ((playerStats.isSwordEquipped > 0 && playerStats.freezeSwordCoefficient > 1) ? 
-                       ("Sword Freeze Power: " + (Math.Round(playerStats.freezeSwordCoefficient - 1, 1) * 100) + "%" + "\n") : "") +
-                       "\n" +
+                       "Sword Radius: " + 
+                       (playerStats.isSwordEquipped > 0 ? playerStats.swordRadius : "0") + "\n" +
+                       ((playerStats.isSwordPoisoned > 0) ? "Poison After Sword Attack: ON" : "") + "\n" +
+                       ((playerStats.isSwordBleeding > 0) ? "Bleeding After Sword Attack: ON" : "") + "\n" +
+                       ((playerStats.isSwordFired > 0) ? "Fire After Sword Attack: ON" : "") + "\n" +
+                       ((playerStats.isSwordFreezed > 0) ?
+                       "Sword Freeze Power: " + Math.Round(playerStats.swordSlowdownCoeffitient - 1, 2) * 100 : "") + "\n" +
                        "Staff Damage: " +
                        (playerStats.isStaffEquipped > 0 ? playerStats.staffDamage : "0") + "\n" +
                        ((playerStats.isStaffEquipped > 0 && playerStats.poisonStaffDamagePerSec > 0) ? 
@@ -143,7 +140,7 @@ public class InventoryManager : MonoBehaviour
             {
                 int gain = slot.item.cost * slot.item.sellCoefficient / 100;
                 playerStats.money += gain;
-                uiManager.UpdateUI();
+                playerStats.UpdateUI();
                 slot.NullifyData();
                 itemDescriptionText.text = "";
                 costText.text = "";
@@ -290,6 +287,19 @@ public class InventoryManager : MonoBehaviour
                         if (item.name == slotData.itemName)
                         {
                             slot.item = item.itemScriptableObject;
+                            if (slot.panel == 1)
+                            {
+                                if (slot.item is AbilityItem abilityItem)
+                                {
+                                    abilityItem.DiscardEffects(playerStats);
+                                    abilityItem.ApplyEffects(playerStats);
+                                }
+                                if (slot.item is WeaponItem weaponItem)
+                                {
+                                    weaponItem.DiscardEffects(playerStats);
+                                    weaponItem.ApplyEffects(playerStats);
+                                }
+                            }
                             slot.SetIcon(item.itemScriptableObject.icon);
                             if (item.itemScriptableObject.maxCount > 1)
                             {

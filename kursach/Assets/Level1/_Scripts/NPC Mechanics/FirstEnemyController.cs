@@ -14,6 +14,10 @@ public class FirstEnemyController : AStarAlgoritm
 
     public bool playerSeen = false;
 
+    private float UpdatePathInterval = 1f;
+    private float timer = 1f;
+
+
     public enum States
     {
         Patrol,
@@ -65,9 +69,12 @@ public class FirstEnemyController : AStarAlgoritm
 
     void Engage()
     {
-        if (Path.Count == 0)
+        timer += Time.deltaTime;
+        if (timer > UpdatePathInterval)
         {
+            Path.Clear();
             Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
+            timer -= UpdatePathInterval;
         }
     }
 

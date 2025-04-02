@@ -2,47 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FreezePlayerMelee : MonoBehaviour
+public class FreezePlayerMelee : PlayerMelee
 {
-    public float radius;
-    public float damage;
+    public float slowdownCoeffitient;
+    public float slowdownTime;
 
-    public float slowdown_coeffitient;
-    public float slowdown_time;
-
-    private LayerMask enemy_layer;
-    // Start is called before the first frame update
-    void Start()
+    public void UpdateFreezeSword(PlayerStats playerStats)
     {
-        enemy_layer = LayerMask.GetMask("Enemy");
+        radius = playerStats.swordRadius;
+        damage = playerStats.swordDamage;
+        slashDuration = playerStats.swordSlashDuration;
+        attackDelay = playerStats.swordAttackDelay;
+        slowdownCoeffitient = playerStats.swordSlowdownCoeffitient;
+        slowdownTime = playerStats.swordSlowdownTime;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void MakeEffect(Collider2D hitCollider)
     {
-        if (CheckAttack())
+        DamageInterface enemy = hitCollider.gameObject.GetComponent<DamageInterface>();
+        MovementInterface enemyMovement = hitCollider.gameObject.GetComponent<MovementInterface>();
+        if (enemy != null && enemyMovement != null)
         {
-            Attack();
+            enemy.Hit(damage);
+            enemyMovement.ChangeSpeed(slowdownCoeffitient, slowdownTime);
         }
-    }
-
-    void Attack()
-    {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, enemy_layer);
-        foreach (Collider2D hitCollider in hitColliders)
-        {
-            DamageInterface enemy = hitCollider.gameObject.GetComponent<DamageInterface>();
-            MovementInterface enemy_movement = hitCollider.gameObject.GetComponent<MovementInterface>();
-            if (enemy != null)
-            {
-                enemy.Hit(damage);
-                enemy_movement.ChangeSpeed(slowdown_coeffitient, slowdown_time);
-            }
-        }
-    }
-
-    bool CheckAttack()
-    {
-        return Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(1);
     }
 }

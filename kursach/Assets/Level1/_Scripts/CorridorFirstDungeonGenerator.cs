@@ -23,7 +23,7 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
     [SerializeField] public int FreeSpace = 25;
     [SerializeField] public int EnemyQuantity = 15;
 
-    [SerializeField] public GameObject EnemyPrefab;
+    [SerializeField] public List<GameObject> EnemyPrefabs;
     protected override void RunProceduralGeneration()
     {
         CorridorFirstGeneration();
@@ -239,7 +239,16 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
                     {
                         GameObject nodeInPos = collider.gameObject;
                         Node connectedNode = nodeInPos.GetComponent<Node>();
-                        ConnectNodes(node, connectedNode);
+                        if (i * j == 0)
+                        {
+                            ConnectNodes(node, connectedNode);
+                        } else
+                        {
+                            if (!CheckIfWallBetween(node, i, j))
+                            {
+                                ConnectNodes(node, connectedNode);
+                            }
+                        }
                     }
                     position.x -= i;
                     position.y -= j;
@@ -257,11 +266,26 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
         From.connections.Add(To);
     }
 
+    bool CheckIfWallBetween(Node First, int i, int j)
+    {
+        Vector2 FirstPosition = First.transform.position;
+        Vector2 TestPosition1 = FirstPosition + new Vector2(i, 0);
+        Vector2 TestPosition2 = FirstPosition + new Vector2(0, j);
+        Collider2D collider1 = Physics2D.OverlapCircle(TestPosition1, 0.1f);
+        Collider2D collider2 = Physics2D.OverlapCircle(TestPosition2, 0.1f);
+        if (collider1 != null && collider2 != null)
+        {
+            return false;
+        }
+        return true;
+    }
+
     void SpawnEnemies(HashSet<Node> NodeList, GameObject EnemyParent)
     {
         List<Node> EnemySpawns = NodeList.OrderBy(x => Guid.NewGuid()).ToList();
         int combinedLayerMask = LayerMask.GetMask("Character", "Enemy");
         int index = 0;
+        System.Random random = new System.Random();
         for (int i = 0; i < EnemyQuantity; ++i)
         {
             Node potentialSpawn = EnemySpawns[index + i];
@@ -272,6 +296,7 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
                 i--;
                 continue;
             }
+            GameObject EnemyPrefab = EnemyPrefabs.ElementAt(random.Next(0, EnemyPrefabs.Count));
             GameObject Enemy = Instantiate(EnemyPrefab, potentialSpawn.transform.position, Quaternion.identity);
             Enemy.transform.SetParent(EnemyParent.transform);
         }

@@ -22,10 +22,17 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Assassin's Dagger has a slightly reduced attack range, high damage,
     and ultra fast attack speed
-  swordDamage: 50
-  swordSpeedCoefficient: 2.8
-  swordAdditionalRadius: -1
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1
+  swordDamage: 70
+  swordRadius: 1.35
+  isSwordEquipped: 1
+  swordAttackDelay: 0.2
+  swordSlashDuration: 0.1
+  swordEffectAttacksCount: 0
+  swordEffectAttacksDelay: 0
+  swordEffectDamage: 0
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0

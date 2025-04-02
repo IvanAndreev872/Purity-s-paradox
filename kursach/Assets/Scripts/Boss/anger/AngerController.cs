@@ -15,10 +15,12 @@ public class AngerController : MonoBehaviour, MovementInterface
     private float speed_change_time;
 
     private Rigidbody2D rb;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         walk_speed_now = walk_speed;
     }
@@ -55,5 +57,8 @@ public class AngerController : MonoBehaviour, MovementInterface
         Vector3 direction = target.position - transform.position;
 
         rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, walk_speed_now * Time.fixedDeltaTime));
+
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
     }
 }

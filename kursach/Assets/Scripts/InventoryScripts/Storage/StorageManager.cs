@@ -55,7 +55,7 @@ public class StorageManager : MonoBehaviour
     }
     private void Start()
     {
-        string filePath = Application.persistentDataPath + "/storage.json";
+        string filePath = Application.streamingAssetsPath + "/storage.json";
         LoadStorage(filePath);
     }
     public void OnTriggerEnter2D(Collider2D other)

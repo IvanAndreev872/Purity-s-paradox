@@ -22,10 +22,17 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Sword of Eternal Flame has a greatly increased attack range and
     damage, attack speed is increased by 15%. Also sets enemies on fire
-  swordDamage: 90
-  swordSpeedCoefficient: 1.15
-  swordAdditionalRadius: 8
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 5
-  freezeSwordCoefficient: 1
+  swordDamage: 100
+  swordRadius: 2
+  isSwordEquipped: 1
+  swordAttackDelay: 0.6
+  swordSlashDuration: 0.3
+  swordEffectAttacksCount: 5
+  swordEffectAttacksDelay: 0.5
+  swordEffectDamage: 15
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 1
+  swordSlowdownTime: 0
+  swordSlowdownCoeffitient: 1
+  isSwordFreezed: 0

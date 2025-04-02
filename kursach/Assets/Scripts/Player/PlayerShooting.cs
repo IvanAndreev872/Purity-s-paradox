@@ -23,7 +23,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        Vector3 create_position = transform.position + transform.right * 1.2f;
+        Vector3 create_position = transform.position;
         GameObject bullet = Instantiate(bullet_prefab, create_position, transform.rotation);
         Rigidbody2D bullet_rb = bullet.GetComponent<Rigidbody2D>();
         bullet_rb.velocity = transform.right * bullet_speed;
@@ -31,6 +31,6 @@ public class PlayerShooting : MonoBehaviour
 
     private bool CheckShoot()
     {
-        return Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0);
+        return (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0)) && Time.timeScale != 0;
     }
 }

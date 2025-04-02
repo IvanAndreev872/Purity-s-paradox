@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
     // Start is called before the first frame update
     void Start()
     {
-        UpdateStats(GetComponent<PlayerStats>());
+        UpdateSpeed(GetComponent<PlayerStats>());
         damage_interface = GetComponent<DamageInterface>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -85,13 +85,15 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
         }
     }
 
-    public void UpdateStats(PlayerStats playerStats)
+    public void UpdateSpeed(PlayerStats playerStats)
     {
         walk_speed = playerStats.walkSpeed;
         dash_speed = playerStats.dashSpeed;
         dash_duration = playerStats.dashDuration;
         walk_speed_now = walk_speed;
         dash_speed_now = dash_speed;
+        is_dash_invulnerable = playerStats.isDashInvulnerable >= 1;
+        is_dash_poisoned = playerStats.isDashPoisoned >= 1;
     }
 
     private void Walk()

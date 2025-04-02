@@ -129,7 +129,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1152
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -161,6 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03382987a88b3ac43a40efb53e330b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire_distance: 20
+  fireDistance: 15
   damage: 15
-  fire_enemy_multiplier: 2
+  fireEnemyMultiplier: 2

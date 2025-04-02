@@ -22,10 +22,17 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Sword of Eternal Frost has a greatly increased attack range and
     damage, attack speed is increased by 18%. Also slightly slows down enemies
-  swordDamage: 96
-  swordSpeedCoefficient: 1.18
-  swordAdditionalRadius: 8
-  bleedingSwordDamagePerSec: 0
-  poisonSwordDamagePerSec: 0
-  fireSwordDamagePerSec: 0
-  freezeSwordCoefficient: 1.2
+  swordDamage: 108
+  swordRadius: 2
+  isSwordEquipped: 1
+  swordAttackDelay: 0.6
+  swordSlashDuration: 0.3
+  swordEffectAttacksCount: 0
+  swordEffectAttacksDelay: 0
+  swordEffectDamage: 0
+  isSwordPoisoned: 0
+  isSwordBleeding: 0
+  isSwordFired: 0
+  swordSlowdownTime: 0.7
+  swordSlowdownCoeffitient: 0.2
+  isSwordFreezed: 1

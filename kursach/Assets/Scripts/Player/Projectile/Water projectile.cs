@@ -2,30 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterProjectile : MonoBehaviour
+public class WaterProjectile : PlayerProjectile
 {
-    public float fire_distance;
-    public float damage;
-    public float fire_enemy_multiplier;
+    public float fireEnemyMultiplier;
 
-    private Vector3 spawn_point;
-    // Start is called before the first frame update
-    void Start()
-    {
-        spawn_point = transform.position;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Vector3.Distance(transform.position, spawn_point) >= fire_distance)
-        { 
-            Destroy(gameObject);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
         DamageInterface enemy = collision.gameObject.GetComponent<DamageInterface>();
 
@@ -33,7 +14,7 @@ public class WaterProjectile : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Fire enemy"))
             {
-                enemy.Hit(damage * fire_enemy_multiplier);
+                enemy.Hit(damage * fireEnemyMultiplier);
             }
             else
             {
