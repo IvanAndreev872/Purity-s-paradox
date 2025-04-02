@@ -3,47 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-// Статический класс, содержащий алгоритмы процедурной генерации
-public static class ProceduralGenerationAlgorithms
+public class GenerationAlgorithm // Алгоритмы случайного блуждания
 {
-    // Алгоритм случайного блуждания для создания комнат и других областей
-    public static HashSet<Vector2Int> SimpleRandomWalk(Vector2Int startPosition, int walkLength) 
+    public static List<Vector2Int> directions = new List<Vector2Int> {new Vector2Int(0, 1), new Vector2Int(1, 0),
+        new Vector2Int(0, -1), new Vector2Int(-1, 0)};
+    public static List<Vector2Int> RandomWalk(Vector2Int start, int length) // Алгоритм блуждания по клеткам пространства
     {
-        // Используем HashSet для хранения уникальных позиций
-        HashSet<Vector2Int> path = new HashSet<Vector2Int>();
+        List<Vector2Int> road = new List<Vector2Int>();
 
-        // Добавляем стартовую позицию
-        path.Add(startPosition);
-        var previousPosition = startPosition;
+        road.Add(start);
 
-        // Совершаем заданное количество шагов
-        for (int i = 0; i < walkLength; i++) 
+        Vector2Int previous = start;
+
+        for (int i = 0; i < length; i++) 
         {
-            // Получаем новую позицию, двигаясь в случайном направлении
-            var newPosition = previousPosition + Direction2D.GetRandomCardinalDirection();
-            path.Add(newPosition);
-            previousPosition = newPosition;
+            Vector2Int newPos = previous + directions[Random.Range(0, 4)];
+            previous = newPos;
+            road.Add(newPos);
         }
-        return path;
+        
+        return road;
     }
 
     // Алгоритм создания прямых коридоров
-    public static List<Vector2Int> RandomWalkCorridor(Vector2Int startPosition, int corridorLength) 
+    public static List<Vector2Int> buildCorridor(Vector2Int start, int length) 
     {
-        // Используем List, так как порядок точек важен для коридоров
-        List<Vector2Int> corridor = new List<Vector2Int>();
-        // Выбираем случайное направление один раз для всего коридора
-        var direction = Direction2D.GetRandomCardinalDirection();
-        var currentPosition = startPosition;
-        corridor.Add(currentPosition);
+        List<Vector2Int> corridorSystem = new List<Vector2Int>();
 
-        // Строим коридор заданной длины в выбранном направлении
-        for (int i = 0; i < corridorLength; i++) 
+        Vector2Int direction = directions[Random.Range(0, 4)];
+        corridorSystem.Add(start);
+        Vector2Int current = start;
+
+        for (int i = 0; i < length; i++) 
         {
-            currentPosition += direction;
-            corridor.Add(currentPosition);
+            current += direction;
+            corridorSystem.Add(current);
         }
-        return corridor;
+
+        return corridorSystem;
     }
 }
 

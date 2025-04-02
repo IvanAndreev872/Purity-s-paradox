@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 using UnityEngine;
 
 // Класс генератора подземелий, использующий алгоритм случайного блуждания
-public class NewBehaviourScript : AbstractDungeonGenerator
+public class DungeonGenerator : DungeonGeneration
 {
     [SerializeField]
     protected SimpleRandomWalkSO randomWalkParameters; // ScriptableObject с параметрами генерации
@@ -16,7 +16,7 @@ public class NewBehaviourScript : AbstractDungeonGenerator
     protected override void RunProceduralGeneration() 
     {
         // 1. Генерируем позиции пола с помощью алгоритма случайного блуждания
-        HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, startPosition);
+        HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, start);
         
         // 2. Очищаем предыдущую карту
         tilemapVisualizer.Clear();
@@ -37,7 +37,7 @@ public class NewBehaviourScript : AbstractDungeonGenerator
         // Выполняем заданное количество итераций
         for (int i = 0; i < parameters.iterations; i++) {
             // Генерируем путь случайного блуждания
-            var path = ProceduralGenerationAlgorithms.SimpleRandomWalk(currentPosition, parameters.walkLength);
+            var path = GenerationAlgorithm.RandomWalk(currentPosition, parameters.walkLength);
             
             // Добавляем все позиции из пути в общую коллекцию
             floorPositions.UnionWith(path);

@@ -7,7 +7,7 @@ using System.IO.IsolatedStorage;
 using System.Xml.Linq;
 
 // Генератор подземелий, который сначала создает коридоры, а затем комнаты
-public class CorridorFirstDungeonGenerator : NewBehaviourScript
+public class CorridorFirstDungeonGenerator : DungeonGenerator
 {
     [SerializeField]
     private int corridorLength = 14; // Длина каждого коридора
@@ -128,7 +128,7 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
     // Создание коридоров
     private List<List<Vector2Int>> CreateCorridors(HashSet<Vector2Int> floorPositions, HashSet<Vector2Int> potentialRoomPositions) 
     {
-        var currentPosition = startPosition;
+        var currentPosition = start;
         potentialRoomPositions.Add(currentPosition);
         List<List<Vector2Int>> corridors = new List<List<Vector2Int>>();
 
@@ -136,7 +136,7 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
         for (int i = 0; i < corridorCount; i++) 
         {
             // Генерируем коридор алгоритмом случайного блуждания
-            var corridor = ProceduralGenerationAlgorithms.RandomWalkCorridor(currentPosition, corridorLength);
+            var corridor = GenerationAlgorithm.buildCorridor(currentPosition, corridorLength);
             corridors.Add(corridor);
             // Перемещаем текущую позицию в конец коридора
             currentPosition = corridor[corridor.Count - 1];
