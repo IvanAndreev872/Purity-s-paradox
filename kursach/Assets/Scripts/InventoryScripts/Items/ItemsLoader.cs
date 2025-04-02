@@ -65,6 +65,7 @@ public class ItemsLoader : MonoBehaviour
         string filePath = Application.streamingAssetsPath + "/inventory.json";
         inventoryManager.SaveInventory(filePath);
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
+        Debug.Log("DEAD: " + isDead + " " + playerStats.health + " " + playerStats.maxHealth);
         if (isDead)
         {
             playerStats.health = playerStats.maxHealth;

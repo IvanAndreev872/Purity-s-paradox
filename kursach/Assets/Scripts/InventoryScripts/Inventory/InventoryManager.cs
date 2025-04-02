@@ -110,9 +110,9 @@ public class InventoryManager : MonoBehaviour
                        (playerStats.isSwordEquipped > 0 ? playerStats.swordDamage : "0") + "\n" +
                        "Sword Radius: " + 
                        (playerStats.isSwordEquipped > 0 ? playerStats.swordRadius : "0") + "\n" +
-                       ((playerStats.isSwordPoisoned > 0) ? "Poison After Sword Attack: ON" : "") + "\n" +
-                       ((playerStats.isSwordBleeding > 0) ? "Bleeding After Sword Attack: ON" : "") + "\n" +
-                       ((playerStats.isSwordFired > 0) ? "Fire After Sword Attack: ON" : "") + "\n" +
+                       ((playerStats.isSwordPoisoned > 0) ? "Poison After Sword Attack: ON\n" : "") +
+                       ((playerStats.isSwordBleeding > 0) ? "Bleeding After Sword Attack: ON\n" : "") +
+                       ((playerStats.isSwordFired > 0) ? "Fire After Sword Attack: ON\n" : "") +
                        ((playerStats.isSwordFreezed > 0) ?
                        "Sword Freeze Power: " + Math.Round(playerStats.swordSlowdownCoeffitient - 1, 2) * 100 : "") + "\n" +
                        "Staff Damage: " +
@@ -289,7 +289,7 @@ public class InventoryManager : MonoBehaviour
                             slot.item = item.itemScriptableObject;
                             if (slot.panel == 1)
                             {
-                                if (slot.item is AbilityItem abilityItem)
+                                if (slot.item is AbilityItem abilityItem && slot.item is not ArmorItem armorItem)
                                 {
                                     abilityItem.DiscardEffects(playerStats);
                                     abilityItem.ApplyEffects(playerStats);

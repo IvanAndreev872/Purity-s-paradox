@@ -16,7 +16,7 @@ public class TeleportToNewLevel : MonoBehaviour
             int levelCompleted = playerStats.levelCompleted;
             if (levelCompleted >= requiredLevelCompleted || true)
             {
-                ItemsLoader.Instance.SaveProgress(false);
+                ItemsLoader.Instance.SaveProgress(true);
                 SceneManager.LoadScene(nextLevelName);
             }
             else
