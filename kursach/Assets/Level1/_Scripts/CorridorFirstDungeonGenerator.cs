@@ -18,12 +18,14 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
     private float roomPercent = 0.8f;
 
     [SerializeField] public Node nodePrefab;
+    [SerializeField] public GameObject NodeParent;
 
     [SerializeField] public float EnemyFrequency = 8;
     [SerializeField] public int FreeSpace = 25;
     [SerializeField] public int EnemyQuantity = 15;
 
     [SerializeField] public List<GameObject> EnemyPrefabs;
+    [SerializeField] public GameObject EnemyParent;
     protected override void RunProceduralGeneration()
     {
         CorridorFirstGeneration();
@@ -37,9 +39,6 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
         // Потенциальные позиции для комнат (концы коридоров)
         HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
         HashSet<Node> NodeList = new HashSet<Node>();
-        GameObject NodeParent = new GameObject("NodeParent");
-        GameObject EnemyParent = new GameObject("EnemyParent");
-
         
         // 1. Создаем коридоры
         List<List<Vector2Int>> corridors = CreateCorridors(floorPositions, potentialRoomPositions);
@@ -63,10 +62,10 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
             floorPositions.UnionWith(corridors[i]);
         }
 
-        CreateNodes(floorPositions, NodeList, NodeParent);
+        CreateNodes(floorPositions, NodeList);
         CreateConnections(NodeList);
 
-        SpawnEnemies(NodeList, EnemyParent);
+        SpawnEnemies(NodeList);
 
         tilemapVisualizer.PaintFloorTiles(floorPositions);
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
@@ -213,7 +212,7 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
         return Vector2Int.zero;        
     }
 
-    void CreateNodes(HashSet<Vector2Int> floorPositions, HashSet<Node> NodeList, GameObject NodeParent)
+    void CreateNodes(HashSet<Vector2Int> floorPositions, HashSet<Node> NodeList)
     {
         foreach (var floor in floorPositions)
         {
@@ -280,7 +279,7 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
         return true;
     }
 
-    void SpawnEnemies(HashSet<Node> NodeList, GameObject EnemyParent)
+    void SpawnEnemies(HashSet<Node> NodeList)
     {
         List<Node> EnemySpawns = NodeList.OrderBy(x => Guid.NewGuid()).ToList();
         int combinedLayerMask = LayerMask.GetMask("Character", "Enemy");
@@ -299,6 +298,30 @@ public class CorridorFirstDungeonGenerator : NewBehaviourScript
             GameObject EnemyPrefab = EnemyPrefabs.ElementAt(random.Next(0, EnemyPrefabs.Count));
             GameObject Enemy = Instantiate(EnemyPrefab, potentialSpawn.transform.position, Quaternion.identity);
             Enemy.transform.SetParent(EnemyParent.transform);
+        }
+    }
+
+    protected override void ReplaceAllEnemies()
+    {
+        RecreateAllEnemies();
+    }
+
+    public void RecreateAllEnemies()
+    {
+        LayerMask enemyLayer = LayerMask.GetMask("Enemy");
+        Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(Vector2.zero, float.MaxValue, enemyLayer);
+
+        foreach (Collider2D col in enemyColliders)
+        {
+            if (col.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+                continue;
+            GameObject enemyPrefab = col.gameObject;
+            Vector2 position = col.transform.position;
+
+            GameObject newEnemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+            newEnemy.transform.SetParent(EnemyParent.transform);
+
+            DestroyImmediate(col.gameObject);
         }
     }
 }

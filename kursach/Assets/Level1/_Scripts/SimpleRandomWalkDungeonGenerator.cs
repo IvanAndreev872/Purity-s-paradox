@@ -51,6 +51,11 @@ public class NewBehaviourScript : AbstractDungeonGenerator
         return floorPositions;
     }
 
+    protected override void ReplaceAllEnemies()
+    {
+        throw new NotImplementedException();
+    }
+
     protected int GetRoomLength(HashSet<Vector2Int> floorPositions)
     {
         floorPositions.OrderBy(x => x.x);

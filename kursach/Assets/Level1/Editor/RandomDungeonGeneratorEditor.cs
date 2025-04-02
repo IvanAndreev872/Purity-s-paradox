@@ -21,5 +21,9 @@ public class RandomDungeonGeneratorEditor : Editor
         {
             generator.GenerateDungeon();
         }
+        if (GUILayout.Button("Recreate Enemies"))
+        {
+            generator.RegenerateEnemies();
+        }
     }
 }

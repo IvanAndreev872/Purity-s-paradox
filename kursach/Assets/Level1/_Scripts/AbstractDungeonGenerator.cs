@@ -18,7 +18,12 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
         RunProceduralGeneration(); // Запускаем процедурную генерацию
     }
 
+    public void RegenerateEnemies()
+    {
+        ReplaceAllEnemies();
+    }
     // Абстрактный метод, который должен быть реализован в дочерних классах
     // Содержит конкретную логику генерации подземелья
     protected abstract void RunProceduralGeneration();
+    protected abstract void ReplaceAllEnemies();
 }
