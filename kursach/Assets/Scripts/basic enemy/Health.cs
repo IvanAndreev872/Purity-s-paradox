@@ -35,6 +35,7 @@ public class Health : MonoBehaviour, DamageInterface
 
     private void Die()
     {
+        GetComponent<RewardAfterDeath>().GetReward(transform.position);
         Destroy(gameObject);
     }
 }

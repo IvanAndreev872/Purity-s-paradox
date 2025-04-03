@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1337322974115910053}
   - component: {fileID: 5969246083462567291}
   - component: {fileID: 2160245803868402940}
+  - component: {fileID: 9071019590001126442}
   m_Layer: 8
   m_Name: Melee greedy
   m_TagString: Regular enemy
@@ -198,3 +199,17 @@ MonoBehaviour:
   damage: 5
   attack_delay: 1
   player: {fileID: 0}
+--- !u!114 &9071019590001126442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692585161213395578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be4fa2de802d9a47b3ba0124437e42d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  moneyPrefab: {fileID: 0}
