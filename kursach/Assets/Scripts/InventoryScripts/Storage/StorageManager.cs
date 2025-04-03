@@ -15,7 +15,6 @@ public class StorageManager : MonoBehaviour
     public TMP_Text itemDescriptionText, costText;
     public Button takeButton, nextButton, prevButton, storageButton, inventoryButton;
     public int slotIdClicked = -1;
-    public Transform player;
     public InventoryManager inventoryManager;
     public void Update()
     {
@@ -50,7 +49,7 @@ public class StorageManager : MonoBehaviour
         storageButton.gameObject.SetActive(false);
         inventoryButton = storage.GetChild(11).GetComponent<Button>();
         inventoryButton.gameObject.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Character").transform;
+        Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
     }
     private void Start()

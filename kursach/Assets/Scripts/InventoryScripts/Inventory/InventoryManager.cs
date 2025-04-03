@@ -12,11 +12,12 @@ public class InventoryManager : MonoBehaviour
     public Transform inventory, inventoryPanel, equipSlotsPanel;
     public List<InventorySlot> slots = new List<InventorySlot>();
     public List<InventorySlot> equipSlots = new List<InventorySlot>();
-    public bool isOpened = false, isShopOpened = false, isStorageOpened = false;
+    public bool isOpened = false, isShopOpened = false, isStorageOpened = false, isChestOpened = false;
     public TMP_Text itemDescriptionText, costText, statsText;
     public Button sellButton, storeButton;
     public PlayerStats playerStats;
     public int slotIdClicked = -1;
+    public Chest chest;
     public void Awake()
     {
         Transform player = GameObject.FindGameObjectWithTag("Character").transform;
@@ -63,7 +64,7 @@ public class InventoryManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !isShopOpened && !isStorageOpened)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isShopOpened && !isStorageOpened && !isChestOpened)
         {
             if (isOpened)
             {
@@ -153,32 +154,55 @@ public class InventoryManager : MonoBehaviour
     }
     public void StoreItem()
     {
-        StorageManager storage = FindObjectOfType<StorageManager>();
-        foreach (InventorySlot slot in slots)
-        {
-            if (slot.id == slotIdClicked)
+        if (isStorageOpened) {
+            StorageManager storage = FindObjectOfType<StorageManager>();
+            foreach (InventorySlot slot in slots)
             {
-                bool ok = true;
-                int pageId = 0;
-                while (pageId < storage.pages.Count && !storage.AddItem(slot.item, 1, pageId))
+                if (slot.id == slotIdClicked)
                 {
-                    pageId++;
-                }
-                if (pageId == storage.pages.Count)
-                {
-                    ok = false;
-                }
-                if (!ok)
-                {
+                    bool ok = true;
+                    int pageId = 0;
+                    while (pageId < storage.pages.Count && !storage.AddItem(slot.item, 1, pageId))
+                    {
+                        pageId++;
+                    }
+                    if (pageId == storage.pages.Count)
+                    {
+                        ok = false;
+                    }
+                    if (!ok)
+                    {
+                        return;
+                    }
+                    slot.NullifyData();
+                    itemDescriptionText.text = "";
+                    costText.text = "";
+                    costText.gameObject.SetActive(false);
+                    storeButton.gameObject.SetActive(false);
+                    slotIdClicked = -1;
                     return;
                 }
-                slot.NullifyData();
-                itemDescriptionText.text = "";
-                costText.text = "";
-                costText.gameObject.SetActive(false);
-                storeButton.gameObject.SetActive(false);
-                slotIdClicked = -1;
-                return;
+            }
+        }
+        else
+        {
+            foreach (InventorySlot slot in slots)
+            {
+                if (slot.id == slotIdClicked)
+                {
+                    bool ok = chest.AddItem(slot.item, 1);
+                    if (!ok)
+                    {
+                        return;
+                    }
+                    slot.NullifyData();
+                    itemDescriptionText.text = "";
+                    costText.text = "";
+                    costText.gameObject.SetActive(false);
+                    storeButton.gameObject.SetActive(false);
+                    slotIdClicked = -1;
+                    return;
+                }
             }
         }
     }

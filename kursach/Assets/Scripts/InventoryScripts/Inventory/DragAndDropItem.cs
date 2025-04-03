@@ -48,7 +48,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 {
                     inventoryManager.sellButton.gameObject.SetActive(false);
                 }
-                if (inventoryManager.isStorageOpened)
+                if (inventoryManager.isStorageOpened || inventoryManager.isChestOpened)
                 {
                     inventoryManager.storeButton.gameObject.SetActive(false);
                 }
@@ -71,7 +71,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                         inventoryManager.sellButton.gameObject.SetActive(false);
                     }
                 }
-                if (inventoryManager.isStorageOpened)
+                if (inventoryManager.isStorageOpened || inventoryManager.isChestOpened)
                 {
                     if (oldSlot.id < 24)
                     {
@@ -162,7 +162,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 {
                     inventoryManager.sellButton.gameObject.SetActive(false);
                 }
-                if (inventoryManager.isStorageOpened)
+                if (inventoryManager.isStorageOpened || inventoryManager.isChestOpened)
                 {
                     inventoryManager.storeButton.gameObject.SetActive(false);
                 }
