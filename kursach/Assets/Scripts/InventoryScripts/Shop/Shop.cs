@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
     public Transform shop;
     public int indexOfCurrentPage = 0;
     public List<ShopPage> pages = new List<ShopPage>();
-    public TMP_Text itemDescriptionText, costText;
+    public TMP_Text itemDescriptionText, costText, pageText;
     public Button buyButton, nextButton, prevButton, shopButton, inventoryButton;
     public int slotIdClicked = -1;
     public InventoryManager inventoryManager;
@@ -59,6 +59,8 @@ public class Shop : MonoBehaviour
         shopButton.gameObject.SetActive(false);
         inventoryButton = shop.GetChild(11).GetComponent<Button>();
         inventoryButton.gameObject.SetActive(false);
+        pageText = shop.GetChild(12).GetComponent<TMP_Text>();
+        pageText.gameObject.SetActive(false);
         Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
     }
@@ -83,6 +85,8 @@ public class Shop : MonoBehaviour
         prevButton.gameObject.SetActive(true);
         shopButton.gameObject.SetActive(true);
         inventoryButton.gameObject.SetActive(true);
+        pageText.text = (indexOfCurrentPage + 1).ToString() + " / " + pages.Count;
+        pageText.gameObject.SetActive(true);
         BG.SetActive(true);
         pages[indexOfCurrentPage].gameObject.SetActive(true);
         inventoryManager.isShopOpened = true;
@@ -97,6 +101,7 @@ public class Shop : MonoBehaviour
         shopButton.gameObject.SetActive(false);
         buyButton.gameObject.SetActive(false);
         inventoryButton.gameObject.SetActive(false);
+        pageText.gameObject.SetActive(false);
         BG.SetActive(false);
         pages[indexOfCurrentPage].ClosePage();
         itemDescriptionText.text = "";
@@ -109,11 +114,15 @@ public class Shop : MonoBehaviour
     }
     public void ShowInventory()
     {
-        CloseShop();
-        shop.gameObject.SetActive(true);
-        shopButton.gameObject.SetActive(true);
-        inventoryButton.gameObject.SetActive(true);
-        inventoryManager.isShopOpened = true;
+        pageText.gameObject.SetActive(false);
+        pages[indexOfCurrentPage].ClosePage();
+        nextButton.gameObject.SetActive(false);
+        prevButton.gameObject.SetActive(false);
+        itemDescriptionText.text = "";
+        costText.text = "";
+        costText.gameObject.SetActive(false);
+        buyButton.gameObject.SetActive(false);
+        slotIdClicked = -1;
         inventoryManager.OpenInventory();
     }
     public void ShowShop()
@@ -130,6 +139,7 @@ public class Shop : MonoBehaviour
         costText.gameObject.SetActive(false);
         buyButton.gameObject.SetActive(false);
         indexOfCurrentPage = (indexOfCurrentPage + 1) % pages.Count;
+        pageText.text = (indexOfCurrentPage + 1).ToString() + " / " + pages.Count;
         pages[indexOfCurrentPage].OpenPage();
     }
     public void ShowPrevPage()
@@ -141,6 +151,7 @@ public class Shop : MonoBehaviour
         costText.gameObject.SetActive(false);
         buyButton.gameObject.SetActive(false);
         indexOfCurrentPage = (indexOfCurrentPage - 1 + pages.Count) % pages.Count;
+        pageText.text = (indexOfCurrentPage + 1).ToString() + " / " + pages.Count;
         pages[indexOfCurrentPage].OpenPage();
     }
     public void BuyItem()

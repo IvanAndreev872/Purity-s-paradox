@@ -12,7 +12,7 @@ public class StorageManager : MonoBehaviour
     public Transform storage;
     public int indexOfCurrentPage = 0;
     public List<StoragePage> pages = new List<StoragePage>();
-    public TMP_Text itemDescriptionText, costText;
+    public TMP_Text itemDescriptionText, costText, pageText;
     public Button takeButton, nextButton, prevButton, storageButton, inventoryButton;
     public int slotIdClicked = -1;
     public InventoryManager inventoryManager;
@@ -49,6 +49,8 @@ public class StorageManager : MonoBehaviour
         storageButton.gameObject.SetActive(false);
         inventoryButton = storage.GetChild(11).GetComponent<Button>();
         inventoryButton.gameObject.SetActive(false);
+        pageText = storage.GetChild(12).GetComponent<TMP_Text>();
+        pageText.gameObject.SetActive(false);
         Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
     }
@@ -78,6 +80,8 @@ public class StorageManager : MonoBehaviour
         prevButton.gameObject.SetActive(true);
         storageButton.gameObject.SetActive(true);
         inventoryButton.gameObject.SetActive(true);
+        pageText.text = (indexOfCurrentPage + 1).ToString() + " / " + pages.Count;
+        pageText.gameObject.SetActive(true);
         BG.SetActive(true);
         pages[indexOfCurrentPage].gameObject.SetActive(true);
         inventoryManager.isStorageOpened = true;
@@ -92,6 +96,7 @@ public class StorageManager : MonoBehaviour
         storageButton.gameObject.SetActive(false);
         takeButton.gameObject.SetActive(false);
         inventoryButton.gameObject.SetActive(false);
+        pageText.gameObject.SetActive(false);
         BG.SetActive(false);
         pages[indexOfCurrentPage].gameObject.SetActive(false);
         itemDescriptionText.text = "";
@@ -104,11 +109,15 @@ public class StorageManager : MonoBehaviour
     }
     public void ShowInventory()
     {
-        CloseStorage();
-        storage.gameObject.SetActive(true);
-        storageButton.gameObject.SetActive(true);
-        inventoryButton.gameObject.SetActive(true);
-        inventoryManager.isStorageOpened = true;
+        pageText.gameObject.SetActive(false);
+        pages[indexOfCurrentPage].ClosePage();
+        nextButton.gameObject.SetActive(false);
+        prevButton.gameObject.SetActive(false);
+        itemDescriptionText.text = "";
+        costText.text = "";
+        costText.gameObject.SetActive(false);
+        takeButton.gameObject.SetActive(false);
+        slotIdClicked = -1;
         inventoryManager.OpenInventory();
     }
     public void ShowStorage()
@@ -125,6 +134,7 @@ public class StorageManager : MonoBehaviour
         costText.gameObject.SetActive(false);
         takeButton.gameObject.SetActive(false);
         indexOfCurrentPage = (indexOfCurrentPage + 1) % pages.Count;
+        pageText.text = (indexOfCurrentPage + 1).ToString() + " / " + pages.Count;
         pages[indexOfCurrentPage].OpenPage();
     }
     public void ShowPrevPage()
@@ -136,6 +146,7 @@ public class StorageManager : MonoBehaviour
         costText.gameObject.SetActive(false);
         takeButton.gameObject.SetActive(false);
         indexOfCurrentPage = (indexOfCurrentPage - 1 + pages.Count) % pages.Count;
+        pageText.text = (indexOfCurrentPage + 1).ToString() + " / " + pages.Count;
         pages[indexOfCurrentPage].OpenPage();
     }
     public void TakeItem()
