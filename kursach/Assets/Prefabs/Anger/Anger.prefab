@@ -82,8 +82,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1520568901
+  m_SortingLayer: 2
   m_SortingOrder: 23
   m_Sprite: {fileID: -779913436, guid: e16433f61a8956c4d83ca51b1b116ab1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -184,8 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efa74dd962f7454c9339850b5e4bbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_healthpoint: 100
-  raged_after_healthpoint: 75
+  max_healthpoint: 1000
+  raged_after_healthpoint: 950
   enraged_after_healthpoint: 50
 --- !u!114 &7152172832462450048
 MonoBehaviour:
@@ -225,7 +225,7 @@ MonoBehaviour:
   damage: 25
   explosion_prefab: {fileID: 4058112931313886503, guid: 11ec817cb140eab4fae59e12f0a0eb52, type: 3}
   path_duration: 2
-  path_prefab: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
+  path_prefab: {fileID: 3717638489433156332, guid: b1e4b4d5d9d01944b9fc912fcac2dae8, type: 3}
 --- !u!114 &5903971159656553069
 MonoBehaviour:
   m_ObjectHideFlags: 0

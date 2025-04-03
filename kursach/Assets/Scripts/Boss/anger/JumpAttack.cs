@@ -10,6 +10,7 @@ public class JumpAttack : MonoBehaviour
     public Transform player;
     public MovementInterface movement_interface;
 
+    public GameObject jumpEffect;
     public GameObject shadow_prefab;
     public float attack_distance;
     public float ability_duration;
@@ -22,6 +23,7 @@ public class JumpAttack : MonoBehaviour
     private bool is_jumping = false;
     private float jump_time;
 
+    private EnemyMelee melee;
     private Rigidbody2D rb;
     private SpriteRenderer boss_renderer;
     private Collider2D boss_collider;
@@ -40,6 +42,9 @@ public class JumpAttack : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boss_collider = GetComponent<Collider2D>();
         boss_renderer = GetComponent<SpriteRenderer>();
+        Debug.Log(1);
+        melee = GetComponent<EnemyMelee>();
+        Debug.Log(melee);
     }
 
     // Update is called once per frame
@@ -71,6 +76,7 @@ public class JumpAttack : MonoBehaviour
     {
         if (Time.time > jump_delay + jump_time)
         {
+            melee.enabled = false;
             movement_interface.able_to_move = false;
             jump_time = Time.time;
             is_jumping = true;
@@ -78,6 +84,7 @@ public class JumpAttack : MonoBehaviour
             boss_renderer.enabled = false;
             boss_collider.enabled = false;
 
+            Instantiate(jumpEffect, transform.position, transform.rotation);
             shadow = Instantiate(shadow_prefab, transform.position, transform.rotation, transform);
         }
     }
@@ -101,6 +108,7 @@ public class JumpAttack : MonoBehaviour
     {
         boss_collider.enabled = true;
         boss_renderer.enabled = true;
+        melee.enabled = true;
 
         movement_interface.able_to_move = true;
         is_jumping = false;
