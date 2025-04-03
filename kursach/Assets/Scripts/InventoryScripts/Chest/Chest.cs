@@ -44,7 +44,6 @@ public class Chest : MonoBehaviour
     }
     public void Awake()
     {
-        Debug.Log("AWAKE");
         chest = GameObject.FindGameObjectWithTag("Chest canvas").transform.GetChild(0);
         chestPanel = chest.GetChild(0);
         for (int i = 0; i < chestPanel.childCount; i++)
