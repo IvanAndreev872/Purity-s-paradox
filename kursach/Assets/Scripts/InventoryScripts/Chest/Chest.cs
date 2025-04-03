@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Linq;
-using Unity.VisualScripting;
 
 public class Chest : MonoBehaviour
 {
@@ -83,7 +80,7 @@ public class Chest : MonoBehaviour
     }
     private void ShowPressButtonText()
     {
-        pressButtonText.text = "Press E to open the chest";
+        pressButtonText.text = "Press E To Open The Chest";
         pressButtonText.gameObject.SetActive(true);
     }
     private void FillChestSlots()
@@ -113,9 +110,9 @@ public class Chest : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
-        inTrigger = true;
         if (other.CompareTag("Character"))
         {
+            inTrigger = true;
             AddButtonsListeners();
             ShowPressButtonText();
             FillChestSlots();
@@ -141,9 +138,9 @@ public class Chest : MonoBehaviour
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        inTrigger = false;
         if (other.CompareTag("Character"))
         {
+            inTrigger = false;
             RemoveButtonsListeners();
             HidePressButtonText();
             NullifyChestSlots();

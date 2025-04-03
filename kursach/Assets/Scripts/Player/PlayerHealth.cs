@@ -23,23 +23,29 @@ public class PlayerHealth : MonoBehaviour, DamageInterface
         max_healthpoint = playerStats.maxHealth;
     }
 
-    void UpdateHealth(float damage)
+    void UpdateHealth()
     {
         PlayerStats playerStats = GetComponent<PlayerStats>();
-        playerStats.health = Math.Max(0, playerStats.health - damage);
+        playerStats.health = Math.Max(0, current_health);
         playerStats.UpdateUI();
+    }
+
+    public void PartHeal(float part)
+    {
+        current_health = Math.Max(current_health, max_healthpoint * part);
+        UpdateHealth();
     }
 
     public void Hit(float damage)
     {
         if (damagable)
         {
-            UpdateHealth(damage);
-            if (current_health <= damage)
+            current_health -= damage;
+            UpdateHealth();
+            if (current_health <= 0)
             {
                 Die();
             }
-            current_health -= damage;
         }
     }
 

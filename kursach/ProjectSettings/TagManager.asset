@@ -12,6 +12,7 @@ TagManager:
   - Regular enemy
   - Slime enemy
   - Chest canvas
+  - Hints
   layers:
   - Default
   - TransparentFX
