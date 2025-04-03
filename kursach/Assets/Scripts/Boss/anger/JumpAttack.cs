@@ -12,6 +12,7 @@ public class JumpAttack : MonoBehaviour
 
     public GameObject jumpEffect;
     public GameObject shadow_prefab;
+    public GameObject explosion_prefab;
     public float attack_distance;
     public float ability_duration;
     public float damage;
@@ -114,14 +115,7 @@ public class JumpAttack : MonoBehaviour
         is_jumping = false;
         Destroy(shadow);
 
-        if (Vector2.Distance(player.transform.position, transform.position) <= attack_distance)
-        {
-            DamageInterface enemy = player.gameObject.GetComponent<DamageInterface>();
-            if (enemy != null)
-            {
-                enemy.Hit(damage);
-            }
-        }
+        Instantiate(explosion_prefab, transform.position, transform.rotation);
     }
 
     void MoveTowards(Vector3 target)

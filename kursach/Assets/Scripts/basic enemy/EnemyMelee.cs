@@ -26,7 +26,6 @@ public class EnemyMelee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Attack " +  attack_time);
         if (Time.time > attack_time + attack_delay)
         {
             Attack();

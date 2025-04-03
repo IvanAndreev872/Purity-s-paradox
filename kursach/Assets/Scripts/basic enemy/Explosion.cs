@@ -34,4 +34,13 @@ public class Explosion : MonoBehaviour
         }
         Destroy(gameObject, animationLength);
     }
+
+    private void OnDrawGizmos()
+    {
+        // ”становите цвет Gizmos
+        Gizmos.color = Color.red;
+
+        // –исуем сферу, представл€ющую радиус взрыва
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 }

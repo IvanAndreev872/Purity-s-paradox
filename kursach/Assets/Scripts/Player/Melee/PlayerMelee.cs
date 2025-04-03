@@ -49,8 +49,7 @@ public abstract class PlayerMelee : MonoBehaviour
 
     protected virtual IEnumerator MakeSlash()
     {
-        GameObject swing = Instantiate(swingPrefab, transform.position, Quaternion.identity);
-        swing.transform.parent = transform;
+        GameObject swing = Instantiate(swingPrefab, transform.position, Quaternion.identity, transform);
         swing.transform.localScale = Vector2.one * radius / 2f;
 
         yield return new WaitForSeconds(slashDuration);
