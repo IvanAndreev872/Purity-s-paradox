@@ -26,4 +26,13 @@ public class FireProjectile : PlayerProjectile
 
         Destroy(gameObject);
     }
+
+    public void UpdateFireBullet(PlayerStats playerStats)
+    {
+        fireDistance = playerStats.staffRange;
+        damage = playerStats.staffDamage;
+        effectAttacksCount = playerStats.staffEffectAttacksCount;
+        effectAttacksDelay = playerStats.staffEffectAttacksDelay;
+        fireEffectDamage = playerStats.staffEffectDamage;
+    }
 }

@@ -9,6 +9,7 @@ public class FreezePlayerMelee : PlayerMelee
 
     public void UpdateFreezeSword(PlayerStats playerStats)
     {
+        isSwordEquipped = playerStats.isSwordEquipped > 0;
         radius = playerStats.swordRadius;
         damage = playerStats.swordDamage;
         slashDuration = playerStats.swordSlashDuration;

@@ -20,12 +20,7 @@ MonoBehaviour:
   maxCount: 1
   cost: 0
   sellCoefficient: 10
-  itemDescription: The rune increases the staff's charge movement speed by 5%
-  staffAdditionalDamage: 0
-  poisonDamagePerSec: 0
-  fireDamagePerSec: 0
-  bleedingDamagePerSec: 0
-  freezeCoefficient: 1
-  staffAdditionalRadius: 0
-  staffSpeedCoefficient: 1
-  staffBulletSpeedCoefficient: 1.05
+  itemDescription: The rune increases the staff's charge movement speed by 30%
+  staffAdditionalDamage: 5
+  staffAttackDelay: 0
+  staffBulletSpeedCoefficient: 1.3

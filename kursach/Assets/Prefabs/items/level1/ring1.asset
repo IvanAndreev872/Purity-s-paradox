@@ -20,11 +20,6 @@ MonoBehaviour:
   maxCount: 1
   cost: 0
   sellCoefficient: 10
-  itemDescription: Silver ring gives 5 extra damage points for swords
-  swordAdditionalDamage: 5
-  poisonDamagePerSec: 0
-  fireDamagePerSec: 0
-  bleedingDamagePerSec: 0
-  freezeCoefficient: 1
-  swordAdditionalRadius: 0
-  swordSpeedCoefficient: 1
+  itemDescription: Silver ring gives 10 extra damage points for swords
+  swordAdditionalDamage: 10
+  swordAttackDelay: 0

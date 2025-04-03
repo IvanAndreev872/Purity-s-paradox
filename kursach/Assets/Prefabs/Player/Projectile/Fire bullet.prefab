@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6811576194424391349}
   - component: {fileID: 9117877974353967733}
   - component: {fileID: 5140554177507218899}
-  - component: {fileID: 1884900800082182776}
+  - component: {fileID: -5862365129907159652}
   m_Layer: 11
-  m_Name: Water bullet
+  m_Name: Fire bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 1
---- !u!114 &1884900800082182776
+--- !u!114 &-5862365129907159652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,9 +158,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7932271090808488228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03382987a88b3ac43a40efb53e330b1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6833ccdf9aef60b4e8b7561103767acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fireDistance: 0
   damage: 0
-  fireEnemyMultiplier: 0
+  effectAttacksCount: 0
+  effectAttacksDelay: 0
+  fireEffectDamage: 0
+  fireEffectPrefab: {fileID: 2235477991518615897, guid: 5687891a5fa11a64daead9069d54a627, type: 3}

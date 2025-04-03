@@ -26,5 +26,12 @@ public class PoisonProjectile : PlayerProjectile
         Destroy(gameObject);
     }
 
-
+    public void UpdatePoisonBullet(PlayerStats playerStats)
+    {
+        fireDistance = playerStats.staffRange;
+        damage = playerStats.staffDamage;
+        effectAttacksCount = playerStats.staffEffectAttacksCount;
+        effectAttacksDelay = playerStats.staffEffectAttacksDelay;
+        poisonEffectDamage = playerStats.staffEffectDamage;
+    }
 }

@@ -99,7 +99,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -163,8 +163,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1520568901
+  m_SortingLayer: 2
   m_SortingOrder: 23
   m_Sprite: {fileID: 938773292, guid: f5f8554202526514580cb7a6b12aeeb9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -198,6 +198,7 @@ MonoBehaviour:
   isOpened: 0
   isShopOpened: 0
   isStorageOpened: 0
+  isChestOpened: 0
   itemDescriptionText: {fileID: 0}
   costText: {fileID: 0}
   statsText: {fileID: 0}
@@ -205,6 +206,7 @@ MonoBehaviour:
   storeButton: {fileID: 0}
   playerStats: {fileID: 0}
   slotIdClicked: -1
+  chest: {fileID: 0}
 --- !u!114 &8520969801215445317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,15 +247,21 @@ MonoBehaviour:
   swordSlowdownCoeffitient: 1
   isSwordFreezed: 0
   staffDamage: 0
-  staffRadius: 0
-  staffSpeed: 0
-  bulletSpeed: 0
-  staffSpeedCoefficient: 1
+  staffRange: 0
+  staffAttackDelay: 0
+  staffBulletSpeed: 0
+  staffBulletSpeedBasic: 15
   staffBulletSpeedCoefficient: 1
-  poisonStaffDamagePerSec: 0
-  fireStaffDamagePerSec: 0
-  freezeStaffCoefficient: 1
   isStaffEquipped: 0
+  staffEffectAttacksCount: 0
+  staffEffectAttacksDelay: 0
+  staffEffectDamage: 0
+  isStaffPoisoned: 0
+  isStaffFired: 0
+  staffSlowdownTime: 0
+  staffSlowdownCoeffitient: 1
+  isStaffFreezed: 0
+  staffFireCoefficient: 0
 --- !u!114 &949162824825950820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,4 +369,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet_prefab: {fileID: 7932271090808488228, guid: ea9bc5beacb1366468ead947422f68b5, type: 3}
-  bullet_speed: 15
+  bullet_speed: 0
+  shootDelay: 0
+  isStaffEquipped: 0

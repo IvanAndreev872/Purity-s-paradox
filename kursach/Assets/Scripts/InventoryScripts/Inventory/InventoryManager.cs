@@ -116,15 +116,15 @@ public class InventoryManager : MonoBehaviour
                        ((playerStats.isSwordFired > 0) ? "Fire After Sword Attack: ON\n" : "") +
                        ((playerStats.isSwordFreezed > 0) ?
                        "Sword Freeze Power: " + Math.Round(playerStats.swordSlowdownCoeffitient - 1, 2) * 100 : "") + "\n" +
+
                        "Staff Damage: " +
                        (playerStats.isStaffEquipped > 0 ? playerStats.staffDamage : "0") + "\n" +
-                       ((playerStats.isStaffEquipped > 0 && playerStats.poisonStaffDamagePerSec > 0) ? 
-                       ("Staff Poison Damage Per Sec: " + Math.Round(playerStats.poisonStaffDamagePerSec, 1) + "\n") : "") +
-                       ((playerStats.isStaffEquipped > 0 && playerStats.fireStaffDamagePerSec > 0) ? 
-                       ("Staff Fire Damage Per Sec: " + Math.Round(playerStats.fireStaffDamagePerSec, 1) + "\n") : "") +
-                       ((playerStats.isStaffEquipped > 0 && playerStats.freezeStaffCoefficient > 1) ? 
-                       ("Staff Freeze Power: " + (Math.Round(playerStats.freezeStaffCoefficient - 1, 2) * 100) + "%" + "\n") : "") +
-                       "\n" +
+                       "Staff Range: " + 
+                       (playerStats.isStaffEquipped > 0 ? playerStats.staffRange : "0") + "\n" +
+                       ((playerStats.isStaffPoisoned > 0) ? "Poison After Staff Attack: ON\n" : "") +
+                       ((playerStats.isStaffFired > 0) ? "Fire After Staff Attack: ON\n" : "") +
+                       ((playerStats.isStaffFreezed > 0) ?
+                       "Staff Freeze Power: " + Math.Round(playerStats.staffSlowdownCoeffitient - 1, 2) * 100 : "") + "\n" +
                        "Walk Speed: " + Math.Round(playerStats.walkSpeed, 1) + "\n" +
                        "Dash Speed: " + Math.Round(playerStats.dashSpeed, 1) + "\n" +
                        "Dash Duration: " + Math.Round(playerStats.dashDuration, 1) + "\n" +

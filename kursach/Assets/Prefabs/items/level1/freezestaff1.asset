@@ -21,10 +21,17 @@ MonoBehaviour:
   cost: 0
   sellCoefficient: 10
   itemDescription: Frost Staff charges an ice ball that can slow enemies with ice
-  staffDamage: 15
-  staffAdditionalRadius: 0
-  staffSpeedCoefficient: 1
-  staffBulletSpeedCoefficient: 1
-  poisonStaffDamagePerSec: 0
-  fireStaffDamagePerSec: 0
-  freezeStaffCoefficient: 1.5
+  staffDamage: 30
+  staffRange: 15
+  staffAttackDelay: 1
+  staffBulletSpeed: 15
+  isStaffEquipped: 1
+  staffEffectAttacksCount: 0
+  staffEffectAttacksDelay: 0
+  staffEffectDamage: 0
+  isStaffPoisoned: 0
+  isStaffFired: 0
+  staffSlowdownTime: 1
+  staffSlowdownCoeffitient: 0.5
+  isStaffFreezed: 1
+  staffFireCoefficient: 1

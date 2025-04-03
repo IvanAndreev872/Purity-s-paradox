@@ -21,10 +21,17 @@ MonoBehaviour:
   cost: 0
   sellCoefficient: 10
   itemDescription: Flame Staff charges a fireball that can set enemies on fire
-  staffDamage: 15
-  staffAdditionalRadius: 0
-  staffSpeedCoefficient: 1
-  staffBulletSpeedCoefficient: 1
-  poisonStaffDamagePerSec: 0
-  fireStaffDamagePerSec: 2
-  freezeStaffCoefficient: 1
+  staffDamage: 30
+  staffRange: 15
+  staffAttackDelay: 1
+  staffBulletSpeed: 15
+  isStaffEquipped: 1
+  staffEffectAttacksCount: 3
+  staffEffectAttacksDelay: 0.5
+  staffEffectDamage: 10
+  isStaffPoisoned: 0
+  isStaffFired: 1
+  staffSlowdownTime: 0
+  staffSlowdownCoeffitient: 1
+  isStaffFreezed: 0
+  staffFireCoefficient: 1

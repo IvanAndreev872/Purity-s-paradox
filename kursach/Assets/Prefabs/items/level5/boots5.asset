@@ -20,9 +20,9 @@ MonoBehaviour:
   maxCount: 1
   cost: 0
   sellCoefficient: 10
-  itemDescription: Mystical Demon Boots increase movement speed by 25%
-  walkAccelerateCoefficient: 1.25
-  dashAccelerateCoefficient: 1
-  additionalDashDurationTime: 0
+  itemDescription: Mystical Demon Boots increase movement speed by 100%
+  walkAccelerateCoefficient: 2
+  dashAccelerateCoefficient: 1.4
+  additionalDashDurationTime: 0.35
   isDashInvulnerable: 0
   isDashPoisoned: 0

@@ -10,6 +10,7 @@ public class BleedingPlayerMelee : PlayerMelee
 
     public void UpdateBleedingSword(PlayerStats playerStats)
     {
+        isSwordEquipped = playerStats.isSwordEquipped > 0;
         radius = playerStats.swordRadius;
         damage = playerStats.swordDamage;
         slashDuration = playerStats.swordSlashDuration;

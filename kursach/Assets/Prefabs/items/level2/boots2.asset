@@ -20,9 +20,9 @@ MonoBehaviour:
   maxCount: 1
   cost: 0
   sellCoefficient: 10
-  itemDescription: Runner's Boots increase movement speed by 10%
-  walkAccelerateCoefficient: 1.1
-  dashAccelerateCoefficient: 1
-  additionalDashDurationTime: 0
+  itemDescription: Runner's Boots increase movement speed by 40%
+  walkAccelerateCoefficient: 1.4
+  dashAccelerateCoefficient: 1.1
+  additionalDashDurationTime: 0.2
   isDashInvulnerable: 0
   isDashPoisoned: 0

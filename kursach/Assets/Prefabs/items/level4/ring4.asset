@@ -20,11 +20,6 @@ MonoBehaviour:
   maxCount: 1
   cost: 0
   sellCoefficient: 10
-  itemDescription: Ring of Mighty Strikes gives 20 extra damage points for swords
-  swordAdditionalDamage: 20
-  poisonDamagePerSec: 0
-  fireDamagePerSec: 0
-  bleedingDamagePerSec: 0
-  freezeCoefficient: 1
-  swordAdditionalRadius: 0
-  swordSpeedCoefficient: 1
+  itemDescription: Ring of Mighty Strikes gives 40 extra damage points for swords
+  swordAdditionalDamage: 40
+  swordAttackDelay: 0.1

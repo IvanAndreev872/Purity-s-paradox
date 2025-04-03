@@ -20,11 +20,6 @@ MonoBehaviour:
   maxCount: 1
   cost: 0
   sellCoefficient: 10
-  itemDescription: Warrior's Ring gives 10 extra damage points for swords
-  swordAdditionalDamage: 10
-  poisonDamagePerSec: 0
-  fireDamagePerSec: 0
-  bleedingDamagePerSec: 0
-  freezeCoefficient: 1
-  swordAdditionalRadius: 0
-  swordSpeedCoefficient: 1
+  itemDescription: Warrior's Ring gives 20 extra damage points for swords
+  swordAdditionalDamage: 20
+  swordAttackDelay: 0

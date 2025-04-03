@@ -22,10 +22,17 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Blazing Staff charges a fireball that can set enemies on fire.
     This is an upgraded version of Flaming Staff
-  staffDamage: 50
-  staffAdditionalRadius: 0
-  staffSpeedCoefficient: 1.2
-  staffBulletSpeedCoefficient: 1
-  poisonStaffDamagePerSec: 0
-  fireStaffDamagePerSec: 5
-  freezeStaffCoefficient: 1
+  staffDamage: 90
+  staffRange: 20
+  staffAttackDelay: 0.9
+  staffBulletSpeed: 20
+  isStaffEquipped: 1
+  staffEffectAttacksCount: 5
+  staffEffectAttacksDelay: 0.5
+  staffEffectDamage: 15
+  isStaffPoisoned: 0
+  isStaffFired: 1
+  staffSlowdownTime: 0
+  staffSlowdownCoeffitient: 1
+  isStaffFreezed: 0
+  staffFireCoefficient: 1

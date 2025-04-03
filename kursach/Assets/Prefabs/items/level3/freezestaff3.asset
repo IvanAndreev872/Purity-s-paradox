@@ -22,10 +22,17 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Glacial Staff charges an ice ball that can slow enemies with ice.
     This is an upgraded version of Frost Staff
-  staffDamage: 60
-  staffAdditionalRadius: 0
-  staffSpeedCoefficient: 1.2
-  staffBulletSpeedCoefficient: 1
-  poisonStaffDamagePerSec: 0
-  fireStaffDamagePerSec: 0
-  freezeStaffCoefficient: 2
+  staffDamage: 90
+  staffRange: 20
+  staffAttackDelay: 0.9
+  staffBulletSpeed: 20
+  isStaffEquipped: 1
+  staffEffectAttacksCount: 0
+  staffEffectAttacksDelay: 0
+  staffEffectDamage: 0
+  isStaffPoisoned: 0
+  isStaffFired: 0
+  staffSlowdownTime: 1.2
+  staffSlowdownCoeffitient: 0.2
+  isStaffFreezed: 1
+  staffFireCoefficient: 1

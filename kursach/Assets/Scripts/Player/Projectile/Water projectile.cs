@@ -24,4 +24,11 @@ public class WaterProjectile : PlayerProjectile
 
         Destroy(gameObject);
     }
+
+    public void UpdateWaterBullet(PlayerStats playerStats)
+    {
+        fireEnemyMultiplier = playerStats.staffFireCoefficient;
+        fireDistance = playerStats.staffRange;
+        damage = playerStats.staffDamage;
+    }
 }

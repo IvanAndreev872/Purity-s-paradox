@@ -20,9 +20,9 @@ MonoBehaviour:
   maxCount: 1
   cost: 0
   sellCoefficient: 10
-  itemDescription: Hypercharged Boots increase movement speed by 20%
-  walkAccelerateCoefficient: 1.2
-  dashAccelerateCoefficient: 1
-  additionalDashDurationTime: 0
+  itemDescription: Hypercharged Boots increase movement speed by 80%
+  walkAccelerateCoefficient: 1.8
+  dashAccelerateCoefficient: 1.3
+  additionalDashDurationTime: 0.3
   isDashInvulnerable: 0
   isDashPoisoned: 0

@@ -42,6 +42,26 @@ public class ItemsLoader : MonoBehaviour
         }
         return res;
     }
+    public async Task<List<GameObject>> LoadAllBulletsPrefabs()
+    {
+        List<GameObject> res = new();
+        AsyncOperationHandle<IList<GameObject>> handle = Addressables.LoadAssetsAsync<GameObject>("bullet", null);
+        await handle.Task;
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            IList<GameObject> bullets = handle.Result;
+            foreach (GameObject bulletPrefab in bullets)
+            {
+                res.Add(bulletPrefab);
+            }
+            Debug.Log("LOADED " + res.Count);
+        }
+        else
+        {
+            Debug.LogError("Failed to load bullet prefabs");
+        }
+        return res;
+    }
     public async Task<GameObject> LoadSwing()
     {
         GameObject res = null;

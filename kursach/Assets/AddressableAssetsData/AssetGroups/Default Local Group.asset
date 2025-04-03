@@ -353,6 +353,30 @@ MonoBehaviour:
     m_SerializedLabels:
     - swing
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea9bc5beacb1366468ead947422f68b5
+    m_Address: Assets/Prefabs/Player/Projectile/Water bullet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29a40987054decc4583fa90ab831011d
+    m_Address: Assets/Prefabs/Player/Projectile/Poison bullet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d20d6864a8147d74e940775580db8176
+    m_Address: Assets/Prefabs/Player/Projectile/Freeze bullet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af33d908c7ff68e448857c0103af6d43
+    m_Address: Assets/Prefabs/Player/Projectile/Fire bullet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - bullet
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b0c1abd1c44881141856c8ba50057fad, type: 2}
   m_SchemaSet:

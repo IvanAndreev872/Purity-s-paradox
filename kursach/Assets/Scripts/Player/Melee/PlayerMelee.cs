@@ -10,6 +10,7 @@ public abstract class PlayerMelee : MonoBehaviour
     public float slashDuration;
     public float attackDelay;
     private float attackTime;
+    public bool isSwordEquipped;
     public GameObject swingPrefab;
 
     private LayerMask enemyLayer;
@@ -23,9 +24,8 @@ public abstract class PlayerMelee : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (CheckAttack() && Time.time > attackDelay + attackTime)
+        if (CheckAttack())
         {
-            attackTime = Time.time;
             Attack();
             StartCoroutine(MakeSlash());
         }
@@ -33,6 +33,7 @@ public abstract class PlayerMelee : MonoBehaviour
 
     protected virtual void Attack()
     {
+        attackTime = Time.time;
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayer);
         foreach (Collider2D hitCollider in hitColliders)
         {
@@ -44,7 +45,9 @@ public abstract class PlayerMelee : MonoBehaviour
 
     protected virtual bool CheckAttack()
     {
-        return Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(1);
+        return (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
+                && Time.time > attackDelay + attackTime
+                && isSwordEquipped;
     }
 
     protected virtual IEnumerator MakeSlash()

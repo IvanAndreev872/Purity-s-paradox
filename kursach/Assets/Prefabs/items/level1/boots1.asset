@@ -20,9 +20,9 @@ MonoBehaviour:
   maxCount: 1
   cost: 0
   sellCoefficient: 10
-  itemDescription: Old Boots increase movement speed by 5%
-  walkAccelerateCoefficient: 1.05
-  dashAccelerateCoefficient: 1
+  itemDescription: Old Boots increase movement speed by 20%
+  walkAccelerateCoefficient: 1.2
+  dashAccelerateCoefficient: 1.05
   additionalDashDurationTime: 0
   isDashInvulnerable: 0
   isDashPoisoned: 0

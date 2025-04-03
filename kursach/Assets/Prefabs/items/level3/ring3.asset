@@ -20,11 +20,6 @@ MonoBehaviour:
   maxCount: 1
   cost: 0
   sellCoefficient: 10
-  itemDescription: Ring of Great Power gives 15 extra damage points for swords
-  swordAdditionalDamage: 15
-  poisonDamagePerSec: 0
-  fireDamagePerSec: 0
-  bleedingDamagePerSec: 0
-  freezeCoefficient: 1
-  swordAdditionalRadius: 0
-  swordSpeedCoefficient: 1
+  itemDescription: Ring of Great Power gives 30 extra damage points for swords
+  swordAdditionalDamage: 30
+  swordAttackDelay: 0.05

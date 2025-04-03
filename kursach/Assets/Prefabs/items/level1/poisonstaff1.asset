@@ -21,10 +21,17 @@ MonoBehaviour:
   cost: 0
   sellCoefficient: 10
   itemDescription: Poison Wand casts a projectile that can poison enemies
-  staffDamage: 15
-  staffAdditionalRadius: 0
-  staffSpeedCoefficient: 1
-  staffBulletSpeedCoefficient: 1
-  poisonStaffDamagePerSec: 2
-  fireStaffDamagePerSec: 0
-  freezeStaffCoefficient: 1
+  staffDamage: 30
+  staffRange: 15
+  staffAttackDelay: 1
+  staffBulletSpeed: 15
+  isStaffEquipped: 1
+  staffEffectAttacksCount: 3
+  staffEffectAttacksDelay: 0.5
+  staffEffectDamage: 5
+  isStaffPoisoned: 1
+  isStaffFired: 0
+  staffSlowdownTime: 0
+  staffSlowdownCoeffitient: 1
+  isStaffFreezed: 0
+  staffFireCoefficient: 1

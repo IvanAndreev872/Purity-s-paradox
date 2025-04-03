@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FreezeProjectile : PlayerProjectile
 {
@@ -20,5 +21,13 @@ public class FreezeProjectile : PlayerProjectile
         }
 
         Destroy(gameObject);
+    }
+
+    public void UpdateFreezeBullet(PlayerStats playerStats)
+    {
+        fireDistance = playerStats.staffRange;
+        damage = playerStats.staffDamage;
+        slowdownCoeffitient = playerStats.staffSlowdownCoeffitient;
+        slowdownTime = playerStats.staffSlowdownTime;
     }
 }

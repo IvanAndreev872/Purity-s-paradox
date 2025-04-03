@@ -40,15 +40,24 @@ public class PlayerStats : MonoBehaviour
     public int isSwordFreezed = 0;
     // staff
     public float staffDamage = 0;
-    public float staffRadius = 0;
-    public float staffSpeed = 0;
-    public float bulletSpeed = 0;
-    public float staffSpeedCoefficient = 1;
+    public float staffRange = 0;
+    public float staffAttackDelay = 0;
+    public float staffBulletSpeed = 0;
+    public float staffBulletSpeedBasic = 15;
     public float staffBulletSpeedCoefficient = 1;
-    public float poisonStaffDamagePerSec = 0;
-    public float fireStaffDamagePerSec = 0;
-    public float freezeStaffCoefficient = 1;
     public int isStaffEquipped = 0;
+    // staff with effect
+    public int staffEffectAttacksCount = 0;
+    public float staffEffectAttacksDelay = 0;
+    public float staffEffectDamage = 0;
+    public int isStaffPoisoned = 0;
+    public int isStaffFired = 0;
+    // freeze staff
+    public float staffSlowdownTime = 0;
+    public float staffSlowdownCoeffitient = 1;
+    public int isStaffFreezed = 0;
+    // water staff
+    public float staffFireCoefficient = 0;
 
 
     private void Awake()
