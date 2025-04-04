@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3836325275067365497}
   - component: {fileID: 1337322974115910053}
   - component: {fileID: 5969246083462567291}
-  - component: {fileID: 2160245803868402940}
   - component: {fileID: 9071019590001126442}
+  - component: {fileID: 2056534398591144244}
   m_Layer: 8
   m_Name: Melee greedy
   m_TagString: Regular enemy
@@ -183,22 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_healthpoint: 100
---- !u!114 &2160245803868402940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2692585161213395578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b1505c57debe040a88e5cd21879f8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 1.5
-  damage: 5
-  attack_delay: 1
-  player: {fileID: 0}
+  isDead: 0
 --- !u!114 &9071019590001126442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,4 +197,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}
+--- !u!114 &2056534398591144244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692585161213395578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5425607e39ec3ec44985c98b11c81590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1.5
+  damage: 5
+  attack_delay: 1
+  player: {fileID: 0}
   moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}

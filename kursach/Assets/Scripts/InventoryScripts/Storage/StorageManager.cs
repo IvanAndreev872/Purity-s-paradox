@@ -8,7 +8,6 @@ using System.Linq;
 
 public class StorageManager : MonoBehaviour
 {
-    public GameObject BG;
     public Transform storage;
     public int indexOfCurrentPage = 0;
     public List<StoragePage> pages = new List<StoragePage>();
@@ -32,7 +31,6 @@ public class StorageManager : MonoBehaviour
                 pages.Add(storage.GetChild(i).GetComponent<StoragePage>());
             }
         }
-        BG.SetActive(false);
         storage.gameObject.SetActive(true);
         itemDescriptionText = storage.GetChild(5).GetComponent<TMP_Text>();
         itemDescriptionText.text = "";
@@ -82,7 +80,6 @@ public class StorageManager : MonoBehaviour
         inventoryButton.gameObject.SetActive(true);
         pageText.text = (indexOfCurrentPage + 1).ToString() + " / " + pages.Count;
         pageText.gameObject.SetActive(true);
-        BG.SetActive(true);
         pages[indexOfCurrentPage].gameObject.SetActive(true);
         inventoryManager.isStorageOpened = true;
         inventoryManager.statsText.gameObject.SetActive(true);
@@ -97,7 +94,6 @@ public class StorageManager : MonoBehaviour
         takeButton.gameObject.SetActive(false);
         inventoryButton.gameObject.SetActive(false);
         pageText.gameObject.SetActive(false);
-        BG.SetActive(false);
         pages[indexOfCurrentPage].gameObject.SetActive(false);
         itemDescriptionText.text = "";
         costText.text = "";

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public GameObject BG;
     public Transform inventory, inventoryPanel, equipSlotsPanel;
     public List<InventorySlot> slots = new List<InventorySlot>();
     public List<InventorySlot> equipSlots = new List<InventorySlot>();
@@ -22,9 +21,8 @@ public class InventoryManager : MonoBehaviour
     {
         Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         playerStats = player.GetComponent<PlayerStats>();
-        BG = inventory.GetChild(0).gameObject;
-        inventoryPanel = inventory.GetChild(1).transform;
-        equipSlotsPanel = inventory.GetChild(2).transform;
+        inventoryPanel = inventory.GetChild(0).transform;
+        equipSlotsPanel = inventory.GetChild(1).transform;
         for (int i = 0; i < inventoryPanel.childCount; i++)
         {
             if (inventoryPanel.GetChild(i).GetComponent<InventorySlot>() != null)
@@ -42,19 +40,18 @@ public class InventoryManager : MonoBehaviour
                 equipSlots[equipSlots.Count - 1].id = i + slots.Count;
             }
         }
-        itemDescriptionText = inventory.GetChild(3).GetComponent<TMP_Text>();
+        itemDescriptionText = inventory.GetChild(2).GetComponent<TMP_Text>();
         itemDescriptionText.text = "";
-        costText = inventory.GetChild(4).GetComponent<TMP_Text>();
+        costText = inventory.GetChild(3).GetComponent<TMP_Text>();
         costText.text = "";
         costText.gameObject.SetActive(false);
-        sellButton = inventory.GetChild(5).GetComponent<Button>();
+        sellButton = inventory.GetChild(4).GetComponent<Button>();
         sellButton.gameObject.SetActive(false);
-        storeButton = inventory.GetChild(6).GetComponent<Button>();
+        storeButton = inventory.GetChild(5).GetComponent<Button>();
         storeButton.gameObject.SetActive(false);
-        statsText = inventory.GetChild(7).GetComponent<TMP_Text>();
+        statsText = inventory.GetChild(6).GetComponent<TMP_Text>();
         statsText.text = "";
         statsText.gameObject.SetActive(false);
-        BG.SetActive(false);
         inventoryPanel.gameObject.SetActive(false);
     }
     private void Start()
@@ -81,7 +78,6 @@ public class InventoryManager : MonoBehaviour
     public void OpenInventory()
     {
         isOpened = true;
-        BG.SetActive(true);
         inventoryPanel.gameObject.SetActive(true);
         statsText.gameObject.SetActive(true);
         UpdateStatsText();
@@ -89,7 +85,6 @@ public class InventoryManager : MonoBehaviour
     public void CloseInventory()
     {
         isOpened = false;
-        BG.SetActive(false);
         inventoryPanel.gameObject.SetActive(false);
         itemDescriptionText.text = "";
         costText.text = "";

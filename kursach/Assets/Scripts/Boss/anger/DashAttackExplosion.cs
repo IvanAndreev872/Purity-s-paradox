@@ -34,7 +34,6 @@ public class DashAttackExplosion : MonoBehaviour
     private Rigidbody2D rb;
 
     private bool canBeEnabled = false;
-    private bool pathPartCreated = false;
 
     private void Awake()
     {

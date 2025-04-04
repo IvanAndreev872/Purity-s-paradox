@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
     private float speed_change_time;
 
     public float dash_duration;
+    public float dashDelay = 0.8f;
+    private float dashTime;
 
     public float rotation_speed;
     public GameObject shooter;
@@ -105,6 +107,7 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
     {
         if (Time.time > dash_start + dash_duration)
         {
+            dashTime = Time.time;
             is_dashing = false;
             path_part_created = false;
 
@@ -132,8 +135,9 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
 
     private void CheckDash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && Time.time > dashDelay + dashTime)
         {
+            dashTime = Time.time;
             is_dashing = true;
             dash_start = Time.time;
 

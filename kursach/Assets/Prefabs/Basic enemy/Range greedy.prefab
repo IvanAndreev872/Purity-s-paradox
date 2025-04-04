@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1337322974115910053}
   - component: {fileID: 5969246083462567291}
   - component: {fileID: 6851525012800372574}
+  - component: {fileID: -7479718246573756131}
   m_Layer: 8
   m_Name: Range greedy
   m_TagString: Regular enemy
@@ -183,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_healthpoint: 100
+  isDead: 0
 --- !u!114 &6851525012800372574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +198,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}
+--- !u!114 &-7479718246573756131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692585161213395578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5425607e39ec3ec44985c98b11c81590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1.5
+  damage: 5
+  attack_delay: 1
+  player: {fileID: 0}
   moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}
 --- !u!1 &5051932521458224206
 GameObject:

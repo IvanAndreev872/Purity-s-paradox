@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Linq;
+using System.Threading.Tasks;
 
 public class Chest : MonoBehaviour
 {
-    public GameObject BG;
     public Transform chest, chestPanel;
     private const int slotsCount = 12;
     public List<ChestSlot> slots = new List<ChestSlot>();
@@ -15,7 +17,7 @@ public class Chest : MonoBehaviour
     public Button takeButton, chestButton, inventoryButton;
     public int slotIdClicked = -1;
     public InventoryManager inventoryManager;
-    public bool hasOpened = false, inTrigger = false;
+    public bool hasOpened = false, inTrigger = false, isFarm = false;
     public void Update()
     {
         if (inTrigger)
@@ -70,7 +72,6 @@ public class Chest : MonoBehaviour
         pressButtonText.gameObject.SetActive(false);
         Transform player = GameObject.FindGameObjectWithTag("Character").transform;
         inventoryManager = player.GetComponent<InventoryManager>();
-        BG = inventoryManager.BG;
     }
     private void AddButtonsListeners()
     {
@@ -146,13 +147,143 @@ public class Chest : MonoBehaviour
             NullifyChestSlots();
         }
     }
+    private async Task<List<Item>> GenerateItems(int level)
+    {
+        List<Item> res = new List<Item>();
+        if (level == 1)
+        {
+            int countOfItems = Random.Range(1, 3);
+            List<Item> list1 = await ItemsLoader.Instance.LoadAllItemsFromLevel(1);
+            for (int i = 0; i < countOfItems; i++)
+            {
+                int index = Random.Range(0, list1.Count - 1);
+                res.Add(list1[index]);
+            }
+        }
+        else if (level == 2)
+        {
+            int countOfItems = Random.Range(1, 3);
+            List<Item> list1 = await ItemsLoader.Instance.LoadAllItemsFromLevel(1);
+            List<Item> list2 = await ItemsLoader.Instance.LoadAllItemsFromLevel(2);
+            for (int i = 0; i < countOfItems; i++)
+            {
+                int rnd = Random.Range(1, 100);
+                if (rnd <= 20)
+                {
+                    int index = Random.Range(0, list1.Count - 1);
+                    res.Add(list1[index]);
+                }
+                else
+                {
+                    int index = Random.Range(0, list2.Count - 1);
+                    res.Add(list2[index]);
+                }
+            }
+        }
+        else if (level == 3)
+        {
+            int countOfItems = Random.Range(1, 3);
+            List<Item> list1 = await ItemsLoader.Instance.LoadAllItemsFromLevel(1);
+            List<Item> list2 = await ItemsLoader.Instance.LoadAllItemsFromLevel(2);
+            List<Item> list3 = await ItemsLoader.Instance.LoadAllItemsFromLevel(3);
+            for (int i = 0; i < countOfItems; i++)
+            {
+                int rnd = Random.Range(1, 100);
+                if (rnd <= 10)
+                {
+                    int index = Random.Range(0, list1.Count - 1);
+                    res.Add(list1[index]);
+                }
+                else if (rnd <= 50)
+                {
+                    int index = Random.Range(0, list2.Count - 1);
+                    res.Add(list2[index]);
+                }
+                else
+                {
+                    int index = Random.Range(0, list3.Count - 1);
+                    res.Add(list3[index]);
+                }
+            }
+        }
+        else if (level == 4)
+        {
+            int countOfItems = Random.Range(1, 3);
+            List<Item> list1 = await ItemsLoader.Instance.LoadAllItemsFromLevel(1);
+            List<Item> list2 = await ItemsLoader.Instance.LoadAllItemsFromLevel(2);
+            List<Item> list3 = await ItemsLoader.Instance.LoadAllItemsFromLevel(3);
+            List<Item> list4 = await ItemsLoader.Instance.LoadAllItemsFromLevel(4);
+            for (int i = 0; i < countOfItems; i++)
+            {
+                int rnd = Random.Range(1, 100);
+                if (rnd <= 5)
+                {
+                    int index = Random.Range(0, list1.Count - 1);
+                    res.Add(list1[index]);
+                }
+                else if (rnd <= 25)
+                {
+                    int index = Random.Range(0, list2.Count - 1);
+                    res.Add(list2[index]);
+                }
+                else if (rnd <= 70)
+                {
+                    int index = Random.Range(0, list3.Count - 1);
+                    res.Add(list3[index]);
+                }
+                else 
+                {
+                    int index = Random.Range(0, list4.Count - 1);
+                    res.Add(list4[index]);
+                }
+            }
+        }
+        else if (level == 5)
+        {
+            int countOfItems = Random.Range(1, 3);
+            List<Item> list1 = await ItemsLoader.Instance.LoadAllItemsFromLevel(1);
+            List<Item> list2 = await ItemsLoader.Instance.LoadAllItemsFromLevel(2);
+            List<Item> list3 = await ItemsLoader.Instance.LoadAllItemsFromLevel(3);
+            List<Item> list4 = await ItemsLoader.Instance.LoadAllItemsFromLevel(4);
+            List<Item> list5 = await ItemsLoader.Instance.LoadAllItemsFromLevel(5);
+            for (int i = 0; i < countOfItems; i++)
+            {
+                int rnd = Random.Range(1, 100);
+                if (rnd <= 3)
+                {
+                    int index = Random.Range(0, list1.Count - 1);
+                    res.Add(list1[index]);
+                }
+                else if (rnd <= 10)
+                {
+                    int index = Random.Range(0, list2.Count - 1);
+                    res.Add(list2[index]);
+                }
+                else if (rnd <= 30)
+                {
+                    int index = Random.Range(0, list3.Count - 1);
+                    res.Add(list3[index]);
+                }
+                else if (rnd <= 85)
+                {
+                    int index = Random.Range(0, list4.Count - 1);
+                    res.Add(list4[index]);
+                }
+                else
+                {
+                    int index = Random.Range(0, list5.Count - 1);
+                    res.Add(list5[index]);
+                }
+            }
+        }
+        return res;
+    }
     public async void OpenChest()
     {
         pressButtonText.gameObject.SetActive(false);
         chestPanel.gameObject.SetActive(true);
         chestButton.gameObject.SetActive(true);
         inventoryButton.gameObject.SetActive(true);
-        BG.SetActive(true);
         inventoryManager.statsText.gameObject.SetActive(true);
         inventoryManager.UpdateStatsText();
         inventoryManager.chest = this;
@@ -161,16 +292,26 @@ public class Chest : MonoBehaviour
         {
             hasOpened = true;
             // logic of loading items in the chest
-            // string name = SceneManager.GetActiveScene().name;
-            List<Item> itemsChest = await ItemsLoader.Instance.LoadAllItemsFromLevel(5);
+            // level 1 - 100% drop 1st level item
+            // level 2 - 80% drop 2nd level and 20% 1st
+            // level 3 - 50% drop 3rd level and 40% 2nd, 10% for 1st
+            // level 4 - 30% drop 4th level and 45% 3rd, 20% 2nd, 5% 1st
+            // level 5 - 15% drop 5th level and 55% 4th, 20% 3rd, 7% 2nd, 3% 1st
+            List<Item> itemsChest;
+            if (isFarm)
+            {
+                PlayerStats playerStats = GameObject.FindGameObjectWithTag("Character").transform.GetComponent<PlayerStats>();
+                itemsChest = await GenerateItems(playerStats.levelCompleted);
+            }
+            else
+            {
+                string name = SceneManager.GetActiveScene().name;
+                itemsChest = await GenerateItems(name.Last() - '0');
+            }
             for (int i = 0; i < itemsChest.Count; i++)
             {
                 AddItem(itemsChest[i].itemScriptableObject, 1);
             }
-        }
-        else
-        {
-
         }
     }
     public void CloseChest()
@@ -180,7 +321,6 @@ public class Chest : MonoBehaviour
         chestButton.gameObject.SetActive(false);
         takeButton.gameObject.SetActive(false);
         inventoryButton.gameObject.SetActive(false);
-        BG.SetActive(false);
         itemDescriptionText.text = "";
         costText.text = "";
         costText.gameObject.SetActive(false);

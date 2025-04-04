@@ -7,7 +7,6 @@ using System.Linq;
 
 public class Shop : MonoBehaviour
 {
-    public GameObject BG;
     public Transform shop;
     public int indexOfCurrentPage = 0;
     public List<ShopPage> pages = new List<ShopPage>();
@@ -42,7 +41,6 @@ public class Shop : MonoBehaviour
                 pages.Add(shop.GetChild(i).GetComponent<ShopPage>());
             }
         }
-        BG.SetActive(false);
         shop.gameObject.SetActive(true);
         itemDescriptionText = shop.GetChild(5).GetComponent<TMP_Text>();
         itemDescriptionText.text = "";
@@ -87,7 +85,6 @@ public class Shop : MonoBehaviour
         inventoryButton.gameObject.SetActive(true);
         pageText.text = (indexOfCurrentPage + 1).ToString() + " / " + pages.Count;
         pageText.gameObject.SetActive(true);
-        BG.SetActive(true);
         pages[indexOfCurrentPage].gameObject.SetActive(true);
         inventoryManager.isShopOpened = true;
         inventoryManager.statsText.gameObject.SetActive(true);
@@ -102,7 +99,6 @@ public class Shop : MonoBehaviour
         buyButton.gameObject.SetActive(false);
         inventoryButton.gameObject.SetActive(false);
         pageText.gameObject.SetActive(false);
-        BG.SetActive(false);
         pages[indexOfCurrentPage].ClosePage();
         itemDescriptionText.text = "";
         costText.text = "";

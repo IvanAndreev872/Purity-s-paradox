@@ -12,6 +12,15 @@ public class RewardAfterDeath : MonoBehaviour
         int countOfObjects = UnityEngine.Random.Range(leftBound, rightBound);
         float coef = isFarm ? coef_ : 1;
         int reward = (int)(UnityEngine.Random.Range(minReward, maxReward) * coef);
+        if (level == 1)
+        {
+            int taken = transform.GetComponent<GreedMelee>().taken;
+            if (taken != 0)
+            {
+                GameObject money = Instantiate(moneyPrefab, transform.position, Quaternion.identity);
+                money.GetComponent<Recklessness>().count = taken;
+            }
+        }
         int[] values = new int[countOfObjects];
         int remain = reward;
         for (int i = 0; i < countOfObjects - 1; i++)

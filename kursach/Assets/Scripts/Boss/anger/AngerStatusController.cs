@@ -17,8 +17,8 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
 
     private float current_health;
 
-    private bool damagable = true;
-    // Start is called before the first frame updateú
+    private bool damagable = true, isDead = false;
+    // Start is called before the first frame updateï¿½
     void Awake()
     {
         current_health = max_healthpoint;
@@ -71,6 +71,11 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
 
     private void Die()
     {
+        if (!isDead)
+        {
+            GetComponent<RewardAfterDeath>().GetReward(transform.position);
+        }
+        isDead = true;
         Destroy(gameObject);
     }
 }
