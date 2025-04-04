@@ -7,7 +7,7 @@ public class Recklessness : MonoBehaviour
     public int count = 0;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Item"))
+        if (other.CompareTag("Character"))
         {
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
             playerStats.money += count;

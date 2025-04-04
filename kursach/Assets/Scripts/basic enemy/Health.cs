@@ -7,7 +7,7 @@ public class Health : MonoBehaviour, DamageInterface
     public float max_healthpoint;
 
     private float current_health;
-    private bool damagable = true;
+    private bool damagable = true, isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,11 @@ public class Health : MonoBehaviour, DamageInterface
 
     private void Die()
     {
-        GetComponent<RewardAfterDeath>().GetReward(transform.position);
+        if (!isDead)
+        {
+            GetComponent<RewardAfterDeath>().GetReward(transform.position);
+        }
+        isDead = true;
         Destroy(gameObject);
     }
 }
