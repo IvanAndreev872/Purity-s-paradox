@@ -101,7 +101,7 @@ public class BounceAttack : MonoBehaviour
 
     private void OnAngerChanged(AngerStatusController.AngerLevel new_level)
     {
-        if (new_level == AngerLevel.Raged)
+        if (new_level == AngerLevel.Raged || new_level == AngerLevel.Enraged)
         {
             can_be_enabled = true;
         }

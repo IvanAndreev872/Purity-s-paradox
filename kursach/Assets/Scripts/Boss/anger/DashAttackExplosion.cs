@@ -5,60 +5,78 @@ using static AngerStatusController;
 
 public class DashAttackExplosion : MonoBehaviour
 {
-    private AngerStatusController anger_status_controller;
+    private AngerStatusController angerStatusController;
 
     public Transform player;
-    public MovementInterface movement_interface;
+    public MovementInterface movementInterface;
 
-    public float dash_speed;
-    public float make_distance;
-    public float dash_delay;
-    public float braking_distance;
+    public float dashSpeed;
+    public float makeDistance;
+    public float dashDelay;
+    public float brakingDistance;
     public float damage;
 
-    public GameObject explosion_prefab;
+    public GameObject explosionPrefab;
 
-    public float path_duration;
-    public GameObject path_prefab;
+    public float pathDuration;
+    public GameObject pathPrefab;
 
-    private float dash_time;
-    private bool is_dashing = false;
-    private bool is_preparing = false;
-    private Vector2 dash_target;
-    private Vector2 retreat_target;
+    private float dashTime;
+    private bool isDashing = false;
+    private bool isPreparing = false;
+    private Vector2 dashTarget;
+    private Vector2 retreatTarget;
+
+    private float pathWidth;
+    private Color pathColor;
+    private TrailRenderer trail;
 
     private Rigidbody2D rb;
 
-    private bool can_be_enabled = false;
+    private bool canBeEnabled = false;
+    private bool pathPartCreated = false;
 
     private void Awake()
     {
-        anger_status_controller = GetComponentInParent<AngerStatusController>();
+        angerStatusController = GetComponentInParent<AngerStatusController>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        movement_interface = GetComponent<MovementInterface>();
+        movementInterface = GetComponent<MovementInterface>();
         rb = GetComponent<Rigidbody2D>();
+        trail = GetComponent<TrailRenderer>();
+        pathWidth = pathPrefab.transform.localScale.magnitude / 1.5f;
+        pathColor = Color.red;
+        trail.time = pathDuration;
+        trail.startWidth = pathWidth;
+        trail.endWidth = pathWidth;
+        trail.material = new Material(Shader.Find("Sprites/Default"));
+        trail.startColor = pathColor;
+        trail.endColor = pathColor;
+        trail.autodestruct = false;
+        trail.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (movement_interface.able_to_move && !is_dashing && !is_preparing && can_be_enabled)
+        Debug.Log(movementInterface.able_to_move + " " + isDashing + " " + isPreparing + " " + canBeEnabled);
+        if (movementInterface.able_to_move && !isDashing && !isPreparing && canBeEnabled)
         {
+            Debug.Log(1);
             CheckDash();
         }
     }
 
     private void FixedUpdate()
     {
-        if (is_preparing)
+        if (isPreparing)
         {
             Retreat();
         }
-        if (is_dashing)
+        if (isDashing)
         {
             Dash();
         }
@@ -66,75 +84,86 @@ public class DashAttackExplosion : MonoBehaviour
 
     void CheckDash()
     {
-        if (Time.time > dash_delay + dash_time)
+        Debug.Log(Time.time + " " + (dashDelay + dashTime));
+        if (Time.time > dashDelay + dashTime)
         {
-            movement_interface.able_to_move = false;
-            Vector3 direction_opposite = (transform.position - player.position).normalized;
-            dash_time = Time.time;
-            retreat_target = player.position + direction_opposite * make_distance;
-            is_preparing = true;
+            movementInterface.able_to_move = false;
+            Vector3 directionOpposite = (transform.position - player.position).normalized;
+            dashTime = Time.time;
+            retreatTarget = player.position + directionOpposite * makeDistance;
+            isPreparing = true;
         }
     }
 
     void Retreat()
     {
-        if (Vector2.Distance(transform.position, retreat_target) <= 0.1)
+        if (Vector2.Distance(transform.position, retreatTarget) <= 0.1)
         {
-            is_preparing = false;
-            is_dashing = true;
+            isPreparing = false;
+            isDashing = true;
 
             Vector3 direction = (player.position - transform.position).normalized;
-            dash_target = player.position + direction * braking_distance;
+            dashTarget = player.position + direction * brakingDistance;
+            MakePath(true);
         }
 
-        MoveTowards(retreat_target);
+        MoveTowards(retreatTarget);
     }
 
     void Dash()
     {
-        if (Vector2.Distance(transform.position, dash_target) <= 0.1)
+        if (Vector2.Distance(transform.position, dashTarget) <= 0.1)
         {
-            is_dashing = false;
-            movement_interface.able_to_move = true;
+            isDashing = false;
+            movementInterface.able_to_move = true;
+            trail.enabled = false;
             Explosion();
         }
 
-        MakePath();
+        MakePath(false);
 
-        MoveTowards(dash_target);
+        MoveTowards(dashTarget);
     }
 
     void MoveTowards(Vector3 target) {
         Vector3 direction = (target - transform.position).normalized;
-        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction, dash_speed * Time.fixedDeltaTime));
+        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction, dashSpeed * Time.fixedDeltaTime));
     }
 
-    void MakePath()
+    void MakePath(bool newTrail)
     {
-        GameObject path_part = Instantiate(path_prefab, transform.position, transform.rotation);
+        GameObject path_part = Instantiate(pathPrefab, transform.position, transform.rotation);
 
-        Destroy(path_part, path_duration);
+        Destroy(path_part, pathDuration);
+
+        if (newTrail)
+        {
+            trail.Clear();
+            trail.enabled = true;
+        }
     }
 
     void Explosion()
     {
-        GameObject explosion = Instantiate(explosion_prefab, transform.position, transform.rotation);
+        GameObject explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (is_preparing)
+        if (isPreparing)
         {
-            is_preparing = false;
-            is_dashing = true;
+            isPreparing = false;
+            isDashing = true;
 
             Vector3 direction = (player.position - transform.position).normalized;
-            dash_target = player.position + direction * braking_distance;
+            dashTarget = player.position + direction * brakingDistance;
+            MakePath(true);
         }
-        else if (is_dashing)
+        else if (isDashing)
         {
-            is_dashing = false;
-            movement_interface.able_to_move = true;
+            isDashing = false;
+            movementInterface.able_to_move = true;
+            trail.enabled = false;
             DamageInterface enemy = collision.gameObject.GetComponent<DamageInterface>();
             if (enemy != null)
             {
@@ -146,25 +175,25 @@ public class DashAttackExplosion : MonoBehaviour
 
     private void OnAngerChanged(AngerStatusController.AngerLevel new_level)
     {
-        if (new_level == AngerLevel.Raged)
+        if (new_level == AngerLevel.Raged || new_level == AngerLevel.Enraged)
         {
-            can_be_enabled = true;
+            canBeEnabled = true;
         }
     }
 
     void OnEnable()
     {
-        if (anger_status_controller)
+        if (angerStatusController)
         {
-            anger_status_controller.EnragementChanged += OnAngerChanged;
+            angerStatusController.EnragementChanged += OnAngerChanged;
         }
     }
 
     void OnDisable()
     {
-        if (anger_status_controller)
+        if (angerStatusController)
         {
-            anger_status_controller.EnragementChanged -= OnAngerChanged;
+            angerStatusController.EnragementChanged -= OnAngerChanged;
         }
     }
 }
