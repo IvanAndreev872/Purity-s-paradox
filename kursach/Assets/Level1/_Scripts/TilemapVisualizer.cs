@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 // Класс для визуализации тайлов на Tilemap в Unity
-public class TilemapVisualizer : MonoBehaviour
+public class TilemapRenderer : MonoBehaviour
 {
     [SerializeField]
     private Tilemap floorTilemap, wallTilemap; // Ссылки на Tilemap для пола и стен
@@ -16,20 +16,20 @@ public class TilemapVisualizer : MonoBehaviour
     wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
     // Метод для отрисовки тайлов пола
-    public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions) 
+    public void PaintFloorTiles(IEnumerable<Vector2Int> floors) 
     {
-        TileBase[] floorTiles = {floor1, floor2, floor3, floor4, floor5, floor6};
+        TileBase[] tiles = {floor1, floor2, floor3, floor4, floor5, floor6};
     
-        foreach (Vector2Int position in floorPositions)
+        foreach (Vector2Int position in floors)
         {
             // Выбираем случайный тайл из массива
-            TileBase randomTile = floorTiles[UnityEngine.Random.Range(0, 6)];
+            TileBase randomTile = tiles[UnityEngine.Random.Range(0, 6)];
             PaintSingleTile(floorTilemap, randomTile, position);
         }
     }
 
     // Метод для отрисовки одной базовой стены (верхней части)
-    internal void PaintSingleBasicWall(Vector2Int position, string bin) 
+    internal void TileBaseWall(Vector2Int position, string bin) 
     {
         int typeAsInt = Convert.ToInt32(bin, 2);
         TileBase tile = null;
@@ -63,46 +63,45 @@ public class TilemapVisualizer : MonoBehaviour
         tilemap.SetTile(tilePosition, tile);
     }
 
-    // Метод для очистки всех тайлов
-    public void Clear() {
-        wallTilemap.ClearAllTiles(); // Очищаем тайлы стен
-        floorTilemap.ClearAllTiles(); // Очищаем тайлы пола
+    public void ClearSpace() {
+        wallTilemap.ClearAllTiles(); 
+        floorTilemap.ClearAllTiles();
     }
 
-    internal void PaintSingleCornerWall(Vector2Int position, string bin) 
+    internal void TileCornerWall(Vector2Int position, string bin) 
     {
         int typeAsInt = Convert.ToInt32(bin, 2);
         TileBase tile = null;
 
-        if (wallInnerCornerDownLeftCheck.Contains(typeAsInt)) 
+        if (InnerDownLeftCheck.Contains(typeAsInt)) 
         {
             tile = wallInnerCornerDownLeft;
         }
-        else if (wallInnerCornerDownRightCheck.Contains(typeAsInt)) 
+        else if (InnerDownRightCheck.Contains(typeAsInt)) 
         {
             tile = wallInnerCornerDownRight;
         }
-        else if (wallDiagonalCornerDownLeftCheck.Contains(typeAsInt)) 
+        else if (DownLeftDiagCheck.Contains(typeAsInt)) 
         {
             tile = wallDiagonalCornerDownLeft;
         }
-        else if (wallDiagonalCornerDownRightCheck.Contains(typeAsInt)) 
+        else if (DownRightDiagCheck.Contains(typeAsInt)) 
         {
             tile = wallDiagonalCornerDownRight;
         } 
-        else if (wallDiagonalCornerUpRightCheck.Contains(typeAsInt)) 
+        else if (UpRightDiagCheck.Contains(typeAsInt)) 
         {
             tile = wallDiagonalCornerUpRight;
         }
-        else if (wallDiagonalCornerUpLeftCheck.Contains(typeAsInt)) 
+        else if (UpLeftDiagCheck.Contains(typeAsInt)) 
         {
             tile = wallDiagonalCornerUpLeft;
         }
-        else if (wallFullEightDirectionsCheck.Contains(typeAsInt)) 
+        else if (FullDirectionsCheck.Contains(typeAsInt)) 
         {
             tile = full;
         }
-        else if (wallDownEightDirectionsCheck.Contains(typeAsInt)) 
+        else if (DownDirectionsCheck.Contains(typeAsInt)) 
         {
             tile = down;
         }
@@ -141,7 +140,7 @@ public class TilemapVisualizer : MonoBehaviour
         0b1000
     };
 
-    public static List<int> wallInnerCornerDownLeftCheck = new List<int>
+    public static List<int> InnerDownLeftCheck = new List<int>
     {
         0b11110001,
         0b11100000,
@@ -163,7 +162,7 @@ public class TilemapVisualizer : MonoBehaviour
         0b10010001
     };
 
-    public static List<int> wallInnerCornerDownRightCheck = new List<int>
+    public static List<int> InnerDownRightCheck = new List<int>
     {
         0b11000111,
         0b11000011,
@@ -186,23 +185,23 @@ public class TilemapVisualizer : MonoBehaviour
 
     };
 
-    public static List<int> wallDiagonalCornerDownLeftCheck = new List<int>
+    public static List<int> DownLeftDiagCheck = new List<int>
     {
         0b01000000
     };
 
-    public static List<int> wallDiagonalCornerDownRightCheck = new List<int>
+    public static List<int> DownRightDiagCheck = new List<int>
     {
         0b00000001
     };
 
-    public static List<int> wallDiagonalCornerUpLeftCheck = new List<int>
+    public static List<int> UpLeftDiagCheck = new List<int>
     {
         0b00010000,
         0b01010000,
     };
 
-    public static List<int> wallDiagonalCornerUpRightCheck = new List<int>
+    public static List<int> UpRightDiagCheck = new List<int>
     {
         0b00000100,
         0b00000101
@@ -217,7 +216,7 @@ public class TilemapVisualizer : MonoBehaviour
 
     };
 
-    public static List<int> wallFullEightDirectionsCheck = new List<int>
+    public static List<int> FullDirectionsCheck = new List<int>
     {
         0b00010100,
         0b11100100,
@@ -256,7 +255,7 @@ public class TilemapVisualizer : MonoBehaviour
 
     };
 
-    public static List<int> wallDownEightDirectionsCheck = new List<int>
+    public static List<int> DownDirectionsCheck = new List<int>
     {
         0b01000001
     };
