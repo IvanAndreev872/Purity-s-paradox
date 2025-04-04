@@ -23,6 +23,14 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
     [SerializeField] public int EnemyQuantity = 15;
 
     [SerializeField] public List<GameObject> EnemyPrefabs;
+
+    public static List<Vector2Int> cardinalDirectionsList = new List<Vector2Int> 
+    {
+        new Vector2Int(0, 1),  // UP
+        new Vector2Int(1, 0),  // RIGHT 
+        new Vector2Int(0, -1), // DOWN
+        new Vector2Int(-1, 0)  // LEFT
+    };
     protected override void RunProceduralGeneration()
     {
         CorridorFirstGeneration();
@@ -92,7 +100,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         {
             int neighboursCount = 0;
             // Проверяем 4 направления (верх, право, низ, лево)
-            foreach (var direction in Direction2D.cardinalDirectionsList) 
+            foreach (var direction in cardinalDirectionsList) 
             {
                 if (floorPositions.Contains(position + direction)) 
                     neighboursCount++;
@@ -124,6 +132,23 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         return roomPositions;
     }
 
+    public static List<Vector2Int> BuildCorridor(Vector2Int start, int length) 
+    {
+        List<Vector2Int> corridorSystem = new List<Vector2Int>();
+
+        Vector2Int direction = directions[UnityEngine.Random.Range(0, 4)];
+        corridorSystem.Add(start);
+        Vector2Int current = start;
+
+        for (int i = 0; i < length; i++) 
+        {
+            current += direction;
+            corridorSystem.Add(current);
+        }
+
+        return corridorSystem;
+    }
+
     // Создание коридоров
     private List<List<Vector2Int>> CreateCorridors(List<Vector2Int> floorPositions, List<Vector2Int> potentialRoomPositions) 
     {
@@ -135,7 +160,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         for (int i = 0; i < corridorCount; i++) 
         {
             // Генерируем коридор алгоритмом случайного блуждания
-            var corridor = GenerationAlgorithm.buildCorridor(currentPosition, corridorLength);
+            var corridor = BuildCorridor(currentPosition, corridorLength);
             corridors.Add(corridor);
             // Перемещаем текущую позицию в конец коридора
             currentPosition = corridor[corridor.Count - 1];

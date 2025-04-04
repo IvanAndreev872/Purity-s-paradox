@@ -11,7 +11,9 @@ public class DungeonGenerator : DungeonGeneration
 {
     [SerializeField]
     protected SimpleRandomWalkSO randomWalkParameters; // ScriptableObject с параметрами генерации
-    
+
+    public static List<Vector2Int> directions = new List<Vector2Int> {new Vector2Int(0, 1), new Vector2Int(1, 0),
+        new Vector2Int(0, -1), new Vector2Int(-1, 0)};
     // Основной метод генерации, переопределяющий абстрактный метод из родительского класса
     protected override void RunProceduralGeneration() 
     {
@@ -28,6 +30,24 @@ public class DungeonGenerator : DungeonGeneration
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer); 
     }
 
+    public static List<Vector2Int> RandomWalk(Vector2Int start, int length) // Алгоритм блуждания по клеткам пространства
+    {
+        List<Vector2Int> road = new List<Vector2Int>();
+
+        road.Add(start);
+
+        Vector2Int previous = start;
+
+        for (int i = 0; i < length; i++) 
+        {
+            Vector2Int newPos = previous + directions[Random.Range(0, 4)];
+            previous = newPos;
+            road.Add(newPos);
+        }
+        
+        return road;
+    }
+
     // Метод, реализующий алгоритм случайного блуждания с заданными параметрами
     protected List<Vector2Int> RunRandomWalk(SimpleRandomWalkSO parameters, Vector2Int position) 
     {
@@ -37,10 +57,10 @@ public class DungeonGenerator : DungeonGeneration
         // Выполняем заданное количество итераций
         for (int i = 0; i < parameters.iterations; i++) {
             // Генерируем путь случайного блуждания
-            var path = GenerationAlgorithm.RandomWalk(currentPosition, parameters.walkLength);
+            var road = RandomWalk(currentPosition, parameters.walkLength);
             
             // Добавляем все позиции из пути в общую коллекцию
-            floorPositions.AddRange(path.Except(floorPositions));
+            floorPositions.AddRange(road.Except(floorPositions));
             
             // Если нужно начинать каждую итерацию со случайной позиции
             if (parameters.startRandomlyEachIteration) 
