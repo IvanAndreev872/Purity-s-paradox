@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 3573955627138491423, guid: c8b26834da967a14b86bcfc9d1bb786d, type: 3}
   icon: {fileID: 21300000, guid: da70ee8ff77263c40b3bcc5c06350351, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 30000
   sellCoefficient: 10
   itemDescription: Assassin's Dagger has a slightly reduced attack range, high damage,
     and ultra fast attack speed

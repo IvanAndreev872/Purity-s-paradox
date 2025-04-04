@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 9016280970184978081, guid: 7d82de32f0cf16845ac447bff559822e, type: 3}
   icon: {fileID: 21300000, guid: f8830c791aead8a4dad590c61e6027f1, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 3100
   sellCoefficient: 10
   itemDescription: Warrior's Sword has a large attack radius and damage, but the
     attack speed is very low

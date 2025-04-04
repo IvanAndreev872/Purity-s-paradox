@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 7307774587574315386, guid: 4c48ddd53d4e66346864d79719729e5b, type: 3}
   icon: {fileID: 21300000, guid: 867f2524be7473f4dbe2ac72387a6cc2, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 3200
   sellCoefficient: 10
   itemDescription: Champion's armor gives 40 extra health points
   extraHealth: 40

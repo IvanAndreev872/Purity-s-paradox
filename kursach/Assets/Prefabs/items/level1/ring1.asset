@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 8885309013577903989, guid: 69752f6d20b6655428997ce75e24cf44, type: 3}
   icon: {fileID: 21300000, guid: 32fc8954169c0f342ac341a65f55ea6a, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 350
   sellCoefficient: 10
   itemDescription: Silver ring gives 10 extra damage points for swords
   swordAdditionalDamage: 10

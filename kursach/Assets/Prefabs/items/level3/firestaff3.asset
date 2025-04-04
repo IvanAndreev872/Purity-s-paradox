@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 6046786247899352249, guid: fd2a25fa1fb10424095494eac44c41b5, type: 3}
   icon: {fileID: 21300000, guid: 14ab454c020f7d74692ff766a02f8014, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 4000
   sellCoefficient: 10
   itemDescription: Blazing Staff charges a fireball that can set enemies on fire.
     This is an upgraded version of Flaming Staff

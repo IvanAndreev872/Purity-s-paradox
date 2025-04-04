@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 2554257602784695148, guid: d3730755c3764e2459fe51b714f4773d, type: 3}
   icon: {fileID: 21300000, guid: 82759b032cf3e8145b84c8634c75f9cb, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 9600
   sellCoefficient: 10
   itemDescription: Dark Knight armor gives 60 extra health points
   extraHealth: 60

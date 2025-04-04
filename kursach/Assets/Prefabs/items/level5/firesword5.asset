@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 5486333144712598242, guid: d62bdf42d0a4f2b43827e4a4e122e3d2, type: 3}
   icon: {fileID: 21300000, guid: 9e45f4edf98e4d447a77694dea8e9d28, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 33000
   sellCoefficient: 10
   itemDescription: Sword of Eternal Flame has a greatly increased attack range and
     damage, attack speed is increased by 15%. Also sets enemies on fire

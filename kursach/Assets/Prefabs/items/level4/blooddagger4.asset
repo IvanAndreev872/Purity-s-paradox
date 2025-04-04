@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 778178159444375834, guid: 5c501f59f785c1f438a3b738dd3d2487, type: 3}
   icon: {fileID: 21300000, guid: c8916067600f0a0449e553aaf03e4cd4, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 9500
   sellCoefficient: 10
   itemDescription: Blood Dagger has a slightly reduced attack range, acceptable damage,
     but the attack speed is super fast. Also makes enemies bleed

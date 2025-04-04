@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 9009110211689143118, guid: 91f6f3633a5af1547a9a6712209ae009, type: 3}
   icon: {fileID: 21300000, guid: a8002332435486847887407ff8532f17, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 300
   sellCoefficient: 10
   itemDescription: Heavy Sword has above average attack range and damage, but attack
     speed is super slow

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 8282640051607540829, guid: eb783df9e2335cb41a285f3c9942e65c, type: 3}
   icon: {fileID: 21300000, guid: 65c35663f418113458af495ca22b063b, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 9450
   sellCoefficient: 10
   itemDescription: Great Lightning Sword has increased attack range and damage, attack
     speed increased by 15%

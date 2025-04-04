@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 5123659463995914255, guid: 86fb01f3e0bb8304184cf3a07234763d, type: 3}
   icon: {fileID: 21300000, guid: 1aab0a6be77303144874442af30c3b49, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 9400
   sellCoefficient: 10
   itemDescription: Dagger of the Queen of Wasps has a slightly reduced attack range,
     acceptable damage, but the attack speed is super fast

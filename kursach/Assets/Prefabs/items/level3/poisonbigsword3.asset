@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 3461537430932040343, guid: 0fdcf1a2869c573499517ff4447a4db6, type: 3}
   icon: {fileID: 21300000, guid: 25d55f04406d9004a93363634a2cc0b9, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 3300
   sellCoefficient: 10
   itemDescription: Big Toxic Blade has a large attack radius and damage, but the
     attack speed is very low. Also deals poison damage

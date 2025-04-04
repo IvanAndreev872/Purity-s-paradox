@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 7508638942202864252, guid: ba88d619ac381c74f97f1d23a53b80c5, type: 3}
   icon: {fileID: 21300000, guid: cc70c69d60dd3b747bd1e5035ead0ffa, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 9500
   sellCoefficient: 10
   itemDescription: Freeze Dagger has a slightly reduced attack range, acceptable
     damage, but the attack speed is super fast. Also slightly slows down enemies

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 8648448563150946651, guid: 692211280e8e86d45b6920e6c69c3e08, type: 3}
   icon: {fileID: 21300000, guid: 0352e8aa30ae34d49aa9b153995aaabe, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 1000
   sellCoefficient: 10
   itemDescription: Large Blue Sword has above average attack range and damage, but
     attack speed is very slow

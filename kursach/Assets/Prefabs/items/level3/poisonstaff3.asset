@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 8378786786245179157, guid: 0399a14f8df547943ba87a27fc33d891, type: 3}
   icon: {fileID: 21300000, guid: 419fe2ab7dea5634fa1c3d35e5c951ee, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 4000
   sellCoefficient: 10
   itemDescription: Purple Serpent Staff charges a projectile that can poison enemies.
     This is an upgraded version of Poison Wand

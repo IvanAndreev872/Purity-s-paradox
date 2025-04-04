@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 1455427677480907720}
   - component: {fileID: 8202283524573964674}
   - component: {fileID: 4373221440156519294}
+  - component: {fileID: 6168654750127322985}
   m_Layer: 8
   m_Name: Anger
   m_TagString: Fire enemy
@@ -256,7 +257,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  jumpEffect: {fileID: 0}
   shadow_prefab: {fileID: 6090887868542334393, guid: 631fc0fd43ef9ed488768e72c978167d, type: 3}
+  explosion_prefab: {fileID: 0}
   attack_distance: 3
   ability_duration: 3
   damage: 50
@@ -300,6 +303,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6168654750127322985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3086527992935385241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be4fa2de802d9a47b3ba0124437e42d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 103
+  moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}
 --- !u!1 &6297158860155102027
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 2600052804515303177, guid: 706799217dba5a74788699878c2df888, type: 3}
   icon: {fileID: 21300000, guid: c79f2a21148cc1b4586784954ef44ad8, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 3250
   sellCoefficient: 10
   itemDescription: The rune increases the staff's charge movement speed by 45%
   staffAdditionalDamage: 25

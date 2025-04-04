@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 5806193306847386258, guid: 3a79f200e0e657e45abde636b3f7c703, type: 3}
   icon: {fileID: 21300000, guid: ac203620d246c1d45be67443bba1965e, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 9500
   sellCoefficient: 10
   itemDescription: Ring of Mighty Strikes gives 40 extra damage points for swords
   swordAdditionalDamage: 40

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 5216086208481443109, guid: 0a7e52fda794b8f4eaaff36584a3a312, type: 3}
   icon: {fileID: 21300000, guid: 650f6f614d46a3a43a1f4767de5df132, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 1000
   sellCoefficient: 10
   itemDescription: Lightning Dagger has a small attack radius, low damage, but the
     attack speed is very fast

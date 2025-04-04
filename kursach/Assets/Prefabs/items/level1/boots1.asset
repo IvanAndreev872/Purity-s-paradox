@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 732458886924294938, guid: 0ca9b01b34b682e41930d03d68d53355, type: 3}
   icon: {fileID: 21300000, guid: 46a4fe8ea213b754f9d4191b8b8d86a8, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 350
   sellCoefficient: 10
   itemDescription: Old Boots increase movement speed by 20%
   walkAccelerateCoefficient: 1.2

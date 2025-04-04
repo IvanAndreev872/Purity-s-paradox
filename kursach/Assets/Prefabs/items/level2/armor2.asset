@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 142517391928288399, guid: 611871959e3e7714cbd9418ac573f62e, type: 3}
   icon: {fileID: 21300000, guid: 1014a256408885d4d96fbdc8661e0030, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 1150
   sellCoefficient: 10
   itemDescription: Reinforced armor gives 25 extra health points
   extraHealth: 25

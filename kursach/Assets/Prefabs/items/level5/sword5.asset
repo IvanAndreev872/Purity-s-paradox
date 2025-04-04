@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 4720132601328528301, guid: 2abae76df89c3624a8176a5898c1a205, type: 3}
   icon: {fileID: 21300000, guid: 89ca726d43d88c045b02fcf8b1f222d5, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 30000
   sellCoefficient: 10
   itemDescription: The Dark Knight's Sword has a greatly increased attack range and
     damage, attack speed is increased by 20%

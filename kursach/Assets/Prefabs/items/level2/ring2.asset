@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 1265043645305312664, guid: 2dbd4951017791c43a5f43c0c3cfc976, type: 3}
   icon: {fileID: 21300000, guid: fd455b9f849f75b49803f91cd05b3385, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 1050
   sellCoefficient: 10
   itemDescription: Warrior's Ring gives 20 extra damage points for swords
   swordAdditionalDamage: 20

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 2566175429875041787, guid: ccbff31567a98a540b895dfd229271b7, type: 3}
   icon: {fileID: 21300000, guid: 4431e54bf81a1164c990f1e09819f971, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 4000
   sellCoefficient: 10
   itemDescription: Glacial Staff charges an ice ball that can slow enemies with ice.
     This is an upgraded version of Frost Staff

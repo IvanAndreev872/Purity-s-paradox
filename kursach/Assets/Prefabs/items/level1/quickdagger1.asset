@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 5595835629530114216, guid: f005dcadb7913ac44be5cd103c3488b2, type: 3}
   icon: {fileID: 21300000, guid: 35876b5cfcc1f6b4186f05c3c01f1140, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 300
   sellCoefficient: 10
   itemDescription: Silver Dagger has a small attack range and damage, but the attack
     speed is very fast

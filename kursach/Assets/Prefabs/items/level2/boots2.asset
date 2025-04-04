@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 4910515821332959423, guid: 681b4d276de55114db65642fd8d45515, type: 3}
   icon: {fileID: 21300000, guid: 384c4c1e7c3be664c8e1069176aa3b5a, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 1050
   sellCoefficient: 10
   itemDescription: Runner's Boots increase movement speed by 40%
   walkAccelerateCoefficient: 1.4

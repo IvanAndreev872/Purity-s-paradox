@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 3465116560000160450, guid: 371f2a7a962c9cc44a2385a6b99d58af, type: 3}
   icon: {fileID: 21300000, guid: 90718b07032929140bc08600629467a1, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 3100
   sellCoefficient: 10
   itemDescription: Fang Dagger has reduced attack range, average damage, but attack
     speed is super fast

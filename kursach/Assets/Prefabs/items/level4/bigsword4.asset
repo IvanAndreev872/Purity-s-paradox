@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 9077434721478637165, guid: c17dc6fd0e96adb47bb69fc8c9431473, type: 3}
   icon: {fileID: 21300000, guid: f0d3efdaf02a12248a7a782b987b4492, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 9450
   sellCoefficient: 10
   itemDescription: Titans' Blade has a large attack range and damage, but its attack
     speed is quite slow

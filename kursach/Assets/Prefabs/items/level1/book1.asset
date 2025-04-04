@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 9215114153998132404, guid: b6caa3f0fa05cb84fa8e3cda0bf97563, type: 3}
   icon: {fileID: 21300000, guid: 650022e992bebe84f8a486ea9b4e529b, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 400
   sellCoefficient: 10
   itemDescription: The book increases the attack speed of the staff
   staffAdditionalDamage: 0

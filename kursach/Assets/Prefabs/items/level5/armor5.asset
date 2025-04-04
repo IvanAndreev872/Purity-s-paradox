@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 6005074731575668563, guid: d7ae2654bb3f5484d8d3652cca42fa16, type: 3}
   icon: {fileID: 21300000, guid: 2ce928fcb0c9451439d61415a221d451, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 32000
   sellCoefficient: 10
   itemDescription: Hellish Mystical armor gives 100 extra health points
   extraHealth: 100

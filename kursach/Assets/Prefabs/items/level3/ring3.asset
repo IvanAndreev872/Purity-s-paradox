@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 7072185532311134265, guid: dc816adf0d7f36c4190b4d5a42c9f869, type: 3}
   icon: {fileID: 21300000, guid: ff340b76f0c2f1745bfe187a11525981, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 3150
   sellCoefficient: 10
   itemDescription: Ring of Great Power gives 30 extra damage points for swords
   swordAdditionalDamage: 30

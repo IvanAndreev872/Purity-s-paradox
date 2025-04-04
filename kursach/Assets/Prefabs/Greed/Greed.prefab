@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2778369681465429744}
   - component: {fileID: 1259051790515735966}
   - component: {fileID: 4182012773923090678}
+  - component: {fileID: -2712525652020556023}
   m_Layer: 8
   m_Name: Greed
   m_TagString: Regular enemy
@@ -218,6 +219,20 @@ MonoBehaviour:
   damage: 20
   attack_delay: 1
   player: {fileID: 0}
+--- !u!114 &-2712525652020556023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4521121658425986479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be4fa2de802d9a47b3ba0124437e42d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 101
+  moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}
 --- !u!1 &5267644430175757384
 GameObject:
   m_ObjectHideFlags: 0

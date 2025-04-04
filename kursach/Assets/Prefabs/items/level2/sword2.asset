@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 6302052609146756946, guid: b8b8f89e1196561459cbe7cf33ad0227, type: 3}
   icon: {fileID: 21300000, guid: ccdfd6dd7592d7c45806a326322ddb71, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 1000
   sellCoefficient: 10
   itemDescription: Soldier's Sword has medium range and damage, low attack speed
   swordDamage: 40

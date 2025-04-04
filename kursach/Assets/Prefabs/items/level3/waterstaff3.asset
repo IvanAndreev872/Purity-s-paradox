@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 3154147817224582756, guid: 8325f8f497337d54b986158a4950dc8f, type: 3}
   icon: {fileID: 21300000, guid: 852c05c5987247d41b1b6b20ea18f9f9, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 4000
   sellCoefficient: 10
   itemDescription: Flowing Staff has increased damage against fire enemies. This
     is an upgraded version of Water Staff

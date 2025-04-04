@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 3580658642773142133, guid: b693f42d2bb547748aa81f31f9d1d2f7, type: 3}
   icon: {fileID: 21300000, guid: 07738fb5b26571a41a87d116a263a7f9, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 3250
   sellCoefficient: 10
   itemDescription: Masterwork Speed Boots increase movement speed by 60%
   walkAccelerateCoefficient: 1.6

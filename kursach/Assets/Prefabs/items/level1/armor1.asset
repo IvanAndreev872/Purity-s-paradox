@@ -18,7 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 202965047116821353, guid: ea8c651744ec9c64ba0e3df3f9d0564a, type: 3}
   icon: {fileID: 21300000, guid: 2f1378887205f9a4d9baf79a71fe793e, type: 3}
   maxCount: 1
-  cost: 0
+  cost: 350
   sellCoefficient: 10
   itemDescription: Old warrior's armor gives 10 extra health points
   extraHealth: 10
