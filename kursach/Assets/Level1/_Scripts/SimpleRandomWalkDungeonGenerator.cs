@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 using UnityEngine;
 
 // Класс генератора подземелий, использующий алгоритм случайного блуждания
-public class DungeonGenerator : DungeonGeneration
+public class DungeonGenerator : Generation
 {
     [SerializeField]
     protected SimpleRandomWalkSO randomWalkParameters; // ScriptableObject с параметрами генерации
@@ -15,7 +15,7 @@ public class DungeonGenerator : DungeonGeneration
     public static List<Vector2Int> directions = new List<Vector2Int> {new Vector2Int(0, 1), new Vector2Int(1, 0),
         new Vector2Int(0, -1), new Vector2Int(-1, 0)};
     // Основной метод генерации, переопределяющий абстрактный метод из родительского класса
-    protected override void RunProceduralGeneration() 
+    protected override void RunGeneration() 
     {
         // 1. Генерируем позиции пола с помощью алгоритма случайного блуждания
         List<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, start);

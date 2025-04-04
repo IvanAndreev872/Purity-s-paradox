@@ -28,15 +28,6 @@ public class TilemapVisualizer : MonoBehaviour
         }
     }
 
-    // Общий метод для отрисовки множества тайлов
-    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile) 
-    {
-        foreach (var position in positions) 
-        {
-            PaintSingleTile(tilemap, tile, position);
-        }
-    }
-
     // Метод для отрисовки одной базовой стены (верхней части)
     internal void PaintSingleBasicWall(Vector2Int position, string binaryType) 
     {

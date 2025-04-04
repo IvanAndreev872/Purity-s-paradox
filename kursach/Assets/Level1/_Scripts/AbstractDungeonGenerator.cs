@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // базовый класс для генерации подземелья
-public abstract class DungeonGeneration : MonoBehaviour
+public abstract class Generation : MonoBehaviour
 {
     [SerializeField]
     protected TilemapVisualizer tilemapVisualizer = null; // Визуализатор тайлов для отрисовки подземелья
@@ -14,8 +14,8 @@ public abstract class DungeonGeneration : MonoBehaviour
     public void GenerateDungeon() 
     {
         tilemapVisualizer.Clear(); // Очищаем предыдущую карту
-        RunProceduralGeneration(); // Запускаем генерацию
+        RunGeneration(); // Запускаем генерацию
     }
 
-    protected abstract void RunProceduralGeneration();
+    protected abstract void RunGeneration();
 }
