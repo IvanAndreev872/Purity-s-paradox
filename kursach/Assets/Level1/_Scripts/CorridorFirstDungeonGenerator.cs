@@ -10,12 +10,11 @@ using System.Xml.Linq;
 public class CorridorFirstDungeonGenerator : DungeonGenerator
 {
     [SerializeField]
-    private int corridorLength = 14; // Длина каждого коридора
+    private int corridorLength; // Длина каждого коридора
     [SerializeField]
-    private int corridorCount = 5;   // Количество коридоров
+    private int corridorCount;   // Количество коридоров
     [SerializeField]
-    [Range(0.1f, 1)]
-    private float roomPercent = 0.8f;
+    private float roomPercent;
 
     [SerializeField] public Node nodePrefab;
 
@@ -33,10 +32,10 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
     private void CorridorFirstGeneration() 
     {
         // Все позиции пола
-        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
+        List<Vector2Int> floorPositions = new List<Vector2Int>();
         // Потенциальные позиции для комнат (концы коридоров)
-        HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
-        HashSet<Node> NodeList = new HashSet<Node>();
+        List<Vector2Int> potentialRoomPositions = new List<Vector2Int>();
+        List<Node> NodeList = new List<Node>();
         GameObject NodeParent = new GameObject("NodeParent");
         GameObject EnemyParent = new GameObject("EnemyParent");
 
@@ -45,7 +44,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         List<List<Vector2Int>> corridors = CreateCorridors(floorPositions, potentialRoomPositions);
 
         // 2. Создаем комнаты в случайных точках
-        HashSet<Vector2Int> roomPositions = CreateRooms(potentialRoomPositions);
+        List<Vector2Int> roomPositions = CreateRooms(potentialRoomPositions);
 
         // 3. Находим тупики (концы коридоров без комнат)
         List<Vector2Int> deadEnds = FindAllDeadEnds(floorPositions);
@@ -54,13 +53,13 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         CreateRoomsAtDeadEnd(deadEnds, roomPositions);
 
         // Объединяем все позиции пола
-        floorPositions.UnionWith(roomPositions);
+        floorPositions.AddRange(roomPositions.Except(floorPositions));
 
         // 5. Расширяем коридоры (делаем их шире)
         for (int i = 0; i < corridorCount; i++) 
         {
             corridors[i] = IncreaseCorridorBrush3by3(corridors[i]);
-            floorPositions.UnionWith(corridors[i]);
+            floorPositions.AddRange(corridors[i].Except(floorPositions));
         }
 
         CreateNodes(floorPositions, NodeList, NodeParent);
@@ -73,19 +72,19 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
     }
 
     // Создание комнат в тупиковых точках
-    private void CreateRoomsAtDeadEnd(List<Vector2Int> deadEnds, HashSet<Vector2Int> roomFloors) 
+    private void CreateRoomsAtDeadEnd(List<Vector2Int> deadEnds, List<Vector2Int> roomFloors) 
     {
-        foreach (var position in deadEnds) {
+        foreach (Vector2Int position in deadEnds) {
             if (roomFloors.Contains(position) == false) 
             {
                 var room = RunRandomWalk(randomWalkParameters, position);
-                roomFloors.UnionWith(room);
+                roomFloors.AddRange(room.Except(roomFloors));
             }
         }
     }
 
     // Поиск всех тупиков (позиций с только одним соседом)
-    private List<Vector2Int> FindAllDeadEnds(HashSet<Vector2Int> floorPositions) 
+    private List<Vector2Int> FindAllDeadEnds(List<Vector2Int> floorPositions) 
     {
         List<Vector2Int> deadEnds = new List<Vector2Int>();
 
@@ -106,9 +105,9 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
     }
 
     // Создание комнат в случайных точках
-    private HashSet<Vector2Int> CreateRooms(HashSet<Vector2Int> potentialRoomPositions) 
+    private List<Vector2Int> CreateRooms(List<Vector2Int> potentialRoomPositions) 
     {
-        HashSet<Vector2Int> roomPositions = new HashSet<Vector2Int>();
+        List<Vector2Int> roomPositions = new List<Vector2Int>();
         // Вычисляем количество комнат на основе процента
         int roomToCreateCount = Mathf.RoundToInt(potentialRoomPositions.Count * roomPercent);
 
@@ -119,14 +118,14 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         foreach (var roomPosition in roomsToCreate) 
         {
             var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition);
-            roomPositions.UnionWith(roomFloor);
+            roomPositions.AddRange(roomFloor.Except(roomPositions));
         }
 
         return roomPositions;
     }
 
     // Создание коридоров
-    private List<List<Vector2Int>> CreateCorridors(HashSet<Vector2Int> floorPositions, HashSet<Vector2Int> potentialRoomPositions) 
+    private List<List<Vector2Int>> CreateCorridors(List<Vector2Int> floorPositions, List<Vector2Int> potentialRoomPositions) 
     {
         var currentPosition = start;
         potentialRoomPositions.Add(currentPosition);
@@ -142,8 +141,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
             currentPosition = corridor[corridor.Count - 1];
             // Добавляем конечную точку как потенциальную позицию для комнаты
             potentialRoomPositions.Add(currentPosition);
-            // Добавляем коридор в общий набор позиций
-            floorPositions.UnionWith(corridor);
+            floorPositions.AddRange(corridor.Except(floorPositions));
         }
         return corridors;
     }
@@ -213,7 +211,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         return Vector2Int.zero;        
     }
 
-    void CreateNodes(HashSet<Vector2Int> floorPositions, HashSet<Node> NodeList, GameObject NodeParent)
+    void CreateNodes(List<Vector2Int> floorPositions, List<Node> NodeList, GameObject NodeParent)
     {
         foreach (var floor in floorPositions)
         {
@@ -223,7 +221,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         }
     }
 
-    void CreateConnections(HashSet<Node> NodeList)
+    void CreateConnections(List<Node> NodeList)
     {
         foreach (var node in NodeList)
         {
@@ -280,7 +278,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         return true;
     }
 
-    void SpawnEnemies(HashSet<Node> NodeList, GameObject EnemyParent)
+    void SpawnEnemies(List<Node> NodeList, GameObject EnemyParent)
     {
         List<Node> EnemySpawns = NodeList.OrderBy(x => Guid.NewGuid()).ToList();
         int combinedLayerMask = LayerMask.GetMask("Character", "Enemy");

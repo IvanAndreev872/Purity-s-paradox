@@ -11,14 +11,21 @@ public class TilemapVisualizer : MonoBehaviour
     [SerializeField]
     private Tilemap floorTilemap, wallTilemap; // Ссылки на Tilemap для пола и стен
     [SerializeField]
-    private TileBase floorTile, wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull,
+    private TileBase floorTile1, floorTile2, floorTile3, floorTile4, floorTile5, floorTile6, wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull,
     wallInnerCornerDownLeft, wallInnerCornerDownRight, 
     wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
     // Метод для отрисовки тайлов пола
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions) 
     {
-        PaintTiles(floorPositions, floorTilemap, floorTile);
+        TileBase[] floorTiles = {floorTile1, floorTile2, floorTile3, floorTile4, floorTile5, floorTile6};
+    
+        foreach (var position in floorPositions)
+        {
+            // Выбираем случайный тайл из массива
+            TileBase randomTile = floorTiles[UnityEngine.Random.Range(0, 6)];
+            PaintSingleTile(floorTilemap, randomTile, position);
+        }
     }
 
     // Общий метод для отрисовки множества тайлов

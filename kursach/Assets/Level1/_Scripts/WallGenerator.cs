@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class WallGenerator
 {
-    public static void CreateWalls(HashSet<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer) 
+    public static void CreateWalls(List<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer) 
     {
         var basicWallPositions = FindWallsInDirections(floorPositions, Direction2D.cardinalDirectionsList);
         var cornerWallPositions = FindWallsInDirections(floorPositions, Direction2D.diagonalDirectionsList);
@@ -12,7 +12,7 @@ public static class WallGenerator
         CreateCornerWalls(tilemapVisualizer, cornerWallPositions, floorPositions);
     }
 
-    private static void CreateCornerWalls(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> cornerWallPositions, HashSet<Vector2Int>
+    private static void CreateCornerWalls(TilemapVisualizer tilemapVisualizer, List<Vector2Int> cornerWallPositions, List<Vector2Int>
      floorPositions) 
      {
         foreach (var position in cornerWallPositions) 
@@ -34,7 +34,7 @@ public static class WallGenerator
         }
      }
 
-    private static void CreateBasicWall(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> basicWallPositions, HashSet<Vector2Int>
+    private static void CreateBasicWall(TilemapVisualizer tilemapVisualizer, List<Vector2Int> basicWallPositions, List<Vector2Int>
      floorPositions) 
     {
         foreach (var position in basicWallPositions) 
@@ -56,9 +56,9 @@ public static class WallGenerator
         }
     }
 
-    private static HashSet<Vector2Int> FindWallsInDirections(HashSet<Vector2Int> floorPositions, List<Vector2Int> directionList) 
+    private static List<Vector2Int> FindWallsInDirections(List<Vector2Int> floorPositions, List<Vector2Int> directionList) 
     {
-        HashSet<Vector2Int> wallPositions = new HashSet<Vector2Int>();
+        List<Vector2Int> wallPositions = new List<Vector2Int>();
         foreach (var position in floorPositions) 
         {
             foreach (var direction in directionList) 
