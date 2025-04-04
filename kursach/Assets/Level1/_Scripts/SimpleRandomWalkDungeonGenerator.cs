@@ -51,55 +51,17 @@ public class DungeonGenerator : Generation
     // Метод, реализующий алгоритм случайного блуждания с заданными параметрами
     protected List<Vector2Int> RunRandomWalk(SimpleRandomWalkSO parameters, Vector2Int position) 
     {
-        var currentPosition = position; // Текущая стартовая позиция
+        Vector2Int current = position; // Текущая стартовая позиция
         List<Vector2Int> floorPositions = new List<Vector2Int>(); // Коллекция для хранения всех позиций пола
         
         // Выполняем заданное количество итераций
         for (int i = 0; i < parameters.iterations; i++) {
             // Генерируем путь случайного блуждания
-            var road = RandomWalk(currentPosition, parameters.walkLength);
+            List<Vector2Int> road = RandomWalk(current, parameters.walkLength);
             
             // Добавляем все позиции из пути в общую коллекцию
             floorPositions.AddRange(road.Except(floorPositions));
-            
-            // Если нужно начинать каждую итерацию со случайной позиции
-            if (parameters.startRandomlyEachIteration) 
-            {
-                currentPosition = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
-            }
         }
         return floorPositions;
-    }
-
-    protected int GetRoomLength(List<Vector2Int> floorPositions)
-    {
-        floorPositions.OrderBy(x => x.x);
-        Vector2Int LeftFloor = floorPositions.First();
-        Vector2Int RightFloor = floorPositions.Last();
-
-        return RightFloor.x - LeftFloor.x + 1;
-    }
-
-    protected int GetRoomHeight(List<Vector2Int> floorPositions)
-    {
-        floorPositions.OrderBy(x => x.y);
-        Vector2Int LowFloor = floorPositions.First();
-        Vector2Int HighFloor = floorPositions.Last();
-
-        return HighFloor.y - LowFloor.y + 1;
-    }
-
-    protected int GetLeft(List<Vector2Int> floorPositions)
-    {
-        Vector2Int Left = floorPositions.OrderBy(x => x.x).First();
-
-        return Left.x;
-    }
-
-    protected int GetLowest(List<Vector2Int> floorPositions)
-    {
-        Vector2Int Bottom = floorPositions.OrderBy(x => x.y).First();
-
-        return Bottom.y;
     }
 }

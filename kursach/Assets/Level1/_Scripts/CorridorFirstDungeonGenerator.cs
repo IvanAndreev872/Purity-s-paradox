@@ -66,8 +66,9 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         // 5. Расширяем коридоры (делаем их шире)
         for (int i = 0; i < corridorCount; i++) 
         {
-            corridors[i] = IncreaseCorridorBrush3by3(corridors[i]);
-            floorPositions.AddRange(corridors[i].Except(floorPositions));
+            List<Vector2Int> current = corridors[i];
+            current = CorridorExpansion(current);
+            floorPositions.AddRange(current.Except(floorPositions));
         }
 
         CreateNodes(floorPositions, NodeList, NodeParent);
@@ -85,7 +86,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         foreach (Vector2Int position in deadEnds) {
             if (roomFloors.Contains(position) == false) 
             {
-                var room = RunRandomWalk(randomWalkParameters, position);
+                List<Vector2Int> room = RunRandomWalk(randomWalkParameters, position);
                 roomFloors.AddRange(room.Except(roomFloors));
             }
         }
@@ -94,22 +95,22 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
     // Поиск всех тупиков (позиций с только одним соседом)
     private List<Vector2Int> FindAllDeadEnds(List<Vector2Int> floorPositions) 
     {
-        List<Vector2Int> deadEnds = new List<Vector2Int>();
+        List<Vector2Int> badCorridors = new List<Vector2Int>();
 
-        foreach (var position in floorPositions) 
+        foreach (Vector2Int position in floorPositions) 
         {
-            int neighboursCount = 0;
+            int count = 0;
             // Проверяем 4 направления (верх, право, низ, лево)
-            foreach (var direction in cardinalDirectionsList) 
+            foreach (Vector2Int direction in cardinalDirectionsList) 
             {
                 if (floorPositions.Contains(position + direction)) 
-                    neighboursCount++;
+                    count++;
             }
             // Если только 1 сосед - это тупик
-            if (neighboursCount == 1)
-                deadEnds.Add(position);
+            if (count == 1)
+                badCorridors.Add(position);
         }
-        return deadEnds;
+        return badCorridors;
     }
 
     // Создание комнат в случайных точках
@@ -117,15 +118,15 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
     {
         List<Vector2Int> roomPositions = new List<Vector2Int>();
         // Вычисляем количество комнат на основе процента
-        int roomToCreateCount = Mathf.RoundToInt(potentialRoomPositions.Count * roomPercent);
+        int readyRoomsCount = Mathf.RoundToInt(potentialRoomPositions.Count * roomPercent);
 
         // Выбираем случайные позиции для комнат
-        List<Vector2Int> roomsToCreate = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(roomToCreateCount).ToList();
+        List<Vector2Int> readyRooms = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(readyRoomsCount).ToList();
         
         // Генерируем комнаты алгоритмом случайного блуждания
-        foreach (var roomPosition in roomsToCreate) 
+        foreach (Vector2Int pos in readyRooms) 
         {
-            var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition);
+            List<Vector2Int> roomFloor = RunRandomWalk(randomWalkParameters, pos);
             roomPositions.AddRange(roomFloor.Except(roomPositions));
         }
 
@@ -152,60 +153,27 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
     // Создание коридоров
     private List<List<Vector2Int>> CreateCorridors(List<Vector2Int> floorPositions, List<Vector2Int> potentialRoomPositions) 
     {
-        var currentPosition = start;
-        potentialRoomPositions.Add(currentPosition);
+        Vector2Int current = start;
+        potentialRoomPositions.Add(current);
         List<List<Vector2Int>> corridors = new List<List<Vector2Int>>();
 
         // Создаем указанное количество коридоров
         for (int i = 0; i < corridorCount; i++) 
         {
             // Генерируем коридор алгоритмом случайного блуждания
-            var corridor = BuildCorridor(currentPosition, corridorLength);
+            List<Vector2Int> corridor = BuildCorridor(current, corridorLength);
             corridors.Add(corridor);
             // Перемещаем текущую позицию в конец коридора
-            currentPosition = corridor[corridor.Count - 1];
+            current = corridor[corridor.Count - 1];
             // Добавляем конечную точку как потенциальную позицию для комнаты
-            potentialRoomPositions.Add(currentPosition);
+            potentialRoomPositions.Add(current);
             floorPositions.AddRange(corridor.Except(floorPositions));
         }
         return corridors;
     }
-
-    // Увеличение коридора на 1 клетку в каждую сторону (устаревший метод)
-    public List<Vector2Int> IncreaseCorridorSizeByOne(List<Vector2Int> corridor) 
-    {
-        List<Vector2Int> newCorridor = new List<Vector2Int>();
-        Vector2Int previousDirection = Vector2Int.zero;
-
-        for (int i = 1; i < corridor.Count; i++) 
-        {
-            Vector2Int directionFromCell = corridor[i] - corridor[i - 1];
-            if (previousDirection != Vector2Int.zero &&
-                  directionFromCell != previousDirection) 
-            {
-                // Добавляем 3x3 блок на поворотах
-                for (int x = -1; x < 2; x++) 
-                {
-                    for (int y = -1; y < 2; y++) 
-                    {
-                        newCorridor.Add(corridor[i - 1] + new Vector2Int(x, y));
-                    }
-                }
-                previousDirection = directionFromCell;
-            }
-            else 
-            {
-                // Добавляем клетки по бокам прямых участков
-                Vector2Int newCorridorTileOffset = GetDirection90From(directionFromCell);
-                newCorridor.Add(corridor[i - 1]);
-                newCorridor.Add(corridor[i - 1] + newCorridorTileOffset);
-            }
-        }
-        return newCorridor;
-    }
-
+    
     // Увеличение коридора до размера 3x3 (текущий метод)
-    public List<Vector2Int> IncreaseCorridorBrush3by3(List<Vector2Int> corridor) 
+    public List<Vector2Int> CorridorExpansion(List<Vector2Int> corridor) 
     {
         List<Vector2Int> newCorridor = new List<Vector2Int>();
         for (int i = 1; i < corridor.Count; i++) 
@@ -238,7 +206,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
 
     void CreateNodes(List<Vector2Int> floorPositions, List<Node> NodeList, GameObject NodeParent)
     {
-        foreach (var floor in floorPositions)
+        foreach (Vector2Int floor in floorPositions)
         {
             Node node = Instantiate(nodePrefab, new Vector2(floor.x + 0.5f, floor.y + 0.5f), Quaternion.identity);
             node.transform.SetParent(NodeParent.transform);
@@ -248,7 +216,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
 
     void CreateConnections(List<Node> NodeList)
     {
-        foreach (var node in NodeList)
+        foreach (Node node in NodeList)
         {
             Vector2 position = node.transform.position;
             for (int i = -1; i < 2; ++i)
