@@ -73,15 +73,15 @@ public static class WallGenerator
             tilemapVisualizer.TileCornerWall(position, neighboursBinaryType);
         }
     }
-    private static List<Vector2Int> FindWallsInDirections(List<Vector2Int> floorPositions, List<Vector2Int> directions) 
+    private static List<Vector2Int> FindWallsInDirections(List<Vector2Int> floor, List<Vector2Int> directions) 
     {
         List<Vector2Int> wallPositions = new List<Vector2Int>();
-        foreach (Vector2Int position in floorPositions) 
+        foreach (Vector2Int pos in floor) 
         {
             foreach (Vector2Int direction in directions) 
             {
-                Vector2Int neighbour =  position + direction;
-                if (!floorPositions.Contains(neighbour)) 
+                Vector2Int neighbour =  pos + direction;
+                if (!floor.Contains(neighbour)) 
                 {
                     wallPositions.Add(neighbour);
                 }
