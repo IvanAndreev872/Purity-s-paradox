@@ -6,13 +6,13 @@ public class BaseShooter : MonoBehaviour
 {
     public Transform player;
 
-    public GameObject bullet_prefab;
-    public float bullet_speed;
-    public float shooter_distance_max;
-    public float shooter_distance_min;
-    public float fire_delay;
+    public GameObject bulletPrefab;
+    public float bulletSpeed;
+    public float shooterDistanceMax;
+    public float shooterDistanceMin;
+    public float fireDelay;
 
-    private float shoot_time;
+    private float shootTime;
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +23,19 @@ public class BaseShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        Vector2 watch_direction = (player.position - transform.position).normalized;
-        transform.right = watch_direction;
+        Vector2 watchDirection = (player.position - transform.position).normalized;
+        transform.right = watchDirection;
 
-        if (Vector2.Distance(transform.position, player.position) < shooter_distance_max && 
-            Vector2.Distance(transform.position, player.position) > shooter_distance_min)
+        if (Vector2.Distance(transform.position, player.position) < shooterDistanceMax && 
+            Vector2.Distance(transform.position, player.position) > shooterDistanceMin)
         {
-            if (Time.time > fire_delay + shoot_time)
+            if (Time.time > fireDelay + shootTime)
             {
-                shoot_time = Time.time;
-                Vector3 create_position = transform.position + transform.right * 2;
-                GameObject bullet = Instantiate(bullet_prefab, create_position, transform.rotation);
-                Rigidbody2D bullet_rb = bullet.GetComponent<Rigidbody2D>();
-                bullet_rb.velocity = transform.right * bullet_speed;
+                shootTime = Time.time;
+                Vector3 createPosition = transform.position + transform.right * 2;
+                GameObject bullet = Instantiate(bulletPrefab, createPosition, transform.rotation);
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.velocity = transform.right * bulletSpeed;
             }
         }
     }

@@ -11272,25 +11272,9 @@ PrefabInstance:
       value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 2376210395119403686, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: BG
-      value: 
-      objectReference: {fileID: 1464305884}
-    - target: {fileID: 2376210395119403686, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1464305883}
-    - target: {fileID: 3773319267635346151, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: damage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3773319267635346151, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: radius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3773319267635346151, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-      propertyPath: attackDelay
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8286456126634756584, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13630,11 +13614,6 @@ RectTransform:
 --- !u!224 &1464305883 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3081473235761683057, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
-  m_PrefabInstance: {fileID: 1464305881}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1464305884 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4483516326724694228, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
   m_PrefabInstance: {fileID: 1464305881}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1464305885 stripped
@@ -18625,18 +18604,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1003604348}
-    - target: {fileID: 1455427677480907720, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
-      propertyPath: jumpEffect
-      value: 
-      objectReference: {fileID: 5501370000953354905, guid: 2dee54ed9731ce047bf51923ca9c1066, type: 3}
-    - target: {fileID: 1455427677480907720, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
-      propertyPath: jump_delay
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1455427677480907720, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
-      propertyPath: explosion_prefab
-      value: 
-      objectReference: {fileID: 4058112931313886503, guid: 11ec817cb140eab4fae59e12f0a0eb52, type: 3}
     - target: {fileID: 3086527992935385241, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
       propertyPath: m_Name
       value: Anger
@@ -18645,14 +18612,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1003604348}
-    - target: {fileID: 4567368068809590926, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
-      propertyPath: fire_delay
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5154070756089974755, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
-      propertyPath: enraged_after_healthpoint
-      value: 900
-      objectReference: {fileID: 0}
     - target: {fileID: 5173853607928207312, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.556345
@@ -18705,10 +18664,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1003604348}
-    - target: {fileID: 7739717710543281433, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
-      propertyPath: dash_delay
-      value: 45
-      objectReference: {fileID: 0}
     - target: {fileID: 8202283524573964674, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
       propertyPath: player
       value: 

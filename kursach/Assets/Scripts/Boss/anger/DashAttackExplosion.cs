@@ -61,8 +61,8 @@ public class DashAttackExplosion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(movementInterface.able_to_move + " " + isDashing + " " + isPreparing + " " + canBeEnabled);
-        if (movementInterface.able_to_move && !isDashing && !isPreparing && canBeEnabled)
+        Debug.Log(movementInterface.ableToMove + " " + isDashing + " " + isPreparing + " " + canBeEnabled);
+        if (movementInterface.ableToMove && !isDashing && !isPreparing && canBeEnabled)
         {
             Debug.Log(1);
             CheckDash();
@@ -86,7 +86,7 @@ public class DashAttackExplosion : MonoBehaviour
         Debug.Log(Time.time + " " + (dashDelay + dashTime));
         if (Time.time > dashDelay + dashTime)
         {
-            movementInterface.able_to_move = false;
+            movementInterface.ableToMove = false;
             Vector3 directionOpposite = (transform.position - player.position).normalized;
             dashTime = Time.time;
             retreatTarget = player.position + directionOpposite * makeDistance;
@@ -114,7 +114,7 @@ public class DashAttackExplosion : MonoBehaviour
         if (Vector2.Distance(transform.position, dashTarget) <= 0.1)
         {
             isDashing = false;
-            movementInterface.able_to_move = true;
+            movementInterface.ableToMove = true;
             trail.enabled = false;
             Explosion();
         }
@@ -131,9 +131,9 @@ public class DashAttackExplosion : MonoBehaviour
 
     void MakePath(bool newTrail)
     {
-        GameObject path_part = Instantiate(pathPrefab, transform.position, transform.rotation);
+        GameObject pathPart = Instantiate(pathPrefab, transform.position, transform.rotation);
 
-        Destroy(path_part, pathDuration);
+        Destroy(pathPart, pathDuration);
 
         if (newTrail)
         {
@@ -161,7 +161,7 @@ public class DashAttackExplosion : MonoBehaviour
         else if (isDashing)
         {
             isDashing = false;
-            movementInterface.able_to_move = true;
+            movementInterface.ableToMove = true;
             trail.enabled = false;
             DamageInterface enemy = collision.gameObject.GetComponent<DamageInterface>();
             if (enemy != null)
@@ -172,9 +172,9 @@ public class DashAttackExplosion : MonoBehaviour
         }
     }
 
-    private void OnAngerChanged(AngerStatusController.AngerLevel new_level)
+    private void OnAngerChanged(AngerStatusController.AngerLevel newLevel)
     {
-        if (new_level == AngerLevel.Raged || new_level == AngerLevel.Enraged)
+        if (newLevel == AngerLevel.Raged || newLevel == AngerLevel.Enraged)
         {
             canBeEnabled = true;
         }

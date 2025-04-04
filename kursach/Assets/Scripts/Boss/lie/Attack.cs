@@ -5,12 +5,14 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public Transform player;
-    public GameObject bullet_prefab;
-    public float bullet_speed;
-    public float fire_delay;
-    public float back_attack_chance;
+    public GameObject bulletPrefab;
+    public float bulletSpeed;
+    public float fireDelay;
+    public float backAttackChance;
+    public float backAttackDelay;
 
-    private float shoot_time;
+    private float shootTime;
+    private float backAttackTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,20 +27,21 @@ public class Attack : MonoBehaviour
     {
         Vector2 watch_direction = (player.position - transform.position).normalized;
         transform.right = watch_direction;
-        if (Time.time > fire_delay + shoot_time)
+        if (Time.time > fireDelay + shootTime)
         {
             RegularShoot();
         }
 
-        if (Random.value < back_attack_chance) 
+        if ((Random.value < backAttackChance) && (Time.time > backAttackTime + backAttackDelay)) 
         { 
+            backAttackTime = Time.time;
             KnifeInTheBack();
         }
     }
 
     void RegularShoot()
     {
-        shoot_time = Time.time;
+        shootTime = Time.time;
         Vector3 create_position = transform.position + transform.right * 2; 
         ShootFromPosition(create_position);
     }
@@ -52,8 +55,8 @@ public class Attack : MonoBehaviour
 
     void ShootFromPosition(Vector3 create_position)
     {
-        GameObject bullet = Instantiate(bullet_prefab, create_position, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, create_position, transform.rotation);
         Rigidbody2D bullet_rb = bullet.GetComponent<Rigidbody2D>();
-        bullet_rb.velocity = transform.right * bullet_speed;
+        bullet_rb.velocity = transform.right * bulletSpeed;
     }
 }

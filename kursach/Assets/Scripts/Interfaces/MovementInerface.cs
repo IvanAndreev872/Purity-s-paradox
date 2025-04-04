@@ -1,5 +1,5 @@
 public interface MovementInterface
 {
-    bool able_to_move { get; set; }
+    bool ableToMove { get; set; }
     void ChangeSpeed(float coef, float time);
 }

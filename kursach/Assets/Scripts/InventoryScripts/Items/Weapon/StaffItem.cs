@@ -49,7 +49,7 @@ public class StaffItem : WeaponItem
                 if (bullet.GetComponent<FreezeProjectile>() != null)
                 {
                     bullet.GetComponent<FreezeProjectile>().UpdateFreezeBullet(player);
-                    shooter.bullet_prefab = bullet;
+                    shooter.bulletPrefab = bullet;
                     break;
                 }
             }
@@ -61,7 +61,7 @@ public class StaffItem : WeaponItem
                 if (bullet.GetComponent<FireProjectile>() != null)
                 {
                     bullet.GetComponent<FireProjectile>().UpdateFireBullet(player);
-                    shooter.bullet_prefab = bullet;
+                    shooter.bulletPrefab = bullet;
                     break;
                 }
             }
@@ -73,7 +73,7 @@ public class StaffItem : WeaponItem
                 if (bullet.GetComponent<PoisonProjectile>() != null)
                 {
                     bullet.GetComponent<PoisonProjectile>().UpdatePoisonBullet(player);
-                    shooter.bullet_prefab = bullet;
+                    shooter.bulletPrefab = bullet;
                     break;
                 }
             }
@@ -85,7 +85,7 @@ public class StaffItem : WeaponItem
                 if (bullet.GetComponent<WaterProjectile>() != null)
                 {
                     bullet.GetComponent<WaterProjectile>().UpdateWaterBullet(player);
-                    shooter.bullet_prefab = bullet;
+                    shooter.bulletPrefab = bullet;
                     break;
                 }
             }

@@ -6,15 +6,15 @@ public class EnemyMelee : MonoBehaviour
 {
     public float radius;
     public float damage;
-    public float attack_delay;
+    public float attackDelay;
     public Transform player;
 
-    protected float attack_time;
+    protected float attackTime;
     private DamageInterface attack_player;
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        attack_time = Time.time;
+        attackTime = Time.time;
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Character").transform;
@@ -25,7 +25,7 @@ public class EnemyMelee : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (Time.time > attack_time + attack_delay)
+        if (Time.time > attackTime + attackDelay)
         {
             Attack();
         }
@@ -37,6 +37,6 @@ public class EnemyMelee : MonoBehaviour
         {
             attack_player.Hit(damage);
         }
-        attack_time = Time.time;
+        attackTime = Time.time;
     }
 }

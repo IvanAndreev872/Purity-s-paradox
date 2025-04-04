@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    public float fire_distance;
+    public float fireDistance;
     public float damage;
 
-    private Vector3 spawn_point;
+    private Vector3 spawnPoint;
     // Start is called before the first frame update
     void Start()
     {
-        spawn_point = transform.position;
+        spawnPoint = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, spawn_point) >= fire_distance)
+        if (Vector3.Distance(transform.position, spawnPoint) >= fireDistance)
         { 
             Destroy(gameObject);
         }

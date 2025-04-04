@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d7214c15d942949ba2f51f580ad739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack_delay: 0.5
+  attackDelay: 0.5
   damage: 30
-  existance_time: 2
+  existanceTime: 2
   radius: 0.5

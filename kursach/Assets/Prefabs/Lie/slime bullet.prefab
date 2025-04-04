@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9117877974353967733}
   - component: {fileID: 5140554177507218899}
   - component: {fileID: 7276693448570382211}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: slime bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,5 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2faa8e5e0ebec41b3e3b9479be460f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire_distance: 15
-  damage: 20
+  fireDistance: 30
+  damage: 10

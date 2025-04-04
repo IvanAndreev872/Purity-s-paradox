@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bafa5ab064efee64382aeab95d1b763d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDistance: 0
+  fireDistance: 20
   damage: 0
   slowdownCoeffitient: 0
   slowdownTime: 0

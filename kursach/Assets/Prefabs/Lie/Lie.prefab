@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -6388816244957944066}
   m_Layer: 8
   m_Name: Lie
-  m_TagString: Untagged
+  m_TagString: Slime enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,11 +168,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  walk_speed: 5
-  minimum_distance: 6
-  room_center: {fileID: 0}
-  clone_prefab: {fileID: 7013591406065540024, guid: ad7877eed3f7f8649bdb9e799dbe4ff5, type: 3}
-  max_clones: 3
+  walkSpeed: 5
+  minimumDistance: 6
+  roomCenter: {fileID: 0}
+  clonePrefab: {fileID: 7013591406065540024, guid: ad7877eed3f7f8649bdb9e799dbe4ff5, type: 3}
+  maxClones: 3
 --- !u!114 &2693553453998507794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1
   damage: 20
-  attack_delay: 1
+  attackDelay: 1
   player: {fileID: 0}
 --- !u!114 &457024413157681984
 MonoBehaviour:
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932831492c5ea7341bc50c18becde553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_healthpoint: 100
+  maxHealthpoint: 100
 --- !u!95 &4051803593460868129
 Animator:
   serializedVersion: 5
@@ -304,7 +304,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 4
 --- !u!114 &5731515304096907036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510f2e6b73e40f04ca6b6c5629fee343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodge_speed: 15
+  dodgeSpeed: 15
 --- !u!1 &6823851820092645183
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  bullet_prefab: {fileID: 7932271090808488228, guid: b643fc27833d2c942a9263da4502cc1f, type: 3}
-  bullet_speed: 15
-  fire_delay: 1
-  back_attack_chance: 0.01
+  bulletPrefab: {fileID: 7932271090808488228, guid: b643fc27833d2c942a9263da4502cc1f, type: 3}
+  bulletSpeed: 15
+  fireDelay: 1
+  backAttackChance: 20
+  backAttackDelay: 1

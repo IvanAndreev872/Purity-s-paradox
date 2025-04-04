@@ -4,39 +4,43 @@ using UnityEngine;
 
 public class LieController : MonoBehaviour, MovementInterface
 {
-    public bool able_to_move { get; set; } = true;
+    public bool ableToMove { get; set; } = true;
     public Transform player;
-    public float walk_speed;
-    public float minimum_distance;
-    public Transform room_center;
-    public GameObject clone_prefab;
-    public int max_clones;
+    public float walkSpeed;
+    public float minimumDistance;
+    public Transform roomCenter;
+    public GameObject clonePrefab;
+    public int maxClones;
 
-    private bool too_close = false;
-    private bool is_teleporting = false;
+    private bool tooClose = false;
+    private bool isTeleporting = false;
 
-    private float walk_speed_now;
+    private float walkSpeedNow;
 
-    private bool speed_changed = false;
-    private float speed_change_duration;
-    private float speed_change_time;
+    private bool speedChanged = false;
+    private float speedChangeDuration;
+    private float speedChangeTime;
 
     private Rigidbody2D rb;
     private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Character").transform;
+        }
         rb = GetComponent<Rigidbody2D>();
-        walk_speed_now = walk_speed;
+        walkSpeedNow = walkSpeed;
         animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (speed_changed && Time.time > speed_change_duration + speed_change_time)
+        if (speedChanged && Time.time > speedChangeDuration + speedChangeTime)
         {
-            speed_changed = false;
-            walk_speed_now = walk_speed;
+            speedChanged = false;
+            walkSpeedNow = walkSpeed;
         }
 
         CheckDistanceToPlayer();
@@ -45,7 +49,7 @@ public class LieController : MonoBehaviour, MovementInterface
     // Update is called once per frame
     void FixedUpdate()
     {   
-        if (too_close && !is_teleporting && able_to_move)
+        if (tooClose && !isTeleporting && ableToMove)
         {
             MoveAway();
         }
@@ -53,21 +57,21 @@ public class LieController : MonoBehaviour, MovementInterface
 
     void CheckDistanceToPlayer()
     {
-        if (Vector2.Distance(rb.position, player.position) < minimum_distance)
+        if (Vector2.Distance(rb.position, player.position) < minimumDistance)
         {
-            too_close = true;
+            tooClose = true;
         } else
         {
-            too_close = false;
+            tooClose = false;
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall")) {
-            if (!is_teleporting)
+            if (!isTeleporting)
             {
-                is_teleporting = true;
+                isTeleporting = true;
                 Invoke("TeleportToCenter", 1);
             }
         }
@@ -76,13 +80,13 @@ public class LieController : MonoBehaviour, MovementInterface
     void TeleportToCenter()
     {
         ActivateCopyAbility();
-        is_teleporting = false;
-        too_close = false;
+        isTeleporting = false;
+        tooClose = false;
     }
 
     void ActivateCopyAbility()
     {
-        Vector3[] positions_deflection =
+        Vector3[] positionsDeflection =
         {
             Vector3.right,
             Vector3.up,
@@ -90,27 +94,27 @@ public class LieController : MonoBehaviour, MovementInterface
             Vector3.left,
         };
 
-        int real_position_index = Random.Range(0, positions_deflection.Length);
+        int realPositionIndex = Random.Range(0, positionsDeflection.Length);
 
-        int clone_number = GameObject.FindGameObjectsWithTag("Clone").Length;
+        int cloneNumber = GameObject.FindGameObjectsWithTag("Clone").Length;
 
-        for (int i = 0; i < positions_deflection.Length; i++)
+        for (int i = 0; i < positionsDeflection.Length; i++)
         {
-            Vector3 position = positions_deflection[i] + room_center.position;
-            if (i != real_position_index && clone_number < max_clones)
+            Vector3 position = positionsDeflection[i] + roomCenter.position;
+            if (i != realPositionIndex && cloneNumber < maxClones)
             {
-                GameObject clone = Instantiate(clone_prefab, position, transform.rotation);
-                LieController clone_controller = clone.GetComponent<LieController>();
-                if (clone_controller != null)
+                GameObject clone = Instantiate(clonePrefab, position, transform.rotation);
+                LieController cloneController = clone.GetComponent<LieController>();
+                if (cloneController != null)
                 {
-                    clone_controller.player = player;
-                    clone_controller.walk_speed = walk_speed;
-                    clone_controller.minimum_distance = minimum_distance;
-                    clone_controller.room_center = room_center;
-                    clone_controller.max_clones = max_clones;
-                    clone_controller.clone_prefab = clone_prefab;
+                    cloneController.player = player;
+                    cloneController.walkSpeed = walkSpeed;
+                    cloneController.minimumDistance = minimumDistance;
+                    cloneController.roomCenter = roomCenter;
+                    cloneController.maxClones = maxClones;
+                    cloneController.clonePrefab = clonePrefab;
                 }
-                clone_number++;
+                cloneNumber++;
             }
             else 
             {
@@ -121,17 +125,17 @@ public class LieController : MonoBehaviour, MovementInterface
 
     public void ChangeSpeed(float coef, float time)
     {
-        walk_speed_now = walk_speed * coef;
-        speed_changed = true;
-        speed_change_time = Time.time;
-        speed_change_duration = time;
+        walkSpeedNow = walkSpeed * coef;
+        speedChanged = true;
+        speedChangeTime = Time.time;
+        speedChangeDuration = time;
     }
 
     void MoveAway()
     {
         Vector3 direction = (transform.position - player.position).normalized;
 
-        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, walk_speed_now * Time.fixedDeltaTime));
+        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, walkSpeedNow * Time.fixedDeltaTime));
 
         animator.SetFloat("MoveX", direction.x);
         animator.SetFloat("MoveY", direction.y);

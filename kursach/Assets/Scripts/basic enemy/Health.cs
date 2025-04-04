@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, DamageInterface
 {
-    public float max_healthpoint;
+    public float maxHealthpoint;
 
-    private float current_health;
+    private float currentHealth;
     private bool damagable = true, isDead = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        current_health = max_healthpoint;
+        currentHealth = maxHealthpoint;
     }
 
     public void Hit(float damage)
@@ -20,17 +20,17 @@ public class Health : MonoBehaviour, DamageInterface
         Debug.Log(damagable + " " + damage);
         if (damagable)
         {
-            if (current_health <= damage)
+            if (currentHealth <= damage)
             {
                 Die();
             }
-            current_health -= damage;
+            currentHealth -= damage;
         }
     }
 
-    public void CanBeDamaged(bool is_damagable)
+    public void CanBeDamaged(bool isDamagable)
     {
-        damagable = is_damagable;
+        damagable = isDamagable;
     }
 
     private void Die()

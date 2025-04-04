@@ -5,24 +5,23 @@ using UnityEngine;
 public class AngerStatusController : MonoBehaviour, DamageInterface
 {
     public enum AngerLevel { Calm, Raged, Enraged }
-    public AngerLevel current_enragement { get; private set; }
+    public AngerLevel currentEnragement { get; private set; }
 
-    public delegate void OnAngerChanged(AngerLevel new_level);
+    public delegate void OnAngerChanged(AngerLevel newLevel);
     public event OnAngerChanged EnragementChanged;
 
-    public float max_healthpoint;
+    public float maxHealthpoint;
+    public float ragedAfterHealthpoint;
+    public float enragedAfterHealthpoint;
 
-    public float raged_after_healthpoint;
-    public float enraged_after_healthpoint;
-
-    private float current_health;
+    private float currentHealth;
 
     private bool damagable = true, isDead = false;
     // Start is called before the first frame update�
     void Awake()
     {
-        current_health = max_healthpoint;
-        current_enragement = AngerLevel.Calm;
+        currentHealth = maxHealthpoint;
+        currentEnragement = AngerLevel.Calm;
     }
 
     public void Hit(float damage)
@@ -30,43 +29,43 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
         if (damagable)
         {
             Debug.Log(damage);
-            current_health -= damage;
+            currentHealth -= damage;
             CheckHealth();
         }
     }
 
     private void CheckHealth()
     {
-        if (current_health < 0) 
+        if (currentHealth < 0) 
         {
             Die();
         } 
         else
         {
-            AngerLevel new_enragement_level = current_enragement;
-            if (current_health <= enraged_after_healthpoint)
+            AngerLevel newEnragementLevel = currentEnragement;
+            if (currentHealth <= enragedAfterHealthpoint)
             {
                 Debug.Log(1);
-                new_enragement_level = AngerLevel.Enraged;
+                newEnragementLevel = AngerLevel.Enraged;
             }
-            else if (current_health <= raged_after_healthpoint)
+            else if (currentHealth <= ragedAfterHealthpoint)
             {
                 Debug.Log(0);
-                new_enragement_level = AngerLevel.Raged;
+                newEnragementLevel = AngerLevel.Raged;
             }
 
-            if (current_enragement != new_enragement_level)
+            if (currentEnragement != newEnragementLevel)
             {
-                Debug.Log(new_enragement_level);
-                current_enragement = new_enragement_level;
-                EnragementChanged?.Invoke(new_enragement_level);
+                Debug.Log(newEnragementLevel);
+                currentEnragement = newEnragementLevel;
+                EnragementChanged?.Invoke(newEnragementLevel);
             }
         }
     }
 
-    public void CanBeDamaged(bool is_damagable)
+    public void CanBeDamaged(bool isDamagable)
     {
-        damagable = is_damagable;
+        damagable = isDamagable;
     }
 
     private void Die()

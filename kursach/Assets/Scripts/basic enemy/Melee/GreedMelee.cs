@@ -17,7 +17,7 @@ public class GreedMelee : EnemyMelee
     {
         if (playerStats.money > 0)
         {
-            if (Time.time > attack_time + attack_delay)
+            if (Time.time > attackTime + attackDelay)
             {
                 Attack();
                 TakeMoney();

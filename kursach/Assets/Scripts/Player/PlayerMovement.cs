@@ -6,63 +6,68 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerMovement : MonoBehaviour, MovementInterface
 {
-    public DamageInterface damage_interface;
-    public bool able_to_move { get; set; } = true;
+    public DamageInterface damageInterface;
+    public bool ableToMove { get; set; } = true;
 
-    public float walk_speed;
-    public float dash_speed;
-    private float dash_speed_now;
-    private float walk_speed_now;
+    public float walkSpeed;
+    public float dashSpeed;
+    private float dashSpeedNow;
+    private float walkSpeedNow;
 
-    private bool speed_changed = false;
-    private float speed_change_duration;
-    private float speed_change_time;
+    private bool speedChanged = false;
+    private float speedChangeDuration;
+    private float speedChangeTime;
 
-    public float dash_duration;
+    public float dashDuration;
     public float dashDelay = 0.8f;
     private float dashTime;
 
-    public float rotation_speed;
+    public float rotationSpeed;
     public GameObject shooter;
 
-    public bool is_dash_invulnerable;
+    public bool isDashInvulnerable;
 
-    public bool is_dash_poisoned;
-    public GameObject poison_path_prefab;
-    public float poison_path_duration;
+    public bool isDashPoisoned;
+    public GameObject poisonPathPrefab;
+    public float poisonPathDuration;
 
-    public LineRenderer line_renderer;
+    public LineRenderer lineRenderer;
 
-    private float path_magnitude;
+    private float pathMagnitude;
 
-    private bool path_part_created = false;
-    private Vector2 previous_part_position;
-    private float path_part_distance;
+    private bool pathPartCreated = false;
+    private Vector2 previousPartPosition;
+    private float pathPartDistance;
     private Rigidbody2D rb;
-    private bool is_dashing = false;
-    private float dash_start;
+    private bool isDashing = false;
+    private float dashStart;
     private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         UpdateSpeed(GetComponent<PlayerStats>());
-        damage_interface = GetComponent<DamageInterface>();
+        damageInterface = GetComponent<DamageInterface>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        walk_speed_now = walk_speed;
-        dash_speed_now = dash_speed;
+        walkSpeedNow = walkSpeed;
+        dashSpeedNow = dashSpeed;
 
-        if (poison_path_prefab != null)
+        if (poisonPathPrefab != null)
         {
-            path_magnitude = poison_path_prefab.transform.localScale.magnitude / 2;
-            path_part_distance = path_magnitude;
+            pathMagnitude = poisonPathPrefab.transform.localScale.magnitude / 2;
+            pathPartDistance = pathMagnitude;
+        }
+
+        if (shooter == null)
+        {
+            shooter = transform.Find("Shooter").gameObject;
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (is_dashing)
+        if (isDashing)
         {
             Dash();
         }
@@ -74,14 +79,14 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
 
     void Update()
     {
-        if (speed_changed && Time.time > speed_change_duration + speed_change_time)
+        if (speedChanged && Time.time > speedChangeDuration + speedChangeTime)
         {
-            speed_changed = false;
-            walk_speed_now = walk_speed;
-            dash_speed_now = dash_speed;
+            speedChanged = false;
+            walkSpeedNow = walkSpeed;
+            dashSpeedNow = dashSpeed;
         }
 
-        if (!is_dashing)
+        if (!isDashing)
         {
             CheckDash();
         }
@@ -89,43 +94,43 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
 
     public void UpdateSpeed(PlayerStats playerStats)
     {
-        walk_speed = playerStats.walkSpeed;
-        dash_speed = playerStats.dashSpeed;
-        dash_duration = playerStats.dashDuration;
-        walk_speed_now = walk_speed;
-        dash_speed_now = dash_speed;
-        is_dash_invulnerable = playerStats.isDashInvulnerable >= 1;
-        is_dash_poisoned = playerStats.isDashPoisoned >= 1;
+        walkSpeed = playerStats.walkSpeed;
+        dashSpeed = playerStats.dashSpeed;
+        dashDuration = playerStats.dashDuration;
+        walkSpeedNow = walkSpeed;
+        dashSpeedNow = dashSpeed;
+        isDashInvulnerable = playerStats.isDashInvulnerable >= 1;
+        isDashPoisoned = playerStats.isDashPoisoned >= 1;
     }
 
     private void Walk()
     {
-        Move(walk_speed_now);
+        Move(walkSpeedNow);
     }
 
     private void Dash()
     {
-        if (Time.time > dash_start + dash_duration)
+        if (Time.time > dashStart + dashDuration)
         {
             dashTime = Time.time;
-            is_dashing = false;
-            path_part_created = false;
+            isDashing = false;
+            pathPartCreated = false;
 
-            if (is_dash_invulnerable && damage_interface != null)
+            if (isDashInvulnerable && damageInterface != null)
             {
-                damage_interface.CanBeDamaged(true);
+                damageInterface.CanBeDamaged(true);
             }
         }
         else
         {
-            Move(dash_speed_now);
-            if (is_dash_poisoned)
+            Move(dashSpeedNow);
+            if (isDashPoisoned)
             {
-                if (path_part_created && Vector2.Distance(transform.position, previous_part_position) >= path_part_distance)
+                if (pathPartCreated && Vector2.Distance(transform.position, previousPartPosition) >= pathPartDistance)
                 {
                     MakePath();
                 }
-                else if (!path_part_created)
+                else if (!pathPartCreated)
                 {
                     MakePath();
                 }
@@ -138,14 +143,14 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && Time.time > dashDelay + dashTime)
         {
             dashTime = Time.time;
-            is_dashing = true;
-            dash_start = Time.time;
+            isDashing = true;
+            dashStart = Time.time;
 
-            if (is_dash_invulnerable)
+            if (isDashInvulnerable)
             {
-                damage_interface.CanBeDamaged(false);
+                damageInterface.CanBeDamaged(false);
             }
-            if (is_dash_poisoned)
+            if (isDashPoisoned)
             {
                 CreateNewLine();
             }
@@ -154,58 +159,58 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
 
     void CreateNewLine()
     {
-        GameObject new_line_object = new GameObject("PoisonPath");
-        LineRenderer new_line = new_line_object.AddComponent<LineRenderer>();
+        GameObject newLineObject = new GameObject("PoisonPath");
+        LineRenderer newLine = newLineObject.AddComponent<LineRenderer>();
 
-        new_line.startWidth = path_magnitude;
-        new_line.endWidth = path_magnitude;
-        new_line.positionCount = 0;
-        new_line.startColor = Color.green;
-        new_line.endColor = Color.green;
-        new_line.material = new Material(Shader.Find("Sprites/Default"));
-        new_line.sortingOrder = 1;
+        newLine.startWidth = pathMagnitude;
+        newLine.endWidth = pathMagnitude;
+        newLine.positionCount = 0;
+        newLine.startColor = Color.green;
+        newLine.endColor = Color.green;
+        newLine.material = new Material(Shader.Find("Sprites/Default"));
+        newLine.sortingOrder = 1;
 
-        line_renderer = new_line;
+        lineRenderer = newLine;
     }
 
     public void ChangeSpeed(float coef, float time)
     {
-        dash_speed_now = dash_speed * coef;
-        walk_speed_now = walk_speed * coef;
-        speed_changed = true;
-        speed_change_time = Time.time;
-        speed_change_duration = time;
+        dashSpeedNow = dashSpeed * coef;
+        walkSpeedNow = walkSpeed * coef;
+        speedChanged = true;
+        speedChangeTime = Time.time;
+        speedChangeDuration = time;
     }
 
     private void Move(float speed)
     {
-        float move_x = Input.GetAxis("Horizontal");
-        float move_y = Input.GetAxis("Vertical");
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
 
-        Vector3 direction = new(move_x * speed, move_y * speed);
+        Vector3 direction = new(moveX * speed, moveY * speed);
 
         rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, speed * Time.fixedDeltaTime));
 
-        RotateCharacter(move_x, move_y);
+        RotateCharacter(moveX, moveY);
     }
 
     void MakePath()
     {
-        GameObject path_part = Instantiate(poison_path_prefab, transform.position, transform.rotation);
-        path_part_created = true;
-        previous_part_position = transform.position;
+        GameObject pathPart = Instantiate(poisonPathPrefab, transform.position, transform.rotation);
+        pathPartCreated = true;
+        previousPartPosition = transform.position;
 
-        Vector2 current_point = transform.position;
-        ++line_renderer.positionCount;
-        line_renderer.SetPosition(line_renderer.positionCount - 1, current_point);
+        Vector2 currentPoint = transform.position;
+        ++lineRenderer.positionCount;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, currentPoint);
 
-        Destroy(path_part, poison_path_duration);
-        StartCoroutine(EraseLast(line_renderer));
+        Destroy(pathPart, poisonPathDuration);
+        StartCoroutine(EraseLast(lineRenderer));
     }
 
     IEnumerator EraseLast(LineRenderer line)
     {
-        yield return new WaitForSeconds(poison_path_duration);
+        yield return new WaitForSeconds(poisonPathDuration);
 
         if (line.positionCount > 0)
         {
@@ -222,19 +227,19 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
         }
     }
 
-    private void RotateCharacter(float move_x, float move_y)
+    private void RotateCharacter(float moveX, float moveY)
     {
-        if (move_x != 0 || move_y != 0)
+        if (moveX != 0 || moveY != 0)
         {
-            float angle_degrees = Mathf.Atan2(move_y, move_x) * Mathf.Rad2Deg;
-            Quaternion target_rotation = Quaternion.Euler(new Vector3(0, 0, angle_degrees));
+            float angleDegrees = Mathf.Atan2(moveY, moveX) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angleDegrees));
             if (shooter)
             {
-                shooter.transform.rotation = Quaternion.Lerp(shooter.transform.rotation, target_rotation, rotation_speed * Time.fixedDeltaTime);
+                shooter.transform.rotation = Quaternion.Lerp(shooter.transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
             }
         }
 
-        animator.SetFloat("MoveX", move_x);
-        animator.SetFloat("MoveY", move_y);
+        animator.SetFloat("MoveX", moveX);
+        animator.SetFloat("MoveY", moveY);
     }
 }

@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class MovementGreedToTarget : MonoBehaviour, MovementInterface
 {
-    public bool able_to_move { get; set; } = true;
+    public bool ableToMove { get; set; } = true;
     public Transform player;
-    public float walk_speed;
+    public float walkSpeed;
 
-    private float walk_speed_now;
+    private float walkSpeedNow;
 
-    private bool speed_changed = false;
-    private float speed_change_duration;
-    private float speed_change_time;
+    private bool speedChanged = false;
+    private float speedChangeDuration;
+    private float speedChangeTime;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -21,21 +21,25 @@ public class MovementGreedToTarget : MonoBehaviour, MovementInterface
     // Start is called before the first frame update
     void Start()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Character").transform;
+        }
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        walk_speed_now = walk_speed;
+        walkSpeedNow = walkSpeed;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (speed_changed && Time.time > speed_change_duration + speed_change_time)
+        if (speedChanged && Time.time > speedChangeDuration + speedChangeTime)
         {
-            speed_changed = false;
-            walk_speed_now = walk_speed;
+            speedChanged = false;
+            walkSpeedNow = walkSpeed;
         }
 
-        if (able_to_move)
+        if (ableToMove)
         {
             if (player)
             {
@@ -46,17 +50,17 @@ public class MovementGreedToTarget : MonoBehaviour, MovementInterface
 
     public void ChangeSpeed(float coef, float time)
     {
-        walk_speed_now = walk_speed * coef;
-        speed_changed = true;
-        speed_change_time = Time.time;
-        speed_change_duration = time;
+        walkSpeedNow = walkSpeed * coef;
+        speedChanged = true;
+        speedChangeTime = Time.time;
+        speedChangeDuration = time;
     }
 
     void MoveTowards(Transform target)
     {
         Vector3 direction = target.position - transform.position;
 
-        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, walk_speed_now * Time.fixedDeltaTime));
+        rb.MovePosition(Vector3.Lerp(transform.position, transform.position + direction.normalized, walkSpeedNow * Time.fixedDeltaTime));
 
         animator.SetFloat("MoveX", direction.x);
         animator.SetFloat("MoveY", direction.y);

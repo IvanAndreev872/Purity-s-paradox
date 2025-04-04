@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class PlayerPath : MonoBehaviour
 {
-    public float attack_delay;
+    public float attackDelay;
     public float damage;
-    public float existance_time;
+    public float existanceTime;
     public float radius;
 
-    private float attack_time;
-    private float creation_time;
+    private float attackTime;
+    private float creationTime;
 
-    private LayerMask enemy_layer;
+    private LayerMask enemyLayer;
 
     void Start()
     {
-        enemy_layer = LayerMask.GetMask("Enemy");
-        creation_time = Time.time;
+        enemyLayer = LayerMask.GetMask("Enemy");
+        creationTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > attack_time + attack_delay)
+        if (Time.time > attackTime + attackDelay)
         {
-            attack_time = Time.time;
+            attackTime = Time.time;
             Attack();
         }
 
-        if (Time.time > creation_time + existance_time)
+        if (Time.time > creationTime + existanceTime)
         {
             Destroy(gameObject);
         }
@@ -37,7 +37,7 @@ public class PlayerPath : MonoBehaviour
 
     void Attack()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, enemy_layer);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayer);
         foreach (Collider2D hitCollider in hitColliders)
         {
             DamageInterface enemy = hitCollider.gameObject.GetComponent<DamageInterface>();

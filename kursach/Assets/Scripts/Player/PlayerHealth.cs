@@ -6,33 +6,33 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour, DamageInterface
 {
-    public float max_healthpoint;
+    public float maxHealthpoint;
 
-    private float current_health;
+    private float currentHealth;
     private bool damagable = true;
     
     // Start is called before the first frame update
     void Start()
     {
         UpdateMaxHealth(GetComponent<PlayerStats>());
-        current_health = max_healthpoint;
+        currentHealth = maxHealthpoint;
     }
 
     public void UpdateMaxHealth(PlayerStats playerStats)
     {
-        max_healthpoint = playerStats.maxHealth;
+        maxHealthpoint = playerStats.maxHealth;
     }
 
     void UpdateHealth()
     {
         PlayerStats playerStats = GetComponent<PlayerStats>();
-        playerStats.health = Math.Max(0, current_health);
+        playerStats.health = Math.Max(0, currentHealth);
         playerStats.UpdateUI();
     }
 
     public void PartHeal(float part)
     {
-        current_health = Math.Max(current_health, max_healthpoint * part);
+        currentHealth = Math.Max(currentHealth, maxHealthpoint * part);
         UpdateHealth();
     }
 
@@ -40,18 +40,18 @@ public class PlayerHealth : MonoBehaviour, DamageInterface
     {
         if (damagable)
         {
-            current_health -= damage;
+            currentHealth -= damage;
             UpdateHealth();
-            if (current_health <= 0)
+            if (currentHealth <= 0)
             {
                 Die();
             }
         }
     }
 
-    public void CanBeDamaged(bool is_damagable)
+    public void CanBeDamaged(bool isDamagable)
     {
-        damagable = is_damagable;
+        damagable = isDamagable;
     }
 
     private void Die()

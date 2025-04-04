@@ -5,32 +5,32 @@ using UnityEngine;
 public class DashAttack : MonoBehaviour
 {
     public Transform player;
-    public MovementInterface movement_interface;
+    public MovementInterface movementInterface;
 
-    public float dash_speed;
-    public float critical_distance;
-    public float dash_delay;
-    public float braking_distance;
+    public float dashSpeed;
+    public float criticalDistance;
+    public float dashDelay;
+    public float breakingDistance;
     public float damage;
 
-    private float dash_time;
-    private bool is_dashing = false;
-    private Vector2 dash_target;
+    private float dashTime;
+    private bool isDashing = false;
+    private Vector2 dashTarget;
     
 
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        movement_interface = GetComponent<MovementInterface>();
+        movementInterface = GetComponent<MovementInterface>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (movement_interface.able_to_move && !is_dashing
-            && Vector2.Distance(transform.position, player.position) > critical_distance)
+        if (movementInterface.ableToMove && !isDashing
+            && Vector2.Distance(transform.position, player.position) > criticalDistance)
         {
             CheckDash();
         }
@@ -38,7 +38,7 @@ public class DashAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (is_dashing)
+        if (isDashing)
         {
             Dash();
         }
@@ -46,33 +46,33 @@ public class DashAttack : MonoBehaviour
 
     void CheckDash()
     {
-        if (Time.time > dash_delay + dash_time)
+        if (Time.time > dashDelay + dashTime)
         {
-            movement_interface.able_to_move = false;
+            movementInterface.ableToMove = false;
             Vector3 direction = (player.position - transform.position).normalized;
-            dash_time = Time.time;
-            dash_target = player.position + direction * braking_distance;
-            is_dashing = true;
+            dashTime = Time.time;
+            dashTarget = player.position + direction * breakingDistance;
+            isDashing = true;
         }
     }
 
     void Dash()
     {
-        if (Vector2.Distance(transform.position, dash_target) <= 0.1)
+        if (Vector2.Distance(transform.position, dashTarget) <= 0.1)
         {
-            is_dashing = false;
-            movement_interface.able_to_move = true;
+            isDashing = false;
+            movementInterface.ableToMove = true;
         }
 
-        rb.MovePosition(Vector3.Lerp(transform.position, dash_target, dash_speed * Time.fixedDeltaTime));
+        rb.MovePosition(Vector3.Lerp(transform.position, dashTarget, dashSpeed * Time.fixedDeltaTime));
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (is_dashing)
+        if (isDashing)
         {
-            is_dashing = false;
-            movement_interface.able_to_move = true;
+            isDashing = false;
+            movementInterface.ableToMove = true;
             DamageInterface enemy = collision.gameObject.GetComponent<DamageInterface>();
             if (enemy != null)
             {

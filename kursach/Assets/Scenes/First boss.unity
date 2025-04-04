@@ -3435,6 +3435,34 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 2079708452}
+    - target: {fileID: 5254175824670434948, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: dashSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254175824670434948, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254175824670434948, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: dashDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254175824670434948, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: rotationSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254175824670434948, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: poisonPathPrefab
+      value: 
+      objectReference: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
+    - target: {fileID: 5254175824670434948, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: poisonPathDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7532072494693093970, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7932271090808488228, guid: ea9bc5beacb1366468ead947422f68b5, type: 3}
     - target: {fileID: 8286456126634756584, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -189,7 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98107e998ee131e44a2baf23bd172e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BG: {fileID: 0}
   inventory: {fileID: 0}
   inventoryPanel: {fileID: 0}
   equipSlotsPanel: {fileID: 0}
@@ -288,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0edf37003e8abb4e957ecab992f76c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_healthpoint: 100
+  maxHealthpoint: 100
 --- !u!114 &5254175824670434948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,16 +300,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14132df89e6f5a54f8337740301befd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk_speed: 5
-  dash_speed: 15
-  dash_duration: 0.5
-  rotation_speed: 25
+  walkSpeed: 0
+  dashSpeed: 0
+  dashDuration: 0
+  dashDelay: 0.8
+  rotationSpeed: 0
   shooter: {fileID: 6933323466790631738}
-  is_dash_invulnerable: 0
-  is_dash_poisoned: 0
-  poison_path_prefab: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
-  poison_path_duration: 1
-  line_renderer: {fileID: 0}
+  isDashInvulnerable: 0
+  isDashPoisoned: 0
+  poisonPathPrefab: {fileID: 3717638489433156332, guid: 51129d7ad6b2ffd4abc60dca64d5ee63, type: 3}
+  poisonPathDuration: 1
+  lineRenderer: {fileID: 0}
 --- !u!114 &530877616537930480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d68665c4e29db438d3cb28a24d0b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet_prefab: {fileID: 7932271090808488228, guid: ea9bc5beacb1366468ead947422f68b5, type: 3}
-  bullet_speed: 0
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 0
   shootDelay: 0
   isStaffEquipped: 0

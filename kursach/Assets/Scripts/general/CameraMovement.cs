@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public Transform target;
-    public float camera_speed;
+    public float cameraSpeed;
 
     private Vector3 offset;
     // Start is called before the first frame update
@@ -18,6 +18,6 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         Vector3 new_position = target.position + offset;
-        transform.position = Vector3.Lerp(transform.position, new_position, camera_speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, new_position, cameraSpeed * Time.deltaTime);
     }
 }

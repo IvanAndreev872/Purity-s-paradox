@@ -10,10 +10,10 @@ public class Explosion : MonoBehaviour
     private Animator animator;
     private float animationLength;
 
-    private LayerMask player_layer;
+    private LayerMask playerLayer;
     private void Start()
     {
-        player_layer = LayerMask.GetMask("Character");
+        playerLayer = LayerMask.GetMask("Character");
         animator = GetComponent<Animator>();
         animationLength = animator.runtimeAnimatorController.animationClips[0].length;
         Debug.Log(animationLength + " animation length");
@@ -23,7 +23,7 @@ public class Explosion : MonoBehaviour
     public void Explode()   
     {
         animator.Play(0);
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, player_layer);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, playerLayer);
         foreach (Collider2D hitCollider in hitColliders)
         {
             DamageInterface player = hitCollider.gameObject.GetComponent<DamageInterface>();

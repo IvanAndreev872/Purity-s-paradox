@@ -161,6 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03382987a88b3ac43a40efb53e330b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDistance: 0
+  fireDistance: 20
   damage: 0
   fireEnemyMultiplier: 0
