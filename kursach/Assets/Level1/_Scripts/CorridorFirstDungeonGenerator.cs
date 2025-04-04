@@ -9,11 +9,11 @@ using System.Xml.Linq;
 public class CorridorFirstDungeonGenerator : DungeonGenerator
 {
     [SerializeField]
-    private int corridorLength; 
+    private int length = 70; 
     [SerializeField]
-    private int corridorCount; 
+    private int count = 10; 
     [SerializeField]
-    private float roomPercent;
+    private float percent = 0.9f;
 
     [SerializeField] public Node nodePrefab;
 
@@ -23,7 +23,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
 
     [SerializeField] public List<GameObject> EnemyPrefabs;
 
-    public static List<Vector2Int> cardinalDirectionsList = new List<Vector2Int> 
+    public static List<Vector2Int> DirectionsList = new List<Vector2Int> 
     {
         new Vector2Int(0, 1),  // up
         new Vector2Int(1, 0),  // right
@@ -37,44 +37,44 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
 
     private void CorridorGeneration() 
     {
-        List<Vector2Int> floorPositions = new List<Vector2Int>();
+        List<Vector2Int> floors = new List<Vector2Int>();
         List<Vector2Int> hardRooms = new List<Vector2Int>();
         List<Node> NodeList = new List<Node>();
         GameObject NodeParent = new GameObject("NodeParent");
         GameObject EnemyParent = new GameObject("EnemyParent");
 
-        List<List<Vector2Int>> corridors = CreateCorridors(floorPositions, hardRooms);
+        List<List<Vector2Int>> corridors = CreateCorridors(floors, hardRooms);
 
         List<Vector2Int> roomPositions = CreateRooms(hardRooms);
 
-        List<Vector2Int> badCorridors = SearchBadCorridors(floorPositions);
+        List<Vector2Int> badCorridors = SearchBadCorridors(floors);
 
         BadCorridorsCreate(badCorridors, roomPositions);
 
-        floorPositions.AddRange(roomPositions.Except(floorPositions));
+        floors.AddRange(roomPositions.Except(floors));
 
-        for (int i = 0; i < corridorCount; i++) 
+        for (int i = 0; i < count; i++) 
         {
             List<Vector2Int> current = corridors[i];
             current = CorridorExpansion(current);
-            floorPositions.AddRange(current.Except(floorPositions));
+            floors.AddRange(current.Except(floors));
         }
 
-        CreateNodes(floorPositions, NodeList, NodeParent);
+        CreateNodes(floors, NodeList, NodeParent);
         CreateConnections(NodeList);
 
         SpawnEnemies(NodeList, EnemyParent);
 
-        tileRenderer.PaintFloorTiles(floorPositions);
-        WallGenerator.CreateWalls(floorPositions, tileRenderer);
+        tileRenderer.PaintFloorTiles(floors);
+        WallGenerator.CreateWalls(floors, tileRenderer);
     }
 
-    private void BadCorridorsCreate(List<Vector2Int> deadEnds, List<Vector2Int> roomFloors) 
+    private void BadCorridorsCreate(List<Vector2Int> badCorridors, List<Vector2Int> roomFloors) 
     {
-        foreach (Vector2Int position in deadEnds) {
+        foreach (Vector2Int position in badCorridors) {
             if (!roomFloors.Contains(position)) 
             {
-                List<Vector2Int> room = SearchRoad(randomWalkParameters, position);
+                List<Vector2Int> room = SearchRoad(settings, position);
                 roomFloors.AddRange(room.Except(roomFloors));
             }
         }
@@ -87,7 +87,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         foreach (Vector2Int position in floors) 
         {
             int count = 0;
-            foreach (Vector2Int direction in cardinalDirectionsList) 
+            foreach (Vector2Int direction in DirectionsList) 
             {
                 if (floors.Contains(position + direction)) 
                     count += 1;
@@ -97,17 +97,17 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         }
         return badCorridors;
     }
-    private List<Vector2Int> CreateRooms(List<Vector2Int> potentialRoomPositions) 
+    private List<Vector2Int> CreateRooms(List<Vector2Int> hardRooms) 
     {
         List<Vector2Int> roomPositions = new List<Vector2Int>();
 
-        int readyRoomsCount = Mathf.RoundToInt(potentialRoomPositions.Count * roomPercent);
+        int readyRoomsCount = Mathf.RoundToInt(hardRooms.Count * percent);
 
-        List<Vector2Int> readyRooms = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(readyRoomsCount).ToList();
+        List<Vector2Int> readyRooms = hardRooms.OrderBy(x => Guid.NewGuid()).Take(readyRoomsCount).ToList();
         
-        foreach (Vector2Int pos in readyRooms) 
+        foreach (Vector2Int pos in readyRooms)  
         {
-            List<Vector2Int> roomFloor = SearchRoad(randomWalkParameters, pos);
+            List<Vector2Int> roomFloor = SearchRoad(settings, pos);
             roomPositions.AddRange(roomFloor.Except(roomPositions));
         }
 
@@ -137,9 +137,9 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         potentialRoomPositions.Add(current);
         List<List<Vector2Int>> corridors = new List<List<Vector2Int>>();
 
-        for (int i = 0; i < corridorCount; i++) 
+        for (int i = 0; i < count; i++) 
         {
-            List<Vector2Int> corridor = BuildCorridor(current, corridorLength);
+            List<Vector2Int> corridor = BuildCorridor(current, length);
             corridors.Add(corridor);
             current = corridor[corridor.Count - 1];
             potentialRoomPositions.Add(current);

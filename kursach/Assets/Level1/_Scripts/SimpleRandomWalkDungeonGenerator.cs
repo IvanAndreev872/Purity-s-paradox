@@ -9,14 +9,14 @@ using UnityEngine;
 public class DungeonGenerator : Generation
 {
     [SerializeField]
-    protected SimpleRandomWalkSO randomWalkParameters; 
+    protected SimpleRandomWalkSO settings; 
 
     public static List<Vector2Int> directions = new List<Vector2Int> {new Vector2Int(0, 1), new Vector2Int(1, 0),
         new Vector2Int(0, -1), new Vector2Int(-1, 0)};
 
     protected override void RunGeneration() 
     {
-        List<Vector2Int> floorPositions = SearchRoad(randomWalkParameters, start);
+        List<Vector2Int> floorPositions = SearchRoad(settings, start);
 
         tileRenderer.ClearSpace();
         
