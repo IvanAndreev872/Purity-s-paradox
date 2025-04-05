@@ -183,8 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932831492c5ea7341bc50c18becde553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_healthpoint: 100
-  isDead: 0
+  maxHealthpoint: 0
 --- !u!114 &6851525012800372574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,9 +212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1.5
   damage: 5
-  attack_delay: 1
+  attackDelay: 1
   player: {fileID: 0}
-  moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}
+  taken: 0
 --- !u!1 &5051932521458224206
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,8 +260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8286456126634756584, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-  bullet_prefab: {fileID: 7932271090808488228, guid: 074197987aef7604aad35cdd242f1355, type: 3}
-  bullet_speed: 10
-  shooter_distance_max: 7
-  shooter_distance_min: 1
-  fire_delay: 1
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 0
+  shooterDistanceMax: 0
+  shooterDistanceMin: 0
+  fireDelay: 0

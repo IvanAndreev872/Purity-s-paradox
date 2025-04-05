@@ -14,8 +14,29 @@ public class TeleportToNewLevel : MonoBehaviour
             Transform player = other.transform;
             PlayerStats playerStats = player.GetComponent<PlayerStats>();
             int levelCompleted = playerStats.levelCompleted;
-            if (levelCompleted >= requiredLevelCompleted || true)
+            if (levelCompleted >= requiredLevelCompleted)
             {
+                string name = SceneManager.GetActiveScene().name;
+                if (name == "First Boss")
+                {
+                    playerStats.levelCompleted = 1;
+                }
+                else if (name == "Level2")
+                {
+                    playerStats.levelCompleted = 2;
+                }
+                else if (name == "Second Boss")
+                {
+                    playerStats.levelCompleted = 3;
+                }
+                else if (name == "Level4")
+                {
+                    playerStats.levelCompleted = 4;
+                }
+                else if (name == "Third Boss")
+                {
+                    playerStats.levelCompleted = 5;
+                }
                 ItemsLoader.Instance.SaveProgress(true);
                 SceneManager.LoadScene(nextLevelName);
             }

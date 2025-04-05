@@ -7501,7 +7501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565831a8202fe1c4fb7729d0ba6d1620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BG: {fileID: 1757403454}
   storage: {fileID: 1020309884}
   indexOfCurrentPage: 0
   pages: []
@@ -33702,7 +33701,7 @@ PrefabInstance:
     - target: {fileID: 2376210395119403686, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: BG
       value: 
-      objectReference: {fileID: 1757403454}
+      objectReference: {fileID: 0}
     - target: {fileID: 2376210395119403686, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
       propertyPath: inventory
       value: 
@@ -36878,7 +36877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c53ef4ed8a4ce949a67d464e1e69187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BG: {fileID: 1757403454}
   shop: {fileID: 2139084289}
   indexOfCurrentPage: 0
   pages: []
@@ -37339,11 +37337,6 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4973785981673362300, guid: a665f7cca50c8fa4288906db62cbcf7b, type: 3}
   m_PrefabInstance: {fileID: 1731174109}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1757403454 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4483516326724694228, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
-  m_PrefabInstance: {fileID: 4862188733917018357}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1768606784
 PrefabInstance:
@@ -44485,10 +44478,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 5577536553030690329, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5663209585687181742, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -44521,6 +44510,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1918351544}
+    - target: {fileID: 6233236473915693763, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+      propertyPath: hint
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6315574952605437147, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
       propertyPath: player
       value: 

@@ -21,6 +21,11 @@ public class RewardAfterDeath : MonoBehaviour
                 money.GetComponent<Recklessness>().count = taken;
             }
         }
+        if (level > 100)
+        {
+            TeleportToNewLevel teleport = FindAnyObjectByType<TeleportToNewLevel>(FindObjectsInactive.Include);
+            teleport.gameObject.SetActive(true);
+        }
         int[] values = new int[countOfObjects];
         int remain = reward;
         for (int i = 0; i < countOfObjects - 1; i++)

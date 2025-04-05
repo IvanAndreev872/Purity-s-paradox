@@ -6,10 +6,11 @@ using UnityEngine;
 public class Hint : MonoBehaviour
 {
     public bool isShowed = true;
-    public string hint = "LMB, X, M - shoot\nRMB, Z, Space - melee";
+    private string hint;
     public TMP_Text hintText;
     void Start()
     {
+        hint = "LMB, X, M - shoot\nRMB, Z, Space - melee\nShift - dash";
         hintText = transform.GetComponent<TMP_Text>();
         hintText.text = hint;
     }
