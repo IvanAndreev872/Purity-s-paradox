@@ -4,29 +4,35 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class FirstEnemyController : AStarAlgoritm, MovementInterface
+public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
 {
     public bool ableToMove { get; set; } = true;
     public Node currentNode;
     public List<Node> Path;
+    public float viewAngle = 90f;
 
+    public GameObject shooter;
     public Transform character;
     public float basicSpeed = 3.0f;
     private float speedNow;
     private bool speedChanged = false;
     private float speedChangeDuration;
     private float speedChangeTime;
+    private float AtackRange;
+    private bool canAtack;
 
     public bool playerSeen = false;
 
     private float UpdatePathInterval = 1f;
     private float timer = 1f;
 
+    private int obstackleMask;
 
     public enum States
     {
         Patrol,
-        Engage
+        Engage,
+        Atack
     }
 
     public States currentState;
@@ -34,6 +40,7 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
     private void Awake()
     {
         speedNow = basicSpeed;
+        obstackleMask = LayerMask.GetMask("Wall");
         GetStartNode();
         currentState = States.Patrol;
         character = GameObject.FindGameObjectWithTag("Character").transform;
@@ -61,18 +68,27 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
             case States.Engage:
                 Engage();
                 break;
+            case States.Atack:
+                Atack();
+                break;
         }
 
-        playerSeen = Vector2.Distance(transform.position, character.transform.position) < 7.0f;
+        IfPlayerSeen();
+        canAtack = Vector2.Distance(transform.position, character.transform.position) < AtackRange;
 
-        if (playerSeen == false && currentState != States.Patrol)
+        if (!playerSeen && currentState != States.Patrol)
         {
             currentState = States.Patrol;
             Path.Clear();
         }
-        else if (playerSeen == true && currentState != States.Engage)
+        else if (playerSeen && currentState != States.Engage && !canAtack)
         {
-            currentState = States.Engage; 
+            currentState = States.Engage;
+            Path.Clear();
+        }
+        else if (playerSeen && currentState != States.Atack && canAtack)
+        {
+            currentState = States.Atack;
             Path.Clear();
         }
 
@@ -103,6 +119,11 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
         }
     }
 
+    void Atack()
+    {
+        return;
+    }
+
     void generatePath()
     {
         if (Path.Count > 0)
@@ -119,6 +140,27 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
         }
         return;
     }
+
+    private void IfPlayerSeen()
+    {
+        float dist = Vector2.Distance(transform.position, character.transform.position);
+        if (dist < 10.0f)
+        {
+            Vector2 direction = (character.transform.position - transform.position).normalized;
+            float angle = Vector2.Angle(transform.forward, direction);
+            if (angle <= 45.0f)
+            {
+                if (!Physics2D.Raycast(transform.position, direction, dist, obstackleMask))
+                {
+                    playerSeen = true;
+                    return;
+                }
+
+            }
+        }
+        playerSeen = false;
+    }
+
 
     private void GetStartNode()
     {
@@ -141,15 +183,31 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
         currentNode = NearestNode;
     }
 
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
-        if (Path.Count > 0)
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 10);
+
+        Vector3 viewAngleA = DirectionFromAngle(-viewAngle / 2);
+        Vector3 viewAngleB = DirectionFromAngle(viewAngle / 2);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + viewAngleA * 10);
+        Gizmos.DrawLine(transform.position, transform.position + viewAngleB * 10);
+
+        // ѕоказываем, видим ли игрока
+        if (playerSeen)
         {
-            Gizmos.color = Color.red;
-            for (int i = 1; i < Path.Count; i++)
-            {
-                Gizmos.DrawLine(Path[i].transform.position, Path[i - 1].transform.position);  
-            }
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, character.position);
         }
     }
+
+    private Vector2 DirectionFromAngle(float angle)
+    {
+        // ѕреобразование локального угла в глобальные координаты
+        angle += transform.eulerAngles.y;
+        return new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad));
+    }
+
 }

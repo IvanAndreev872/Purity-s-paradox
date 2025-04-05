@@ -4,18 +4,21 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class FirstEnemyController : AStarAlgoritm, MovementInterface
+public class RangeGreedyController : AStarAlgoritm, MovementInterface
 {
     public bool ableToMove { get; set; } = true;
     public Node currentNode;
     public List<Node> Path;
 
+    public GameObject shooter;
     public Transform character;
     public float basicSpeed = 3.0f;
     private float speedNow;
     private bool speedChanged = false;
     private float speedChangeDuration;
     private float speedChangeTime;
+    private float maxDistance;
+    private bool canShoot;
 
     public bool playerSeen = false;
 
@@ -26,13 +29,16 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
     public enum States
     {
         Patrol,
-        Engage
+        Engage,
+        Shoot
     }
 
     public States currentState;
 
     private void Awake()
     {
+        BaseShooter shooterScript = shooter.GetComponent<BaseShooter>();
+        maxDistance = shooterScript.shooterDistanceMax;
         speedNow = basicSpeed;
         GetStartNode();
         currentState = States.Patrol;
@@ -60,19 +66,28 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
                 break;
             case States.Engage:
                 Engage();
+                break;  
+            case States.Shoot:
+                Shoot();
                 break;
         }
 
-        playerSeen = Vector2.Distance(transform.position, character.transform.position) < 7.0f;
+        playerSeen = Vector2.Distance(transform.position, character.transform.position) < 10.0f;
+        canShoot = Vector2.Distance(transform.position, character.transform.position) < maxDistance;
 
-        if (playerSeen == false && currentState != States.Patrol)
+        if (!playerSeen && currentState != States.Patrol)
         {
             currentState = States.Patrol;
             Path.Clear();
         }
-        else if (playerSeen == true && currentState != States.Engage)
+        else if (playerSeen && currentState != States.Engage && !canShoot)
         {
-            currentState = States.Engage; 
+            currentState = States.Engage;
+            Path.Clear();
+        }
+        else if (playerSeen && currentState != States.Shoot && canShoot)
+        {
+            currentState = States.Shoot;
             Path.Clear();
         }
 
@@ -101,6 +116,11 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
             Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
             timer -= UpdatePathInterval;
         }
+    }
+
+    void Shoot()
+    {
+        return;
     }
 
     void generatePath()
@@ -139,17 +159,5 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
             }
         }
         currentNode = NearestNode;
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (Path.Count > 0)
-        {
-            Gizmos.color = Color.red;
-            for (int i = 1; i < Path.Count; i++)
-            {
-                Gizmos.DrawLine(Path[i].transform.position, Path[i - 1].transform.position);  
-            }
-        }
     }
 }

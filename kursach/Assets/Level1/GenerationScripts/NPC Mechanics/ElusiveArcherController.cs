@@ -1,42 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class FirstEnemyController : AStarAlgoritm, MovementInterface
+public class ElusiveArcherController : AStarAlgoritm, MovementInterface
 {
     public bool ableToMove { get; set; } = true;
     public Node currentNode;
     public List<Node> Path;
 
+    public GameObject shooter;
     public Transform character;
     public float basicSpeed = 3.0f;
+    public GameObject trigger;
+    private ArcherTrigger archerTrigger;
     private float speedNow;
     private bool speedChanged = false;
     private float speedChangeDuration;
     private float speedChangeTime;
+    private float maxDistance;
+    private float minDistance;
+    private bool canShoot;
+    private bool haveToRetreat;
+    private Collider2D unitCollider;
 
     public bool playerSeen = false;
 
     private float UpdatePathInterval = 1f;
     private float timer = 1f;
-
+    private Rigidbody2D rb;
 
     public enum States
     {
         Patrol,
-        Engage
+        Engage,
+        Shoot,
+        Retreat
     }
 
     public States currentState;
 
     private void Awake()
     {
+        archerTrigger = trigger.GetComponent<ArcherTrigger>();
+        unitCollider = GetComponent<Collider2D>();
+        BaseShooter shooterScript = shooter.GetComponent<BaseShooter>();
+        maxDistance = shooterScript.shooterDistanceMax;
+        minDistance = shooterScript.shooterDistanceMin;
         speedNow = basicSpeed;
         GetStartNode();
         currentState = States.Patrol;
         character = GameObject.FindGameObjectWithTag("Character").transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -61,18 +79,36 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
             case States.Engage:
                 Engage();
                 break;
+            case States.Shoot:
+                Shoot();
+                break;
+            case States.Retreat:
+                Retreat();
+                break;
         }
 
-        playerSeen = Vector2.Distance(transform.position, character.transform.position) < 7.0f;
+        playerSeen = Vector2.Distance(transform.position, character.transform.position) < 20.0f;
+        canShoot = Vector2.Distance(transform.position, character.transform.position) < maxDistance;
+        haveToRetreat = Vector2.Distance(transform.position, character.transform.position) < minDistance;
 
-        if (playerSeen == false && currentState != States.Patrol)
+        if (!playerSeen && currentState != States.Patrol)
         {
             currentState = States.Patrol;
             Path.Clear();
         }
-        else if (playerSeen == true && currentState != States.Engage)
+        else if (playerSeen && currentState != States.Engage && !canShoot)
         {
-            currentState = States.Engage; 
+            currentState = States.Engage;
+            Path.Clear();
+        }
+        else if (playerSeen && currentState != States.Retreat && haveToRetreat)
+        {
+            currentState = States.Retreat;
+            Path.Clear();
+        }
+        else if (playerSeen && currentState != States.Shoot && canShoot && !haveToRetreat)
+        {
+            currentState = States.Shoot;
             Path.Clear();
         }
 
@@ -102,6 +138,23 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
             timer -= UpdatePathInterval;
         }
     }
+
+    void Shoot()
+    {
+        return;
+    }
+
+    void Retreat()
+    {
+        Vector3 direction = (transform.position - character.transform.position).normalized;
+        Vector2 dMove = direction.normalized * speedNow * Time.deltaTime;
+        if (!archerTrigger.InTrigger)
+        {
+            rb.MovePosition(rb.position + dMove);
+        }
+        GetStartNode();
+    }
+
 
     void generatePath()
     {
@@ -139,17 +192,5 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
             }
         }
         currentNode = NearestNode;
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (Path.Count > 0)
-        {
-            Gizmos.color = Color.red;
-            for (int i = 1; i < Path.Count; i++)
-            {
-                Gizmos.DrawLine(Path[i].transform.position, Path[i - 1].transform.position);  
-            }
-        }
     }
 }

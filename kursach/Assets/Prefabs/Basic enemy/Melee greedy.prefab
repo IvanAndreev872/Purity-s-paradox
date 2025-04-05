@@ -53,7 +53,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -95,7 +95,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -115,7 +115,7 @@ MonoBehaviour:
   currentNode: {fileID: 0}
   Path: []
   character: {fileID: 0}
-  speed: 3
+  basicSpeed: 3
   playerSeen: 0
   currentState: 0
 --- !u!212 &1337322974115910053
@@ -156,8 +156,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1520568901
+  m_SortingLayer: 2
   m_SortingOrder: 23
   m_Sprite: {fileID: 545143654, guid: 2113dbaad2c349c4d97fcb1d16efd944, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
