@@ -8,20 +8,20 @@ using UnityEngine;
 public class StaffItem : WeaponItem
 {
     
-    public float staffDamage = 0;
-    public float staffRange = 0;
-    public float staffAttackDelay = 0;
-    public float staffBulletSpeed = 0;
-    public int isStaffEquipped = 1;
-    public int staffEffectAttacksCount = 0;
-    public float staffEffectAttacksDelay = 0;
-    public float staffEffectDamage = 0;
-    public int isStaffPoisoned = 0;
-    public int isStaffFired = 0;
-    public float staffSlowdownTime = 0;
-    public float staffSlowdownCoeffitient = 1;
-    public int isStaffFreezed = 0;
-    public float staffFireCoefficient = 1;
+    [SerializeField] private float staffDamage = 0;
+    [SerializeField] private float staffRange = 0;
+    [SerializeField] private float staffAttackDelay = 0;
+    [SerializeField] private float staffBulletSpeed = 0;
+    [SerializeField] private int isStaffEquipped = 1;
+    [SerializeField] private int staffEffectAttacksCount = 0;
+    [SerializeField] private float staffEffectAttacksDelay = 0;
+    [SerializeField] private float staffEffectDamage = 0;
+    [SerializeField] private int isStaffPoisoned = 0;
+    [SerializeField] private int isStaffFired = 0;
+    [SerializeField] private float staffSlowdownTime = 0;
+    [SerializeField] private float staffSlowdownCoeffitient = 1;
+    [SerializeField] private int isStaffFreezed = 0;
+    [SerializeField] private float staffFireCoefficient = 1;
 
     public override async void ApplyEffects(PlayerStats player)
     {

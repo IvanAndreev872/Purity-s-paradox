@@ -7502,7 +7502,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storage: {fileID: 1020309884}
-  indexOfCurrentPage: 0
   pages: []
   itemDescriptionText: {fileID: 0}
   costText: {fileID: 0}
@@ -36878,8 +36877,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shop: {fileID: 2139084289}
-  indexOfCurrentPage: 0
-  pages: []
   itemDescriptionText: {fileID: 0}
   costText: {fileID: 0}
   pageText: {fileID: 0}
@@ -36889,7 +36886,6 @@ MonoBehaviour:
   shopButton: {fileID: 0}
   inventoryButton: {fileID: 0}
   slotIdClicked: -1
-  inventoryManager: {fileID: 0}
 --- !u!61 &1728114513
 BoxCollider2D:
   m_ObjectHideFlags: 0

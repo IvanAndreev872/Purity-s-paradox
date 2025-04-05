@@ -8,21 +8,20 @@ using UnityEngine;
 
 public class SwordItem : WeaponItem
 {
-    
-    public float swordDamage = 0;
-    public float swordRadius = 0;
-    public int isSwordEquipped = 1;
-    public float swordAttackDelay = 0;
-    public float swordSlashDuration = 0;
-    public int swordEffectAttacksCount = 0;
-    public float swordEffectAttacksDelay = 0;
-    public float swordEffectDamage = 0;
-    public int isSwordPoisoned = 0;
-    public int isSwordBleeding = 0;
-    public int isSwordFired = 0;
-    public float swordSlowdownTime = 0;
-    public float swordSlowdownCoeffitient = 1;
-    public int isSwordFreezed = 0;
+    [SerializeField] private float swordDamage = 0;
+    [SerializeField] private float swordRadius = 0;
+    [SerializeField] private int isSwordEquipped = 1;
+    [SerializeField] private float swordAttackDelay = 0;
+    [SerializeField] private float swordSlashDuration = 0;
+    [SerializeField] private int swordEffectAttacksCount = 0;
+    [SerializeField] private float swordEffectAttacksDelay = 0;
+    [SerializeField] private float swordEffectDamage = 0;
+    [SerializeField] private int isSwordPoisoned = 0;
+    [SerializeField] private int isSwordBleeding = 0;
+    [SerializeField] private int isSwordFired = 0;
+    [SerializeField] private float swordSlowdownTime = 0;
+    [SerializeField] private float swordSlowdownCoeffitient = 1;
+    [SerializeField] private int isSwordFreezed = 0;
     public override async void ApplyEffects(PlayerStats player)
     {
         player.swordDamage += swordDamage;

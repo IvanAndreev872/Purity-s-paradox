@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EscapeMenu : MonoBehaviour
 {
-    public GameObject escapeMenu;
+    [SerializeField] private GameObject escapeMenu;
     private bool isPaused = false;
     private void Awake()
     {

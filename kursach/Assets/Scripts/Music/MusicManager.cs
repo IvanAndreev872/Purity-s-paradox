@@ -3,11 +3,11 @@ using UnityEngine.UI;
 
 public class MusicManager : MonoBehaviour
 {
-    public AudioSource BackgroundMusic;
-    public Slider slider;
-    public Sprite musicOn;
-    public Sprite musicOff;
-    public GameObject musicButton;
+    [SerializeField] private AudioSource BackgroundMusic;
+    [SerializeField] private Slider slider;
+    [SerializeField] private Sprite musicOn;
+    [SerializeField] private Sprite musicOff;
+    [SerializeField] private GameObject musicButton;
     private float previousVolume = 1;
     void Awake()
     {

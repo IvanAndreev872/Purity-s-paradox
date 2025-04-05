@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject continueButton;
+    [SerializeField] private GameObject continueButton;
     private void Awake()
     {
         continueButton = transform.GetChild(0).gameObject;

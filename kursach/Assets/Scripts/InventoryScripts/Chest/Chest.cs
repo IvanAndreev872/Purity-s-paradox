@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 public class Chest : MonoBehaviour
 {
-    public Transform chest, chestPanel;
+    private Transform chest, chestPanel;
     private const int slotsCount = 12;
-    public List<ChestSlot> slots = new List<ChestSlot>();
-    public List<ItemScriptableObject> items = new List<ItemScriptableObject>();
+    private List<ChestSlot> slots = new List<ChestSlot>();
+    private List<ItemScriptableObject> items = new List<ItemScriptableObject>();
     public TMP_Text itemDescriptionText, costText, pressButtonText;
     public Button takeButton, chestButton, inventoryButton;
     public int slotIdClicked = -1;
-    public InventoryManager inventoryManager;
-    public bool hasOpened = false, inTrigger = false, isFarm = false;
+    private InventoryManager inventoryManager;
+    private bool hasOpened = false, inTrigger = false, isFarm = false;
     public void Update()
     {
         if (inTrigger)

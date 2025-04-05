@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ArmorItem : AbilityItem
 {
-    public int extraHealth;
+    [SerializeField] private int extraHealth;
     public override void ApplyEffects(PlayerStats player)
     {
         player.maxHealth += extraHealth;

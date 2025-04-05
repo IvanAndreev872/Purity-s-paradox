@@ -9,7 +9,7 @@ using System.Linq;
 public class StorageManager : MonoBehaviour
 {
     public Transform storage;
-    public int indexOfCurrentPage = 0;
+    private int indexOfCurrentPage = 0;
     public List<StoragePage> pages = new List<StoragePage>();
     public TMP_Text itemDescriptionText, costText, pageText;
     public Button takeButton, nextButton, prevButton, storageButton, inventoryButton;
