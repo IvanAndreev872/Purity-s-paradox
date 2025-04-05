@@ -30,7 +30,7 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
         new Vector2Int(0, -1), // down
         new Vector2Int(-1, 0)  // left
     };
-    protected override void RunGeneration()
+    public override void RunGeneration()
     {
         CorridorGeneration();
     }

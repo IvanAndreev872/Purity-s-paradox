@@ -17,5 +17,5 @@ public abstract class Generation : MonoBehaviour
         RunGeneration(); // Запускаем генерацию
     }
 
-    protected abstract void RunGeneration();
+    public abstract void RunGeneration();
 }

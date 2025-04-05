@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5688175137790494305}
   - component: {fileID: 2805725392324593808}
+  - component: {fileID: 1640825430580839541}
   m_Layer: 0
   m_Name: items loader
   m_TagString: Untagged
@@ -42,5 +43,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2c988a89ed82fa49a8ad44939241406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1640825430580839541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645929951533488710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60866faf61e7b224a92308448571453c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
