@@ -32,7 +32,7 @@ public class BaseShooter : MonoBehaviour
             if (Time.time > fireDelay + shootTime)
             {
                 shootTime = Time.time;
-                Vector3 createPosition = transform.position + transform.right * 2;
+                Vector3 createPosition = transform.position;
                 GameObject bullet = Instantiate(bulletPrefab, createPosition, transform.rotation);
                 Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
                 bulletRb.velocity = transform.right * bulletSpeed;

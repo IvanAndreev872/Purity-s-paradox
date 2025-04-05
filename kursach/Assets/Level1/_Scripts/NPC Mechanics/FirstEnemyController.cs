@@ -4,13 +4,18 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class FirstEnemyController : AStarAlgoritm
+public class FirstEnemyController : AStarAlgoritm, MovementInterface
 {
+    public bool ableToMove { get; set; } = true;
     public Node currentNode;
     public List<Node> Path;
 
     public Transform character;
-    public float speed = 3.0f;
+    public float basicSpeed = 3.0f;
+    private float speedNow;
+    private bool speedChanged = false;
+    private float speedChangeDuration;
+    private float speedChangeTime;
 
     public bool playerSeen = false;
 
@@ -28,6 +33,7 @@ public class FirstEnemyController : AStarAlgoritm
 
     private void Awake()
     {
+        speedNow = basicSpeed;
         GetStartNode();
         currentState = States.Patrol;
         character = GameObject.FindGameObjectWithTag("Character").transform;
@@ -36,6 +42,17 @@ public class FirstEnemyController : AStarAlgoritm
 
     private void Update()
     {
+        if (speedChanged && Time.time > speedChangeDuration + speedChangeTime)
+        {
+            speedChanged = false;
+            speedNow = basicSpeed;
+        }
+
+        if (!ableToMove)
+        {
+            return;
+        }
+
         switch (currentState)
         {
             case States.Patrol:
@@ -62,6 +79,14 @@ public class FirstEnemyController : AStarAlgoritm
         generatePath();
     }
 
+    public void ChangeSpeed(float coef, float time)
+    {
+        speedNow = basicSpeed * coef;
+        speedChanged = true;
+        speedChangeTime = Time.time;
+        speedChangeDuration = time;
+    }
+
     void Patrol()
     {
         return;
@@ -84,7 +109,7 @@ public class FirstEnemyController : AStarAlgoritm
         {
             int x = 0;
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[x].transform.position.x, Path[x].transform.position.y),
-                speed * Time.deltaTime);
+                speedNow * Time.deltaTime);
 
             if (Vector2.Distance(transform.position, Path[x].transform.position) < 0.1f)
             {

@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4291443657328103357}
   - component: {fileID: 4210276461286351367}
   - component: {fileID: 4090584593726739777}
-  - component: {fileID: 3836325275067365497}
   - component: {fileID: 1337322974115910053}
   - component: {fileID: 5969246083462567291}
   - component: {fileID: 6851525012800372574}
   - component: {fileID: -7479718246573756131}
+  - component: {fileID: 5485476998409475119}
   m_Layer: 8
   m_Name: Range greedy
   m_TagString: Regular enemy
@@ -54,7 +54,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -96,29 +96,11 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3836325275067365497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2692585161213395578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4a1686c9800e941954cf423c280d40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentNode: {fileID: 0}
-  Path: []
-  character: {fileID: 0}
-  speed: 3
-  playerSeen: 0
-  currentState: 0
 --- !u!212 &1337322974115910053
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -157,8 +139,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1520568901
+  m_SortingLayer: 2
   m_SortingOrder: 23
   m_Sprite: {fileID: -1215759084, guid: 4991623dddb11604295b365175ecea81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -183,8 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932831492c5ea7341bc50c18becde553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_healthpoint: 100
-  isDead: 0
+  maxHealthpoint: 0
 --- !u!114 &6851525012800372574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,9 +194,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1.5
   damage: 5
-  attack_delay: 1
+  attackDelay: 1
   player: {fileID: 0}
-  moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}
+  taken: 0
+--- !u!114 &5485476998409475119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692585161213395578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36985ab2b7c2a1246839d2d2a901b31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentNode: {fileID: 0}
+  Path: []
+  shooter: {fileID: 5051932521458224206}
+  character: {fileID: 0}
+  basicSpeed: 3
+  playerSeen: 0
+  currentState: 0
 --- !u!1 &5051932521458224206
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,8 +261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8286456126634756584, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
-  bullet_prefab: {fileID: 7932271090808488228, guid: 074197987aef7604aad35cdd242f1355, type: 3}
-  bullet_speed: 10
-  shooter_distance_max: 7
-  shooter_distance_min: 1
-  fire_delay: 1
+  bulletPrefab: {fileID: 7932271090808488228, guid: 074197987aef7604aad35cdd242f1355, type: 3}
+  bulletSpeed: 10
+  shooterDistanceMax: 5
+  shooterDistanceMin: 2
+  fireDelay: 1

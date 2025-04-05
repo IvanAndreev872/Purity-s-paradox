@@ -57,7 +57,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -304,7 +304,7 @@ MonoBehaviour:
   dashSpeed: 0
   dashDuration: 0
   dashDelay: 0.8
-  rotationSpeed: 0
+  rotationSpeed: 25
   shooter: {fileID: 6933323466790631738}
   isDashInvulnerable: 0
   isDashPoisoned: 0
