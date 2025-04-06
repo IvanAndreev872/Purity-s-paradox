@@ -11,11 +11,11 @@ public class SwordBoostItem : AbilityItem
     public override void ApplyEffects(PlayerStats player)
     {
         player.swordDamage += swordAdditionalDamage;
-        player.swordAttackDelay += swordAttackDelay;
+        player.swordAttackDelay -= swordAttackDelay;
     }
     public override void DiscardEffects(PlayerStats player)
     {
         player.swordDamage -= swordAdditionalDamage;
-        player.swordAttackDelay -= swordAttackDelay;
+        player.swordAttackDelay += swordAttackDelay;
     }
 }

@@ -7313,6 +7313,7 @@ GameObject:
   - component: {fileID: 538452860}
   - component: {fileID: 538452863}
   - component: {fileID: 538452862}
+  - component: {fileID: 538452864}
   m_Layer: 0
   m_Name: teleport level 1
   m_TagString: Untagged
@@ -7447,6 +7448,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevelName: Level1
   requiredLevelCompleted: 0
+--- !u!114 &538452864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538452859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f90f531d1772e4aa237427de5cbcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelRequired: 0
 --- !u!224 &542331322 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4973785981673362300, guid: a665f7cca50c8fa4288906db62cbcf7b, type: 3}
@@ -8596,6 +8610,7 @@ GameObject:
   - component: {fileID: 612634964}
   - component: {fileID: 612634967}
   - component: {fileID: 612634966}
+  - component: {fileID: 612634968}
   m_Layer: 0
   m_Name: teleport level 2
   m_TagString: Untagged
@@ -8730,6 +8745,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9375, y: 2.25}
   m_EdgeRadius: 0
+--- !u!114 &612634968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612634963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f90f531d1772e4aa237427de5cbcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelRequired: 1
 --- !u!1 &614340332
 GameObject:
   m_ObjectHideFlags: 0
@@ -37753,6 +37781,7 @@ GameObject:
   - component: {fileID: 1684803207}
   - component: {fileID: 1684803210}
   - component: {fileID: 1684803209}
+  - component: {fileID: 1684803211}
   m_Layer: 0
   m_Name: teleport level 5
   m_TagString: Untagged
@@ -37887,6 +37916,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9375, y: 2.25}
   m_EdgeRadius: 0
+--- !u!114 &1684803211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684803206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f90f531d1772e4aa237427de5cbcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelRequired: 4
 --- !u!224 &1689563109 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4973785981673362300, guid: a665f7cca50c8fa4288906db62cbcf7b, type: 3}
@@ -38302,6 +38344,7 @@ GameObject:
   - component: {fileID: 1705561465}
   - component: {fileID: 1705561468}
   - component: {fileID: 1705561467}
+  - component: {fileID: 1705561469}
   m_Layer: 0
   m_Name: teleport farm
   m_TagString: Untagged
@@ -38436,6 +38479,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9375, y: 2.25}
   m_EdgeRadius: 0
+--- !u!114 &1705561469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705561464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f90f531d1772e4aa237427de5cbcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelRequired: 1
 --- !u!114 &1711660178 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5347769010560157750, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
@@ -40096,6 +40152,7 @@ GameObject:
   - component: {fileID: 1816651740}
   - component: {fileID: 1816651743}
   - component: {fileID: 1816651742}
+  - component: {fileID: 1816651744}
   m_Layer: 0
   m_Name: teleport level 4
   m_TagString: Untagged
@@ -40230,6 +40287,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9375, y: 2.25}
   m_EdgeRadius: 0
+--- !u!114 &1816651744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816651739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f90f531d1772e4aa237427de5cbcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelRequired: 3
 --- !u!1001 &1819081645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40794,6 +40864,7 @@ GameObject:
   - component: {fileID: 1861398675}
   - component: {fileID: 1861398678}
   - component: {fileID: 1861398677}
+  - component: {fileID: 1861398679}
   m_Layer: 0
   m_Name: teleport level 3
   m_TagString: Untagged
@@ -40928,6 +40999,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9375, y: 2.25}
   m_EdgeRadius: 0
+--- !u!114 &1861398679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861398674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f90f531d1772e4aa237427de5cbcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelRequired: 2
 --- !u!1001 &1869011139
 PrefabInstance:
   m_ObjectHideFlags: 0

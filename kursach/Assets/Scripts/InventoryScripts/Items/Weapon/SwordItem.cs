@@ -27,7 +27,7 @@ public class SwordItem : WeaponItem
         player.swordDamage += swordDamage;
         player.swordRadius += swordRadius;
         player.isSwordEquipped += isSwordEquipped;
-        player.swordAttackDelay -= swordAttackDelay;
+        player.swordAttackDelay += swordAttackDelay;
         player.swordSlashDuration += swordSlashDuration;
         player.swordEffectAttacksCount += swordEffectAttacksCount;
         player.swordEffectAttacksDelay += swordEffectAttacksDelay;
@@ -102,7 +102,7 @@ public class SwordItem : WeaponItem
         player.swordDamage -= swordDamage;
         player.swordRadius -= swordRadius;
         player.isSwordEquipped -= isSwordEquipped;
-        player.swordAttackDelay += swordAttackDelay;
+        player.swordAttackDelay -= swordAttackDelay;
         player.swordSlashDuration -= swordSlashDuration;
         player.swordEffectAttacksCount -= swordEffectAttacksCount;
         player.swordEffectAttacksDelay -= swordEffectAttacksDelay;
