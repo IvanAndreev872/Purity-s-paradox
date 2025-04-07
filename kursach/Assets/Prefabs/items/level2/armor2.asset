@@ -20,5 +20,5 @@ MonoBehaviour:
   maxCount: 1
   cost: 1150
   sellCoefficient: 10
-  itemDescription: Reinforced armor gives 25 extra health points
-  extraHealth: 25
+  itemDescription: Reinforced armor gives 300 extra health points
+  extraHealth: 300

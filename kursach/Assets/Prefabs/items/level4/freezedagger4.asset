@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Freeze Dagger has a slightly reduced attack range, acceptable
     damage, but the attack speed is super fast. Also slightly slows down enemies
-  swordDamage: 42
+  swordDamage: 70
   swordRadius: 1.2
   isSwordEquipped: 1
   swordAttackDelay: 0.25

@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Warrior's Sword has a large attack radius and damage, but the
     attack speed is very low
-  swordDamage: 75
+  swordDamage: 90
   swordRadius: 2.5
   isSwordEquipped: 1
   swordAttackDelay: 0.85

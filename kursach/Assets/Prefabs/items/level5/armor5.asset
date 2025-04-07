@@ -20,5 +20,5 @@ MonoBehaviour:
   maxCount: 1
   cost: 32000
   sellCoefficient: 10
-  itemDescription: Hellish Mystical armor gives 100 extra health points
-  extraHealth: 100
+  itemDescription: Hellish Mystical armor gives 1500 extra health points
+  extraHealth: 1500

@@ -20,5 +20,5 @@ MonoBehaviour:
   maxCount: 1
   cost: 9600
   sellCoefficient: 10
-  itemDescription: Dark Knight armor gives 60 extra health points
-  extraHealth: 60
+  itemDescription: Dark Knight armor gives 1000 extra health points
+  extraHealth: 1000

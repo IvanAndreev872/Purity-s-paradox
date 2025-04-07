@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Destroyer's Sword has a huge attack range and damage, but the
     attack speed is quite slow
-  swordDamage: 140
+  swordDamage: 160
   swordRadius: 3
   isSwordEquipped: 1
   swordAttackDelay: 0.7
