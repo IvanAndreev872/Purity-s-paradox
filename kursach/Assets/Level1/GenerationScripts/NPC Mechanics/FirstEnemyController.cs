@@ -125,6 +125,7 @@ public class FirstEnemyController : JumpPointSearch, MovementInterface
 
     void Atack()
     {
+        Animate(Vector2.zero);
         return;
     }
     
