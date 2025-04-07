@@ -22,7 +22,7 @@ public class MadArcherController : AStarAlgoritm, MovementInterface
 
     private float UpdatePathInterval = 1f;
     private float timer = 1f;
-
+    private Animator animator;
 
     public enum States
     {
@@ -35,6 +35,7 @@ public class MadArcherController : AStarAlgoritm, MovementInterface
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         InaccurateShooter shooterScript = shooter.GetComponent<InaccurateShooter>();
         maxDistance = shooterScript.shooterDistanceMax;
         speedNow = basicSpeed;
@@ -102,6 +103,7 @@ public class MadArcherController : AStarAlgoritm, MovementInterface
 
     void Patrol()
     {
+        Animate(Vector2.zero);
         return;
     }
 
@@ -116,6 +118,12 @@ public class MadArcherController : AStarAlgoritm, MovementInterface
         }
     }
 
+    void Animate(Vector2 direction)
+    {
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
+    }
+
     void Shoot()
     {
         return;
@@ -128,6 +136,8 @@ public class MadArcherController : AStarAlgoritm, MovementInterface
             int x = 0;
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[x].transform.position.x, Path[x].transform.position.y),
                 speedNow * Time.deltaTime);
+            Animate(Path[x].transform.position - transform.position);
+
 
             if (Vector2.Distance(transform.position, Path[x].transform.position) < 0.1f)
             {

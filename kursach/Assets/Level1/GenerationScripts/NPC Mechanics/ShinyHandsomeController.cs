@@ -27,6 +27,7 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
     private float timer = 1f;
 
     private int obstackleMask;
+    private Animator animator;
 
     public enum States
     {
@@ -39,6 +40,7 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         speedNow = basicSpeed;
         obstackleMask = LayerMask.GetMask("Wall");
         GetStartNode();
@@ -105,6 +107,7 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
 
     void Patrol()
     {
+        Animate(Vector2.zero);
         return;
     }
 
@@ -121,7 +124,14 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
 
     void Atack()
     {
+        Animate(Vector2.zero);
         return;
+    }
+
+    void Animate(Vector2 direction)
+    {
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
     }
 
     void generatePath()
@@ -131,6 +141,7 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
             int x = 0;
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[x].transform.position.x, Path[x].transform.position.y),
                 speedNow * Time.deltaTime);
+            Animate(Path[x].transform.position - transform.position);
 
             if (Vector2.Distance(transform.position, Path[x].transform.position) < 0.1f)
             {

@@ -24,7 +24,7 @@ public class RangeGreedyController : AStarAlgoritm, MovementInterface
 
     private float UpdatePathInterval = 1f;
     private float timer = 1f;
-
+    private Animator animator;
 
     public enum States
     {
@@ -37,6 +37,7 @@ public class RangeGreedyController : AStarAlgoritm, MovementInterface
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         BaseShooter shooterScript = shooter.GetComponent<BaseShooter>();
         maxDistance = shooterScript.shooterDistanceMax;
         speedNow = basicSpeed;
@@ -104,6 +105,7 @@ public class RangeGreedyController : AStarAlgoritm, MovementInterface
 
     void Patrol()
     {
+        Animate(Vector2.zero);
         return;
     }
 
@@ -120,6 +122,7 @@ public class RangeGreedyController : AStarAlgoritm, MovementInterface
 
     void Shoot()
     {
+        Animate(Vector2.zero);
         return;
     }
 
@@ -130,6 +133,7 @@ public class RangeGreedyController : AStarAlgoritm, MovementInterface
             int x = 0;
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[x].transform.position.x, Path[x].transform.position.y),
                 speedNow * Time.deltaTime);
+            Animate(Path[x].transform.position - transform.position);
 
             if (Vector2.Distance(transform.position, Path[x].transform.position) < 0.1f)
             {
@@ -138,6 +142,12 @@ public class RangeGreedyController : AStarAlgoritm, MovementInterface
             }
         }
         return;
+    }
+
+    void Animate(Vector2 direction)
+    {
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
     }
 
     private void GetStartNode()
