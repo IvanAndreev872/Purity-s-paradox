@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: -4747804292429742344}
   - component: {fileID: 7939609944828921364}
   - component: {fileID: 6486325260804819568}
+  - component: {fileID: 4337709858710763294}
   m_Layer: 8
   m_Name: Raged swordsman
   m_TagString: Untagged
@@ -113,7 +114,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.0383434, y: 6.074669, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4310099206389182284}
@@ -160,8 +161,8 @@ SpriteRenderer:
   m_SortingLayerID: 1520568901
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0.390566, b: 0.390566, a: 1}
+  m_Sprite: {fileID: -474402696, guid: 87f21e6e4abdae146b2918178955fd6b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -204,7 +205,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.7, y: 1}
   m_Direction: 0
 --- !u!50 &-4747804292429742344
 Rigidbody2D:
@@ -271,3 +272,24 @@ MonoBehaviour:
   brakingDistance: 2
   trigger: {fileID: 6633918682292311573}
   currentState: 0
+--- !u!95 &4337709858710763294
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201074177869220957}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97d0d06f7314ef244858ac5b7fd3f64f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

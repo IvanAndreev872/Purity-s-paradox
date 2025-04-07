@@ -31,6 +31,8 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
     private float dashTime;
     private bool isDashing = false;
     private Rigidbody2D rb;
+    private Animator animator;
+
     public enum States
     {
         Patrol,
@@ -42,6 +44,7 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         swordsmanTrigger = trigger.GetComponent<SwordsmanTrigger>();
         speedNow = basicSpeed;
@@ -79,7 +82,6 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
 
         playerSeen = Vector2.Distance(transform.position, character.transform.position) < 7.0f;
 
-        Debug.Log("111111111111111 " + (Time.time > dashDelay + dashTime));
         if (playerSeen == false && currentState != States.Patrol)
         {
             currentState = States.Patrol;
@@ -88,7 +90,6 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
         else if (playerSeen == true && currentState != States.Dash
                  && Time.time > dashDelay + dashTime)
         {
-            Debug.Log("22222222222");
             dashTime = Time.time;
             isDashing = true;
             Vector3 direction = (character.position - transform.position).normalized;
@@ -115,6 +116,7 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
 
     void Patrol()
     {
+        Animate(Vector2.zero);
         return;
     }
 
@@ -139,6 +141,7 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
 
         Vector3 direction = (dashTarget - transform.position).normalized;
         Vector2 dMove = direction.normalized * dashSpeed * Time.deltaTime;
+        Animate(direction);
 
         if (swordsmanTrigger.inTriggerPlayer)
         {
@@ -162,6 +165,7 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
             int x = 0;
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[x].transform.position.x, Path[x].transform.position.y),
                 speedNow * Time.deltaTime);
+            Animate(Path[x].transform.position - transform.position);
 
             if (Vector2.Distance(transform.position, Path[x].transform.position) < 0.1f)
             {
@@ -170,6 +174,12 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
             }
         }
         return;
+    }
+
+    void Animate(Vector2 direction)
+    {
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
     }
 
     private void GetStartNode()

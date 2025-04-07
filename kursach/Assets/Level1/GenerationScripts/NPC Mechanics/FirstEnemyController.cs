@@ -22,9 +22,9 @@ public class FirstEnemyController : JumpPointSearch, MovementInterface
     public bool playerSeen = false;
     public bool canAtack = false;
 
-    private float UpdatePathInterval = 2f;
-    private float timer = 2f;
-
+    private float UpdatePathInterval = 1f;
+    private float timer = 1f;
+    private Animator animator;
 
     public enum States
     {
@@ -39,6 +39,7 @@ public class FirstEnemyController : JumpPointSearch, MovementInterface
     {
         GreedMelee MeleeScript = transform.GetComponent<GreedMelee>();
         AtackDistance = MeleeScript.radius;
+        animator = GetComponent<Animator>();
         speedNow = basicSpeed;
         GetStartNode();
         currentState = States.Patrol;
@@ -104,6 +105,7 @@ public class FirstEnemyController : JumpPointSearch, MovementInterface
 
     void Patrol()
     {
+        Animate(Vector2.zero);
         return;
     }
 
@@ -125,6 +127,12 @@ public class FirstEnemyController : JumpPointSearch, MovementInterface
     {
         return;
     }
+    
+    void Animate(Vector2 direction)
+    {
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
+    }
 
     void generatePath()
     {
@@ -133,6 +141,7 @@ public class FirstEnemyController : JumpPointSearch, MovementInterface
             int x = 0;
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[x].transform.position.x, Path[x].transform.position.y),
                 speedNow * Time.deltaTime);
+            Animate(Path[x].transform.position - transform.position);
 
             if (Vector2.Distance(transform.position, Path[x].transform.position) < 0.1f)
             {

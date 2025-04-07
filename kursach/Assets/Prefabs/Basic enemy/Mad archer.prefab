@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5969246083462567291}
   - component: {fileID: 6851525012800372574}
   - component: {fileID: 3141030788159941819}
+  - component: {fileID: 4365745767599728032}
   m_Layer: 8
   m_Name: Mad archer
   m_TagString: Regular enemy
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.49, y: 0.57, z: 1}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2406727008687103576}
@@ -71,7 +72,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.25, y: 0.4}
+  m_Size: {x: 0.6, y: 1}
   m_Direction: 0
 --- !u!50 &4090584593726739777
 Rigidbody2D:
@@ -141,7 +142,7 @@ SpriteRenderer:
   m_SortingLayerID: 1520568901
   m_SortingLayer: 2
   m_SortingOrder: 23
-  m_Sprite: {fileID: -1215759084, guid: 4991623dddb11604295b365175ecea81, type: 3}
+  m_Sprite: {fileID: 1318433170, guid: b5a6615bd75ed47409c472c44950a8c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -198,6 +199,27 @@ MonoBehaviour:
   basicSpeed: 3
   playerSeen: 0
   currentState: 0
+--- !u!95 &4365745767599728032
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692585161213395578}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 38a7f6a79171bdd4b946fe928b97ff16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5051932521458224206
 GameObject:
   m_ObjectHideFlags: 0

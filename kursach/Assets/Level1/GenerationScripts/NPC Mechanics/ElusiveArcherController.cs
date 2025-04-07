@@ -32,6 +32,7 @@ public class ElusiveArcherController : AStarAlgoritm, MovementInterface
     private float UpdatePathInterval = 1f;
     private float timer = 1f;
     private Rigidbody2D rb;
+    private Animator animator;
 
     public enum States
     {
@@ -45,6 +46,7 @@ public class ElusiveArcherController : AStarAlgoritm, MovementInterface
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         archerTrigger = trigger.GetComponent<ArcherTrigger>();
         unitCollider = GetComponent<Collider2D>();
         BaseShooter shooterScript = shooter.GetComponent<BaseShooter>();
@@ -125,6 +127,7 @@ public class ElusiveArcherController : AStarAlgoritm, MovementInterface
 
     void Patrol()
     {
+        Animate(Vector2.zero);
         return;
     }
 
@@ -141,12 +144,20 @@ public class ElusiveArcherController : AStarAlgoritm, MovementInterface
 
     void Shoot()
     {
+        Animate(Vector2.zero);
         return;
+    }
+
+    void Animate(Vector2 direction)
+    {
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
     }
 
     void Retreat()
     {
         Vector3 direction = (transform.position - character.transform.position).normalized;
+        Animate(direction);
         Vector2 dMove = direction.normalized * speedNow * Time.deltaTime;
         if (!archerTrigger.InTrigger)
         {
@@ -163,6 +174,7 @@ public class ElusiveArcherController : AStarAlgoritm, MovementInterface
             int x = 0;
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[x].transform.position.x, Path[x].transform.position.y),
                 speedNow * Time.deltaTime);
+            Animate(Path[x].transform.position - transform.position);
 
             if (Vector2.Distance(transform.position, Path[x].transform.position) < 0.1f)
             {

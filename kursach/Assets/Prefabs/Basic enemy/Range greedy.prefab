@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6851525012800372574}
   - component: {fileID: -7479718246573756131}
   - component: {fileID: 5485476998409475119}
+  - component: {fileID: 1406554851358211862}
   m_Layer: 8
   m_Name: Range greedy
   m_TagString: Regular enemy
@@ -216,6 +217,27 @@ MonoBehaviour:
   basicSpeed: 3
   playerSeen: 0
   currentState: 0
+--- !u!95 &1406554851358211862
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692585161213395578}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 762b2b76930b51143a7b2713ce30e6bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5051932521458224206
 GameObject:
   m_ObjectHideFlags: 0
