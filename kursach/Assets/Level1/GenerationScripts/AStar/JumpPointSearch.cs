@@ -67,7 +67,7 @@ public class JumpPointSearch : MonoBehaviour
                 if (!openSet.Contains(neighbor))
                 {
                     neighbor.gScore = futuregScore;
-                    neighbor.hScore = Vector2.Distance(neighbor.transform.position, end.transform.position);
+                    neighbor.hScore = GetDistance(neighbor.transform.position, end.transform.position);
                     neighbor.camefrom = currentNode;
                     openSet.Add(neighbor);
                 } else if (futuregScore < neighbor.gScore)
@@ -86,7 +86,13 @@ public class JumpPointSearch : MonoBehaviour
         List<Vector2Int> directions = PruningDirections(current);
         foreach (Vector2Int dir in directions)
         {
-            Node jumpPoint = Jump(current.transform.position, dir , start.transform.position, end.transform.position);
+            Node jumpPoint = Jump(current.transform.position, dir, end.transform.position);
+            if (jumpPoint == end)
+            {
+                successors.Clear();
+                successors.Add(jumpPoint);
+                break;
+            }
             if (jumpPoint != null && !closedSet.Contains(jumpPoint))
             {
                 successors.Add(jumpPoint);
@@ -96,9 +102,13 @@ public class JumpPointSearch : MonoBehaviour
     }
 
 
-    private Node Jump(Vector2 current, Vector2Int direction, Vector2 start, Vector2 end)
+    private Node Jump(Vector2 current, Vector2Int direction, Vector2 end)
     {
         Vector2 next = current + direction;
+        if(next == end)
+        {
+            return FindNode(end);
+        }
         if (!DoesNodeExists(next))
         {
             return null;
@@ -119,14 +129,14 @@ public class JumpPointSearch : MonoBehaviour
             }
         } else
         {
-            if (Jump(next, new Vector2Int(direction.x, 0), start, end) != null ||
-                Jump(next, new Vector2Int(0, direction.y), start, end) != null)
+            if (Jump(next, new Vector2Int(direction.x, 0), end) != null ||
+                Jump(next, new Vector2Int(0, direction.y), end) != null)
             {
                 return FindNode(next);
             }
         }
 
-        return Jump(next, direction, start, end);
+        return Jump(next, direction, end);
     }
 
     private List<Vector2Int> PruningDirections(Node node)
@@ -251,6 +261,14 @@ public class JumpPointSearch : MonoBehaviour
             }
         }
         return node;
+    }
+
+    private float GetDistance(Vector2 position, Vector2 Destination)
+    {
+        float dx = Mathf.Abs(position.x - Destination.x);
+        float dy = Mathf.Abs(position.y - Destination.y);
+
+        return 1.414f * Mathf.Min(dx, dy) + Mathf.Abs(dx - dy);
     }
 
 }

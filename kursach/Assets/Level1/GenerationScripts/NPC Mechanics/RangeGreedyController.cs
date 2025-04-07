@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class RangeGreedyController : AStarAlgoritm, MovementInterface
+public class RangeGreedyController : JumpPointSearch, MovementInterface
 {
     public bool ableToMove { get; set; } = true;
     public Node currentNode;

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class FirstEnemyController : AStarAlgoritm, MovementInterface
+public class FirstEnemyController : JumpPointSearch, MovementInterface
 {
     public bool ableToMove { get; set; } = true;
     public Node currentNode;
@@ -17,23 +17,28 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
     private bool speedChanged = false;
     private float speedChangeDuration;
     private float speedChangeTime;
+    private float AtackDistance;
 
     public bool playerSeen = false;
+    public bool canAtack = false;
 
-    private float UpdatePathInterval = 1f;
-    private float timer = 1f;
+    private float UpdatePathInterval = 2f;
+    private float timer = 2f;
 
 
     public enum States
     {
         Patrol,
-        Engage
+        Engage,
+        Atack
     }
 
     public States currentState;
 
     private void Awake()
     {
+        GreedMelee MeleeScript = transform.GetComponent<GreedMelee>();
+        AtackDistance = MeleeScript.radius;
         speedNow = basicSpeed;
         GetStartNode();
         currentState = States.Patrol;
@@ -62,9 +67,13 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
             case States.Engage:
                 Engage();
                 break;
+            case States.Atack:
+                Atack();
+                break;
         }
 
         playerSeen = Vector2.Distance(transform.position, character.transform.position) < 7.0f;
+        canAtack = Vector2.Distance(transform.position, character.transform.position) < AtackDistance;
 
         if (playerSeen == false && currentState != States.Patrol)
         {
@@ -74,6 +83,11 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
         else if (playerSeen == true && currentState != States.Engage)
         {
             currentState = States.Engage; 
+            Path.Clear();
+        }
+        else if (playerSeen && currentState != States.Atack && canAtack)
+        {
+            currentState = States.Atack;
             Path.Clear();
         }
 
@@ -105,6 +119,11 @@ public class FirstEnemyController : AStarAlgoritm, MovementInterface
                 timer -= UpdatePathInterval;
             }
         }
+    }
+
+    void Atack()
+    {
+        return;
     }
 
     void generatePath()
