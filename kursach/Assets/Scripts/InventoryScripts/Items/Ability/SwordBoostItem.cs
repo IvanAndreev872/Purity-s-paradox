@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class SwordBoostItem : AbilityItem
 {
-    public float swordAdditionalDamage = 0;
-    public float swordAttackDelay = 0;
+    [SerializeField] private float swordAdditionalDamage = 0;
+    [SerializeField] private float swordAttackDelay = 0;
     public override void ApplyEffects(PlayerStats player)
     {
         player.swordDamage += swordAdditionalDamage;
-        player.swordAttackDelay += swordAttackDelay;
+        player.swordAttackDelay -= swordAttackDelay;
     }
     public override void DiscardEffects(PlayerStats player)
     {
         player.swordDamage -= swordAdditionalDamage;
-        player.swordAttackDelay -= swordAttackDelay;
+        player.swordAttackDelay += swordAttackDelay;
     }
 }

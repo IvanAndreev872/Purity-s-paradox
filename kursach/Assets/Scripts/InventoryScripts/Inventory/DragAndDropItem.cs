@@ -5,12 +5,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    public InventorySlot oldSlot;
-    public Transform player;
-    public PlayerStats playerStats;
-    public InventoryManager inventoryManager;
-    public PlayerMovement playerMovement;
-    public PlayerHealth playerHealth;
+    private InventorySlot oldSlot;
+    private Transform player;
+    private PlayerStats playerStats;
+    private InventoryManager inventoryManager;
+    private PlayerMovement playerMovement;
+    private PlayerHealth playerHealth;
 
     private void Awake()
     {

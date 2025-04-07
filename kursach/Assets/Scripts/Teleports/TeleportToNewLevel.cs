@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TeleportToNewLevel : MonoBehaviour
 {
-    public string nextLevelName;
-    public int requiredLevelCompleted;
+    [SerializeField] private string nextLevelName;
+    [SerializeField] private int requiredLevelCompleted;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Character"))

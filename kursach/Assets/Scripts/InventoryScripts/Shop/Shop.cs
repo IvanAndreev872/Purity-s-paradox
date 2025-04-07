@@ -8,12 +8,12 @@ using System.Linq;
 public class Shop : MonoBehaviour
 {
     public Transform shop;
-    public int indexOfCurrentPage = 0;
-    public List<ShopPage> pages = new List<ShopPage>();
+    private int indexOfCurrentPage = 0;
+    private List<ShopPage> pages = new List<ShopPage>();
     public TMP_Text itemDescriptionText, costText, pageText;
     public Button buyButton, nextButton, prevButton, shopButton, inventoryButton;
     public int slotIdClicked = -1;
-    public InventoryManager inventoryManager;
+    private InventoryManager inventoryManager;
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

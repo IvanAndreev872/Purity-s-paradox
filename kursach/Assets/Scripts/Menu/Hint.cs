@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Hint : MonoBehaviour
 {
-    public bool isShowed = true;
+    [SerializeField] private bool isShowed = true;
     private string hint;
-    public TMP_Text hintText;
+    [SerializeField] private TMP_Text hintText;
     void Start()
     {
         hint = "LMB, X, M - shoot\nRMB, Z, Space - melee\nShift - dash";

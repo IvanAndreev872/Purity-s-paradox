@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
@@ -14,7 +15,7 @@ public class InventoryManager : MonoBehaviour
     public bool isOpened = false, isShopOpened = false, isStorageOpened = false, isChestOpened = false;
     public TMP_Text itemDescriptionText, costText, statsText;
     public Button sellButton, storeButton;
-    public PlayerStats playerStats;
+    private PlayerStats playerStats;
     public int slotIdClicked = -1;
     public Chest chest;
     public void Awake()

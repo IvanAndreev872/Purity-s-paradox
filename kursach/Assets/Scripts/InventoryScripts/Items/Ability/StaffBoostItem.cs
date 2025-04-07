@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class StaffBoostItem : AbilityItem
 {
-    public float staffAdditionalDamage = 0;
-    public float staffAttackDelay = 0;
-    public float staffBulletSpeedCoefficient = 1;
+    [SerializeField] private float staffAdditionalDamage = 0;
+    [SerializeField] private float staffAttackDelay = 0;
+    [SerializeField] private float staffBulletSpeedCoefficient = 1;
     public override void ApplyEffects(PlayerStats player)
     {
         player.staffDamage += staffAdditionalDamage;

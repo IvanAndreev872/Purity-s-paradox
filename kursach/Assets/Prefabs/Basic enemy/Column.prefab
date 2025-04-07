@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 6287394225659462583}
   - component: {fileID: -8493765325478481264}
   - component: {fileID: 7153701739781728093}
+  - component: {fileID: 1227437212176286156}
   m_Layer: 0
   m_Name: Column
   m_TagString: Untagged
@@ -301,6 +302,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InTrigger: 0
+--- !u!114 &1227437212176286156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6582487385407037778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373717bc92660ec4a9160962a44a8245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDescriptionText: {fileID: 0}
+  costText: {fileID: 0}
+  pressButtonText: {fileID: 0}
+  takeButton: {fileID: 0}
+  chestButton: {fileID: 0}
+  inventoryButton: {fileID: 0}
+  slotIdClicked: -1
 --- !u!1001 &1032381425283078235
 PrefabInstance:
   m_ObjectHideFlags: 0

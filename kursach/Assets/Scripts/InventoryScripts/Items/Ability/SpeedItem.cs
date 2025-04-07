@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class SpeedItem : AbilityItem
 {
-    public float walkAccelerateCoefficient;
-    public float dashAccelerateCoefficient;
-    public float additionalDashDurationTime;
-    public int isDashInvulnerable;
-    public int isDashPoisoned;
+    [SerializeField] private float walkAccelerateCoefficient;
+    [SerializeField] private float dashAccelerateCoefficient;
+    [SerializeField] private float additionalDashDurationTime;
+    [SerializeField] private int isDashInvulnerable;
+    [SerializeField] private int isDashPoisoned;
     public override void ApplyEffects(PlayerStats player)
     {
         player.walkAccelerateCoefficient += (walkAccelerateCoefficient - 1);

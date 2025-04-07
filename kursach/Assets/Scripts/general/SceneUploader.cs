@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -42,8 +43,19 @@ public class SceneUploader : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         CorridorFirstDungeonGenerator generator = FindObjectOfType<CorridorFirstDungeonGenerator>();
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("Character").transform.GetComponent<PlayerStats>();
         if (generator != null)
         {
+            for (int level = 1; level <= playerStats.levelCompleted; level++)
+            {
+                Task<List<GameObject>> loadEnemiesTask = ItemsLoader.Instance.LoadAllEnemiesFromLevel(level);
+                yield return new WaitUntil(() => loadEnemiesTask.IsCompleted);
+                List<GameObject> enemies = loadEnemiesTask.Result;
+                foreach (var enemy in enemies)
+                {
+                    generator.EnemyPrefabs.Add(enemy);
+                }
+            }
             generator.RunGeneration();
         }
         else

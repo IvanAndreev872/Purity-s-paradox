@@ -377,6 +377,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - bullet
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d7b41b43328ab54298243f2e98e110a
+    m_Address: Assets/Prefabs/Basic enemy/Range greedy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyLevel1
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a2f942a6dd719248a382c465052bb96
+    m_Address: Assets/Prefabs/Basic enemy/Melee greedy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyLevel1
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b0c1abd1c44881141856c8ba50057fad, type: 2}
   m_SchemaSet:
