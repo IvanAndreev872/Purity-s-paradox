@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 // Класс для визуализации тайлов на Tilemap в Unity
-public class TilemapRenderer : MonoBehaviour
+public class TilemapGeneratorRenderer : MonoBehaviour
 {
     [SerializeField]
     private Tilemap floorTilemap, wallTilemap; // Ссылки на Tilemap для пола и стен
@@ -63,7 +63,11 @@ public class TilemapRenderer : MonoBehaviour
         tilemap.SetTile(tilePosition, tile);
     }
 
-    public void ClearSpace() {
+    public void ClearSpace() 
+    {
+        Debug.Log("CLEAR!!");
+        TilemapCollider2D collider = wallTilemap.transform.GetComponent<TilemapCollider2D>();
+        Destroy(collider);
         wallTilemap.ClearAllTiles(); 
         floorTilemap.ClearAllTiles();
     }

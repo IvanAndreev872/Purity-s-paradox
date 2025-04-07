@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Generation : MonoBehaviour
 {
     [SerializeField]
-    protected TilemapRenderer tileRenderer = null; // Визуализатор тайлов для отрисовки подземелья
+    protected TilemapGeneratorRenderer tileRenderer = null; // Визуализатор тайлов для отрисовки подземелья
     
     [SerializeField]
     protected Vector2Int start = new Vector2Int(0, 0);

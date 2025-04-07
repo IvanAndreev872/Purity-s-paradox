@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: e39f5d3a4cfc9ef4e92a2993efcf02e0
   m_currentHash:
     serializedVersion: 2
-    Hash: 9ab0ef0426bac80209176fd68650338f
+    Hash: 460178adfbeaa5cf681c738f5ca71620
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -94,6 +94,9 @@ MonoBehaviour:
     - swing
     - bullet
     - EnemyLevel1
+    - EnemyLevel3
+    - EnemyLevel4
+    - EnemyLevel5
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: efe2eebe8e4a99b488d9933b109b226a, type: 2}

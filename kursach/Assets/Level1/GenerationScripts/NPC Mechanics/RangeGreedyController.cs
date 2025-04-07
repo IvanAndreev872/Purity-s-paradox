@@ -114,9 +114,12 @@ public class RangeGreedyController : JumpPointSearch, MovementInterface
         timer += Time.deltaTime;
         if (timer > UpdatePathInterval)
         {
-            Path.Clear();
-            Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
-            timer -= UpdatePathInterval;
+            if (currentNode != null && character.GetComponent<NodeFinder>().currentNode != null)
+            {
+                Path.Clear();
+                Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
+                timer -= UpdatePathInterval;
+            }
         }
     }
 

@@ -389,6 +389,30 @@ MonoBehaviour:
     m_SerializedLabels:
     - EnemyLevel1
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f40f957d02cd20428bcae3a26b7c601
+    m_Address: Assets/Prefabs/Basic enemy/Elusive archer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyLevel3
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69d17d254d12a7a4bbbb0615e65f7b18
+    m_Address: Assets/Prefabs/Basic enemy/Shiny handsome.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyLevel4
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 01e2e1e956e233342a429b73594dd461
+    m_Address: Assets/Prefabs/Basic enemy/Raged swordsman.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyLevel5
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38935ae91007d2c4b96650061e598f55
+    m_Address: Assets/Prefabs/Basic enemy/Mad archer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyLevel5
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b0c1abd1c44881141856c8ba50057fad, type: 2}
   m_SchemaSet:

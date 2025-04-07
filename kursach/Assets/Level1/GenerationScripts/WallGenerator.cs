@@ -32,7 +32,7 @@ public static class WallGenerator
         new Vector2Int(-1, 0), // left
         new Vector2Int(-1, 1)  // left up
     };
-    public static void CreateWalls(List<Vector2Int> floorPositions, TilemapRenderer tilemapVisualizer) 
+    public static void CreateWalls(List<Vector2Int> floorPositions, TilemapGeneratorRenderer tilemapVisualizer) 
     {
         List<Vector2Int> basicWallPositions = FindWallsInDirections(floorPositions, cardinalDirectionsList);
         List<Vector2Int> cornerWallPositions = FindWallsInDirections(floorPositions, diagonalDirectionsList);

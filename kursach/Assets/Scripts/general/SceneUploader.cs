@@ -53,10 +53,13 @@ public class SceneUploader : MonoBehaviour
                 List<GameObject> enemies = loadEnemiesTask.Result;
                 foreach (var enemy in enemies)
                 {
-                    generator.EnemyPrefabs.Add(enemy);
+                    if (!generator.EnemyPrefabs.Contains(enemy))
+                    {
+                        generator.EnemyPrefabs.Add(enemy);
+                    }
                 }
             }
-            generator.RunGeneration();
+            generator.GenerateDungeon();
         }
         else
         {
