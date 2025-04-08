@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using System.IO.IsolatedStorage;
 using System.Xml.Linq;
+using UnityEditor;
 
 public class CorridorFirstDungeonGenerator : DungeonGenerator
 {
@@ -24,6 +25,8 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
     [SerializeField] public List<GameObject> EnemyPrefabs;
 
     [SerializeField] public GameObject EnemyParent;
+
+    [SerializeField] public int indexOfLevel = 0;
 
     public static List<Vector2Int> DirectionsList = new List<Vector2Int> 
     {
@@ -267,14 +270,40 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
 
         foreach (Collider2D col in enemyColliders)
         {
-            if (col.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+            if (col == null)
+            {
                 continue;
-            GameObject enemyPrefab = col.gameObject;
+            }
+            int enemyNumber = 0;
+            if (indexOfLevel == 1)
+            {
+                if (col.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+                    continue;
+                if (col.GetComponent<FirstEnemyController>() != null)
+                {
+                    enemyNumber = 0;
+                }
+                else if (col.GetComponent<RangeGreedyController>() != null)
+                {
+                    enemyNumber = 1;
+                }
+            }
+            else if (indexOfLevel == 2 || indexOfLevel == 3 || indexOfLevel == 4) {
+                enemyNumber = 0;
+            }
+            else {
+                if (col.GetComponent<MadArcherController>() != null)
+                {
+                    enemyNumber = 0;
+                }
+                else if (col.GetComponent<RagedSwordsmanController>() != null)
+                {
+                    enemyNumber = 1;
+                }
+            }
             Vector2 position = col.transform.position;
-
-            GameObject newEnemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+            GameObject newEnemy = Instantiate(EnemyPrefabs[enemyNumber], position, Quaternion.identity);
             newEnemy.transform.SetParent(EnemyParent.transform);
-
             DestroyImmediate(col.gameObject);
         }
     }

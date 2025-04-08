@@ -8,6 +8,8 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
     public Node currentNode;
     public List<Node> Path;
 
+    public int index = 0;
+
     public Transform character;
     public float basicSpeed = 3.0f;
     private float speedNow;

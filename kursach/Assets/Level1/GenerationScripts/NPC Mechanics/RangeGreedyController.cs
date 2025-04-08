@@ -10,6 +10,8 @@ public class RangeGreedyController : JumpPointSearch, MovementInterface
     public Node currentNode;
     public List<Node> Path;
 
+    public int index = 1;
+
     public GameObject shooter;
     public Transform character;
     public float basicSpeed = 3.0f;

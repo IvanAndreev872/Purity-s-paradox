@@ -12,6 +12,8 @@ public class ElusiveArcherController : AStarAlgoritm, MovementInterface
     public Node currentNode;
     public List<Node> Path;
 
+    public int index = 0;
+
     public GameObject shooter;
     public Transform character;
     public float basicSpeed = 3.0f;

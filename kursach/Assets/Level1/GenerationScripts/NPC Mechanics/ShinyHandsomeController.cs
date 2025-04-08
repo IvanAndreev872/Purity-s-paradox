@@ -11,6 +11,8 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
     public List<Node> Path;
     public float viewAngle = 90f;
 
+    public int index = 0;
+
     public GameObject shooter;
     public Transform character;
     public float basicSpeed = 3.0f;
