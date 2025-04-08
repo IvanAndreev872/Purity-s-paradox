@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MadArcherController : AStarAlgoritm, MovementInterface
+public class MadArcherController : JumpPointSearch, MovementInterface
 {
     public bool ableToMove { get; set; } = true;
     public Node currentNode;
@@ -22,8 +22,8 @@ public class MadArcherController : AStarAlgoritm, MovementInterface
 
     public bool playerSeen = false;
 
-    private float UpdatePathInterval = 1f;
-    private float timer = 1f;
+    private float UpdatePathInterval = 2f;
+    private float timer = 2f;
     private Animator animator;
 
     public enum States
@@ -114,9 +114,12 @@ public class MadArcherController : AStarAlgoritm, MovementInterface
         timer += Time.deltaTime;
         if (timer > UpdatePathInterval)
         {
-            Path.Clear();
-            Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
-            timer -= UpdatePathInterval;
+            if (currentNode != null && character.GetComponent<NodeFinder>().currentNode != null)
+            {
+                Path.Clear();
+                Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
+                timer -= UpdatePathInterval;
+            }
         }
     }
 

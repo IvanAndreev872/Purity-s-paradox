@@ -12,6 +12,7 @@ public class dodge : MonoBehaviour
     private Vector3 dodgeTarget;
     private Rigidbody2D rb;
     private Collider2D enemyCollider;
+    private float magnitude;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class dodge : MonoBehaviour
         movementInterface = transform.parent.GetComponent<MovementInterface>();
         rb = transform.parent.GetComponent<Rigidbody2D>();
         enemyCollider = rb.GetComponent<Collider2D>();
+        magnitude = rb.transform.localScale.magnitude;
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class dodge : MonoBehaviour
         if (isDodging) 
         {
             rb.MovePosition(Vector3.Lerp(transform.position, dodgeTarget, dodgeSpeed * Time.fixedDeltaTime));
-            if (Vector2.Distance(transform.position, dodgeTarget) <= 0.1)
+            if (Vector2.Distance(transform.position, dodgeTarget) <= 0.1 || CheckWallClose(magnitude / 3))
             {
                 isDodging = false;
                 movementInterface.ableToMove = true;
@@ -62,4 +64,16 @@ public class dodge : MonoBehaviour
             }
         }
     }
-}   
+
+    bool CheckWallClose(float distance)
+    {
+        Vector2 direction = (dodgeTarget - transform.position).normalized;
+
+        Debug.Log(magnitude);
+        Debug.DrawRay(transform.position, direction * distance, Color.red, 0.5f);
+
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, distance, LayerMask.GetMask("Wall"));
+
+        return (ray.collider != null);
+    }
+}

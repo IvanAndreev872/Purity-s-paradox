@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Great Lightning Sword has increased attack range and damage, attack
     speed increased by 15%
   swordDamage: 100
-  swordRadius: 1.8
+  swordRadius: 2.3
   isSwordEquipped: 1
   swordAttackDelay: 0.6
   swordSlashDuration: 0.3

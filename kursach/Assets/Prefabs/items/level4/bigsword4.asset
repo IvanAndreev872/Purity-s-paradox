@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Titans' Blade has a large attack range and damage, but its attack
     speed is quite slow
   swordDamage: 115
-  swordRadius: 2.7
+  swordRadius: 3.2
   isSwordEquipped: 1
   swordAttackDelay: 0.8
   swordSlashDuration: 0.4

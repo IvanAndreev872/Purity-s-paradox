@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class ElusiveArcherController : AStarAlgoritm, MovementInterface
+public class ElusiveArcherController : JumpPointSearch, MovementInterface
 {
     public bool ableToMove { get; set; } = true;
     public Node currentNode;
@@ -31,8 +31,8 @@ public class ElusiveArcherController : AStarAlgoritm, MovementInterface
 
     public bool playerSeen = false;
 
-    private float UpdatePathInterval = 1f;
-    private float timer = 1f;
+    private float UpdatePathInterval = 2f;
+    private float timer = 2f;
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -138,9 +138,12 @@ public class ElusiveArcherController : AStarAlgoritm, MovementInterface
         timer += Time.deltaTime;
         if (timer > UpdatePathInterval)
         {
-            Path.Clear();
-            Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
-            timer -= UpdatePathInterval;
+            if (currentNode != null && character.GetComponent<NodeFinder>().currentNode != null)
+            {
+                Path.Clear();
+                Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
+                timer -= UpdatePathInterval;
+            }
         }
     }
 
@@ -152,6 +155,10 @@ public class ElusiveArcherController : AStarAlgoritm, MovementInterface
 
     void Animate(Vector2 direction)
     {
+        if (direction != Vector2.zero)
+        {
+            Debug.Log(direction);
+        }
         animator.SetFloat("MoveX", direction.x);
         animator.SetFloat("MoveY", direction.y);
     }

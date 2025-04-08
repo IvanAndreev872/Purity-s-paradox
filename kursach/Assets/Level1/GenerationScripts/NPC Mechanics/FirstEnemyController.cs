@@ -24,8 +24,8 @@ public class FirstEnemyController : JumpPointSearch, MovementInterface
     public bool playerSeen = false;
     public bool canAtack = false;
 
-    private float UpdatePathInterval = 1f;
-    private float timer = 1f;
+    private float UpdatePathInterval = 2f;
+    private float timer = 2f;
     private Animator animator;
 
     public enum States

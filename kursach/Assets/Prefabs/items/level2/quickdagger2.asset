@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Lightning Dagger has a small attack radius, low damage, but the
     attack speed is very fast
   swordDamage: 25
-  swordRadius: 1
+  swordRadius: 1.5
   isSwordEquipped: 1
   swordAttackDelay: 0.35
   swordSlashDuration: 0.2

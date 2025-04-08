@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 5389993228531970039}
   - component: {fileID: 5169701732908869251}
   - component: {fileID: 5250200689228625137}
+  - component: {fileID: 8190280255984131307}
   m_Layer: 8
   m_Name: Elusive archer
   m_TagString: Untagged
@@ -158,8 +159,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1520568901
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1033969215, guid: 0dc8c1321ec49fd429f734a65ef49877, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -248,9 +249,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentNode: {fileID: 0}
   Path: []
+  index: 0
   shooter: {fileID: 8110074252227988578}
   character: {fileID: 0}
-  basicSpeed: 3
+  basicSpeed: 7
   trigger: {fileID: 6633918682292311573}
   playerSeen: 0
   currentState: 0
@@ -288,6 +290,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthpoint: 500
+--- !u!114 &8190280255984131307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201074177869220957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be4fa2de802d9a47b3ba0124437e42d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 3
+  moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}
 --- !u!1 &8110074252227988578
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,5 +352,5 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7932271090808488228, guid: 074197987aef7604aad35cdd242f1355, type: 3}
   bulletSpeed: 15
   shooterDistanceMax: 15
-  shooterDistanceMin: 10
+  shooterDistanceMin: 3
   fireDelay: 1

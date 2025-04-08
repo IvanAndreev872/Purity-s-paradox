@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Large Blue Sword has above average attack range and damage, but
     attack speed is very slow
   swordDamage: 50
-  swordRadius: 2.5
+  swordRadius: 3
   isSwordEquipped: 1
   swordAttackDelay: 0.9
   swordSlashDuration: 0.45

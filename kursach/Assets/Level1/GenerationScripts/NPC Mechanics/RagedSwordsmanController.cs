@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
+public class RagedSwordsmanController : JumpPointSearch, MovementInterface
 {
     public bool ableToMove { get; set; } = true;
     public Node currentNode;
@@ -19,8 +19,8 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
 
     public bool playerSeen = false;
 
-    private float UpdatePathInterval = 1f;
-    private float timer = 1f;
+    private float UpdatePathInterval = 2f;
+    private float timer = 2f;
 
     public float dashSpeed;
     public float dashDelay;
@@ -127,9 +127,12 @@ public class RagedSwordsmanController : AStarAlgoritm, MovementInterface
         timer += Time.deltaTime;
         if (timer > UpdatePathInterval)
         {
-            Path.Clear();
-            Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
-            timer -= UpdatePathInterval;
+            if (currentNode != null && character.GetComponent<NodeFinder>().currentNode != null)
+            {
+                Path.Clear();
+                Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
+                timer -= UpdatePathInterval;
+            }
         }
     }
 

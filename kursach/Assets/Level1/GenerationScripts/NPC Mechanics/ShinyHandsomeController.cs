@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
+public class ShinyHandsomeController : JumpPointSearch, MovementInterface
 {
     public bool ableToMove { get; set; } = true;
     public Node currentNode;
@@ -23,10 +24,12 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
     private float AtackRange;
     private bool canAtack;
 
+    public Vector2 facingDirection = Vector2.up;
     public bool playerSeen = false;
+    public float triggerRadius = 7;
 
-    private float UpdatePathInterval = 1f;
-    private float timer = 1f;
+    private float UpdatePathInterval = 2f;
+    private float timer = 2f;
 
     private int obstackleMask;
     private Animator animator;
@@ -35,7 +38,8 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
     {
         Patrol,
         Engage,
-        Atack
+        Atack,
+        Triggered
     }
 
     public States currentState;
@@ -75,6 +79,9 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
             case States.Atack:
                 Atack();
                 break;
+            case States.Triggered:
+                Triggered();
+                break;
         }
 
         IfPlayerSeen();
@@ -82,12 +89,33 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
 
         if (!playerSeen && currentState != States.Patrol)
         {
-            currentState = States.Patrol;
-            Path.Clear();
+            if (currentState != States.Triggered || currentState == States.Triggered && Path.Count == 0)
+            {
+                currentState = States.Patrol;
+                Path.Clear();
+            }
         }
         else if (playerSeen && currentState != States.Engage && !canAtack)
         {
             currentState = States.Engage;
+            LayerMask enemyLayer = LayerMask.GetMask("Enemy");
+            Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(transform.position, triggerRadius, enemyLayer);
+            foreach (Collider2D col in enemyColliders)
+            {
+                if (col == null || col.GetComponent<ShinyHandsomeController>() == null)
+                {
+                    continue;
+                }
+                if (col.gameObject.GetComponent<ShinyHandsomeController>().currentState != States.Engage)
+                {
+                    col.gameObject.GetComponent<ShinyHandsomeController>().currentState = States.Triggered;
+                    if (currentNode != null && character.GetComponent<NodeFinder>().currentNode != null)
+                    {
+                        col.gameObject.GetComponent<ShinyHandsomeController>().Path = GeneratePath(currentNode,
+                        character.GetComponent<NodeFinder>().currentNode); 
+                    }
+                }
+            }
             Path.Clear();
         }
         else if (playerSeen && currentState != States.Atack && canAtack)
@@ -113,14 +141,18 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
         return;
     }
 
+
     void Engage()
     {
         timer += Time.deltaTime;
         if (timer > UpdatePathInterval)
         {
-            Path.Clear();
-            Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
-            timer -= UpdatePathInterval;
+            if (currentNode != null && character.GetComponent<NodeFinder>().currentNode != null)
+            {
+                Path.Clear();
+                Path = GeneratePath(currentNode, character.GetComponent<NodeFinder>().currentNode);
+                timer -= UpdatePathInterval;
+            }
         }
     }
 
@@ -128,6 +160,14 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
     {
         Animate(Vector2.zero);
         return;
+    }
+
+    void Triggered()
+    {
+        if (Path.Count == 0)
+        {
+            currentState = States.Patrol;
+        }
     }
 
     void Animate(Vector2 direction)
@@ -159,16 +199,17 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
         float dist = Vector2.Distance(transform.position, character.transform.position);
         if (dist < 10.0f)
         {
-            Vector2 direction = (character.transform.position - transform.position).normalized;
-            float angle = Vector2.Angle(transform.forward, direction);
+            Vector2 directionToPlayer = (character.transform.position - transform.position).normalized;
+            float angle = Vector2.Angle(facingDirection, directionToPlayer);
+            Debug.Log(angle);
             if (angle <= 45.0f)
             {
-                if (!Physics2D.Raycast(transform.position, direction, dist, obstackleMask))
+                if (!Physics2D.Raycast(transform.position, directionToPlayer, dist, obstackleMask))
                 {
                     playerSeen = true;
+                    facingDirection = directionToPlayer;
                     return;
                 }
-
             }
         }
         playerSeen = false;
@@ -208,7 +249,7 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
         Gizmos.DrawLine(transform.position, transform.position + viewAngleA * 10);
         Gizmos.DrawLine(transform.position, transform.position + viewAngleB * 10);
 
-        // Ïîêàçûâàåì, âèäèì ëè èãðîêà
+        // ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÐ¼, Ð²Ð¸Ð´Ð¸Ð¼ Ð»Ð¸ Ð¸Ð³Ñ€Ð¾ÐºÐ°
         if (playerSeen)
         {
             Gizmos.color = Color.green;
@@ -218,7 +259,7 @@ public class ShinyHandsomeController : AStarAlgoritm, MovementInterface
 
     private Vector2 DirectionFromAngle(float angle)
     {
-        // Ïðåîáðàçîâàíèå ëîêàëüíîãî óãëà â ãëîáàëüíûå êîîðäèíàòû
+        // ÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð»Ð¾ÐºÐ°Ð»ÑŒÐ½Ð¾Ð³Ð¾ ÑƒÐ³Ð»Ð° Ð² Ð³Ð»Ð¾Ð±Ð°Ð»ÑŒÐ½Ñ‹Ðµ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹
         angle += transform.eulerAngles.y;
         return new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad));
     }

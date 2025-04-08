@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2504102035546466229}
   - component: {fileID: 2698738345196771546}
   - component: {fileID: -2863669782582313712}
+  - component: {fileID: -3030684863137671717}
   m_Layer: 8
   m_Name: Shiny handsome
   m_TagString: Untagged
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1520568901
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -902606432, guid: 0fe8d05a3f7db124bb1f13499d869a80, type: 3}
   m_Color: {r: 0.6150943, g: 0.6150943, b: 0.6150943, a: 1}
@@ -167,6 +168,7 @@ MonoBehaviour:
   currentNode: {fileID: 0}
   Path: []
   viewAngle: 90
+  index: 0
   shooter: {fileID: 0}
   character: {fileID: 0}
   basicSpeed: 3
@@ -222,3 +224,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthpoint: 750
+--- !u!114 &-3030684863137671717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201074177869220957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be4fa2de802d9a47b3ba0124437e42d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 4
+  moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}

@@ -78155,6 +78155,8 @@ MonoBehaviour:
   EnemyQuantity: 70
   EnemyPrefabs:
   - {fileID: 2692585161213395578, guid: 9a2f942a6dd719248a382c465052bb96, type: 3}
+  EnemyParent: {fileID: 0}
+  indexOfLevel: 0
 --- !u!4 &758277782
 Transform:
   m_ObjectHideFlags: 0
@@ -78305,6 +78307,10 @@ PrefabInstance:
     - target: {fileID: 6582487385407037778, guid: fc28aeacbcc94fa4cbe5c4be093456d5, type: 3}
       propertyPath: m_Name
       value: Column
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955483639002361091, guid: fc28aeacbcc94fa4cbe5c4be093456d5, type: 3}
+      propertyPath: damage
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

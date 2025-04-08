@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Soldier's Sword has medium range and damage, low attack speed
   swordDamage: 40
-  swordRadius: 1.6
+  swordRadius: 2.1
   isSwordEquipped: 1
   swordAttackDelay: 0.7
   swordSlashDuration: 0.35

@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Sword of Eternal Flame has a greatly increased attack range and
     damage, attack speed is increased by 15%. Also sets enemies on fire
   swordDamage: 120
-  swordRadius: 2
+  swordRadius: 2.5
   isSwordEquipped: 1
   swordAttackDelay: 0.6
   swordSlashDuration: 0.3

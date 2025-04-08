@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Champion's Blade has slightly increased attack range and damage,
     and attack speed is increased by 10%
   swordDamage: 75
-  swordRadius: 1.7
+  swordRadius: 2.2
   isSwordEquipped: 1
   swordAttackDelay: 0.65
   swordSlashDuration: 0.3

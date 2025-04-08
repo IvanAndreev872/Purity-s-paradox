@@ -24,8 +24,8 @@ public class RangeGreedyController : JumpPointSearch, MovementInterface
 
     public bool playerSeen = false;
 
-    private float UpdatePathInterval = 1f;
-    private float timer = 1f;
+    private float UpdatePathInterval = 2f;
+    private float timer = 2f;
     private Animator animator;
 
     public enum States

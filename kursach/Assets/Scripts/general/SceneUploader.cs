@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -46,8 +47,12 @@ public class SceneUploader : MonoBehaviour
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("Character").transform.GetComponent<PlayerStats>();
         if (generator != null)
         {
-            for (int level = 1; level <= playerStats.levelCompleted; level++)
+            for (int level = 1; level <= playerStats.levelCompleted + 1; level++)
             {
+                if (level == 2 || level >= 6) 
+                {
+                    continue;
+                }
                 Task<List<GameObject>> loadEnemiesTask = ItemsLoader.Instance.LoadAllEnemiesFromLevel(level);
                 yield return new WaitUntil(() => loadEnemiesTask.IsCompleted);
                 List<GameObject> enemies = loadEnemiesTask.Result;

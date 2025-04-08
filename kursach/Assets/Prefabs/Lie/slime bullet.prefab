@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireDistance: 30
-  damage: 80
+  damage: 50

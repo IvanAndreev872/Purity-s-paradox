@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Heavy Sword has above average attack range and damage, but attack
     speed is super slow
   swordDamage: 30
-  swordRadius: 2.5
+  swordRadius: 3
   isSwordEquipped: 1
   swordAttackDelay: 1
   swordSlashDuration: 0.5

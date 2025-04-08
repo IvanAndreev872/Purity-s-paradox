@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Big Toxic Blade has a large attack radius and damage, but the
     attack speed is very low. Also deals poison damage
   swordDamage: 65
-  swordRadius: 2.5
+  swordRadius: 3
   isSwordEquipped: 1
   swordAttackDelay: 0.85
   swordSlashDuration: 0.4

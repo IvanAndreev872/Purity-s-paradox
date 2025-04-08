@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Destroyer's Sword has a huge attack range and damage, but the
     attack speed is quite slow
   swordDamage: 160
-  swordRadius: 3
+  swordRadius: 3.3
   isSwordEquipped: 1
   swordAttackDelay: 0.7
   swordSlashDuration: 0.35

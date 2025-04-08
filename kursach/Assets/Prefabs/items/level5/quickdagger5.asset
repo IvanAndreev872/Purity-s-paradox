@@ -23,7 +23,7 @@ MonoBehaviour:
   itemDescription: Assassin's Dagger has a slightly reduced attack range, high damage,
     and ultra fast attack speed
   swordDamage: 115
-  swordRadius: 1.35
+  swordRadius: 1.9
   isSwordEquipped: 1
   swordAttackDelay: 0.2
   swordSlashDuration: 0.1
