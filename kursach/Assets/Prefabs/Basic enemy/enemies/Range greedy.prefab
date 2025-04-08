@@ -212,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentNode: {fileID: 0}
   Path: []
+  index: 1
   shooter: {fileID: 5051932521458224206}
   character: {fileID: 0}
   basicSpeed: 3
@@ -284,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8286456126634756584, guid: 7d8a3b1c33e5af34099cd685e0da13b0, type: 3}
   bulletPrefab: {fileID: 7932271090808488228, guid: d7110423657b8be429953a99f9cd2586, type: 3}
-  bulletSpeed: 15
+  bulletSpeed: 10
   shooterDistanceMax: 5
   shooterDistanceMin: 2
   fireDelay: 1.5

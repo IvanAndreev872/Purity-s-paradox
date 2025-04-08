@@ -279,7 +279,11 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
             {
                 if (col.gameObject.layer != LayerMask.NameToLayer("Enemy"))
                     continue;
-                if (col.GetComponent<FirstEnemyController>() != null)
+                if (col.gameObject.transform.childCount > 0)
+                {
+                    enemyNumber = 1;
+                }
+                else if (col.GetComponent<FirstEnemyController>() != null)
                 {
                     enemyNumber = 0;
                 }
