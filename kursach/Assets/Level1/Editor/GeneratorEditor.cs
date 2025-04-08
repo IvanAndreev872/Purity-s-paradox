@@ -22,10 +22,9 @@ public class RandomDungeonGeneratorEditor : Editor
             generator.GenerateDungeon();
         }
 
-        base.OnInspectorGUI();
-        if (GUILayout.Button("Generate"))
+        if (GUILayout.Button("Reapawn Enemies"))
         {
-            generator.RespawnEnemies();
+            generator.RecreateEnemies();
         }
     }
 }

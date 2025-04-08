@@ -23,6 +23,8 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
 
     [SerializeField] public List<GameObject> EnemyPrefabs;
 
+    [SerializeField] public GameObject EnemyParent;
+
     public static List<Vector2Int> DirectionsList = new List<Vector2Int> 
     {
         new Vector2Int(0, 1),  // up
@@ -255,6 +257,25 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
 
     public override void RespawnEnemies()
     {
-        return;
+        RedoEnemies();
+    }
+
+    private void RedoEnemies()
+    {
+        LayerMask enemyLayer = LayerMask.GetMask("Enemy");
+        Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(Vector2.zero, float.MaxValue, enemyLayer);
+
+        foreach (Collider2D col in enemyColliders)
+        {
+            if (col.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+                continue;
+            GameObject enemyPrefab = col.gameObject;
+            Vector2 position = col.transform.position;
+
+            GameObject newEnemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+            newEnemy.transform.SetParent(EnemyParent.transform);
+
+            DestroyImmediate(col.gameObject);
+        }
     }
 }
