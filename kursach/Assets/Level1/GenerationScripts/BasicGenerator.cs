@@ -17,5 +17,12 @@ public abstract class Generation : MonoBehaviour
         RunGeneration(); // Запускаем генерацию
     }
 
+    public void RecreateEnemies()
+    {
+        RespawnEnemies();
+    }
+
     public abstract void RunGeneration();
+
+    public abstract void RespawnEnemies();
 }

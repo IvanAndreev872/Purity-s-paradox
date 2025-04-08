@@ -56,4 +56,9 @@ public class DungeonGenerator : Generation
         }
         return floorPositions;
     }
+
+    public override void RespawnEnemies()
+    {
+        return;
+    }
 }

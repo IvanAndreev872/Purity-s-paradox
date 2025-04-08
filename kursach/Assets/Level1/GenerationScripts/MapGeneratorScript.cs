@@ -252,4 +252,9 @@ public class CorridorFirstDungeonGenerator : DungeonGenerator
             Enemy.transform.SetParent(EnemyParent.transform);
         }
     }
+
+    public override void RespawnEnemies()
+    {
+        return;
+    }
 }
