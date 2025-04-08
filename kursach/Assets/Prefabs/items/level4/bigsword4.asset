@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Titans' Blade has a large attack range and damage, but its attack
     speed is quite slow
-  swordDamage: 95
+  swordDamage: 115
   swordRadius: 2.7
   isSwordEquipped: 1
   swordAttackDelay: 0.8

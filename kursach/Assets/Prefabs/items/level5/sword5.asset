@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: The Dark Knight's Sword has a greatly increased attack range and
     damage, attack speed is increased by 20%
-  swordDamage: 120
+  swordDamage: 140
   swordRadius: 2
   isSwordEquipped: 1
   swordAttackDelay: 0.6

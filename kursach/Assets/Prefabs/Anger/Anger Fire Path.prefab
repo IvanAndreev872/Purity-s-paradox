@@ -98,6 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDelay: 0.5
-  damage: 10
-  existanceTime: 2
+  damage: 50
+  existanceTime: 3
   radius: 0.5

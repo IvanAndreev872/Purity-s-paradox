@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Blood Dagger has a slightly reduced attack range, acceptable damage,
     but the attack speed is super fast. Also makes enemies bleed
-  swordDamage: 42
+  swordDamage: 70
   swordRadius: 1.2
   isSwordEquipped: 1
   swordAttackDelay: 0.3

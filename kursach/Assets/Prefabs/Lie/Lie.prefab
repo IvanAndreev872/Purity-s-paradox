@@ -172,7 +172,7 @@ MonoBehaviour:
   minimumDistance: 6
   roomCenter: {fileID: 0}
   clonePrefab: {fileID: 7013591406065540024, guid: ad7877eed3f7f8649bdb9e799dbe4ff5, type: 3}
-  maxClones: 3
+  maxClones: 5
 --- !u!114 &2693553453998507794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b1505c57debe040a88e5cd21879f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
+  radius: 3
   damage: 20
   attackDelay: 1
   player: {fileID: 0}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932831492c5ea7341bc50c18becde553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthpoint: 100
+  maxHealthpoint: 1500
 --- !u!95 &4051803593460868129
 Animator:
   serializedVersion: 5
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   bulletPrefab: {fileID: 7932271090808488228, guid: b643fc27833d2c942a9263da4502cc1f, type: 3}
-  bulletSpeed: 15
-  fireDelay: 1
+  bulletSpeed: 12
+  fireDelay: 1.5
   backAttackChance: 20
-  backAttackDelay: 1
+  backAttackDelay: 1.5

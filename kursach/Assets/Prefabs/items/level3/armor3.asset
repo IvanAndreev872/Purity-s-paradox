@@ -20,5 +20,5 @@ MonoBehaviour:
   maxCount: 1
   cost: 3200
   sellCoefficient: 10
-  itemDescription: Champion's armor gives 40 extra health points
-  extraHealth: 40
+  itemDescription: Champion's armor gives 600 extra health points
+  extraHealth: 600

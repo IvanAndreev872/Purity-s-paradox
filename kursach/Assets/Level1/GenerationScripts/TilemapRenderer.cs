@@ -65,7 +65,6 @@ public class TilemapGeneratorRenderer : MonoBehaviour
 
     public void ClearSpace() 
     {
-        Debug.Log("CLEAR!!");
         TilemapCollider2D collider = wallTilemap.transform.GetComponent<TilemapCollider2D>();
         Destroy(collider);
         wallTilemap.ClearAllTiles(); 

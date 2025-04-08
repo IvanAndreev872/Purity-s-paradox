@@ -20,5 +20,5 @@ MonoBehaviour:
   maxCount: 1
   cost: 350
   sellCoefficient: 10
-  itemDescription: Old warrior's armor gives 10 extra health points
-  extraHealth: 10
+  itemDescription: Old warrior's armor gives 100 extra health points
+  extraHealth: 100

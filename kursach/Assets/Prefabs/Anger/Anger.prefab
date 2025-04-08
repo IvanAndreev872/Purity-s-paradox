@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthpoint: 5000
-  ragedAfterHealthpoint: 4000
-  enragedAfterHealthpoint: 2000
+  ragedAfterHealthpoint: 3000
+  enragedAfterHealthpoint: 1500
 --- !u!114 &7152172832462450048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,11 +202,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  dashSpeed: 20
+  dashSpeed: 30
   criticalDistance: 10
   dashDelay: 5
   breakingDistance: 1
-  damage: 50
+  damage: 400
 --- !u!114 &7739717710543281433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,13 +220,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  dashSpeed: 15
+  dashSpeed: 25
   makeDistance: 5
-  dashDelay: 15
+  dashDelay: 25
   brakingDistance: 3
-  damage: 25
+  damage: 300
   explosionPrefab: {fileID: 4058112931313886503, guid: 11ec817cb140eab4fae59e12f0a0eb52, type: 3}
-  pathDuration: 2
+  pathDuration: 3
   pathPrefab: {fileID: 3717638489433156332, guid: b1e4b4d5d9d01944b9fc912fcac2dae8, type: 3}
 --- !u!114 &5903971159656553069
 MonoBehaviour:
@@ -240,10 +240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9925f49c53e1a6546ac385570685497f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceSpeed: 15
+  bounceSpeed: 20
   bounceDelay: 45
   bounceDuration: 10
-  damage: 25
+  damage: 100
   explosionPrefab: {fileID: 4058112931313886503, guid: 11ec817cb140eab4fae59e12f0a0eb52, type: 3}
 --- !u!114 &1455427677480907720
 MonoBehaviour:
@@ -263,7 +263,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 4058112931313886503, guid: 11ec817cb140eab4fae59e12f0a0eb52, type: 3}
   attackDistance: 3
   abilityDuration: 3
-  damage: 50
+  damage: 400
   jumpDelay: 45
   flySpeed: 8
   stopTime: 2
@@ -279,8 +279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b1505c57debe040a88e5cd21879f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
-  damage: 30
+  radius: 3
+  damage: 100
   attackDelay: 1
   player: {fileID: 0}
 --- !u!95 &4373221440156519294

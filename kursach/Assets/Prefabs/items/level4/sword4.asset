@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Great Lightning Sword has increased attack range and damage, attack
     speed increased by 15%
-  swordDamage: 80
+  swordDamage: 100
   swordRadius: 1.8
   isSwordEquipped: 1
   swordAttackDelay: 0.6

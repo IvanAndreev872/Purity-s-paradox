@@ -22,7 +22,7 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: Champion's Blade has slightly increased attack range and damage,
     and attack speed is increased by 10%
-  swordDamage: 60
+  swordDamage: 75
   swordRadius: 1.7
   isSwordEquipped: 1
   swordAttackDelay: 0.65
