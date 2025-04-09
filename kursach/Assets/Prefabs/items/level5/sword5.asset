@@ -21,7 +21,7 @@ MonoBehaviour:
   cost: 30000
   sellCoefficient: 10
   itemDescription: The Dark Knight's Sword has a greatly increased attack range and
-    damage, attack speed is increased by 20%
+    damage, attack speed is increased
   swordDamage: 140
   swordRadius: 2.5
   isSwordEquipped: 1

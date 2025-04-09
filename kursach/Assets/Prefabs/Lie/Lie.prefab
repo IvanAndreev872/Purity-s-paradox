@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 468419446032504460}
   - component: {fileID: 8074042855141458700}
   - component: {fileID: 2693553453998507794}
-  - component: {fileID: 457024413157681984}
   - component: {fileID: 4051803593460868129}
   - component: {fileID: -6388816244957944066}
+  - component: {fileID: 7274699268301536530}
   m_Layer: 8
   m_Name: Lie
   m_TagString: Slime enemy
@@ -189,19 +189,6 @@ MonoBehaviour:
   damage: 20
   attackDelay: 1
   player: {fileID: 0}
---- !u!114 &457024413157681984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545059265294062771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 932831492c5ea7341bc50c18becde553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealthpoint: 1500
 --- !u!95 &4051803593460868129
 Animator:
   serializedVersion: 5
@@ -237,6 +224,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 102
   moneyPrefab: {fileID: 4623603319671600812, guid: cb63a595d63d1654b9ceca70a549d9c4, type: 3}
+--- !u!114 &7274699268301536530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545059265294062771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78488fb184df35f45b77d49971675acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthpoint: 1500
+  slider: {fileID: 0}
 --- !u!1 &1902423769377025151
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AngerStatusController : MonoBehaviour, DamageInterface
 {
@@ -16,12 +18,15 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
 
     private float currentHealth;
 
+    public Slider slider;
+
     private bool damagable = true, isDead = false;
     // Start is called before the first frame update�
     void Awake()
     {
         currentHealth = maxHealthpoint;
         currentEnragement = AngerLevel.Calm;
+        slider.value = 1;
     }
 
     public void Hit(float damage)
@@ -30,6 +35,7 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
         {
             Debug.Log(damage);
             currentHealth -= damage;
+            UpdateHealthBar();
             CheckHealth();
         }
     }
@@ -38,6 +44,7 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
     {
         if (currentHealth < 0) 
         {
+            slider.gameObject.SetActive(false);
             Die();
         } 
         else
@@ -76,5 +83,10 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
         }
         isDead = true;
         Destroy(gameObject);
+    }
+
+    private void UpdateHealthBar()
+    {
+        slider.value = Math.Max(0, (float)currentHealth / maxHealthpoint);
     }
 }

@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4343bb4b4febbc24d914e6646dfd18e8, type: 3}
-  m_Name: sword4
+  m_Name: freezesword3
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Great Lightning Sword
+  itemName: Glacial Sword
   itemClass: sword
-  itemPrefab: {fileID: 8282640051607540829, guid: eb783df9e2335cb41a285f3c9942e65c, type: 3}
-  icon: {fileID: 21300000, guid: 65c35663f418113458af495ca22b063b, type: 3}
+  itemPrefab: {fileID: 1967886169766045424, guid: ef2513aff6a2f8d4e96f3d222be4575c, type: 3}
+  icon: {fileID: 21300000, guid: aebbaa971c0014843baef597647c1e2e, type: 3}
   maxCount: 1
-  cost: 9450
+  cost: 3200
   sellCoefficient: 10
-  itemDescription: Great Lightning Sword has increased attack range and damage, attack
-    speed increased
-  swordDamage: 100
-  swordRadius: 2.3
+  itemDescription: Glacial Sword has slightly increased attack range and damage,
+    and attack speed is increased. Also slightly slows down enemies
+  swordDamage: 70
+  swordRadius: 2.2
   isSwordEquipped: 1
-  swordAttackDelay: 0.6
+  swordAttackDelay: 0.65
   swordSlashDuration: 0.3
   swordEffectAttacksCount: 0
   swordEffectAttacksDelay: 0
@@ -33,6 +33,6 @@ MonoBehaviour:
   isSwordPoisoned: 0
   isSwordBleeding: 0
   isSwordFired: 0
-  swordSlowdownTime: 0
-  swordSlowdownCoeffitient: 1
-  isSwordFreezed: 0
+  swordSlowdownTime: 1
+  swordSlowdownCoeffitient: 0.3
+  isSwordFreezed: 1
