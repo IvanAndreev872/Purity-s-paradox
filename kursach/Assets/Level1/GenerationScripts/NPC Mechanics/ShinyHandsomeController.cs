@@ -10,6 +10,7 @@ public class ShinyHandsomeController : JumpPointSearch, MovementInterface
     public bool ableToMove { get; set; } = true;
     public Node currentNode;
     public List<Node> Path;
+    public Node nextNode;
     public float viewAngle = 90f;
 
     public int index = 0;
@@ -28,8 +29,8 @@ public class ShinyHandsomeController : JumpPointSearch, MovementInterface
     public bool playerSeen = false;
     public float triggerRadius = 7;
 
-    private float UpdatePathInterval = 2f;
-    private float timer = 2f;
+    private float UpdatePathInterval = 1f;
+    private float timer = 1f;
 
     private int obstackleMask;
     private Animator animator;
@@ -93,6 +94,7 @@ public class ShinyHandsomeController : JumpPointSearch, MovementInterface
             {
                 currentState = States.Patrol;
                 Path.Clear();
+                nextNode = null;
             }
         }
         else if (playerSeen && currentState != States.Engage && !canAtack)
@@ -117,11 +119,13 @@ public class ShinyHandsomeController : JumpPointSearch, MovementInterface
                 }
             }
             Path.Clear();
+            nextNode = null;
         }
         else if (playerSeen && currentState != States.Atack && canAtack)
         {
             currentState = States.Atack;
             Path.Clear();
+            nextNode = null;
         }
 
         generatePath();
@@ -180,15 +184,19 @@ public class ShinyHandsomeController : JumpPointSearch, MovementInterface
     {
         if (Path.Count > 0)
         {
-            int x = 0;
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(Path[x].transform.position.x, Path[x].transform.position.y),
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(currentNode.transform.position.x, currentNode.transform.position.y),
                 speedNow * Time.deltaTime);
-            Animate(Path[x].transform.position - transform.position);
+            Animate(Path[0].transform.position - transform.position);
 
-            if (Vector2.Distance(transform.position, Path[x].transform.position) < 0.1f)
+            if (Vector2.Distance(transform.position, currentNode.transform.position) < 0.1f)
             {
-                currentNode = Path[x];
-                Path.RemoveAt(x);
+                nextNode = null;
+                Path.RemoveAt(0);
+                if (Path.Count > 0)
+                {
+                    nextNode = Path[0];
+                    currentNode = nextNode;
+                }
             }
         }
         return;
