@@ -24,7 +24,7 @@ public class ShinyHandsomeController : JumpPointSearch, MovementInterface
     private float AtackRange;
     private bool canAtack;
 
-    public Vector2 facingDirection = Vector2.up;
+    public Vector2 facingDirection = Vector2.down;
     public bool playerSeen = false;
     public float triggerRadius = 7;
 
