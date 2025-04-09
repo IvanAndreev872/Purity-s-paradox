@@ -219,6 +219,8 @@ MonoBehaviour:
   damage: 20
   attackDelay: 1
   player: {fileID: 0}
+  slashDuration: 0.5
+  swingPrefab: {fileID: 6532608643486906422, guid: ce8516cd478ffba428a44e76d059a3fb, type: 3}
 --- !u!114 &-2712525652020556023
 MonoBehaviour:
   m_ObjectHideFlags: 0

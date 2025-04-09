@@ -192,6 +192,8 @@ MonoBehaviour:
   damage: 250
   attackDelay: 2
   player: {fileID: 0}
+  slashDuration: 0.5
+  swingPrefab: {fileID: 6532608643486906422, guid: ce8516cd478ffba428a44e76d059a3fb, type: 3}
 --- !u!95 &2698738345196771546
 Animator:
   serializedVersion: 5

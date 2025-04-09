@@ -19100,6 +19100,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1003604348}
+    - target: {fileID: 8202283524573964674, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
+      propertyPath: swingPrefab
+      value: 
+      objectReference: {fileID: 6532608643486906422, guid: ce8516cd478ffba428a44e76d059a3fb, type: 3}
+    - target: {fileID: 8202283524573964674, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
+      propertyPath: slashDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

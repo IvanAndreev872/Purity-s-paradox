@@ -8,6 +8,8 @@ public class EnemyMelee : MonoBehaviour
     public float damage;
     public float attackDelay;
     public Transform player;
+    public float slashDuration;
+    public GameObject swingPrefab;
 
     protected float attackTime;
     private DamageInterface attack_player;
@@ -38,5 +40,15 @@ public class EnemyMelee : MonoBehaviour
             attack_player.Hit(damage);
         }
         attackTime = Time.time;
+        StartCoroutine(MakeSlash());
+    }
+
+    protected virtual IEnumerator MakeSlash()
+    {
+        GameObject swing = Instantiate(swingPrefab, transform.position, Quaternion.identity, transform);
+        swing.transform.localScale = Vector2.one * radius / Mathf.Sqrt(2);
+
+        yield return new WaitForSeconds(slashDuration);
+        Destroy(swing);
     }
 }
