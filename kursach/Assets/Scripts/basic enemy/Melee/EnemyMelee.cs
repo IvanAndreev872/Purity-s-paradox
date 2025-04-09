@@ -38,9 +38,9 @@ public class EnemyMelee : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) < radius)
         {
             attack_player.Hit(damage);
+            StartCoroutine(MakeSlash());
         }
         attackTime = Time.time;
-        StartCoroutine(MakeSlash());
     }
 
     protected virtual IEnumerator MakeSlash()
