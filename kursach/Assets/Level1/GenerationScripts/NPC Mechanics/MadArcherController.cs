@@ -135,8 +135,10 @@ public class MadArcherController : JumpPointSearch, MovementInterface
 
     void Shoot()
     {
+        Animate(Vector2.zero);
         return;
     }
+
 
     void generatePath()
     {

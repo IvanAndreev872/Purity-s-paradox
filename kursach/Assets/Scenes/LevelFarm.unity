@@ -79579,7 +79579,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4424783f97bed1348b8532f7b57246ff, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 04189ab862b773b48a9a64a4d5a438d6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -79804,6 +79804,8 @@ MonoBehaviour:
   FreeSpace: 20
   EnemyQuantity: 70
   EnemyPrefabs: []
+  EnemyParent: {fileID: 0}
+  indexOfLevel: 0
 --- !u!4 &1921768545
 Transform:
   m_ObjectHideFlags: 0
