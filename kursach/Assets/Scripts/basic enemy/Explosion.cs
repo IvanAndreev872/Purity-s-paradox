@@ -16,7 +16,7 @@ public class Explosion : MonoBehaviour
         playerLayer = LayerMask.GetMask("Character");
         animator = GetComponent<Animator>();
         animationLength = animator.runtimeAnimatorController.animationClips[0].length;
-        Debug.Log(animationLength + " animation length");
+        // Debug.Log(animationLength + " animation length");
         Explode();
     }
 
@@ -37,10 +37,10 @@ public class Explosion : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // Установите цвет Gizmos
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Gizmos
         Gizmos.color = Color.red;
 
-        // Рисуем сферу, представляющую радиус взрыва
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

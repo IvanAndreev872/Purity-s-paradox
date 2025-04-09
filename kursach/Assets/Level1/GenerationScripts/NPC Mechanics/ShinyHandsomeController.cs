@@ -209,7 +209,7 @@ public class ShinyHandsomeController : JumpPointSearch, MovementInterface
         {
             Vector2 directionToPlayer = (character.transform.position - transform.position).normalized;
             float angle = Vector2.Angle(facingDirection, directionToPlayer);
-            Debug.Log(angle);
+            // Debug.Log(angle);
             if (angle <= 45.0f)
             {
                 if (!Physics2D.Raycast(transform.position, directionToPlayer, dist, obstackleMask))

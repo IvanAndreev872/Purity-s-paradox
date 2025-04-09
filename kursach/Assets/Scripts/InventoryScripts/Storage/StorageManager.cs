@@ -170,7 +170,7 @@ public class StorageManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("UNLUCK");
+                    // Debug.Log("UNLUCK");
                 }
                 return;
             }
@@ -231,7 +231,7 @@ public class StorageManager : MonoBehaviour
         }
         string json = JsonUtility.ToJson(storageData);
         File.WriteAllText(filePath, json);
-        Debug.Log("Storage saved to: " + filePath);
+        // Debug.Log("Storage saved to: " + filePath);
     }
     public async void LoadStorage(string filePath)
     {
@@ -278,11 +278,11 @@ public class StorageManager : MonoBehaviour
                     }
                 }
             }
-            Debug.Log("Storage loaded from: " + filePath);
+            // Debug.Log("Storage loaded from: " + filePath);
         }
         else
         {
-            Debug.Log("Save file not found at: " + filePath);
+            // Debug.Log("Save file not found at: " + filePath);
         }
     }
 }

@@ -42,7 +42,7 @@ public class TeleportToNewLevel : MonoBehaviour
             }
             else
             {
-                Debug.Log("Level is unavailable");
+                // Debug.Log("Level is unavailable");
             }
         }
     }

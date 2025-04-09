@@ -2120,7 +2120,6 @@ GameObject:
   - component: {fileID: 153231942258305549}
   - component: {fileID: 471386427716380010}
   - component: {fileID: 6829119829631499610}
-  - component: {fileID: 6233236473915693763}
   m_Layer: 5
   m_Name: combat
   m_TagString: Untagged
@@ -2248,23 +2247,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6233236473915693763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5439917449557159154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc99491460a1ca40adf5c712e2841e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isShowed: 1
-  hint: 'LMB, X, M - shoot
-
-    RMB, Z, Space - melee'
-  hintText: {fileID: 0}
 --- !u!1 &5577536553030690329
 GameObject:
   m_ObjectHideFlags: 0

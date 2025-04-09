@@ -55,7 +55,7 @@ public class RewardAfterDeath : MonoBehaviour
         bool isFarm = SceneManager.GetActiveScene().name == "LevelFarm";
         if (level == 1)
         {
-            Spawn(isFarm, 2.8f, 30, 40, 1, 1, 1, center);
+            Spawn(isFarm, 2.8f, 20, 25, 1, 1, 1, center);
         }
         else if (level == 2)
         {
@@ -77,7 +77,7 @@ public class RewardAfterDeath : MonoBehaviour
         {
             // boss 1
             Vector2 cringe = new Vector2(0, 0);
-            Spawn(false, 1, 1150, 1200, 3, 10, 20, cringe);
+            Spawn(false, 1, 750, 800, 3, 10, 20, cringe);
         }
         else if (level == 102)
         {

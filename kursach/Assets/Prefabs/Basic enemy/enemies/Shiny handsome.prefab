@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -3030684863137671717}
   m_Layer: 8
   m_Name: Shiny handsome
-  m_TagString: Untagged
+  m_TagString: Regular enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentNode: {fileID: 0}
   Path: []
+  nextNode: {fileID: 0}
   viewAngle: 90
   index: 0
   shooter: {fileID: 0}

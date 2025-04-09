@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 8190280255984131307}
   m_Layer: 8
   m_Name: Elusive archer
-  m_TagString: Untagged
+  m_TagString: Regular enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932831492c5ea7341bc50c18becde553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthpoint: 500
+  maxHealthpoint: 300
 --- !u!114 &8190280255984131307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   bulletPrefab: {fileID: 7932271090808488228, guid: bd59516a7a836e240ad8460d20b59622, type: 3}
-  bulletSpeed: 15
+  bulletSpeed: 12
   shooterDistanceMax: 15
   shooterDistanceMin: 3
   fireDelay: 1

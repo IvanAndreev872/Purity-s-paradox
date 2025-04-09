@@ -43,9 +43,9 @@ public class JumpAttack : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bossCollider = GetComponent<Collider2D>();
         bossRenderer = GetComponent<SpriteRenderer>();
-        Debug.Log(1);
+        // Debug.Log(1);
         melee = GetComponent<EnemyMelee>();
-        Debug.Log(melee);
+        // Debug.Log(melee);
     }
 
     // Update is called once per frame

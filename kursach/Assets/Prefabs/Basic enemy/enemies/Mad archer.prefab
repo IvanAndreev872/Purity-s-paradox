@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -6582891079920105155}
   m_Layer: 8
   m_Name: Mad archer
-  m_TagString: Regular enemy
+  m_TagString: Fire enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentNode: {fileID: 0}
   Path: []
+  nextNode: {fileID: 0}
   index: 1
   shooter: {fileID: 5051932521458224206}
   character: {fileID: 0}
@@ -282,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   bulletPrefab: {fileID: 7932271090808488228, guid: 106c33af5c84fbc4d82ee3a8af4276f0, type: 3}
-  bulletSpeed: 25
+  bulletSpeed: 18
   shooterDistanceMax: 8
   shooterDistanceMin: 0
   fireDelay: 2

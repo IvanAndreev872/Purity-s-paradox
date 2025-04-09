@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,7 +47,12 @@ public class EnemyMelee : MonoBehaviour
     protected virtual IEnumerator MakeSlash()
     {
         GameObject swing = Instantiate(swingPrefab, transform.position, Quaternion.identity, transform);
-        swing.transform.localScale = Vector2.one * radius / Mathf.Sqrt(2);
+        swing.transform.localScale = Vector2.one * radius * 2;
+        Vector2 parentScale = swing.transform.parent.lossyScale;
+        swing.transform.localScale = new Vector2(
+            swing.transform.localScale.x / parentScale.x,
+            swing.transform.localScale.y / parentScale.y
+        );
 
         yield return new WaitForSeconds(slashDuration);
         Destroy(swing);

@@ -33,7 +33,7 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
     {
         if (damagable)
         {
-            Debug.Log(damage);
+            // Debug.Log(damage);
             currentHealth -= damage;
             UpdateHealthBar();
             CheckHealth();
@@ -52,18 +52,18 @@ public class AngerStatusController : MonoBehaviour, DamageInterface
             AngerLevel newEnragementLevel = currentEnragement;
             if (currentHealth <= enragedAfterHealthpoint)
             {
-                Debug.Log(1);
+                // Debug.Log(1);
                 newEnragementLevel = AngerLevel.Enraged;
             }
             else if (currentHealth <= ragedAfterHealthpoint)
             {
-                Debug.Log(0);
+                // Debug.Log(0);
                 newEnragementLevel = AngerLevel.Raged;
             }
 
             if (currentEnragement != newEnragementLevel)
             {
-                Debug.Log(newEnragementLevel);
+                // Debug.Log(newEnragementLevel);
                 currentEnragement = newEnragementLevel;
                 EnragementChanged?.Invoke(newEnragementLevel);
             }

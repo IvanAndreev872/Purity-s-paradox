@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireDistance: 30
-  damage: 600
+  damage: 250
 --- !u!212 &9117877974353967733
 SpriteRenderer:
   m_ObjectHideFlags: 0

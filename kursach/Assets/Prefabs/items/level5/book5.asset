@@ -22,5 +22,5 @@ MonoBehaviour:
   sellCoefficient: 10
   itemDescription: The book increases the attack speed of the staff
   staffAdditionalDamage: 0
-  staffAttackDelay: 0.6
+  staffAttackDelay: 0.7
   staffBulletSpeedCoefficient: 1

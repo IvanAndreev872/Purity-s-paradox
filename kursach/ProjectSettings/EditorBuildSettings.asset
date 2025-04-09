@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hub.unity
     guid: 3e5fa5683a0e77b42a41f2c0306919d1
-  - enabled: 0
-    path: Assets/Scenes/Farmilka.unity
-    guid: 181fce2b7b4f3416e9c25ccba9f9dfdc
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 396a88375830c9a43b3e5eebc9745db7
@@ -41,8 +38,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelFarm.unity
     guid: 6533c3f696352bf458d950038fcd1a77
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a0e1dbef48cb7c643b7292e2b13e2882, type: 2}

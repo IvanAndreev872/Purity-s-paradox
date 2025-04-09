@@ -73,7 +73,7 @@ public class PlayerStats : MonoBehaviour
     {
         string json = JsonUtility.ToJson(this);
         File.WriteAllText(filePath, json);
-        Debug.Log("Player stats saved to: " + filePath);
+        // Debug.Log("Player stats saved to: " + filePath);
     }
     public void LoadFromJson(string filePath)
     {
@@ -81,11 +81,11 @@ public class PlayerStats : MonoBehaviour
         {
             string json = File.ReadAllText(filePath);
             JsonUtility.FromJsonOverwrite(json, this);
-            Debug.Log("Player stats loaded from: " + filePath);
+            // Debug.Log("Player stats loaded from: " + filePath);
         }
         else
         {
-            Debug.Log("Save file not found at: " + filePath);
+            // Debug.Log("Save file not found at: " + filePath);
         }
     }
     public void UpdateUI()

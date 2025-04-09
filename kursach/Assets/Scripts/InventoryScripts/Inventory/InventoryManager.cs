@@ -111,7 +111,7 @@ public class InventoryManager : MonoBehaviour
                        ((playerStats.isSwordBleeding > 0) ? "Bleeding After Sword Attack: ON\n" : "") +
                        ((playerStats.isSwordFired > 0) ? "Fire After Sword Attack: ON\n" : "") +
                        ((playerStats.isSwordFreezed > 0) ?
-                       "Sword Freeze Power: " + Math.Round(playerStats.swordSlowdownCoeffitient - 1, 2) * 100 : "") + "\n" +
+                       "Sword Freeze Power: " + Math.Round(1 - playerStats.swordSlowdownCoeffitient, 2) * 100 + "%\n" : "") + "\n" +
 
                        "Staff Damage: " +
                        (playerStats.isStaffEquipped > 0 ? playerStats.staffDamage : "0") + "\n" +
@@ -120,7 +120,7 @@ public class InventoryManager : MonoBehaviour
                        ((playerStats.isStaffPoisoned > 0) ? "Poison After Staff Attack: ON\n" : "") +
                        ((playerStats.isStaffFired > 0) ? "Fire After Staff Attack: ON\n" : "") +
                        ((playerStats.isStaffFreezed > 0) ?
-                       "Staff Freeze Power: " + Math.Round(playerStats.staffSlowdownCoeffitient - 1, 2) * 100 : "") + "\n" +
+                       "Staff Freeze Power: " + Math.Round(1 - playerStats.staffSlowdownCoeffitient, 2) * 100 + "%\n" : "") + "\n" +
                        "Walk Speed: " + Math.Round(playerStats.walkSpeed, 1) + "\n" +
                        "Dash Speed: " + Math.Round(playerStats.dashSpeed, 1) + "\n" +
                        "Dash Duration: " + Math.Round(playerStats.dashDuration, 1) + "\n" +
@@ -273,7 +273,7 @@ public class InventoryManager : MonoBehaviour
         }
         string json = JsonUtility.ToJson(inventoryData);
         File.WriteAllText(filePath, json);
-        Debug.Log("Inventory saved to: " + filePath);
+        // Debug.Log("Inventory saved to: " + filePath);
     }
     public async void LoadInventory(string filePath)
     {
@@ -338,11 +338,11 @@ public class InventoryManager : MonoBehaviour
                     slot.NullifyData();
                 }
             }
-            Debug.Log("Inventory loaded from: " + filePath);
+            // Debug.Log("Inventory loaded from: " + filePath);
         }
         else
         {
-            Debug.Log("Save file not found at: " + filePath);
+            // Debug.Log("Save file not found at: " + filePath);
         }
     }
 }

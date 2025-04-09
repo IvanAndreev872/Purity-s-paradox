@@ -22,16 +22,26 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Hub");
     }
+    void EnsureFileExists(string filePath, string defaultContent = "{}")
+    {
+        if (!File.Exists(filePath))
+        {
+            File.WriteAllText(filePath, defaultContent);
+        }
+    }
     public void NewGame()
     {
         string filePath = Application.streamingAssetsPath + "/playerStats.json";
         string filePathNewGame = Application.streamingAssetsPath + "/playerStatsNewGame.json";
+        EnsureFileExists(filePath);
         CopyJson(filePathNewGame, filePath);
         filePath = Application.streamingAssetsPath + "/inventory.json";
         filePathNewGame = Application.streamingAssetsPath + "/inventoryNewGame.json";
+        EnsureFileExists(filePath);
         CopyJson(filePathNewGame, filePath);
         filePath = Application.streamingAssetsPath + "/storage.json";
         filePathNewGame = Application.streamingAssetsPath + "/storageNewGame.json";
+        EnsureFileExists(filePath);
         CopyJson(filePathNewGame, filePath);
         SceneManager.LoadScene("Hub");
     }

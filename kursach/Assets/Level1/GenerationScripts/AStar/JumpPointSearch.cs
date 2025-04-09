@@ -50,7 +50,7 @@ public class JumpPointSearch : MonoBehaviour
             {
                 if (closedSet.Count > 10)
                 {
-                    Debug.Log(closedSet.Count);
+                    // Debug.Log(closedSet.Count);
                 }
                 return ReconstructPath(start, end);
             }

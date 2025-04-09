@@ -19425,6 +19425,10 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1669204051}
+    - target: {fileID: 5154070756089974755, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
+      propertyPath: maxHealthpoint
+      value: 6000
+      objectReference: {fileID: 0}
     - target: {fileID: 5173853607928207312, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.556345
@@ -19474,13 +19478,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1003604348}
     - target: {fileID: 7739717710543281433, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739717710543281433, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1003604348}
+    - target: {fileID: 7739717710543281433, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
+      propertyPath: dashSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202283524573964674, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
+      propertyPath: damage
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8202283524573964674, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1003604348}
+    - target: {fileID: 8202283524573964674, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
+      propertyPath: radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8202283524573964674, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
       propertyPath: swingPrefab
       value: 
@@ -19488,6 +19508,10 @@ PrefabInstance:
     - target: {fileID: 8202283524573964674, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
       propertyPath: slashDuration
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109203899677226727, guid: cd94ee7151a56c04e89b7a5c2d059715, type: 3}
+      propertyPath: dodgeSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

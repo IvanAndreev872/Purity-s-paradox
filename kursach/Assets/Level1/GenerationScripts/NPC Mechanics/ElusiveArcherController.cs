@@ -162,7 +162,7 @@ public class ElusiveArcherController : JumpPointSearch, MovementInterface
     {
         if (direction != Vector2.zero)
         {
-            Debug.Log(direction);
+            // Debug.Log(direction);
         }
         animator.SetFloat("MoveX", direction.x);
         animator.SetFloat("MoveY", direction.y);

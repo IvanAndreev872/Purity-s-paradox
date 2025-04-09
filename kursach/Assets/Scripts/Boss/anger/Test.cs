@@ -44,7 +44,7 @@ public class AngerAttack : MonoBehaviour
 
     private void OnAngerChanged(AngerStatusController.AngerLevel new_level)
     {
-        Debug.Log("1");
+        // Debug.Log("1");
     }
 
     void OnEnable()

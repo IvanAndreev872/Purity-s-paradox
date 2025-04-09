@@ -372,7 +372,7 @@ public class Chest : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("UNLUCK");
+                    // Debug.Log("UNLUCK");
                 }
                 return;
             }

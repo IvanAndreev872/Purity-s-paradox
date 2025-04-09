@@ -68,7 +68,7 @@ public class SceneUploader : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Unluck");
+            // Debug.LogError("Unluck");
         }
     }
 }

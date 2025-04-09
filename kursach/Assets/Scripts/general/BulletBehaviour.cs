@@ -25,7 +25,7 @@ public class BulletBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("BULLET");
+        // Debug.Log("BULLET");
         DamageInterface enemy = collision.gameObject.GetComponent<DamageInterface>();
         if (enemy != null) 
         {

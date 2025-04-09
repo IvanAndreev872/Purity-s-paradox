@@ -189,6 +189,8 @@ MonoBehaviour:
   damage: 20
   attackDelay: 1
   player: {fileID: 0}
+  slashDuration: 0
+  swingPrefab: {fileID: 0}
 --- !u!95 &4051803593460868129
 Animator:
   serializedVersion: 5
@@ -236,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78488fb184df35f45b77d49971675acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthpoint: 1500
+  maxHealthpoint: 2300
   slider: {fileID: 0}
 --- !u!1 &1902423769377025151
 GameObject:

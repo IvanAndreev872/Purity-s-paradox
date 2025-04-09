@@ -61,10 +61,10 @@ public class DashAttackExplosion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(movementInterface.ableToMove + " " + isDashing + " " + isPreparing + " " + canBeEnabled);
+        // Debug.Log(movementInterface.ableToMove + " " + isDashing + " " + isPreparing + " " + canBeEnabled);
         if (movementInterface.ableToMove && !isDashing && !isPreparing && canBeEnabled)
         {
-            Debug.Log(1);
+            // Debug.Log(1);
             CheckDash();
         }
     }
@@ -83,7 +83,7 @@ public class DashAttackExplosion : MonoBehaviour
 
     void CheckDash()
     {
-        Debug.Log(Time.time + " " + (dashDelay + dashTime));
+        // Debug.Log(Time.time + " " + (dashDelay + dashTime));
         if (Time.time > dashDelay + dashTime)
         {
             movementInterface.ableToMove = false;

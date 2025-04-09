@@ -69,8 +69,8 @@ public class dodge : MonoBehaviour
     {
         Vector2 direction = (dodgeTarget - transform.position).normalized;
 
-        Debug.Log(magnitude);
-        Debug.DrawRay(transform.position, direction * distance, Color.red, 0.5f);
+        // Debug.Log(magnitude);
+        // Debug.DrawRay(transform.position, direction * distance, Color.red, 0.5f);
 
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, distance, LayerMask.GetMask("Wall"));
 

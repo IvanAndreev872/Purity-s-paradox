@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4690990002535078514}
   m_Layer: 8
   m_Name: Unflappable guardian
-  m_TagString: Untagged
+  m_TagString: Regular enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

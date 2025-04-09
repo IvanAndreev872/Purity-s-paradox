@@ -34,11 +34,11 @@ public class ItemsLoader : MonoBehaviour
                 Item item = itemPrefab.GetComponent<Item>();
                 res.Add(item);
             }
-            Debug.Log("LOADED Items From level " + level + ": " + res.Count);
+            // Debug.Log("LOADED Items From level " + level + ": " + res.Count);
         }
         else
         {
-            Debug.LogError("Failed to load items from level " + level);
+            // Debug.LogError("Failed to load items from level " + level);
         }
         return res;
     }
@@ -55,11 +55,11 @@ public class ItemsLoader : MonoBehaviour
             {
                 res.Add(enemy);
             }
-            Debug.Log("LOADED Enemies from level " + level + ": " + res.Count);
+            // Debug.Log("LOADED Enemies from level " + level + ": " + res.Count);
         }
         else
         {
-            Debug.LogError("Failed to load enemies from level " + level);
+            // Debug.LogError("Failed to load enemies from level " + level);
         }
         return res;
     }
@@ -75,11 +75,11 @@ public class ItemsLoader : MonoBehaviour
             {
                 res.Add(bulletPrefab);
             }
-            Debug.Log("LOADED Bullets: " + res.Count);
+            // Debug.Log("LOADED Bullets: " + res.Count);
         }
         else
         {
-            Debug.LogError("Failed to load bullet prefabs");
+            // Debug.LogError("Failed to load bullet prefabs");
         }
         return res;
     }
@@ -91,11 +91,11 @@ public class ItemsLoader : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             res = handle.Result[0];
-            Debug.Log("LOADED Swing: " + res.name);
+            // Debug.Log("LOADED Swing: " + res.name);
         }
         else
         {
-            Debug.LogError("Failed to load swing from prefabs");
+            // Debug.LogError("Failed to load swing from prefabs");
         }
         return res;
     }
@@ -106,7 +106,7 @@ public class ItemsLoader : MonoBehaviour
         string filePath = Application.streamingAssetsPath + "/inventory.json";
         inventoryManager.SaveInventory(filePath);
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
-        Debug.Log("DEAD: " + isDead + " " + playerStats.health + " " + playerStats.maxHealth);
+        // Debug.Log("DEAD: " + isDead + " " + playerStats.health + " " + playerStats.maxHealth);
         if (isDead)
         {
             playerStats.health = playerStats.maxHealth;
