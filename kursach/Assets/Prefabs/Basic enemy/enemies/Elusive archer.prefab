@@ -249,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentNode: {fileID: 0}
   Path: []
+  nextNode: {fileID: 0}
   index: 0
   shooter: {fileID: 8110074252227988578}
   character: {fileID: 0}
@@ -349,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  bulletPrefab: {fileID: 7932271090808488228, guid: 074197987aef7604aad35cdd242f1355, type: 3}
+  bulletPrefab: {fileID: 7932271090808488228, guid: bd59516a7a836e240ad8460d20b59622, type: 3}
   bulletSpeed: 15
   shooterDistanceMax: 15
   shooterDistanceMin: 3

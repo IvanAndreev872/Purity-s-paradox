@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510f2e6b73e40f04ca6b6c5629fee343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodgeSpeed: 8
+  dodgeSpeed: 6
 --- !u!1 &6426785461904644010
 GameObject:
   m_ObjectHideFlags: 0
