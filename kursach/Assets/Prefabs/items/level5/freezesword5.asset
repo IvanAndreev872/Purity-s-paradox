@@ -21,7 +21,7 @@ MonoBehaviour:
   cost: 33000
   sellCoefficient: 10
   itemDescription: Sword of Eternal Frost has a greatly increased attack range and
-    damage, attack speed is increased by 18%. Also slightly slows down enemies
+    damage, attack speed is increased. Also slightly slows down enemies
   swordDamage: 130
   swordRadius: 2.5
   isSwordEquipped: 1

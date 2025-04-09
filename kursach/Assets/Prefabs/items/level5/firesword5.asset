@@ -21,7 +21,7 @@ MonoBehaviour:
   cost: 33000
   sellCoefficient: 10
   itemDescription: Sword of Eternal Flame has a greatly increased attack range and
-    damage, attack speed is increased by 15%. Also sets enemies on fire
+    damage, attack speed is increased. Also sets enemies on fire
   swordDamage: 120
   swordRadius: 2.5
   isSwordEquipped: 1

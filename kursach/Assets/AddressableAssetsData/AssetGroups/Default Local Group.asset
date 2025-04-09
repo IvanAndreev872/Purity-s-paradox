@@ -413,6 +413,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - EnemyLevel5
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef2513aff6a2f8d4e96f3d222be4575c
+    m_Address: Assets/Prefabs/items/level3/freezesword3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level3
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b0c1abd1c44881141856c8ba50057fad, type: 2}
   m_SchemaSet:

@@ -6,16 +6,16 @@ public class Health : MonoBehaviour, DamageInterface
 {
     public float maxHealthpoint;
 
-    private float currentHealth;
-    private bool damagable = true, isDead = false;
+    protected float currentHealth;
+    protected bool damagable = true, isDead = false;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         currentHealth = maxHealthpoint;
     }
 
-    public void Hit(float damage)
+    public virtual void Hit(float damage)
     {
         Debug.Log(damagable + " " + damage);
         if (damagable)
@@ -33,7 +33,7 @@ public class Health : MonoBehaviour, DamageInterface
         damagable = isDamagable;
     }
 
-    private void Die()
+    protected void Die()
     {
         if (!isDead)
         {
