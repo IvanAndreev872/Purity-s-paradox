@@ -8,8 +8,8 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         continueButton = transform.GetChild(0).gameObject;
-        string filePath = Application.streamingAssetsPath + "/playerStats.json";
-        if (File.Exists(filePath))
+        ConfigData configData = ConfigManager.LoadConfig();
+        if (configData.hasGuideShowed)
         {
             continueButton.SetActive(true);
         }

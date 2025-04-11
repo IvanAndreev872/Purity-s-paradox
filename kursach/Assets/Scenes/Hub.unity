@@ -2262,18 +2262,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome to the Game!\r\n\r\nBefore you begin your adventure, here\u2019s
+  m_text: "Welcome to the Game!\r\n\rBefore you begin your adventure, here\u2019s
     a quick guide to help you get started:\r\n\r\nMovement : Use the W, A, S and
-    D keys to move your character around the game world\n\nInventory Management :
-    Use the Tab key to open.  To move items between your inventory and the active
-    slots panel, simply drag and drop them with the mouse. The active slots panel
-    is always visible at the bottom of the screen\n\nShop : The shop is located to
-    the left of your starting position. Be sure to check it out \u2014 there are
-    currently 2 free items available for you to grab as you begin your adventure!\r\n\nStorage
-    : Near the shop, you\u2019ll find a storage area where you can leave your items
-    for safekeeping if you don\u2019t want to sell them. Use this to manage your
-    inventory and keep your valuable items secure\n\nGuide Panel : Press F1 to open
-    or close the guide panel\n\nGood luck, and enjoy your journey!"
+    D keys to move your character around the game world.\n\nInventory Management
+    : Use the Tab key to open inventory panel.  To move items between your inventory
+    slots and the active slots panel, simply drag and drop them with the mouse. The
+    active slots panel is always visible at the bottom of the screen. You are lucky!
+    At the beginning of the journey you already have 2 items to fight enemies.\n\nShop
+    : The shop is located to the left of your starting position.\nDon't be afraid
+    to approach the mysterious merchant.\n\nStorage : Near the shop, you\u2019ll
+    find a storage area where you can leave your items for safekeeping if you don\u2019t
+    want to sell them. Use this to manage your inventory and keep your valuable items
+    secure.\n\nGuide Panel : Press F1 to open or close the guide panel.\n\nGood luck,
+    and enjoy your journey!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2336,7 +2337,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -173.66772, y: 153.93785, z: -1395.3966, w: -944.9531}
+  m_margin: {x: -173.66772, y: 153.93785, z: -1395.3966, w: -944.953}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
