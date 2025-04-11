@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,12 @@ public class MusicManager : MonoBehaviour
     private float previousVolume = 1;
     void Awake()
     {
-        slider.value = PlayerPrefs.GetFloat("Volume", 1);
+        ConfigData configData = ConfigManager.LoadConfig();
+        slider.value = configData.volume;
+    }
+    void Start()
+    {
+        UpdateValue();   
     }
     public void UpdateValue()
     {
@@ -43,6 +49,8 @@ public class MusicManager : MonoBehaviour
     }
     public void SaveVolume()
     {
-        PlayerPrefs.SetFloat("Volume", AudioListener.volume);
+        ConfigData configData = ConfigManager.LoadConfig();
+        configData.volume = AudioListener.volume;
+        ConfigManager.SaveConfig(configData);
     }
 }

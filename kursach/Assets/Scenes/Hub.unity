@@ -46811,6 +46811,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2798848081571594909, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798848081571594909, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4862188733917018358}
+    - target: {fileID: 2798848081571594909, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798848081571594909, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickShootButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798848081571594909, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateShootOnCursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798848081571594909, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EscapeMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798848081571594909, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ConfigManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798848081571594909, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2982696386143027014, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -47468,6 +47500,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+--- !u!114 &4862188733917018358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1347545079798763321, guid: 6d380b5a766bf044a859344114cfe19f, type: 3}
+  m_PrefabInstance: {fileID: 4862188733917018357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97eaed22335036c4b9164c3fb05e27ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8410344113705273063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47520,7 +47563,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5220789648309463808, guid: 817f1d793e3eabf409e0d03986d04c9d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

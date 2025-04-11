@@ -8,9 +8,9 @@ public class Hint : MonoBehaviour
     [SerializeField] private bool isShowed;
     void Start()
     {
-        // PlayerPrefs.DeleteKey("Guide");
-        int hasShowed = PlayerPrefs.GetInt("Guide", 0);
-        if (hasShowed != 0)
+        ConfigData configData = ConfigManager.LoadConfig();
+        bool hasShowed = configData.hasGuideShowed;
+        if (hasShowed)
         {
             transform.GetChild(0).gameObject.SetActive(false);
             isShowed = false;
@@ -18,7 +18,8 @@ public class Hint : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("Guide", 1);
+            configData.hasGuideShowed = !hasShowed;
+            ConfigManager.SaveConfig(configData);
             isShowed = true;
             Time.timeScale = 0f;
         }

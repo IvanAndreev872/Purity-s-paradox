@@ -10,11 +10,12 @@ public class PlayerShooting : MonoBehaviour
     public float shootDelay;
     private float shootTime;
     public bool isStaffEquipped;
-    public bool shootOnCursor = false;
+    public bool shootOnCursor = true;
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateConfig();
+        UpdateShooter(transform.parent.GetComponent<PlayerStats>());
     }
 
     // Update is called once per frame
@@ -39,6 +40,13 @@ public class PlayerShooting : MonoBehaviour
         bulletSpeed = playerStats.staffBulletSpeed;
         shootDelay = playerStats.staffAttackDelay;
     }
+
+    public void UpdateConfig()
+    {
+        ConfigData configData = ConfigManager.LoadConfig();
+        shootOnCursor = configData.shootOnCursor;
+    }
+
     private void ShootOnCursor()
     {
         shootTime = Time.time;

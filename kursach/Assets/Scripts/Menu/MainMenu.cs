@@ -43,6 +43,9 @@ public class MainMenu : MonoBehaviour
         filePathNewGame = Application.streamingAssetsPath + "/storageNewGame.json";
         EnsureFileExists(filePath);
         CopyJson(filePathNewGame, filePath);
+        ConfigData configData = ConfigManager.LoadConfig();
+        configData.hasGuideShowed = false;
+        ConfigManager.SaveConfig(configData);
         SceneManager.LoadScene("Hub");
     }
     public void QuitGame()
