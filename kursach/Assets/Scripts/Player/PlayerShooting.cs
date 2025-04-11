@@ -10,6 +10,7 @@ public class PlayerShooting : MonoBehaviour
     public float shootDelay;
     private float shootTime;
     public bool isStaffEquipped;
+    public bool shootOnCursor = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,14 @@ public class PlayerShooting : MonoBehaviour
     {
         if (CheckShoot())
         {
-            Shoot();
+            if (!shootOnCursor)
+            {
+                ShootOnDirection();
+            }
+            else
+            {
+                ShootOnCursor();
+            }
         }
     }
 
@@ -31,8 +39,23 @@ public class PlayerShooting : MonoBehaviour
         bulletSpeed = playerStats.staffBulletSpeed;
         shootDelay = playerStats.staffAttackDelay;
     }
+    private void ShootOnCursor()
+    {
+        shootTime = Time.time;
+        Vector2 createPosition = transform.position;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 directionToCursor = (mousePosition - createPosition).normalized;
 
-    private void Shoot()
+        float angle = Mathf.Atan2(directionToCursor.y, directionToCursor.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+        GameObject bullet = Instantiate(bulletPrefab, createPosition, rotation);
+
+        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+        bulletRb.velocity = directionToCursor * bulletSpeed;
+    }
+
+    private void ShootOnDirection()
     {
         shootTime = Time.time;
         Vector3 createPosition = transform.position;
