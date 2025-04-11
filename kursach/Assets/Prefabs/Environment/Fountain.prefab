@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3342702829621957183}
-  - component: {fileID: 3390872497735768276}
+  - component: {fileID: 213627748819448147}
   m_Layer: 0
   m_Name: collider
   m_TagString: Untagged
@@ -32,8 +32,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4437538923143405210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &3390872497735768276
-CapsuleCollider2D:
+--- !u!68 &213627748819448147
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -47,7 +47,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -64,9 +64,29 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.007130916, y: -0.21602307}
-  m_Size: {x: 1.050451, y: 0.7476863}
-  m_Direction: 1
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.51579803, y: -0.32477558}
+  - {x: 0.5037512, y: -0.2732996}
+  - {x: 0.49381012, y: -0.08935997}
+  - {x: 0.28248858, y: 0.09429483}
+  - {x: 0.36393237, y: 0.18050444}
+  - {x: 0.101359114, y: 0.51567644}
+  - {x: -0.110346414, y: 0.50316167}
+  - {x: -0.3607152, y: 0.237201}
+  - {x: -0.30069217, y: 0.08861856}
+  - {x: -0.40507758, y: 0.013954759}
+  - {x: -0.5153452, y: -0.0995859}
+  - {x: -0.5067291, y: -0.30807182}
+  - {x: -0.3052978, y: -0.53715205}
+  - {x: -0.0050709397, y: -0.6007507}
+  - {x: 0.27530167, y: -0.56084895}
+  - {x: 0.522232, y: -0.31915283}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &9188332656501289912
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +98,7 @@ GameObject:
   - component: {fileID: 4437538923143405210}
   - component: {fileID: 6645226284745822070}
   - component: {fileID: 3400095669515360887}
-  - component: {fileID: 4997894506119530799}
+  - component: {fileID: 7318200561592219715}
   m_Layer: 0
   m_Name: Fountain
   m_TagString: Untagged
@@ -169,8 +189,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4997894506119530799
-BoxCollider2D:
+--- !u!70 &7318200561592219715
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -202,15 +222,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.171875}
-    newSize: {x: 4.72, y: 4.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 2, y: 2}
-  m_EdgeRadius: 0
+  m_Direction: 0
