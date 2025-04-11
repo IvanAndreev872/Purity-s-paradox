@@ -229,6 +229,11 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
 
     private void RotateCharacter(float moveX, float moveY)
     {
+        animator.SetFloat("MoveX", moveX);
+        animator.SetFloat("MoveY", moveY);
+
+        Debug.Log(moveX + " " + moveY);
+
         if (moveX != 0 || moveY != 0)
         {
             float angleDegrees = Mathf.Atan2(moveY, moveX) * Mathf.Rad2Deg;
@@ -237,9 +242,9 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
             {
                 shooter.transform.rotation = Quaternion.Lerp(shooter.transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
             }
-        }
 
-        animator.SetFloat("MoveX", moveX);
-        animator.SetFloat("MoveY", moveY);
+            animator.SetFloat("LastX", moveX);
+            animator.SetFloat("LastY", moveY);
+        }
     }
 }
