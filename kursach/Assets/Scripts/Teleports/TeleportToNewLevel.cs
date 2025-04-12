@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,23 +23,23 @@ public class TeleportToNewLevel : MonoBehaviour
                 name = name.ToLower();
                 if (name == "First Boss".ToLower())
                 {
-                    playerStats.levelCompleted = 1;
+                    playerStats.levelCompleted = Math.Max(playerStats.levelCompleted, 1);
                 }
                 else if (name == "Level2".ToLower())
                 {
-                    playerStats.levelCompleted = 2;
+                    playerStats.levelCompleted = Math.Max(playerStats.levelCompleted, 2);
                 }
                 else if (name == "Second Boss".ToLower())
                 {
-                    playerStats.levelCompleted = 3;
+                    playerStats.levelCompleted = Math.Max(playerStats.levelCompleted, 3);
                 }
                 else if (name == "Level4".ToLower())
                 {
-                    playerStats.levelCompleted = 4;
+                    playerStats.levelCompleted = Math.Max(playerStats.levelCompleted, 4);
                 }
                 else if (name == "Third Boss".ToLower())
                 {
-                    playerStats.levelCompleted = 5;
+                    playerStats.levelCompleted = Math.Max(playerStats.levelCompleted, 5);
                 }
                 ItemsLoader.Instance.SaveProgress(true);
                 SceneManager.LoadScene(nextLevelName);
