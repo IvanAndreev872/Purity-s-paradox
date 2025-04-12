@@ -232,8 +232,6 @@ public class PlayerMovement : MonoBehaviour, MovementInterface
         animator.SetFloat("MoveX", moveX);
         animator.SetFloat("MoveY", moveY);
 
-        Debug.Log(moveX + " " + moveY);
-
         if (moveX != 0 || moveY != 0)
         {
             float angleDegrees = Mathf.Atan2(moveY, moveX) * Mathf.Rad2Deg;

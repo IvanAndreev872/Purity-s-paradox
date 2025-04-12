@@ -22,10 +22,13 @@ public class FreezePlayerMelee : PlayerMelee
     {
         DamageInterface enemy = hitCollider.gameObject.GetComponent<DamageInterface>();
         MovementInterface enemyMovement = hitCollider.gameObject.GetComponent<MovementInterface>();
-        if (enemy != null && enemyMovement != null)
+        if (enemyMovement != null)
+        {
+            enemyMovement.ChangeSpeed(slowdownCoeffitient, slowdownTime);
+        }
+        if (enemy != null)
         {
             enemy.Hit(damage);
-            enemyMovement.ChangeSpeed(slowdownCoeffitient, slowdownTime);
         }
     }
 }
