@@ -31,16 +31,16 @@ public class MainMenu : MonoBehaviour
     }
     public void NewGame()
     {
-        string filePath = Application.streamingAssetsPath + "/playerStats.json";
-        string filePathNewGame = Application.streamingAssetsPath + "/playerStatsNewGame.json";
+        string filePath = Path.Combine(Application.streamingAssetsPath + "playerStats.json");
+        string filePathNewGame = Path.Combine(Application.streamingAssetsPath + "playerStatsNewGame.json");
         EnsureFileExists(filePath);
         CopyJson(filePathNewGame, filePath);
-        filePath = Application.streamingAssetsPath + "/inventory.json";
-        filePathNewGame = Application.streamingAssetsPath + "/inventoryNewGame.json";
+        filePath = Path.Combine(Application.streamingAssetsPath + "inventory.json");
+        filePathNewGame = Path.Combine(Application.streamingAssetsPath + "inventoryNewGame.json");
         EnsureFileExists(filePath);
         CopyJson(filePathNewGame, filePath);
-        filePath = Application.streamingAssetsPath + "/storage.json";
-        filePathNewGame = Application.streamingAssetsPath + "/storageNewGame.json";
+        filePath = Path.Combine(Application.streamingAssetsPath + "storage.json");
+        filePathNewGame = Path.Combine(Application.streamingAssetsPath + "storageNewGame.json");
         EnsureFileExists(filePath);
         CopyJson(filePathNewGame, filePath);
         ConfigData configData = ConfigManager.LoadConfig();

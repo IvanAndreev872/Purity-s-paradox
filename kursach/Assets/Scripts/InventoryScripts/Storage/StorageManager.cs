@@ -54,7 +54,7 @@ public class StorageManager : MonoBehaviour
     }
     private void Start()
     {
-        string filePath = Application.streamingAssetsPath + "/storage.json";
+        string filePath = Path.Combine(Application.streamingAssetsPath + "storage.json");
         LoadStorage(filePath);
     }
     public void OnTriggerEnter2D(Collider2D other)

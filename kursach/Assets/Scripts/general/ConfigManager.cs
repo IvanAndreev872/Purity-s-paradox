@@ -8,12 +8,12 @@ public static class ConfigManager
     public static void SaveConfig(ConfigData configData)
     {
         string json = JsonUtility.ToJson(configData);
-        string filePath = Application.streamingAssetsPath + "/config.json";
+        string filePath = Path.Combine(Application.streamingAssetsPath + "config.json");
         File.WriteAllText(filePath, json);
     }
     public static ConfigData LoadConfig()
     {
-        string filePath = Application.streamingAssetsPath + "/config.json";
+        string filePath = Path.Combine(Application.streamingAssetsPath + "config.json");
         string json = File.ReadAllText(filePath);
         ConfigData configData = JsonUtility.FromJson<ConfigData>(json);
         return configData;

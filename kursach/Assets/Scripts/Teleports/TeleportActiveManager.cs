@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TeleportActiveManager : MonoBehaviour
 {
-    PlayerStats playerStats;
     [SerializeField] private int levelRequired;
     void Start()
     {
